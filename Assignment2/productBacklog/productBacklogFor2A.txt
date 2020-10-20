@@ -1,6 +1,10 @@
-The shell allow the user to continiously input commands.  ~  3 hr
-As an user, the command "exit" made me quit the program.  ~  1 hr
-As an user, the command "mkdir" created two directories I specified.  ~  1 hr
-As an user, the command "mkdir" didn't make any directories I specified because there was an error on the creation of the first directory.  ~  1 hr
-As an user, the command "mkdir" only made the first directory I specified because there was an issue with the creation of the second directory.  ~  1 hr
-As an user, the command "cd" changed the current directory to the directory I specified.  ~  1 hr
+The shell allow the user to continiously input commands.  ~  4 hr
+As an user, I want to quit the program.  ~  1 hr
+As an user, I want to create directories.  ~  5 hr
+As an user, I want to change directories.  ~  3 hr
+As an user, I want to see the contents of a file or document.  ~  2 hr
+As an user, I want to know the full path of my current directory.  ~  2 hr
+As an user, I want to save the path to the current directory in a stack.  ~  1.5 hr
+As an user, I want to take a path from the stacks of directories.  ~  1.5 hr
+As an user, I want to know which commands I have used so far.  ~  2 hr
+
