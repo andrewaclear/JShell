@@ -1,0 +1,12 @@
+Class name: PrintWorkingDirectory
+
+Parent class (if any): None
+
+Subclasses (if any): None
+
+Responsibilities: 
+-Prints the current Directory as well as the whole path
+
+Collaborators:
+-Shell
+-FileSystem
