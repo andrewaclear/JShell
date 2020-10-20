@@ -1,0 +1,10 @@
+Class name: CommandLineReader
+
+Parent class (if any): InputReader
+
+Subclasses (if any): None
+
+Responsibilities:
+-Reads input from the command line.
+
+Collaborators: None

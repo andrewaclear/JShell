@@ -1,0 +1,11 @@
+Class name: InputReader
+
+Parent classes: None
+
+Subclasses: FileReader, CommandLineReader
+
+Responsibilities:
+-Reads input from command line or from a file.
+-Breaks input into seperate lines.
+
+Collaborators: 
