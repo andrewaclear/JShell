@@ -1,0 +1,12 @@
+Class name: FileSystem
+
+Parent classes: OperatingSystem
+
+Subclasses: None
+
+Responsibilities:
+-Data structure of Directories and Files
+-Data structure is denoted as paths which are separated by and start with: /
+-Keeps track of the current directory.
+
+Collaborators: None
