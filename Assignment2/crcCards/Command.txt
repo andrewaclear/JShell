@@ -1,4 +1,4 @@
-Class name: Commands
+Class name: Command
 
 Parent class: None
 
