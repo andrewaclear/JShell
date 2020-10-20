@@ -5,6 +5,6 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities:
--Allows the user to quit the command line.
+-Allows the user to quit the program.
 
 Collaborators: None

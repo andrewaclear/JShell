@@ -1,12 +1,11 @@
 Class name: Remove
 
-Parent class: None
+Parent class: Command
 
 Subclasses: None
 
 Responsibilities:
--Remove the File or Directory given in the given path.
--The path may be relative to the current directory.
+-Remove the File or Directory given as a relative path or a full path.
 
 Collaborators:
 -FileSystem

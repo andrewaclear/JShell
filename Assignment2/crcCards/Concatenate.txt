@@ -8,5 +8,5 @@ Responsibilities:
 -Displays the contents of the given Files concatenated with each other.
 
 Collaborators:
--File
+-FileSystem
 -Shell
