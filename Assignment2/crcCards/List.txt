@@ -5,7 +5,7 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities:
--Print the File and Directories names in the current Directory, each in a line.
+-Print the File and Directories names line by line in the current Directory or the one in the path provided.
 
 Collaborators:
 -Shell
