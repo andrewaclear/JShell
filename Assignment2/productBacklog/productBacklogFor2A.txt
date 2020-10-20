@@ -1,0 +1,7 @@
+The command "exit" made me quit the program.  ~  1 hr
+The command "mkdir" created two directories I specified in the current directory.  ~  30 min
+The command "mkdir" created two directories I specified in the a full path.  ~  30 min
+The command "mkdir" didn't make any directories I specified because there was an error on the creation of the first directory.  ~  1 hr
+The command "mkdir" only made the first directory I specified because there was an issue with the creation of the second directory.  ~  1 hr
+The command "cd" changed the current directory to the directory I specified as a relative path.
+The command "cd" changed the current directory to the directory I specified as a full path.
