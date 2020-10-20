@@ -1,0 +1,11 @@
+Class name: Echo
+
+Parent class: None
+
+Subclasses: None
+
+Responsibilities:
+-Replace the File's content with the provided string
+
+Collaborators:
+-File
