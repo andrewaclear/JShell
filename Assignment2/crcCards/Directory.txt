@@ -1,0 +1,11 @@
+Class name: Directory
+
+Parent class (if any): FileSystem
+
+Subclasses (if any): None
+
+Responsibilities:
+-container of Files
+
+Collaborators:
+-None
