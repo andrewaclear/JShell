@@ -1,0 +1,11 @@
+Class name: Commands
+
+Parent class: None
+
+Subclasses: Exit, MakeDirectory, ChangeDirectory, List, PrintWorkingDirectory, Copy, Concatenate, GetURL, Echo
+
+Responsibilities:
+-Depending on command line, performs the desired task for the user
+
+Collaborators: 
+-InputReader 

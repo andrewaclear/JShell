@@ -1,0 +1,10 @@
+Class name: File
+
+Parent class: FileSystem
+
+Subclasses: None
+
+Responsibilities:
+-Data is contained
+
+Collaborators: None
