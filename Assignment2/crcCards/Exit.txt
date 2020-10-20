@@ -1,11 +1,10 @@
 Class name: Exit
 
-Parent class: None
+Parent class: Command
 
 Subclasses: None
 
 Responsibilities:
 -Allows the user to quit the command line.
 
-Collaborators:
--Shell
+Collaborators: None
