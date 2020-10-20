@@ -1,6 +1,6 @@
 Class name: Echo
 
-Parent class: None
+Parent class: Command
 
 Subclasses: None
 

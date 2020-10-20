@@ -1,11 +1,11 @@
 Class name: Concatenate
 
-Parent class: None
+Parent class: Command
 
 Subclasses: None
 
 Responsibilities:
--Displays (prints out) the contents of a given File
+-Displays the contents of the given Files concatenated with each other.
 
 Collaborators:
 -File
