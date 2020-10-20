@@ -1,0 +1,17 @@
+Class name: Shell
+
+Parent classes: None
+
+Subclasses: None
+
+Responsibilities:
+-Start up when program is executed.
+-Shut down when exit is typed or x button is pressed.
+-Provide access for component parts for receiving input and executing commands.
+-Receives and displays output
+
+Collaborators:
+-InputReader
+-Parser
+-Execution
+-Exit
