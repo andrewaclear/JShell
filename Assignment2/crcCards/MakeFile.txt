@@ -1,0 +1,11 @@
+Class name: MakeFile
+
+Parent class: None
+
+Subclasses: None
+
+Responsibilities:
+-Create a new a File 
+
+Collaborators:
+-File

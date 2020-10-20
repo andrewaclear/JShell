@@ -1,0 +1,11 @@
+Class name: AppendToFile
+
+Parent class: None
+
+Subclasses: None
+
+Responsibilities:
+-Appends the string to the File's content.
+
+Collaborators:
+-File
