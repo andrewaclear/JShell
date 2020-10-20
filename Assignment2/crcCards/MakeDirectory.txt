@@ -1,8 +1,8 @@
 Class name: MakeDirectory
 
-Parent class (if any): FileSystem
+Parent classes: FileSystem
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
 -Creates a new Directory named by its parameter

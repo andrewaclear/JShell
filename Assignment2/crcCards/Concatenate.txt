@@ -1,8 +1,8 @@
 Class name: Concatenate
 
-Parent class (if any): None
+Parent classes: None
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
 -Displays (prints out) the contents of a given File

@@ -1,8 +1,8 @@
 Class name: Copy
 
-Parent class (if any): FileSystem
+Parent classes: FileSystem
 
-Subclasses (if any): Move
+Subclasses: Move
 
 Responsibilities:
 -Copy the contents of the first parameter path into the path given in the second parameter

@@ -1,11 +1,11 @@
 Class name: List
 
-Parent class (if any): None
+Parent classes: None
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
--Print the File and Directories names in the current Directory, each in a line
+-Print the File and Directories names in the current Directory, each in a line.
 
 Collaborators:
 -Shell
