@@ -1,11 +1,11 @@
 Class name: PrintWorkingDirectory
 
-Parent class (if any): None
+Parent classes: None
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities: 
--Prints the current Directory as well as the whole path
+-Prints the current Directory as well as the whole path.
 
 Collaborators:
 -Shell

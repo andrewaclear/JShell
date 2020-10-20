@@ -1,8 +1,8 @@
 Class name: ChangeDirectory
 
-Parent class (if any): None
+Parent classes: None
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
 -Changes Directory depending on the paremeter

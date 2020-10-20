@@ -1,11 +1,10 @@
 Class name: Directory
 
-Parent class (if any): FileSystem
+Parent class: FileSystem
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
--container of Files
+-Container of files and other directories.
 
-Collaborators:
--None
+Collaborators: None

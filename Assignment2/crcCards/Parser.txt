@@ -1,12 +1,12 @@
 Class name: Parser
 
-Parent class: None
+Parent classes: None
 
 Subclasses: None
 
 Responsibilities:
-*Receives set of input lines from InputReader.
-*Parses each input line into tokens.
+-Receives set of input lines from InputReader.
+-Parses each input line into tokens.
 
 Collaborators:
-*InputReader
+-InputReader
