@@ -1,15 +1,14 @@
 Class name: Move
 
-Parent classes: Copy
+Parent class: Copy, Commands
 
 Subclasses: None
 
 Responsibilities:
--Move a File or Directory to another location
+-Move a file or directory to another location
 -Copy the contents of the first parameter path into the path given in the second parameter
 -Remove the File or Directory denoted by the first parameter
 
 Collaborators:
 -FileSystem
--Copy
 -Remove

@@ -1,6 +1,6 @@
 Class name: List
 
-Parent classes: None
+Parent class: None
 
 Subclasses: None
 

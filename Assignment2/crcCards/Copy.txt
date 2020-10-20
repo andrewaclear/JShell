@@ -1,6 +1,6 @@
 Class name: Copy
 
-Parent classes: FileSystem
+Parent class: FileSystem
 
 Subclasses: Move
 

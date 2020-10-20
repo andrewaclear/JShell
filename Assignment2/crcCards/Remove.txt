@@ -1,6 +1,6 @@
 Class name: Remove
 
-Parent classes: FileSystem
+Parent class: None
 
 Subclasses: None
 
@@ -10,4 +10,3 @@ Responsibilities:
 
 Collaborators:
 -FileSystem
--Shell

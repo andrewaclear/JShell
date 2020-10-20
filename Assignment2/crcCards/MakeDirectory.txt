@@ -1,6 +1,6 @@
 Class name: MakeDirectory
 
-Parent classes: FileSystem
+Parent class: Commands
 
 Subclasses: None
 
@@ -10,5 +10,3 @@ Responsibilities:
 
 Collaborators:
 -Directory
--FileSystem
--Shell

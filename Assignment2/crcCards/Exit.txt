@@ -1,6 +1,6 @@
 Class name: Exit
 
-Parent classes: None
+Parent class: None
 
 Subclasses: None
 

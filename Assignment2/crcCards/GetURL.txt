@@ -1,8 +1,8 @@
 Class name: GetURL
 
-Parent class (if any): None
+Parent class: None
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
 -Retrieves the File at given URL

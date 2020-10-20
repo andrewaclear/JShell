@@ -1,6 +1,6 @@
 Class name: Parser
 
-Parent classes: None
+Parent class: None
 
 Subclasses: None
 
