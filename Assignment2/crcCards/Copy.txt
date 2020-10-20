@@ -1,0 +1,14 @@
+Class name: Copy
+
+Parent class (if any): FileSystem
+
+Subclasses (if any): Move
+
+Responsibilities:
+-Copy the contents of the first parameter path into the path given in the second parameter
+-the paths may be relative to the current Directory
+
+Collaborators:
+-FileSystem
+-MakeDirectory
+-Shell
