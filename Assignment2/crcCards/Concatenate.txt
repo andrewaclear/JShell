@@ -1,0 +1,12 @@
+Class name: Concatenate
+
+Parent class (if any): None
+
+Subclasses (if any): None
+
+Responsibilities:
+-Displays (prints out) the contents of a given File
+
+Collaborators:
+-File
+-Shell
