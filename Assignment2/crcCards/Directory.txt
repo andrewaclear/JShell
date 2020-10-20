@@ -1,6 +1,6 @@
 Class name: Directory
 
-Parent class: FileSystem
+Parent class: None
 
 Subclasses: None
 

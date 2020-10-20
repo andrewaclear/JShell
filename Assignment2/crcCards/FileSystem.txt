@@ -9,4 +9,6 @@ Responsibilities:
 -Data structure is denoted as paths which are separated by and start with: /
 -Keeps track of the current directory.
 
-Collaborators: None
+Collaborators: 
+-File
+-Directory

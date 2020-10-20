@@ -5,9 +5,8 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Retrieves the File at given URL
--Adds the retrieved File to the current Directory
+-Copies File at the URL to the current Directory
 
 Collaborators:
--FileSystem
+-File
 -Copy
