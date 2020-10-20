@@ -1,5 +1,7 @@
-The shell allow the user to continiously input commands.  ~  4 hr
-As an user, I want to quit the program.  ~  1 hr
+As an user, I want to continiously be able to input commands.  ~  4 hr
+As an user, I want to start the shell.  ~  1 hr
+As an user, I want to quit the shell.  ~  1 hr
+As an user, I want to see error messages when there is an error.  ~  5 hr
 As an user, I want to create directories.  ~  5 hr
 As an user, I want to change directories.  ~  3 hr
 As an user, I want to see the contents of a directory.  ~  2 hr
