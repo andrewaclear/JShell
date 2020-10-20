@@ -1,8 +1,8 @@
 Class name: CommandLineReader
 
-Parent class (if any): InputReader
+Parent class: InputReader
 
-Subclasses (if any): None
+Subclasses: None
 
 Responsibilities:
 -Reads input from the command line.

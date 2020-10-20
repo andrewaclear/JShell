@@ -1,6 +1,6 @@
 Class name: Execution
 
-Parent classes: None
+Parent class: None
 
 Subclasses: None
 

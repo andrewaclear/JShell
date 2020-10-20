@@ -5,6 +5,6 @@ Parent class: FileSystem
 Subclasses: None
 
 Responsibilities:
--Container of files and other directories.
+-Contains files and other directories.
 
 Collaborators: None

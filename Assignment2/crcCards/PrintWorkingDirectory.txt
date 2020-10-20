@@ -1,6 +1,6 @@
 Class name: PrintWorkingDirectory
 
-Parent classes: None
+Parent class: None
 
 Subclasses: None
 

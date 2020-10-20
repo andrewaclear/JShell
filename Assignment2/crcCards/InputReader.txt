@@ -1,6 +1,6 @@
 Class name: InputReader
 
-Parent classes: None
+Parent class: None
 
 Subclasses: FileReader, CommandLineReader
 
