@@ -1,6 +1,6 @@
 Class name: Move
 
-Parent class: Copy, Commands
+Parent class: Copy
 
 Subclasses: None
 

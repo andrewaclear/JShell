@@ -1,4 +1,4 @@
-Class name: Echo
+Class name: ReplaceFile
 
 Parent class: None
 
@@ -8,4 +8,4 @@ Responsibilities:
 -Replace the File's content with the provided string
 
 Collaborators:
--File
+-FileSystem
