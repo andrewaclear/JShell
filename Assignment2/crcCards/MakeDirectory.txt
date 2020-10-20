@@ -1,0 +1,14 @@
+Class name: MakeDirectory
+
+Parent class (if any): FileSystem
+
+Subclasses (if any): None
+
+Responsibilities:
+-Creates a new Directory named by its parameter
+-Puts the new Directory in the current Directory or the path given 
+
+Collaborators:
+-Directory
+-FileSystem
+-Shell
