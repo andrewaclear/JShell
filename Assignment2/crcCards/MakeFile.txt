@@ -5,7 +5,7 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Create a new a File 
+-Creates a new a File 
 
 Collaborators:
 -File

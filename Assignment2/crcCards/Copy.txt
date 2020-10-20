@@ -6,9 +6,8 @@ Subclasses: Move
 
 Responsibilities:
 -Copy the contents of the first parameter path into the path given in the second parameter
--the paths may be relative to the current Directory
+-The paths may be relative to the current Directory
 
 Collaborators:
--FileSystem
+-MakeFile
 -MakeDirectory
--Shell
