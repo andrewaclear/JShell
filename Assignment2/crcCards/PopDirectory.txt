@@ -1,0 +1,14 @@
+Class name: PopDirectory
+
+Parent class: Command
+
+Subclasses: None
+
+Responsibilities:
+-Gets path from top of DirectoryStack and changes Directory into it.
+-Returns error message if the DirectoryStack is empty.
+
+Collaborators:
+-ChangeDirectory
+-DirectoryStack
+-ErrorHandler

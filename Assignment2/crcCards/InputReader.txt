@@ -8,4 +8,5 @@ Responsibilities:
 -Reads input from command line or from a file.
 -Breaks input into separate lines.
 
-Collaborators: None
+Collaborators: 
+-None

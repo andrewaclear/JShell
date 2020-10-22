@@ -1,0 +1,13 @@
+Class name: DirectoryStack
+
+Parent class: Cache
+
+Subclasses: None
+
+Responsibilities:
+-Stack of paths.
+-Pushes paths it receives to the top of a stack (LIFO) stored in Cache.
+-Pops the path at the top of stack when asked for it (returns null when the stack is empty).
+
+Collaborators:
+-Cache
