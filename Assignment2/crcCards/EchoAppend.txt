@@ -1,0 +1,14 @@
+Class name: EchoAppend
+
+Parent class: Command
+
+Subclasses: None
+
+Responsibilities:
+-Create a new File if given File doesn't currently exists
+-Appends the string to the File's content
+
+Collaborators:
+-File
+-AppendToFile
+-CreateFile
