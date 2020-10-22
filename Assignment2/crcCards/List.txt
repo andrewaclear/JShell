@@ -8,5 +8,5 @@ Responsibilities:
 -Print the File and Directories names line by line in the current Directory or the one in the path provided.
 
 Collaborators:
--Shell
+-StandardOutput
 -FileSystem

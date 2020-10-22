@@ -2,7 +2,7 @@ Class name: Command
 
 Parent class: None
 
-Subclasses: Exit, MakeDirectory, ChangeDirectory, List, PrintWorkingDirectory, Copy, Concatenate, GetURL, Echo
+Subclasses: Exit, MakeDirectory, ChangeDirectory, List, PrintWorkingDirectory, Copy, Concatenate, GetURL, EchoAppend, EchoWrite
 
 Responsibilities:
 -Depending on command line, performs the desired task for the user
