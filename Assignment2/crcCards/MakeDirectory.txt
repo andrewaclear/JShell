@@ -1,6 +1,6 @@
 Class name: MakeDirectory
 
-Parent class: Commands
+Parent class: Command
 
 Subclasses: None
 
