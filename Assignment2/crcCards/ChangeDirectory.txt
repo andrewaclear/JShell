@@ -1,6 +1,6 @@
 Class name: ChangeDirectory
 
-Parent class: None
+Parent class: Command
 
 Subclasses: None
 
