@@ -1,0 +1,13 @@
+Class name: Cache
+
+Parent class: None
+
+Subclasses: DirectoryStack
+
+Responsibilities:
+-Stores data it receives.
+-Returns the data requested from it.
+-Dynamically reallocates memory depending on the data it is required to store.
+
+Collaborators:
+-None
