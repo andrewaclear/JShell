@@ -6,7 +6,7 @@ Subclasses: None
 
 Responsibilities:
 -Receives string of tokens from Parser.
--Executes commands or display error message if the command is nonexistant.
+-Executes commands or display error message if the command is nonexistent.
 
 Collaborators:
 -Parser

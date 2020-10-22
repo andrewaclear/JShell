@@ -1,6 +1,6 @@
 User Stories from Product Backlog that we will address in this sprint:
 
-a) As an user, I want to continiously be able to input commands. 
+a) As an user, I want to continuously be able to input commands. 
 b) As an user, I want to start the shell.
 c) As an user, I want to quit the shell.
 d) As an user, I want to create directories.

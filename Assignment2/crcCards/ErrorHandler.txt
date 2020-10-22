@@ -5,6 +5,6 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Displays an error message when the given command is nonexistant
+-Displays an error message when the given command is nonexistent
 
 Collaborators: None

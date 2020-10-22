@@ -5,10 +5,10 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Changes Directory depending on the paremeter
+-Changes Directory depending on the parameter
 -Goes to the Directory either relative to the current Directory or full path
--Goes back to parent Directory if given the unique correct paremeter: ..
--Goes to the root of the FileSystem given the appropiate paremeter: /
+-Goes back to parent Directory if given the unique correct parameter: ..
+-Goes to the root of the FileSystem given the appropriate parameter: /
 
 Collaborators:
 -Shell

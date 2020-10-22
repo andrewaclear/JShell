@@ -6,6 +6,6 @@ Subclasses: FileReader, CommandLineReader
 
 Responsibilities:
 -Reads input from command line or from a file.
--Breaks input into seperate lines.
+-Breaks input into separate lines.
 
 Collaborators: None
