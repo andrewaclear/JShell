@@ -6,6 +6,6 @@ Subclasses: None
 
 Responsibilities:
 -Reads input from the command line.
--Ignores extra whitespace.
 
-Collaborators: None
+Collaborators: 
+-None

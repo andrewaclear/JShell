@@ -1,0 +1,12 @@
+Class name: PushDirectory
+
+Parent class: Command
+
+Subclasses: None
+
+Responsibilities:
+-Sends current path to DirectoryStack and changes Directory to the given parameter.
+
+Collaborators:
+-ChangeDirectory
+-DirectoryStack
