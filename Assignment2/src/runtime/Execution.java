@@ -1,14 +1,44 @@
 package runtime;
 
+
 public class Execution {
   
   /*Takes in an array of tokens and attempts to execute a command. 
     Returns true if the command is sucessfully executed;
-    else returns false.
+    else returns false. (in future returns an error msg)
   */
-  public boolean execute_command(String[] tokens) {
+  public String execute_command(String[] tokens) {
+    String msg = "successful";
     
+    switch(tokens[0]) {
+      case "cd":
+        //Execute the cd command here and set msg to an error if cd 
+        //command runs into an error 
+        break;
+      case "cat":
+        break;
+      case "echo":
+        break;
+      case "exit":
+        break;
+      case "history":
+        break;
+      case "ls":
+        break;
+      case "mkdir":
+        break;
+      case "man":
+        break;
+      case "popd":
+        break;
+      case "pushd":
+        break;
+      case "pwd":
+        break;
+      default:
+        //Return command not found error
+    }
     
-    return true;
+    return msg;
   }
 }
