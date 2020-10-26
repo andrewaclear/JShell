@@ -7,8 +7,14 @@ public class Directory {
   File files[];
   
   
-  
   //method to add files to the directory
+  
+  public void addFile(File file) {
+    
+    //add a file to the directory
+    
+    return;
+  }
   
   
 }

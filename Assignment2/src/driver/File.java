@@ -6,6 +6,7 @@ public class File {
   
   String content = "";
   
+  //method to change the content of a file
   public void setContent(String content) {
     this.content = content;
   } 
