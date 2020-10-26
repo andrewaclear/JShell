@@ -29,11 +29,29 @@
 // *********************************************************
 package driver;
 
+import java.util.Scanner;
+
 public class JShell {
 
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
-
+    
+    boolean exit_condition = false;
+    Parser parse = new Parser();
+    Execution execute = new Execution();
+    Scanner scan = new Scanner(System.in); // Counts as CommandLineReader
+    String current_line = "";
+    boolean executed;
+    
+    //Main program loop
+    while (!exit_condition) {
+      System.out.print("/#: "); //Shows beginning of a line
+      current_line = scan.nextLine(); //Awaits input 
+      //Parses input into tokens and then executes the command
+      executed = execute.execute_command(parse.parse(current_line)); 
+      if (!executed) {
+        System.out.println("Error"); //TODO: Add error class
+      }
+    }
   }
 
 }
