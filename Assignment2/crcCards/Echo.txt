@@ -1,4 +1,4 @@
-Class name: EchoAppend
+Class name: Echo
 
 Parent class: Command
 
@@ -7,8 +7,10 @@ Subclasses: None
 Responsibilities:
 -Create a new File if given File doesn't currently exists
 -Appends the string to the File's content
+-Replace the File's content with the provided string
 
 Collaborators:
 -File
--AppendToFile
 -CreateFile
+-AppendToFile
+-ReplaceFile
