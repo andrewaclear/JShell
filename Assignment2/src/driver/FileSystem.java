@@ -1,9 +1,7 @@
 package driver;
 
 public class FileSystem {
-
-  Directory directories[];
   
-  
+ FileSystemNode structure = new FileSystemNode("Desktop");
   
 }
