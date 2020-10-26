@@ -1,4 +1,4 @@
-package Commands;
+package commands;
 
 public class MakeDirectory extends Command {
 
