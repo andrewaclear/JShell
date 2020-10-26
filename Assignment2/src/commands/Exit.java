@@ -1,4 +1,4 @@
-package Commands;
+package commands;
 
 public class Exit extends Command {
 
@@ -8,5 +8,9 @@ public class Exit extends Command {
     String iden = "exit";
     this.setDescription(desc);
     this.setIdentifier(iden);
+  }
+
+  public static String close() {
+    return "exit";
   }
 }
