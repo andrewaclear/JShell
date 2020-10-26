@@ -40,6 +40,9 @@ public class JShell {
     Execution execute = new Execution();
     Scanner scan = new Scanner(System.in); // Counts as CommandLineReader
     String current_line = "";
+    //Note: Consider adding error checking for parser
+    //Also Note we need an extensive error class with all types of different
+    //errors.
     boolean executed;
     
     //Main program loop
