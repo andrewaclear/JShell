@@ -1,8 +1,12 @@
-package commands;
+package Commands;
 
 public class Exit extends Command {
 
-    public static String close() {
-        return "exit";
-    }
+  public Exit() {
+    String desc = "Quit the program ";
+    
+    String iden = "exit";
+    this.setDescription(desc);
+    this.setIdentifier(iden);
+  }
 }
