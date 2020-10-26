@@ -8,10 +8,10 @@ Responsibilities:
 -Start up when program is executed.
 -Shut down when exit is typed or x button is pressed.
 -Provide access for component parts for receiving input and executing commands.
--Receives and displays output
+-Receives input from the command line.
+-Displays output from StandardOutput
 
 Collaborators:
--InputReader
 -Parser
 -Execution
 -Exit
