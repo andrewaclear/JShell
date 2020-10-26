@@ -30,6 +30,7 @@
 package driver;
 
 import java.util.Scanner;
+import io.StandardOutput;
 
 public class JShell {
 
@@ -47,12 +48,12 @@ public class JShell {
     
     //Main program loop
     while (!exit_condition) {
-      System.out.print("/#: "); //Shows beginning of a line
+      StandardOutput.println("/#: "); //Shows beginning of a line
       current_line = scan.nextLine(); //Awaits input 
       //Parses input into tokens and then executes the command
       executed = execute.execute_command(parse.parse(current_line)); 
       if (!executed) {
-        System.out.println("Error"); //TODO: Add error class
+        StandardOutput.println("Error"); //TODO: Add error class
       }
     }
   }

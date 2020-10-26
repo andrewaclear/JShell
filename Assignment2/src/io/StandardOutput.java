@@ -2,7 +2,8 @@ package io;
 
 public class StandardOutput {
 
-    public static void print(String message) {
+    // prints message out to the JShell
+    public static void println(String message) {
         System.out.println(message);
     }
 }
