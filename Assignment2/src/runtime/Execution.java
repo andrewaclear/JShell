@@ -8,8 +8,8 @@ public class Execution {
     Returns true if the command is sucessfully executed;
     else returns false. (in future returns an error msg)
   */
-  public String execute_command(String[] tokens, FileSystem fSystem) {
-    String msg = "successful";
+  public boolean execute_command(String[] tokens, FileSystem fSystem) {
+    boolean run = true;
     
     switch(tokens[0]) {
       case "cd":
@@ -21,6 +21,7 @@ public class Execution {
       case "echo":
         break;
       case "exit":
+        run = false;
         break;
       case "history":
         break;
@@ -40,6 +41,6 @@ public class Execution {
         //Return command not found error
     }
     
-    return msg;
+    return run;
   }
 }
