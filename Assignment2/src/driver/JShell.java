@@ -37,7 +37,7 @@ public class JShell {
 
   public static void main(String[] args) {
     
-    String execution_log = "";
+    boolean run = true;
     Parser parse = new Parser();
     Execution execute = new Execution();
     StandardInput input = new StandardInput();
@@ -47,11 +47,11 @@ public class JShell {
     //errors.
     
     //Main program loop
-    while (!execution_log.equals("exit")) {
+    while (run) {
       StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       //Parses input into tokens and then executes the command
-      execution_log = execute.execute_command(parse.parse(input.current_line), fSystem);
+      run = execute.execute_command(parse.parse(input.current_line), fSystem);
     }
     input.close();
   }
