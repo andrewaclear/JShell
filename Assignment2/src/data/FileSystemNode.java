@@ -47,10 +47,10 @@ public class FileSystemNode {
     
     while (current_node != null) {
       if (current_node.getParent() != null) {
-        path = current_node.directory.getName() + "\\" + path;
+        path = current_node.directory.getDirectoryName() + "/" + path;
       }
       else {
-        path = current_node.directory.getName() + path;
+        path = current_node.directory.getDirectoryName() + path;
       }
         
       current_node = current_node.getParent();

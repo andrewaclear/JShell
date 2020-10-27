@@ -1,9 +1,9 @@
 // **********************************************************
 // Assignment2:
-// Student1:
-// UTORID user_name:
-// UT Student #:
-// Author:
+// Student1: Christian Chen Liu
+// UTORID user_name: Chenl147
+// UT Student #: 1006171009
+// Author: Christian Chen Liu
 //
 // Student2:
 // UTORID user_name:
