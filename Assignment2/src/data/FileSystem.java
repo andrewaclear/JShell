@@ -2,6 +2,10 @@ package data;
 
 public class FileSystem {
   
- FileSystemNode structure = new FileSystemNode("Desktop");
+ private FileSystemNode structure = new FileSystemNode("");
+ 
+ public FileSystemNode getStructure() {
+   return this.structure;
+ }
   
 }
