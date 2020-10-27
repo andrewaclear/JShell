@@ -7,37 +7,27 @@ public class Directory {
   //Has a name and contains files in a linked list
   
   String directoryName = "";
-  
   LinkedList<File> files  = new LinkedList<File>();
   
-  
+  //Constructor
   public Directory(String name) {
     this.directoryName = name;
   }
   
-  //method to change the name of Directory
+  //setDirectoryName changes the directoryName
   public void setDirectoryName(String name) {
     this.directoryName = name;
   }
   
-  //method to get the name of the Directory
+  //getDirectoryName returns the directoryName
   public String getDirectoryName() {
     return this.directoryName;
   }
   
-  //method to add files to the directory
-
+  //addFile adds a file to the directory
   public void addFile(File file) {
-    
-    //adding the file to the linked list of files
+    //adds the file to the files
     files.add(file);
-    
-    return;
   }
-  
-  //Return the directory's name when printing
-  public String toString() {
-    return this.directoryName;
-  }
-  
+
 }

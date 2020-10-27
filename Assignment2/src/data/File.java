@@ -7,21 +7,19 @@ public class File {
   String fileName = "";
   String content = "";
   
-  //method to change the content of a file
+  //setContent changes the content of a file
   public void setContent(String content) {
     this.content = content;
   } 
   
+  //getFileName returns the name of this file: fileName
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
   
+  //getFileName returns the name of this file: fileName
   public void getFileName(String fileName) {
     this.fileName = fileName;
   }
   
-  //Return the file's name when printing
-  public String toString() {
-    return this.fileName;
-  }
 }
