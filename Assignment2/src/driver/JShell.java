@@ -40,8 +40,7 @@ public class JShell {
     String execution_log = "";
     Parser parse = new Parser();
     Execution execute = new Execution();
-    Scanner scan = new Scanner(System.in); // Counts as CommandLineReader
-    String current_line = "";
+    StandardInput input = new StandardInput();
     //Note: Consider adding error checking for parser
     //Also Note we need an extensive error class with all types of different
     //errors.
@@ -49,13 +48,15 @@ public class JShell {
     //Main program loop
     while (!execution_log.equals("exit")) {
       StandardOutput.println("/#: "); //Shows beginning of a line
-      current_line = scan.nextLine(); //Awaits input 
+      input.nextLine();
       //Parses input into tokens and then executes the command
-      execution_log = execute.execute_command(parse.parse(current_line)); 
-      if (execution_log != "successful" && execution_log != "exit") {
+      execution_log = execute.execute_command(parse.parse(input.current_line));
+      if (execution_log == "exit") break;
+      else if (execution_log != "successful") {
         StandardOutput.println("Error"); //TODO: Add error class
-      }
+      } 
     }
+    input.close();
   }
 
 }
