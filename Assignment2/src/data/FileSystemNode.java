@@ -5,16 +5,12 @@ import java.util.*;
 public class FileSystemNode {
   
   private String name;
-  private LinkedList<Directory> directories  = new LinkedList<Directory>();
+  private Directory directory = null;
   private List<FileSystemNode> children = new ArrayList<>();
   private FileSystemNode parent = null;
 
   public FileSystemNode(String name) {
       this.name = name;
-  }
-  
-  public void addDirectory(Directory directory) {
-    this.directories.add(directory);
   }
 
   public void addChild(FileSystemNode child) {
@@ -33,14 +29,6 @@ public class FileSystemNode {
       return this.children;
   }
 
-  public LinkedList<Directory> getData() {
-      return this.directories;
-  }
-
-  public void setData(LinkedList<Directory> directories) {
-      this.directories = directories;
-  }
-
   private void setParent(FileSystemNode parent) {
       this.parent = parent;
   }
@@ -57,6 +45,33 @@ public class FileSystemNode {
     return this.name;
   }
   
+  public void addFile(File file) {
+    this.directory.addFile(file);
+  }
+  
+  public Directory getDirectory() {
+    return this.directory;
+  }
+  
+  public void setDirectory(Directory directory) {
+    this.directory = directory;
+  }
+  
+  public String getPath() {
+    String path = "";
+    FileSystemNode current_node = this;
+    
+    while (current_node != null) {
+      if (current_node.getParent() != null) {
+        path = current_node.getName() + "\\" + path;
+      }
+      else {
+        path = current_node.getName() + path;
+      }
+        
+      current_node = current_node.getParent();
+    }
+    
+    return path;
+  }
 }
-
-
