@@ -29,9 +29,9 @@
 // *********************************************************
 package driver;
 
-import java.util.Scanner;
 import io.*;
 import runtime.*;
+import data.FileSystem;
 
 public class JShell {
 
@@ -41,6 +41,7 @@ public class JShell {
     Parser parse = new Parser();
     Execution execute = new Execution();
     StandardInput input = new StandardInput();
+    FileSystem fSystem = new FileSystem();
     //Note: Consider adding error checking for parser
     //Also Note we need an extensive error class with all types of different
     //errors.
@@ -50,13 +51,8 @@ public class JShell {
       StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       //Parses input into tokens and then executes the command
-      execution_log = execute.execute_command(parse.parse(input.current_line));
-      if (execution_log == "exit") break;
-      else if (execution_log != "successful") {
-        StandardOutput.println("Error"); //TODO: Add error class
-      } 
+      execution_log = execute.execute_command(parse.parse(input.current_line), fSystem);
     }
     input.close();
   }
-
 }
