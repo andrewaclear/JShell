@@ -6,23 +6,23 @@ public class Directory {
 
   //Has a name and contains files in a linked list
   
-  String name = "";
+  String directoryName = "";
   
   LinkedList<File> files  = new LinkedList<File>();
   
   
   public Directory(String name) {
-    this.name = name;
+    this.directoryName = name;
   }
   
   //method to change the name of Directory
-  public void setName(String name) {
-    this.name = name;
+  public void setDirectoryName(String name) {
+    this.directoryName = name;
   }
   
   //method to get the name of the Directory
-  public String getName() {
-    return this.name;
+  public String getDirectoryName() {
+    return this.directoryName;
   }
   
   //method to add files to the directory
@@ -37,7 +37,7 @@ public class Directory {
   
   //Return the directory's name when printing
   public String toString() {
-    return this.name;
+    return this.directoryName;
   }
   
 }
