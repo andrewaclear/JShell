@@ -4,25 +4,17 @@ import java.util.*;
 
 public class FileSystemNode {
   
-  private String name;
-  private Directory directory = null;
+  private Directory directory = new Directory("");
   private List<FileSystemNode> children = new ArrayList<>();
   private FileSystemNode parent = null;
 
-  public FileSystemNode(String name) {
-      this.name = name;
+  public FileSystemNode(Directory directory) {
+      this.directory = directory;
   }
 
   public void addChild(FileSystemNode child) {
       child.setParent(this);
       this.children.add(child);
-  }
-
-  public void addChildren(List<FileSystemNode> children) {
-      for(FileSystemNode t : children) {
-          t.setParent(this);
-      }
-      this.children.addAll(children);
   }
 
   public List<FileSystemNode> getChildren() {
@@ -35,14 +27,6 @@ public class FileSystemNode {
 
   public FileSystemNode getParent() {
       return this.parent;
-  }
-  
-  public void setName(String name) {
-    this.name = name;
-  }
-  
-  public String getName() {
-    return this.name;
   }
   
   public void addFile(File file) {
@@ -63,10 +47,10 @@ public class FileSystemNode {
     
     while (current_node != null) {
       if (current_node.getParent() != null) {
-        path = current_node.getName() + "\\" + path;
+        path = current_node.directory.getName() + "\\" + path;
       }
       else {
-        path = current_node.getName() + path;
+        path = current_node.directory.getName() + path;
       }
         
       current_node = current_node.getParent();

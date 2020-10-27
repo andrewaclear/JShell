@@ -1,7 +1,9 @@
 package commands;
 
 public class MakeDirectory extends Command {
-
+  
+  //Given two parameters, makes two directories
+  
   public MakeDirectory() {
     String desc = "This command takes in two arguments only."
         + " Create directories, each of which may be relative"
