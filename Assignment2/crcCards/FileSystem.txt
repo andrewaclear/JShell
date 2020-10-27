@@ -5,8 +5,7 @@ Parent classes: None
 Subclasses: None
 
 Responsibilities:
--Data structure of Directories and Files
--Data structure is denoted as paths which are separated by and start with: /
+-Data structure of Directories and Files.
 -Keeps track of the current directory.
 
 Collaborators: 
