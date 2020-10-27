@@ -1,5 +1,6 @@
 package runtime;
 
+import data.FileSystem;
 
 public class Execution {
   
@@ -7,7 +8,7 @@ public class Execution {
     Returns true if the command is sucessfully executed;
     else returns false. (in future returns an error msg)
   */
-  public String execute_command(String[] tokens) {
+  public String execute_command(String[] tokens, FileSystem fSystem) {
     String msg = "successful";
     
     switch(tokens[0]) {

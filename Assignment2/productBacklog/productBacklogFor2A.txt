@@ -4,7 +4,6 @@ As an user, I want to quit the shell.                                           
 As an user, I want to see error messages when there is an error or I put in bad input.                ~  5 hr
 As an user, I want to create directories.                                                             ~  5 hr
 As an user, I want to change directories.                                                             ~  3 hr
-As an user, I want to move directories or files.                                                      ~  5 hr
 As an user, I want to see the contents of a directory.                                                ~  2 hr
 As an user, I want to see the contents of a file or document.                                         ~  2 hr
 As an user, I want to know the full path of my current directory.                                     ~  2 hr
