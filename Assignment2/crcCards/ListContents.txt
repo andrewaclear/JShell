@@ -1,4 +1,4 @@
-Class name: List
+Class name: ListContents
 
 Parent class: Command
 

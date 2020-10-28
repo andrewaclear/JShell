@@ -18,6 +18,6 @@ public class ErrorHandler {
     }
 
     public static void missingOperand(Command command) {
-        StandardOutput.println(command.getIdentifier()+": missing operand");
+        StandardOutput.println(command.getIdentifier()+": "+command.getErrorMissingOperand());
     }
 }

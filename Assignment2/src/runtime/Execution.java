@@ -31,7 +31,7 @@ public class Execution {
         command = new History();
         break;
       case "ls":
-        command = new List();
+        command = new ListContents(tokens.length);
         break;
       case "mkdir":
         command = new MakeDirectory();
@@ -54,11 +54,12 @@ public class Execution {
         //Return command not found error
     }
 
-    if (tokens.length == command.getNumOfArguments()) {
+    if (tokens.length <= command.getMaxNumOfArguments() && 
+        tokens.length >= command.getMinNumOfArguments()) {
       run = command.run(tokens, fSystem);
-    } else if (tokens.length > command.getNumOfArguments()) {
+    } else if (tokens.length > command.getMaxNumOfArguments()) {
       ErrorHandler.tooManyArguments(command);
-    } else if (tokens.length < command.getNumOfArguments()) {
+    } else if (tokens.length < command.getMinNumOfArguments()) {
       ErrorHandler.missingOperand(command);
     }
     
