@@ -2,17 +2,19 @@ package commands;
 
 public class Exit extends Command {
 
-  public static String badInput = "exit: doesn't take any arguments: ";
-
   public Exit() {
-    String desc = "Quit the program ";
-    
-    String iden = "exit";
-    this.setDescription(desc);
-    this.setIdentifier(iden);
+    // String desc = "Quit the program ";
+    // String iden = "exit";
+    // String tooManyArguments = "exit: doesn't take any arguments";
+
+    this.setDescription("Quit the program");
+    this.setIdentifier("exit");
+    this.setNumOfArguments(1);
+    this.setErrorTooManyArguments("doesn't take any arguments");
   }
 
-  public static boolean close() {
+  public boolean run(String[] tokens) {
     return false;
   }
+
 }

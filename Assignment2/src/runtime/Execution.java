@@ -12,6 +12,7 @@ public class Execution {
   */
   public boolean execute_command(String[] tokens, FileSystem fSystem) {
     boolean run = true;
+    Command command = new Command();
     
     switch(tokens[0]) {
       case "cd":
@@ -19,30 +20,46 @@ public class Execution {
         //command runs into an error 
         break;
       case "cat":
+        command = new Concatenate();
         break;
       case "echo":
+        command = new Echo();
         break;
       case "exit":
-        if (tokens.length == 1) run = Exit.close();
-        else ErrorHandler.Exit(tokens);
+        command = new Exit();
         break;
       case "history":
+        command = new History();
         break;
       case "ls":
+        command = new List();
         break;
       case "mkdir":
+        command = new MakeDirectory();
         break;
       case "man":
+        command = new Manual();
         break;
       case "popd":
+        command = new PopDirectory();
         break;
       case "pushd":
+        command = new PushDirectory();
         break;
       case "pwd":
+        command = new PrintWorkingDirectory();
         break;
       default:
+        ErrorHandler.commandNotFound(tokens);
+        return run;
         //Return command not found error
     }
+
+    if (tokens.length == command.getNumOfArguments()) {
+      run = command.run(tokens);
+    } else if (tokens.length > command.getNumOfArguments()) {
+      ErrorHandler.tooManyArguments(command, tokens);
+    } 
     
     return run;
   }
