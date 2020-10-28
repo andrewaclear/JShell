@@ -11,10 +11,13 @@ public class Exit extends Command {
 
     this.setDescription("Quit the program");
     this.setIdentifier("exit");
-    this.setNumOfArguments(1);
+    this.setMaxNumOfArguments(1);
+    this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("doesn't take any arguments");
+    this.setMissingOperand("");
   }
 
+  @Override
   public boolean run(String[] tokens, FileSystem fSystem) {
     return false;
   }

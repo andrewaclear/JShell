@@ -6,6 +6,7 @@ public class Directory {
 
   //Has a name and contains files in a linked list
   
+  // TODO set name in contructor and make way to access LinkedList of files
   String directoryName = "";
   LinkedList<File> files  = new LinkedList<File>();
   

@@ -4,6 +4,7 @@ import java.util.*;
 
 public class FileSystemNode {
   
+  // TODO: set the name of the directory when constructing a directory
   private Directory directory = new Directory("");
   private List<FileSystemNode> children = new ArrayList<>();
   private FileSystemNode parent = null;

@@ -14,7 +14,7 @@ Collaborators:
 -MakeDirectory
 -MakeFile
 -ChangeDirectory
--List
+-ListContents
 -PrintWorkingDirectory
 -Copy
 -Concatenate

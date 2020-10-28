@@ -5,8 +5,10 @@ import data.FileSystem;
 public class Command {
   private String description;
   private String identifier;
-  private int numOfArguments;
+  private int maxNumOfArguments;
+  private int minNumOfArguments;
   private String errorTooManyArguments;
+  private String errorMissingOperand;
   
   public void setDescription(String desc) {
     this.description = desc;
@@ -16,12 +18,20 @@ public class Command {
     this.identifier = iden;
   }
 
-  public void setNumOfArguments(int num) {
-    this.numOfArguments = num;
+  public void setMaxNumOfArguments(int num) {
+    this.maxNumOfArguments = num;
+  }
+
+  public void setMinNumOfArguments(int num) {
+    this.minNumOfArguments = num;
   }
 
   public void setErrorTooManyArguments(String err) {
     this.errorTooManyArguments = err;
+  }
+
+  public void setMissingOperand(String err) {
+    this.errorMissingOperand = err;
   }
 
   public String getDescription() {
@@ -32,14 +42,23 @@ public class Command {
     return this.identifier;
   }
 
-  public int getNumOfArguments() {
-    return this.numOfArguments;
+  public int getMaxNumOfArguments() {
+    return this.maxNumOfArguments;
+  }
+
+  public int getMinNumOfArguments() {
+    return this.minNumOfArguments;
   }
 
   public String getErrorTooManyArguments() {
     return this.errorTooManyArguments;
   }
 
+  public String getErrorMissingOperand() {
+    return this.errorMissingOperand;
+  }
+
+  // run command, overridden by subclasses
   public boolean run(String[] tokens, FileSystem fSystem) {
     return true;
   }
