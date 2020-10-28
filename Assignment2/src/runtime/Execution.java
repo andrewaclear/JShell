@@ -1,6 +1,8 @@
 package runtime;
 
 import data.FileSystem;
+import commands.*;
+import runtime.*;
 
 public class Execution {
   
@@ -21,7 +23,8 @@ public class Execution {
       case "echo":
         break;
       case "exit":
-        run = false;
+        if (tokens.length == 1) run = Exit.close();
+        else ErrorHandler.Exit(tokens);
         break;
       case "history":
         break;
