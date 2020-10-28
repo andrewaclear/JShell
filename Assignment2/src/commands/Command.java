@@ -1,5 +1,7 @@
 package commands;
 
+import data.FileSystem;
+
 public class Command {
   private String description;
   private String identifier;
@@ -38,8 +40,7 @@ public class Command {
     return this.errorTooManyArguments;
   }
 
-
-  public boolean run(String[] tokens) {
+  public boolean run(String[] tokens, FileSystem fSystem) {
     return true;
   }
 

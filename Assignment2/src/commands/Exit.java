@@ -1,5 +1,7 @@
 package commands;
 
+import data.FileSystem;
+
 public class Exit extends Command {
 
   public Exit() {
@@ -13,7 +15,7 @@ public class Exit extends Command {
     this.setErrorTooManyArguments("doesn't take any arguments");
   }
 
-  public boolean run(String[] tokens) {
+  public boolean run(String[] tokens, FileSystem fSystem) {
     return false;
   }
 

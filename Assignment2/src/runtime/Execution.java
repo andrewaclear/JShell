@@ -2,12 +2,11 @@ package runtime;
 
 import data.FileSystem;
 import commands.*;
-import runtime.*;
 
 public class Execution {
   
   /*Takes in an array of tokens and attempts to execute a command. 
-    Returns true if the command is sucessfully executed;
+    Returns true if the command is successfully executed;
     else returns false. (in future returns an error msg)
   */
   public boolean execute_command(String[] tokens, FileSystem fSystem) {
@@ -56,10 +55,12 @@ public class Execution {
     }
 
     if (tokens.length == command.getNumOfArguments()) {
-      run = command.run(tokens);
+      run = command.run(tokens, fSystem);
     } else if (tokens.length > command.getNumOfArguments()) {
-      ErrorHandler.tooManyArguments(command, tokens);
-    } 
+      ErrorHandler.tooManyArguments(command);
+    } else if (tokens.length < command.getNumOfArguments()) {
+      ErrorHandler.missingOperand(command);
+    }
     
     return run;
   }
