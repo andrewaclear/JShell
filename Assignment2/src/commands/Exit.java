@@ -2,6 +2,8 @@ package commands;
 
 public class Exit extends Command {
 
+  public static String badInput = "exit: doesn't take any arguments: ";
+
   public Exit() {
     String desc = "Quit the program ";
     
@@ -10,7 +12,7 @@ public class Exit extends Command {
     this.setIdentifier(iden);
   }
 
-  public static String close() {
-    return "exit";
+  public static boolean close() {
+    return false;
   }
 }
