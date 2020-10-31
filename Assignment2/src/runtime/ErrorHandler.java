@@ -16,6 +16,10 @@ public class ErrorHandler {
     public static void commandNotFound(String[] tokens) {
         StandardOutput.println(tokens[0]+": command not found");
     }
+    
+    public static void commandNotFoundManual(String commandNotFound) {
+      StandardOutput.println(commandNotFound + ": command not found");
+    }
 
     public static void missingOperand(Command command) {
         StandardOutput.println(command.getIdentifier()+": "+command.getErrorMissingOperand());
