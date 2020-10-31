@@ -3,16 +3,11 @@ package commands;
 import data.FileSystem;
 
 public class Command {
-  private String description;
   private String identifier;
   private int maxNumOfArguments;
   private int minNumOfArguments;
   private String errorTooManyArguments;
   private String errorMissingOperand;
-  
-  public void setDescription(String desc) {
-    this.description = desc;
-  }
   
   public void setIdentifier(String iden) {
     this.identifier = iden;
@@ -32,10 +27,6 @@ public class Command {
 
   public void setMissingOperand(String err) {
     this.errorMissingOperand = err;
-  }
-
-  public String getDescription() {
-    return this.description;
   }
 
   public String getIdentifier() {
