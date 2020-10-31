@@ -1,6 +1,7 @@
 package commands;
 
 import java.util.HashMap;
+import data.FileSystem;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -82,9 +83,13 @@ public class Manual extends Command {
     descriptions.put("pushd", pushdDesc);
  
     this.setIdentifier("man");
+    this.setMaxNumOfArguments(100);
+    this.setMinNumOfArguments(1);
+    this.setErrorTooManyArguments("");
+    this.setMissingOperand("");
   }
-  
-  public void printDescription(String[] tokens) {
+  @Override
+  public boolean run(String[] tokens, FileSystem fSystem) {
     int i = 1;
     while (i < tokens.length) {
       if (descriptions.containsKey(tokens[i])) {
@@ -95,6 +100,6 @@ public class Manual extends Command {
       }
       i++;
     }
-    
+    return true;
   }
 }
