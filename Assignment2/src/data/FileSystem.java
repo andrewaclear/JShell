@@ -14,6 +14,10 @@ public class FileSystem {
    return this.current_node;
  }
  
+ public void setCurrentDirectory(FileSystemNode node) {
+   this.current_node = node;
+ }
+ 
  public FileSystemNode getFileSystemNode(String full_path) {
    
    String path[] = full_path.split("/");

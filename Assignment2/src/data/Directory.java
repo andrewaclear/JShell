@@ -5,10 +5,8 @@ import java.util.*;
 public class Directory {
 
   //Has a name and contains files in a linked list
-  
-  // TODO set name in contructor and make way to access LinkedList of files
-  String directoryName = "";
-  LinkedList<File> files  = new LinkedList<File>();
+  private String directoryName = "";
+  private List<File> files  = new ArrayList<File>();
   
   //Constructor
   public Directory(String name) {
@@ -25,10 +23,15 @@ public class Directory {
     return this.directoryName;
   }
   
-  //addFile adds a file to the directory
+  //addFile adds a file to the Directory
   public void addFile(File file) {
     //adds the file to the files
     files.add(file);
+  }
+  
+  //getFiles returns files stored in the Directory
+  public List<File> getFiles() {
+    return this.files;
   }
 
 }

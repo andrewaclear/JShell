@@ -6,26 +6,27 @@ public class File {
   String fileName = "";
   String content = "";
   
+  //Constructor
   public File(String name) {
     fileName = name;
   }
   
-  //setContent changes the content of a file
+  //setContent changes the content of a File
   public void setContent(String content) {
     this.content = content;
   } 
   
-  //getFileName returns the name of this file: fileName
+  //getFileName returns the name of this File: fileName
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
   
-  //getFileName returns the name of this file: fileName
+  //getFileName returns the name of this File: fileName
   public String getFileName() {
     return this.fileName;
   }
   
-  //getContent returns the content of this file: content
+  //getContent returns the content of this File: content
   public String getContent() {
     return this.content;
   }
