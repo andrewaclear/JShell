@@ -14,34 +14,19 @@ public class FileSystem {
    return this.current_node;
  }
  
- public FileSystemNode getDirectoryFull(String full_path) {
-   String path[] = full_path.split("/");
-   FileSystemNode tracker = structure;
-   int counter = 0;
-   int total_elements = 0;
+ public FileSystemNode getFileSystemNode(String full_path) {
    
-   for (String mini_path : path) {
-     total_elements = tracker.getChildren().size();
-     for (FileSystemNode node : tracker.getChildren()) {
-       if (node.getDirectory().getDirectoryName() == mini_path) {
-           tracker = node;
-           break;
-       }
-       counter += 1;
-     }
-     if (counter == total_elements) {
-       return null;
-     }
-     
+   String path[] = full_path.split("/");
+   
+   FileSystemNode tracker = null;
+   
+   if (full_path.charAt(0) == '/'){
+     tracker = structure;
+   } else {
+     tracker = current_node;
    }
-   
-   return tracker;
-   
- }
- 
- public FileSystemNode getDirectoryRelative(String full_path) {
-   String path[] = full_path.split("/");
-   FileSystemNode tracker = current_node;
+     
+     
    int counter = 0;
    int total_elements = 0;
    

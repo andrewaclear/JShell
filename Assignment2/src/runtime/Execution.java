@@ -15,7 +15,7 @@ public class Execution {
     
     switch(tokens[0]) {
       case "cd":
-        //Execute the cd command here and set msg to an error if cd 
+        //Execute the cd command here and set msg to an error if cd
         //command runs into an error 
         break;
       case "cat":
