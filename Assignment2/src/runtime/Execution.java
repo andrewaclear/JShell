@@ -37,7 +37,8 @@ public class Execution {
         command = new MakeDirectory();
         break;
       case "man":
-        command = new Manual();
+        Manual manual = new Manual();
+        manual.printDescription(tokens);
         break;
       case "popd":
         command = new PopDirectory();
