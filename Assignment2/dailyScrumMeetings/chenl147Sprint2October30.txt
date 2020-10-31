@@ -1,0 +1,13 @@
+What did I work on in the last three days?
+    - Polished the FileSystem: added a tracker for the current directory, more methods, more significant variable names and documentation
+    - Completed the code and documentation for ChangeDirectory and PrintWorkingDirectory
+    - Started the code and documentation for MakeDirectory
+    - Tested the File and Directory classes
+
+What do I plan to work in the next three days?
+    - Continue updating the FileSystem to accomodate any needs for other classes 
+    - Test the code of FileSystem, ChangeDirectory and PrintWorkingDirectory
+
+Am I blocked on anything?
+    - I am unsure how to implement ChangeDirectory in a way that satisfies condition
+    - Testing the code efficiently is hard without our prototype shell being fuctional
