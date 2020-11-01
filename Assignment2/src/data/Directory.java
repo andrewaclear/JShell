@@ -33,5 +33,9 @@ public class Directory {
   public List<File> getFiles() {
     return this.files;
   }
+  
+  public boolean compareTo(Directory otherDirectory) {
+    return this.directoryName.equals(otherDirectory.getDirectoryName());
+  }
 
 }

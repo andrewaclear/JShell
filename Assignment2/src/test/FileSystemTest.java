@@ -8,7 +8,7 @@ public class FileSystemTest {
   
     FileSystem my_file_system = new FileSystem();
     
-    System.out.println(my_file_system.getStructure().getPath());
+    System.out.println(my_file_system.getRoot().getPath());
     
   }
 }

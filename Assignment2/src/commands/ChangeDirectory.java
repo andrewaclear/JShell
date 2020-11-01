@@ -11,7 +11,7 @@ public class ChangeDirectory extends Command {
     this.setMinNumOfArguments(1);
   }
   
-  public void doCommand(String path, FileSystem system) {
+  public void run(String path, FileSystem system) {
     
     //set note to the FileSystemNode that the path leads to if any
     FileSystemNode node = system.getFileSystemNode(path);

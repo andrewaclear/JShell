@@ -43,19 +43,32 @@ public class FileSystemNode {
   
   public String getPath() {
     String path = "";
-    FileSystemNode current_node = this;
+    FileSystemNode currentNode = this;
     
-    while (current_node != null) {
-      if (current_node.getParent() != null) {
-        path = current_node.directory.getDirectoryName() + "/" + path;
+    while (currentNode != null) {
+      if (currentNode.getParent() != null) {
+        path = currentNode.directory.getDirectoryName() + "/" + path;
       }
       else {
-        path = current_node.directory.getDirectoryName() + path;
+        path = currentNode.directory.getDirectoryName() + path;
       }
         
-      current_node = current_node.getParent();
+      currentNode = currentNode.getParent();
     }
     
     return path;
   }
+  
+  public boolean isChildInside(String directoryName) {
+    
+    for (FileSystemNode child : this.children) {
+      if (child.getDirectory().getDirectoryName() == directoryName) {
+        return true;
+      }
+    }
+    
+    return false;
+    
+  }
+  
 }
