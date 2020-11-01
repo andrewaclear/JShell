@@ -2,20 +2,20 @@ package data;
 
 public class FileSystem {
   
- private FileSystemNode structure = new FileSystemNode(new Directory("/"));
+ private FileSystemNode root = new FileSystemNode(new Directory("/"));
  
- private FileSystemNode current_node = structure;
+ private FileSystemNode currentNode = root;
  
- public FileSystemNode getStructure() {
-   return this.structure;
+ public FileSystemNode getRoot() {
+   return this.root;
  }
  
  public FileSystemNode getCurrentDirectory() {
-   return this.current_node;
+   return this.currentNode;
  }
  
  public void setCurrentDirectory(FileSystemNode node) {
-   this.current_node = node;
+   this.currentNode = node;
  }
  
  public FileSystemNode getFileSystemNode(String full_path) {
@@ -25,25 +25,25 @@ public class FileSystem {
    FileSystemNode tracker = null;
    
    if (full_path.charAt(0) == '/'){
-     tracker = structure;
+     tracker = root;
    } else {
-     tracker = current_node;
+     tracker = currentNode;
    }
      
      
    int counter = 0;
-   int total_elements = 0;
+   int totalElements = 0;
    
-   for (String mini_path : path) {
-     total_elements = tracker.getChildren().size();
+   for (String subPath : path) {
+     totalElements = tracker.getChildren().size();
      for (FileSystemNode node : tracker.getChildren()) {
-       if (node.getDirectory().getDirectoryName() == mini_path) {
+       if (node.getDirectory().getDirectoryName() == subPath) {
            tracker = node;
            break;
        }
        counter += 1;
      }
-     if (counter == total_elements) {
+     if (counter == totalElements) {
        return null;
      }
      

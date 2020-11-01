@@ -10,7 +10,7 @@ public class PrintWorkingDirectory extends Command {
     this.setMinNumOfArguments(0);
   }
   
-  public void doCommand(FileSystem system) {
+  public void run(FileSystem system) {
     
     //print the path of the current directory
     System.out.println(system.getCurrentDirectory().getPath());
