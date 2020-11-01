@@ -11,10 +11,10 @@ public class ChangeDirectory extends Command {
     this.setMinNumOfArguments(1);
   }
   
-  public void run(String path, FileSystem root) {
+  public boolean run(String[] tokens, FileSystem root) {
     
     //Set targetNode to the FileSystemNode that the path leads to
-    FileSystemNode targetNode = root.getFileSystemNode(path);
+    FileSystemNode targetNode = root.getFileSystemNode(tokens[0]);
     
     //Check if the targetNode is in the root
     if (targetNode != null)
@@ -28,6 +28,8 @@ public class ChangeDirectory extends Command {
       //TODO: Add error of invalid path
       
     }
+    
+    return true;
     
   }
   
