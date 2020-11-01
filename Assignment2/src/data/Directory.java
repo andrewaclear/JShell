@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Directory {
 
-  //Has a name and contains files in a linked list
+  //A Directory has a name: directoryName and Files in a linked list: files
   private String directoryName = "";
   private List<File> files  = new ArrayList<File>();
   
@@ -34,8 +34,4 @@ public class Directory {
     return this.files;
   }
   
-  public boolean compareTo(Directory otherDirectory) {
-    return this.directoryName.equals(otherDirectory.getDirectoryName());
-  }
-
 }

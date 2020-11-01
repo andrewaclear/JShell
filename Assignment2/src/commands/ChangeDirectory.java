@@ -11,15 +11,22 @@ public class ChangeDirectory extends Command {
     this.setMinNumOfArguments(1);
   }
   
-  public void run(String path, FileSystem system) {
+  public void run(String path, FileSystem root) {
     
-    //set note to the FileSystemNode that the path leads to if any
-    FileSystemNode node = system.getFileSystemNode(path);
+    //Set targetNode to the FileSystemNode that the path leads to
+    FileSystemNode targetNode = root.getFileSystemNode(path);
     
-    //set the FileSystem current_directory to node
-    if (node != null)
+    //Check if the targetNode is in the root
+    if (targetNode != null)
     {
-      system.setCurrentDirectory(node);
+      
+      //Set the current Directory to the targetNode
+      root.setCurrentDirectory(targetNode);
+      
+    } else {
+      
+      //TODO: Add error of invalid path
+      
     }
     
   }
