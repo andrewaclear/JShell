@@ -2,7 +2,7 @@ package data;
 
 public class File {
   
-  //File contains a string: content and has a name: fileName
+  //A File has a string: content and a name: fileName
   String fileName = "";
   String content = "";
   
