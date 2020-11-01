@@ -14,10 +14,15 @@ public class DirectoryTest {
     System.out.println("The name of this directory is " + directory.getDirectoryName());
     
     File file = new File("Rando");
+    File file2 = new File("Mambo");
     
     file.setContent("Quality stuff in here");
+    file2.setContent("Even more quality stuff in here");
+    
     
     directory.addFile(file);
+    directory.addFile(file2);
+    
     
     List<File> files = directory.getFiles();
     
