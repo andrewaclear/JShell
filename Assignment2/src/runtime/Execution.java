@@ -17,7 +17,7 @@ public class Execution {
     initHashMap(commandHashMap);
   }
   
-  public boolean execute_command(String[] tokens, FileSystem fSystem) {
+  public boolean executeCommand(String[] tokens, FileSystem fSystem) {
     boolean run = true;
     
     if (commandHashMap.containsKey(tokens[0])) {
