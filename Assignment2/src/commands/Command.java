@@ -8,6 +8,7 @@ public class Command {
   private int minNumOfArguments;
   private String errorTooManyArguments;
   private String errorMissingOperand;
+  private String description;
   
   public void setIdentifier(String iden) {
     this.identifier = iden;
@@ -48,10 +49,19 @@ public class Command {
   public String getErrorMissingOperand() {
     return this.errorMissingOperand;
   }
+  
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
   // run command, overridden by subclasses
   public boolean run(String[] tokens, FileSystem fSystem) {
     return true;
   }
+
 
 }
