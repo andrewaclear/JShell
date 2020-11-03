@@ -5,7 +5,8 @@ Parent classes: None
 Subclasses: None
 
 Responsibilities:
--Tree structure of Directories 
+-Tree structure of directories
+-Keeps track of the current directory
 
 Collaborators: 
 -FileSystemNode
