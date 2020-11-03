@@ -52,7 +52,7 @@ public class JShell {
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       //Parses input into tokens and then executes the command
-      run = execute.execute_command(parse.parse(input.current_line), fSystem);
+      run = execute.executeCommand(parse.parse(input.current_line), fSystem);
     }
     input.close();
   }
