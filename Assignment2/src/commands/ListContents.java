@@ -16,6 +16,13 @@ public class ListContents extends Command {
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("");
     this.setMissingOperand("");
+    this.setDescription("If no paths are given, print the contents"
+        + " (file or directory) of the \ncurrent directory, with a new line"
+        + " following each of the content \n(file or directory). Otherwise,"
+        + " for each path p, the order listed:  \n If p specifies a"
+        + " file, print p \n If p specifies a directory, print p, a"
+        + " colon, then the contents of that directory, then an extra"
+        + " new line. \n If p does not exist, print a suitable message.");
   }
 
   @Override
