@@ -28,17 +28,22 @@ public class MakeDirectory extends Command {
     
     //actualPath1 is the array of the Directories path1 traverses
     //actualPath2 is the array of the Directories path2 traverses
-    String actualPath1[] = tokens[0].split("/");
-    String actualPath2[] = tokens[1].split("/");
+    String[] actualPath1 = tokens[0].split("/");
+    String[] actualPath2 = tokens[1].split("/");
     
     String targetPath1 = "", targetPath2 = "";
     
     //The targetPath1 is path1 excluding the last Directory
-    for (int i = 0; i < actualPath1.length - 2; i ++) {
-      targetPath1 = targetPath1 + actualPath1[i] + "/";
+    if (actualPath1.length == 1) {
+      targetPath1 = "/";
+    } else {
+      for (int i = 0; i < actualPath1.length - 2; i ++) {
+        targetPath1 = targetPath1 + actualPath1[i] + "/";
+      }
+      targetPath1 += actualPath1[actualPath1.length - 2];
     }
     
-    targetPath1 += actualPath1[actualPath1.length - 2];
+    
     
     //Add "/" to the actualPath1 if path1 refers to a full path
     if (tokens[0].charAt(0) == '/') {
@@ -46,14 +51,20 @@ public class MakeDirectory extends Command {
     }
     
     //The targetPath2 is path2 excluding the last Directory
-    for (int i = 0; i < actualPath2.length - 2; i ++) {
+    if (actualPath2.length == 1) {
+      targetPath2 = "/";
+    } else { 
+      for (int i = 0; i < actualPath2.length - 2; i ++) {
       targetPath2 = targetPath2 + actualPath2[i] + "/";
+      }
+      targetPath2 += actualPath2[actualPath2.length - 2];
     }
     
-    targetPath2 += actualPath2[actualPath2.length - 2];
+    
+   
     
     
-  //Add "/" to the actualPath1 if path2 refers to a full path
+    //Add "/" to the actualPath1 if path2 refers to a full path
     if (tokens[1].charAt(0) == '/') {
       targetPath2 = "/" + actualPath2;
     }
@@ -70,7 +81,7 @@ public class MakeDirectory extends Command {
       //Check if the Directory already exists in the children of FileSystemNode given by path1
       if (targetNode1.isChildInside(actualPath1[actualPath1.length - 1])) {
         
-     // TODO:Add error of invalid already Directory inside
+     // TODO:Add error of invalid, the Directory is already inside 
         
       } 
       else {
@@ -84,7 +95,7 @@ public class MakeDirectory extends Command {
           //Check if the Directory already exists in the children of FIleSystemNode given by path1
           if (targetNode2.isChildInside(actualPath2[actualPath2.length - 1])) {
             
-            // TODO:Add error of invalid already Directory inside
+            // TODO:Add error of invalid, the Directory is already inside
             
              } 
              else {

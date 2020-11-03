@@ -31,6 +31,10 @@ public class FileSystem {
    
    FileSystemNode tracker = null;
    
+   if (givenPath == "/") {
+     return this.root;
+   }
+   
    //Check if the givenPath is a full or relative path
    if (givenPath.charAt(0) == '/'){
      
