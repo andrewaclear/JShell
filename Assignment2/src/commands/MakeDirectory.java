@@ -34,9 +34,11 @@ public class MakeDirectory extends Command {
     String targetPath1 = "", targetPath2 = "";
     
     //The targetPath1 is path1 excluding the last Directory
-    for (int i = 0; i < actualPath1.length - 1; i ++) {
-      targetPath1 += actualPath1[i];
+    for (int i = 0; i < actualPath1.length - 2; i ++) {
+      targetPath1 = targetPath1 + actualPath1[i] + "/";
     }
+    
+    targetPath1 += actualPath1[actualPath1.length - 2];
     
     //Add "/" to the actualPath1 if path1 refers to a full path
     if (tokens[0].charAt(0) == '/') {
@@ -44,9 +46,12 @@ public class MakeDirectory extends Command {
     }
     
     //The targetPath2 is path2 excluding the last Directory
-    for (int i = 0; i < actualPath2.length - 1; i ++) {
-      targetPath2 += actualPath2[i];
+    for (int i = 0; i < actualPath2.length - 2; i ++) {
+      targetPath2 = targetPath2 + actualPath2[i] + "/";
     }
+    
+    targetPath2 += actualPath2[actualPath2.length - 2];
+    
     
   //Add "/" to the actualPath1 if path2 refers to a full path
     if (tokens[1].charAt(0) == '/') {
