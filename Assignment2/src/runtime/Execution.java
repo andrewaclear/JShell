@@ -24,18 +24,18 @@ public class Execution {
       String commandName = commandHashMap.get(tokens[0]);
       
       try {
-      Command command = (Command) Class.forName(commandName).
-          getDeclaredConstructor().newInstance();
+        Command command = (Command) Class.forName(commandName).
+                          getDeclaredConstructor().newInstance();
       
-      if (tokens.length <= command.getMaxNumOfArguments() && 
-          tokens.length >= command.getMinNumOfArguments()) {
-        run = command.run(tokens, fSystem);
-      } else if (tokens.length > command.getMaxNumOfArguments()) {
-        ErrorHandler.tooManyArguments(command);
-      } else if (tokens.length < command.getMinNumOfArguments()) {
-        ErrorHandler.missingOperand(command);
-      }
-      
+        if ((command.getMaxNumOfArguments() < 0 ||
+             tokens.length <= command.getMaxNumOfArguments()) &&
+            tokens.length >= command.getMinNumOfArguments()) {
+          run = command.run(tokens, fSystem);
+        } else if (tokens.length > command.getMaxNumOfArguments()) {
+          ErrorHandler.tooManyArguments(command);
+        } else if (tokens.length < command.getMinNumOfArguments()) {
+          ErrorHandler.missingOperand(command);
+        }
       } catch (Exception e) {
         
       }

@@ -6,13 +6,13 @@ import io.StandardOutput;
 
 public class ListContents extends Command {
 
-  public ListContents(int max) {
+  public ListContents() {
   
     // String iden = "ls";
     // this.setIdentifier(iden);
 
     // there is no max number of arguments (set when call)
-    this.setMaxNumOfArguments(max);
+    this.setMaxNumOfArguments(-1);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("");
     this.setMissingOperand("");

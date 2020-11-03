@@ -78,17 +78,17 @@ public class Manual extends Command {
     descriptions.put("echo", new Echo().getDescription());
     descriptions.put("exit", new Exit().getDescription());
     descriptions.put("history", new History().getDescription());
-    descriptions.put("ls", new ListContents(99).getDescription());
+    descriptions.put("ls", new ListContents().getDescription());
     descriptions.put("mkdir", new MakeDirectory().getDescription());
     descriptions.put("popd", new PopDirectory().getDescription());
     descriptions.put("pwd", new PrintWorkingDirectory().getDescription());
     descriptions.put("pushd", new PushDirectory().getDescription());
  
     this.setIdentifier("man");
-    this.setMaxNumOfArguments(100);
-    this.setMinNumOfArguments(1);
+    this.setMaxNumOfArguments(-1);
+    this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("");
-    this.setMissingOperand("");
+    this.setMissingOperand("What manual page do you want?");
     
   }
   @Override
