@@ -27,18 +27,43 @@ public class ListContents extends Command {
 
   @Override
   public boolean run(String[] tokens, FileSystem fSystem) {
+    
+    // print out current directory case
     if (tokens.length == 1) {
-      List<FileSystemNode> subFolders = fSystem.getCurrentDirectory().getChildren();
-      // subFolders.sort(arg0);
-      for (FileSystemNode folder : subFolders) {
-        StandardOutput.println(folder.getDirectory().getDirectoryName());
+      listSubFolders("", fSystem);
+    } else {
+      for (int i = 1; i < tokens.length; i++) {
+        listSubFolders(tokens[i], fSystem);
       }
-
-      // INPROGRESS
-      // for (fSystem.getCurrentDirectory().)
-
     }
+
     return true;
+  }
+
+  private void listSubFolders(String token, FileSystem fSystem) {
+
+    // set path
+    String path;
+    if (token == "") {
+      path = fSystem.getCurrentDirectory().getPath();
+    } else if (token.charAt(0) == '/') {
+      path = token;
+    } else {
+      path = fSystem.getCurrentDirectory().getPath()+token;
+    }
+
+    FileSystemNode[] subFolders = fSystem.getFileSystemNode(path).getChildren().toArray(new FileSystemNode[0]);
+    StandardOutput.println(String.valueOf(subFolders.length));
+    // print out sub-folders
+    for (FileSystemNode folder : subFolders)   {
+      StandardOutput.println(folder.getDirectory().getDirectoryName());
+    }
+
+    File[] subFiles = fSystem.getFileSystemNode(path).getDirectory().getFiles().toArray(new File[0]);
+
+    for (File file : subFiles) {
+      StandardOutput.println(file.getFileName());
+    }
   }
 
 }
