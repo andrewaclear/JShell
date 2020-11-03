@@ -12,6 +12,7 @@ public class Exit extends Command {
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("doesn't take any arguments");
     this.setMissingOperand("");
+    this.setDescription("Quit the program ");
   }
 
   @Override

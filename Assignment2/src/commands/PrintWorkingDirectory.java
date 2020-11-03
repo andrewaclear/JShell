@@ -10,6 +10,8 @@ public class PrintWorkingDirectory extends Command {
     //PrintWorkingDirectory must not have any arguments
     this.setMaxNumOfArguments(0);
     this.setMinNumOfArguments(0);
+    this.setDescription("Print the current working directory"
+        + " (including the whole path).  ");
   }
   
   //When run, PrintWorkingDirectory have to display the current Directory in the FileSystem

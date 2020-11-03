@@ -13,6 +13,13 @@ public class MakeDirectory extends Command {
     //MakeDirectory must have two arguments
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
+    this.setDescription("This command takes in two arguments only."
+        + " Create directories, \neach of which may be relative"
+        + " to the current directory or may \nbe a full path."
+        + " If creating DIR1 results in any kind of error,"
+        + " \ndo not proceed with creating DIR 2. However, if DIR1"
+        + " was created \nsuccessfully, and DIR2 creation results in an error,"
+        + " then give \nback an error specific to DIR2. ");
   }
   
   //MakeDirectory given two parameters, makes two directories
