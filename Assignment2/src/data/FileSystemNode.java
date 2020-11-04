@@ -60,6 +60,7 @@ public class FileSystemNode {
   public String getPath() {
     
     String path = this.directory.getDirectoryName();
+    
     FileSystemNode currentFileSystemNode = this.parent;
     
     //Traverse through the generations before this node until the root
@@ -92,7 +93,7 @@ public class FileSystemNode {
   public boolean isChildInside(String directoryName) {
     
     for (FileSystemNode child : this.children) {
-      if (child.getDirectory().getDirectoryName() == directoryName) {
+      if (child.getDirectory().getDirectoryName().equals(directoryName)) {
         return true;
       }
     }

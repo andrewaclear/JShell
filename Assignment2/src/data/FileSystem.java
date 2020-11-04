@@ -25,23 +25,26 @@ public class FileSystem {
  //that the path points to
  public FileSystemNode getFileSystemNode(String givenPath) {
    
-   //splits the givenPath into sub paths that will be contained 
-   //in the array path
-   String path[] = givenPath.split("/");
-   
+   //path is an array of sub paths in givenPath
+   String path[];
+       
    FileSystemNode tracker = null;
    
-   if (givenPath == "/") {
+   if (givenPath.equals("/")) {
      return this.root;
    }
    
    //Check if the givenPath is a full or relative path
    if (givenPath.charAt(0) == '/'){
      
+     path = givenPath.substring(1).split("/");
+     
      //if givenPath is a full path, the tracker starts at the root
      tracker = root;
      
    } else {
+     
+     path = givenPath.split("/");
      
      //if the givenPath is a relative path, the tracker starts 
      //at the currentFileSystemNode
@@ -63,7 +66,8 @@ public class FileSystem {
      for (FileSystemNode child : tracker.getChildren()) {
        
        //Check if the child matches the subPath
-       if (child.getDirectory().getDirectoryName() == subPath) {
+       if (child.getDirectory().getDirectoryName().equals(subPath)) {
+           
            
            //if the child matches the subPath, set the tracker to the child 
            //and break the loop
