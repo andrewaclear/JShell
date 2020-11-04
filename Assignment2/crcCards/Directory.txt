@@ -5,6 +5,8 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Contains files and other directories.
+-Contains a list of files
+-Has a name
 
-Collaborators: None
+Collaborators: 
+-File

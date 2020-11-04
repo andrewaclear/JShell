@@ -6,10 +6,11 @@ Subclasses: None
 
 Responsibilities:
 -Changes Directory depending on the parameter
--Goes to the Directory either relative to the current Directory or full path
--Goes back to parent Directory if given the unique correct parameter: ..
--Goes to the root of the FileSystem given the appropriate parameter: /
+  -Goes to the Directory either relative to the current Directory or full path
+  -Goes back to parent Directory given the parameter ..
+  -Goes to the root of the FileSystem given parameter /
+  -Stays on the current directory given the parameter .
 
 Collaborators:
--Shell
+-JShell
 -FileSystem
