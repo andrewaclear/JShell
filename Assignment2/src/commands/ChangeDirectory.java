@@ -16,21 +16,22 @@ public class ChangeDirectory extends Command {
       + " file system is a single slash: /. ");
   }
   
-  public boolean run(String[] tokens, FileSystem root) {
+  public boolean run(String[] tokens, FileSystem system) {
     
     //Set targetNode to the FileSystemNode that the path leads to
-    FileSystemNode targetNode = root.getFileSystemNode(tokens[0]);
+    FileSystemNode targetNode = system.getFileSystemNode(tokens[0]);
     
     //Check if the targetNode is in the root
     if (targetNode != null)
     {
-      
+      System.out.println("CD: now at " + targetNode.getPath());
       //Set the current Directory to the targetNode
-      root.setCurrentDirectory(targetNode);
+      system.setCurrentDirectory(targetNode);
       
     } else {
       
       //TODO: Add error of invalid path
+      System.out.println("CD: Bad path");
       
     }
     

@@ -23,6 +23,8 @@ public class MakeDirectoryTest {
       System.out.println("A child of this directory is " + child.getDirectory().getDirectoryName());
     }
     
+    System.out.println(fSystem.getCurrentDirectory().getPath());
+    
     ChangeDirectory cd = new ChangeDirectory();
     
     String[] tokensForCD = {"Yo"};
@@ -38,6 +40,14 @@ public class MakeDirectoryTest {
     }
     
     System.out.println(fSystem.getCurrentDirectory().getPath());
+    
+    String[] tokensForCD2 = {"Yo"};
+    
+    cd.run(tokensForCD2, fSystem);
+    
+    String[] tokensForCD3 = {"Hola"};
+    
+    cd.run(tokensForCD3, fSystem);
     
   }
 }
