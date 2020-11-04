@@ -7,8 +7,8 @@ public class ChangeDirectory extends Command {
   
   public ChangeDirectory() {
     this.setIdentifier("cd");
-    this.setMaxNumOfArguments(1);
-    this.setMinNumOfArguments(1);
+    this.setMaxNumOfArguments(2);
+    this.setMinNumOfArguments(2);
     this.setDescription("Change directory to DIR, which may be relative to"
       + " the current directory\nor may be a full path. As with Unix, .."
       + " means a parent directory and a . \nmeans the current directory."
@@ -19,7 +19,7 @@ public class ChangeDirectory extends Command {
   public boolean run(String[] tokens, FileSystem system) {
     
     //Set targetNode to the FileSystemNode that the path leads to
-    FileSystemNode targetNode = system.getFileSystemNode(tokens[0]);
+    FileSystemNode targetNode = system.getFileSystemNode(tokens[1]);
     
     //Check if the targetNode is in the root
     if (targetNode != null)
