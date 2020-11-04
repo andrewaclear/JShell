@@ -37,14 +37,14 @@ public class MakeDirectory extends Command {
     
     //The targetPath1 is path1 excluding the last Directory
     //actualPath1 will be an array of subpaths in tokens[0]
-    if (tokens[0].charAt(0) == '/') {
+    if (tokens[1].charAt(0) == '/') {
       
-      actualPath1 = tokens[0].substring(1).split("/");
+      actualPath1 = tokens[1].substring(1).split("/");
       targetPath1 = "/";
       
     } else {
     
-      actualPath1 = tokens[0].split("/");
+      actualPath1 = tokens[1].split("/");
     
     }
     
@@ -61,7 +61,7 @@ public class MakeDirectory extends Command {
       
     } else {
       
-      if (tokens[0].charAt(0) == '/') {
+      if (tokens[1].charAt(0) == '/') {
         targetPath1 += actualPath1[0];
         targetNode1 = system.getFileSystemNode(targetPath1);;
       } else {
@@ -71,14 +71,14 @@ public class MakeDirectory extends Command {
     
     
     //The targetPath2 is path2 excluding the last Directory
-    if (tokens[1].charAt(0) == '/') {
+    if (tokens[2].charAt(0) == '/') {
       
-      actualPath2 = tokens[1].substring(1).split("/");
+      actualPath2 = tokens[2].substring(1).split("/");
       targetPath2 = "/";
       
     } else {
     
-      actualPath2 = tokens[1].split("/");
+      actualPath2 = tokens[2].split("/");
     
     }
     
@@ -94,7 +94,7 @@ public class MakeDirectory extends Command {
     
     }  else {
       
-      if (tokens[1].charAt(0) == '/') {
+      if (tokens[2].charAt(0) == '/') {
         targetPath2 += actualPath2[0];
         targetNode2 = system.getFileSystemNode(targetPath2);;
       } else {

@@ -2,6 +2,7 @@ package test;
 
 import commands.ChangeDirectory;
 import commands.MakeDirectory;
+import commands.PrintWorkingDirectory;
 import data.FileSystem;
 import data.FileSystemNode;
 
@@ -11,10 +12,11 @@ public class MakeDirectoryTest {
     FileSystem fSystem = new FileSystem();
     
     MakeDirectory mkdir = new MakeDirectory();
+    PrintWorkingDirectory pwd = new PrintWorkingDirectory();
     
     boolean flag = true;
     
-    String[] tokens = {"Yo", "Ha"};
+    String[] tokens = {"mkdir","Yo", "Ha"};
     
     flag = mkdir.run(tokens, fSystem);
     flag = mkdir.run(tokens, fSystem);
@@ -23,15 +25,15 @@ public class MakeDirectoryTest {
       System.out.println("A child of this directory is " + child.getDirectory().getDirectoryName());
     }
     
-    System.out.println(fSystem.getCurrentDirectory().getPath());
+    pwd.run(tokens, fSystem);
     
     ChangeDirectory cd = new ChangeDirectory();
     
-    String[] tokensForCD = {"Yo"};
+    String[] tokensForCD = {"cd","Yo"};
     
     cd.run(tokensForCD, fSystem);
     
-    String[] tokens2 = {"/Yo/Hola", "/Yo/Nah"};
+    String[] tokens2 = {"mkdir","/Yo/Hola", "/Yo/Nah"};
     
     flag = mkdir.run(tokens2, fSystem);
     
@@ -39,13 +41,13 @@ public class MakeDirectoryTest {
       System.out.println("A child of this directory is " + child.getDirectory().getDirectoryName());
     }
     
-    System.out.println(fSystem.getCurrentDirectory().getPath());
+    pwd.run(tokens, fSystem);
     
-    String[] tokensForCD2 = {"Yo"};
+    String[] tokensForCD2 = {"cd","Yo"};
     
     cd.run(tokensForCD2, fSystem);
     
-    String[] tokensForCD3 = {"Hola"};
+    String[] tokensForCD3 = {"cd","Hola"};
     
     cd.run(tokensForCD3, fSystem);
     
