@@ -5,8 +5,9 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities: 
--Prints the current Directory as well as the whole path.
+-Prints the whole path of the current Directory.
 
 Collaborators:
 -FileSystem
+-FileSystemNode
 -StandardOutput

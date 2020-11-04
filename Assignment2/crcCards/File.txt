@@ -5,6 +5,7 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Data is contained
+-Content is contained
+-Has a name
 
 Collaborators: None
