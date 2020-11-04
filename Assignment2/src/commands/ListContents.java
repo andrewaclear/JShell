@@ -44,7 +44,7 @@ public class ListContents extends Command {
 
     // set path
     String path;
-    if (token == "") {
+    if (token.equals("")) {
       path = fSystem.getCurrentDirectory().getPath();
     } else if (token.charAt(0) == '/') {
       path = token;

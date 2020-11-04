@@ -31,6 +31,7 @@ package driver;
 
 import io.*;
 import runtime.*;
+import commands.History;
 import data.FileSystem;
 
 public class JShell {
@@ -42,6 +43,7 @@ public class JShell {
     Execution execute = new Execution();
     StandardInput input = new StandardInput();
     FileSystem fSystem = new FileSystem();
+    History history = new History();
     //Note: Consider adding error checking for parser
     //Also Note we need an extensive error class with all types of different
     //errors.
@@ -51,6 +53,8 @@ public class JShell {
       StandardOutput.print(fSystem.getCurrentDirectory().getDirectory().getDirectoryName()+"#: ");
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
+      // add line to history
+      history.addLine(input.current_line);
       //Parses input into tokens and then executes the command
       run = execute.executeCommand(parse.parse(input.current_line), fSystem);
     }
