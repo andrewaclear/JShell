@@ -3,6 +3,7 @@ package commands;
 import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
+import io.StandardOutput;
 
 public class MakeDirectory extends Command {
   
@@ -16,7 +17,7 @@ public class MakeDirectory extends Command {
     
     //Error Handling
     this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand("mkdir only accepts two parameters");
+    this.setMissingOperand(" only accepts two parameters");
     
     //Description
     this.setDescription("This command takes in two arguments only."
@@ -116,7 +117,10 @@ public class MakeDirectory extends Command {
       //Check if the Directory already exists in the children of FileSystemNode given by path1
       if (targetNode1.isChildInside(actualPath1[actualPath1.length - 1])) {
         
-     // TODO:Add error of invalid, the Directory is already inside 
+        // TODO:Add error of invalid, the Directory is already inside
+        StandardOutput.println(actualPath1[actualPath1.length - 1] + " already exists at " 
+        + targetPath1 + "/");
+        
         
       } 
       else {
@@ -133,6 +137,8 @@ public class MakeDirectory extends Command {
           if (targetNode2.isChildInside(actualPath2[actualPath2.length - 1])) {
             
             // TODO:Add error of invalid, the Directory is already inside
+            StandardOutput.println(actualPath2[actualPath2.length - 1] + " already exists at " 
+            + targetPath2 + "/");
             
              } 
              else {
