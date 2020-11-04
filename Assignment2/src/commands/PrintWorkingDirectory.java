@@ -16,7 +16,7 @@ public class PrintWorkingDirectory extends Command {
   
   //When run, PrintWorkingDirectory have to display the current Directory in the FileSystem
   public boolean run(String[] tokens, FileSystem system) {
-
+    
     //Print the path of the current directory
     System.out.println(system.getCurrentDirectory().getPath());
     

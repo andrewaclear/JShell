@@ -24,56 +24,85 @@ public class MakeDirectory extends Command {
   
   //MakeDirectory given two parameters, makes two directories
   @Override
-  public boolean run(String[] tokens, FileSystem root) {
+  public boolean run(String[] tokens, FileSystem system) {
     
     //actualPath1 is the array of the Directories path1 traverses
     //actualPath2 is the array of the Directories path2 traverses
-    String[] actualPath1 = tokens[0].split("/");
-    String[] actualPath2 = tokens[1].split("/");
+    String[] actualPath1;
+    String[] actualPath2;
     
     String targetPath1 = "", targetPath2 = "";
     
+    FileSystemNode targetNode1 = null, targetNode2 = null; 
+    
     //The targetPath1 is path1 excluding the last Directory
-    if (actualPath1.length == 1) {
+    //actualPath1 will be an array of subpaths in tokens[0]
+    if (tokens[0].charAt(0) == '/') {
+      
+      actualPath1 = tokens[0].substring(1).split("/");
       targetPath1 = "/";
+      
     } else {
+    
+      actualPath1 = tokens[0].split("/");
+    
+    }
+    
+    //Check if token[0] referred to the current Directory
+    if (actualPath1.length != 1) {
+    
       for (int i = 0; i < actualPath1.length - 2; i ++) {
         targetPath1 = targetPath1 + actualPath1[i] + "/";
       }
+      
       targetPath1 += actualPath1[actualPath1.length - 2];
+      
+      targetNode1 = system.getFileSystemNode(targetPath1);
+      
+    } else {
+      
+      if (tokens[0].charAt(0) == '/') {
+        targetPath1 += actualPath1[0];
+        targetNode1 = system.getFileSystemNode(targetPath1);;
+      } else {
+        targetNode1 = system.getCurrentDirectory();
+      }
     }
     
-    
-    
-    //Add "/" to the actualPath1 if path1 refers to a full path
-    if (tokens[0].charAt(0) == '/') {
-      targetPath1 = "/" + actualPath1;
-    }
     
     //The targetPath2 is path2 excluding the last Directory
-    if (actualPath2.length == 1) {
+    if (tokens[1].charAt(0) == '/') {
+      
+      actualPath2 = tokens[1].substring(1).split("/");
       targetPath2 = "/";
-    } else { 
+      
+    } else {
+    
+      actualPath2 = tokens[1].split("/");
+    
+    }
+    
+    if (actualPath2.length != 1) {
+    
       for (int i = 0; i < actualPath2.length - 2; i ++) {
       targetPath2 = targetPath2 + actualPath2[i] + "/";
       }
+      
       targetPath2 += actualPath2[actualPath2.length - 2];
+      
+      targetNode2 = system.getFileSystemNode(targetPath2);
+    
+    }  else {
+      
+      if (tokens[1].charAt(0) == '/') {
+        targetPath2 += actualPath2[0];
+        targetNode2 = system.getFileSystemNode(targetPath2);;
+      } else {
+        targetNode2 = system.getCurrentDirectory();
+      }
+      
     }
-    
-    
-   
-    
-    
-    //Add "/" to the actualPath1 if path2 refers to a full path
-    if (tokens[1].charAt(0) == '/') {
-      targetPath2 = "/" + actualPath2;
-    }
-    
-    //Get the FileSystemNodes that we need to add a Directory in
-    FileSystemNode targetNode1 = null, targetNode2 = null; 
-    
-    targetNode1 = root.getFileSystemNode(targetPath1);
-    targetNode2 = root.getFileSystemNode(targetPath2);
+
     
     //Check if path1 is valid
     if (targetNode1 != null) {
@@ -89,6 +118,8 @@ public class MakeDirectory extends Command {
         //Add Directory to the FileSystemNode given by path1
         targetNode1.addChild(new FileSystemNode(new Directory(actualPath1[actualPath1.length - 1])));
         
+        System.out.println("Sucessfully added " + actualPath1[actualPath1.length - 1]);
+        
         //Check if path2 is valid
         if (targetNode2 != null) {
           
@@ -102,6 +133,8 @@ public class MakeDirectory extends Command {
                
                //Add Directory to the FileSystemNode given by path2
                targetNode2.addChild(new FileSystemNode(new Directory(actualPath2[actualPath2.length - 1])));
+               
+               System.out.println("Sucessfully added " + actualPath2[actualPath2.length - 1]);
                
              }
         } 
