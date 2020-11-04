@@ -10,9 +10,15 @@ public class MakeDirectory extends Command {
   public MakeDirectory() {
     this.setIdentifier("mkdir");
     
-    //MakeDirectory must have two arguments
+    //MakeDirectory must have three tokens
     this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(3);
+    
+    //Error Handling
+    this.setErrorTooManyArguments("only two parameters are accepted");
+    this.setMissingOperand("mkdir only accepts two parameters");
+    
+    //Description
     this.setDescription("This command takes in two arguments only."
         + " Create directories, \neach of which may be relative"
         + " to the current directory or may \nbe a full path."

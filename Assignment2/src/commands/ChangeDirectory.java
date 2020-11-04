@@ -7,8 +7,16 @@ public class ChangeDirectory extends Command {
   
   public ChangeDirectory() {
     this.setIdentifier("cd");
+    
+    //ChangeDirectory must have two tokens
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
+    
+    //Error Handling
+    this.setErrorTooManyArguments("only one parameter is accepted");
+    this.setMissingOperand("cd only accepts one parameter");
+    
+    //Description
     this.setDescription("Change directory to DIR, which may be relative to"
       + " the current directory\nor may be a full path. As with Unix, .."
       + " means a parent directory and a . \nmeans the current directory."
