@@ -4,8 +4,10 @@ What did I work on in the last three days?
     - Polished the code for MakeDirectory
 
 What do I plan to work in the next three days?
-    - Continue updating the FileSystem to accomodate any needs for other classes 
-    - Test the code of FileSystem, ChangeDirectory and PrintWorkingDirectory and MakeDirectory
+    - Continue updating the FileSystem and FileSystemNode to accomodate any needs for other classes 
+    - Finish implementing some corner cases of ChangeDirectory
+    - Throughly test the code of ChangeDirectory, MakeDirectory and PrintWorkingDirectory
+    - Update CRC to accomodate any extra needs for my assigned classes
 
 Am I blocked on anything?
-    - Testing the code efficiently is hard without our prototype shell being fuctional
+    - No

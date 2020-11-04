@@ -14,7 +14,7 @@ public class ChangeDirectory extends Command {
     
     //Error Handling
     this.setErrorTooManyArguments("only one parameter is accepted");
-    this.setMissingOperand("cd only accepts one parameter");
+    this.setMissingOperand("only accepts one parameter");
     
     //Description
     this.setDescription("Change directory to DIR, which may be relative to"
@@ -27,9 +27,22 @@ public class ChangeDirectory extends Command {
   @Override
   public boolean run(String[] tokens, FileSystem system) {
     
-    //Set targetNode to the FileSystemNode that the path leads to
-    FileSystemNode targetNode = system.getFileSystemNode(tokens[1]);
+    FileSystemNode targetNode = null;
     
+    if (tokens[1].equals("..")) {
+      
+      targetNode = system.getCurrentDirectory().getParent();
+      
+    } else if (tokens[1].equals(".")) {
+      
+      targetNode = system.getCurrentDirectory();
+      
+    } else {
+    
+      //Set targetNode to the FileSystemNode that the path leads to
+      targetNode = system.getFileSystemNode(tokens[1]);
+      
+    }
     //Check if the targetNode is in the root
     if (targetNode != null)
     {

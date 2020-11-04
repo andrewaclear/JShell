@@ -1,6 +1,7 @@
 package commands;
 
 import data.FileSystem;
+import io.StandardOutput;
 
 public class PrintWorkingDirectory extends Command {
 
@@ -18,10 +19,11 @@ public class PrintWorkingDirectory extends Command {
   }
   
   //When run, PrintWorkingDirectory have to display the current Directory in the FileSystem
+  @Override
   public boolean run(String[] tokens, FileSystem system) {
     
     //Print the path of the current directory
-    System.out.println(system.getCurrentDirectory().getPath());
+    StandardOutput.println(system.getCurrentDirectory().getPath());
     
     return true;
     
