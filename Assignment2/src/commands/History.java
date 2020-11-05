@@ -10,7 +10,7 @@ import io.StandardOutput;
 
 public class History extends Command {
 
-  private List<String> data = new List<String>();
+  private ArrayList<String> data = new ArrayList<String>();
 
   public History() {
     this.setIdentifier("history");
@@ -24,6 +24,7 @@ public class History extends Command {
 
   public void addLine(String line) {
     data.add(line);
+    // StandardOutput.println(data.get(0));
   }
 
   public void printHistory(int last) {
@@ -31,17 +32,19 @@ public class History extends Command {
     for (int i = 1; (n-i >= 0 && i<last); i++) {
       StandardOutput.println(String.valueOf(i)+". "+data.get(n-i));
     }
+    // StandardOutput.println(data.get(last));
   }
 
   @Override
   public boolean run(String[] tokens, FileSystem fSystem) {
     int last;
+    data.trimToSize();
 
     if (tokens.length == 1) last = data.size();
     else last = Integer.valueOf(tokens[1]);
 
     printHistory(last);
-    System.out.println(String.valueOf(last));
+    // System.out.println(String.valueOf(last));
     
     return true;
   }
