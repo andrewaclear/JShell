@@ -8,7 +8,12 @@ import data.FileSystemNode;
 
 public class MakeDirectoryTest {
   public static void main(String[] args) {
-  
+    
+    //String[] huah = " haa ha".split(" ");
+    
+    //System.out.println(huah[1]);
+    
+    
     FileSystem fSystem = new FileSystem();
     
     MakeDirectory mkdir = new MakeDirectory();

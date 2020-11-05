@@ -35,8 +35,8 @@ public class MakeDirectory extends Command {
     
     //actualPath1 is the array of the Directories path1 traverses
     //actualPath2 is the array of the Directories path2 traverses
-    String[] actualPath1;
-    String[] actualPath2;
+    String[] splitPath1;
+    String[] splitPath2;
     
     String targetPath1 = "", targetPath2 = "";
     
@@ -46,31 +46,30 @@ public class MakeDirectory extends Command {
     //actualPath1 will be an array of subpaths in tokens[0]
     if (tokens[1].charAt(0) == '/') {
       
-      actualPath1 = tokens[1].substring(1).split("/");
+      splitPath1 = tokens[1].substring(1).split("/");
       targetPath1 = "/";
       
     } else {
     
-      actualPath1 = tokens[1].split("/");
+      splitPath1 = tokens[1].split("/");
     
     }
     
-    //Check if token[0] referred to the current Directory
-    if (actualPath1.length != 1) {
+    //Check if token[1] referred to the current Directory or a Directory at the root
+    if (splitPath1.length != 1) {
     
-      for (int i = 0; i < actualPath1.length - 2; i ++) {
-        targetPath1 = targetPath1 + actualPath1[i] + "/";
+      for (int i = 0; i < splitPath1.length - 2; i ++) {
+        targetPath1 = targetPath1 + splitPath1[i] + "/";
       }
       
-      targetPath1 += actualPath1[actualPath1.length - 2];
+      targetPath1 += splitPath1[splitPath1.length - 2];
       
       targetNode1 = system.getFileSystemNode(targetPath1);
       
     } else {
       
       if (tokens[1].charAt(0) == '/') {
-        targetPath1 += actualPath1[0];
-        targetNode1 = system.getFileSystemNode(targetPath1);;
+        targetNode1 = system.getRoot();
       } else {
         targetNode1 = system.getCurrentDirectory();
       }
@@ -80,73 +79,76 @@ public class MakeDirectory extends Command {
     //The targetPath2 is path2 excluding the last Directory
     if (tokens[2].charAt(0) == '/') {
       
-      actualPath2 = tokens[2].substring(1).split("/");
+      splitPath2 = tokens[2].substring(1).split("/");
       targetPath2 = "/";
       
     } else {
     
-      actualPath2 = tokens[2].split("/");
+      splitPath2 = tokens[2].split("/");
     
     }
     
-    if (actualPath2.length != 1) {
+    if (splitPath2.length != 1) {
     
-      for (int i = 0; i < actualPath2.length - 2; i ++) {
-      targetPath2 = targetPath2 + actualPath2[i] + "/";
+      for (int i = 0; i < splitPath2.length - 2; i ++) {
+      targetPath2 = targetPath2 + splitPath2[i] + "/";
       }
       
-      targetPath2 += actualPath2[actualPath2.length - 2];
+      targetPath2 += splitPath2[splitPath2.length - 2];
       
       targetNode2 = system.getFileSystemNode(targetPath2);
     
     }  else {
       
       if (tokens[2].charAt(0) == '/') {
-        targetPath2 += actualPath2[0];
-        targetNode2 = system.getFileSystemNode(targetPath2);;
+        targetNode2 = system.getRoot();
       } else {
         targetNode2 = system.getCurrentDirectory();
       }
       
     }
-
     
     //Check if path1 is valid
     if (targetNode1 != null) {
       
       //Check if the Directory already exists in the children of FileSystemNode given by path1
-      if (targetNode1.isChildInside(actualPath1[actualPath1.length - 1])) {
+      if (targetNode1.isChildInside(splitPath1[splitPath1.length - 1])) {
         
         // TODO:Add error of invalid, the Directory is already inside
-        StandardOutput.println(actualPath1[actualPath1.length - 1] + " already exists at " 
-        + targetPath1 + "/");
-        
+        if (targetPath1.equals("/")) {
+          StandardOutput.println(splitPath1[splitPath1.length - 1] + " already exists at " 
+          + targetPath1);
+        } else
+        {
+          StandardOutput.println(splitPath1[splitPath1.length - 1] + " already exists at " 
+              + targetPath1 + "/");
+        }
         
       } 
       else {
         
         //Add Directory to the FileSystemNode given by path1
-        targetNode1.addChild(new FileSystemNode(new Directory(actualPath1[actualPath1.length - 1])));
+        targetNode1.addChild(new FileSystemNode(new Directory(splitPath1[splitPath1.length - 1])));
         
-        System.out.println("Sucessfully added " + actualPath1[actualPath1.length - 1]);
+        System.out.println("Sucessfully added " + splitPath1[splitPath1.length - 1]);
         
         //Check if path2 is valid
         if (targetNode2 != null) {
           
           //Check if the Directory already exists in the children of FIleSystemNode given by path1
-          if (targetNode2.isChildInside(actualPath2[actualPath2.length - 1])) {
+          if (targetNode2.isChildInside(splitPath2[splitPath2.length - 1])) {
             
             // TODO:Add error of invalid, the Directory is already inside
-            StandardOutput.println(actualPath2[actualPath2.length - 1] + " already exists at " 
+            StandardOutput.println(splitPath2[splitPath2.length - 1] + " already exists at " 
             + targetPath2 + "/");
             
              } 
              else {
                
                //Add Directory to the FileSystemNode given by path2
-               targetNode2.addChild(new FileSystemNode(new Directory(actualPath2[actualPath2.length - 1])));
+               targetNode2.addChild(new FileSystemNode(new Directory(splitPath2[splitPath2.length - 1])));
                
-               System.out.println("Sucessfully added " + actualPath2[actualPath2.length - 1]);
+               System.out.println("Sucessfully added " + splitPath2[splitPath2.length - 1]);
                
              }
         } 
