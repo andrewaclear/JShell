@@ -1,7 +1,8 @@
 package commands;
 
 import java.util.HashMap;
-import data.FileSystem;
+
+import data.*;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -92,7 +93,7 @@ public class Manual extends Command {
     
   }
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     while (i < tokens.length) {
       if (descriptions.containsKey(tokens[i])) {

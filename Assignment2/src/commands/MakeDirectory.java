@@ -1,8 +1,6 @@
 package commands;
 
-import data.Directory;
-import data.FileSystem;
-import data.FileSystemNode;
+import data.*;
 import io.StandardOutput;
 
 public class MakeDirectory extends Command {
@@ -17,21 +15,21 @@ public class MakeDirectory extends Command {
     
     //Error Handling
     this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand(" only accepts two parameters");
+    this.setMissingOperand("only accepts two parameters");
     
     //Description
     this.setDescription("This command takes in two arguments only."
-        + " Create directories, \neach of which may be relative"
-        + " to the current directory or may \nbe a full path."
-        + " If creating DIR1 results in any kind of error,"
-        + " \ndo not proceed with creating DIR 2. However, if DIR1"
-        + " was created \nsuccessfully, and DIR2 creation results in an error,"
-        + " then give \nback an error specific to DIR2. ");
+      + " Create directories, \neach of which may be relative"
+      + " to the current directory or may \nbe a full path."
+      + " If creating DIR1 results in any kind of error,"
+      + " \ndo not proceed with creating DIR 2. However, if DIR1"
+      + " was created \nsuccessfully, and DIR2 creation results in an error,"
+      + " then give \nback an error specific to DIR2.");
   }
   
   //MakeDirectory given two parameters, makes two directories
   @Override
-  public boolean run(String[] tokens, FileSystem system) {
+  public boolean run(String[] tokens, FileSystem system, Cache cache) {
     
     //actualPath1 is the array of the Directories path1 traverses
     //actualPath2 is the array of the Directories path2 traverses

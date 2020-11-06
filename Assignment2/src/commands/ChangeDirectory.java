@@ -1,6 +1,6 @@
 package commands;
 
-import data.FileSystem;
+import data.*;
 import data.FileSystemNode;
 
 public class ChangeDirectory extends Command {
@@ -21,11 +21,11 @@ public class ChangeDirectory extends Command {
       + " the current directory\nor may be a full path. As with Unix, .."
       + " means a parent directory and a . \nmeans the current directory."
       + " The directory must be /, the forward slash. \nThe foot of the"
-      + " file system is a single slash: /. ");
+      + " file system is a single slash: /.");
   }
   
   @Override
-  public boolean run(String[] tokens, FileSystem system) {
+  public boolean run(String[] tokens, FileSystem system, Cache cache) {
     
     FileSystemNode targetNode = null;
     

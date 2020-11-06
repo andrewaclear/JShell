@@ -1,6 +1,6 @@
 package commands;
 
-import data.FileSystem;
+import data.*;
 
 public class Command {
   private String identifier;
@@ -59,7 +59,7 @@ public class Command {
   }
 
   // run command, overridden by subclasses
-  public boolean run(String[] tokens, FileSystem fSystem) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     return true;
   }
 
