@@ -49,7 +49,7 @@ public class JShell {
     
     //Main program loop
     while (run) {
-      StandardOutput.print(fSystem.getCurrentDirectory().getDirectory().getDirectoryName()+"#: ");
+      StandardOutput.print(fSystem.getCurrentDirectory().getDirectory().getDirectoryName()+" #: ");
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       // add line to history

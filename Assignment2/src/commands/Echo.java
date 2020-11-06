@@ -30,7 +30,7 @@ public class Echo extends Command {
       if (tokens[1].charAt(0) == '"') {
         StandardOutput.println(tokens[1].replaceAll("\"", ""));
       } else {
-        ErrorHandler.missingString(tokens);
+        ErrorHandler.missingString(this, tokens);
       }
     //If called with echo "STRING" > file, then prints STRING to file
     } else if (tokens.length == 4 && tokens[2].equals(">")) {

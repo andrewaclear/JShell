@@ -26,9 +26,9 @@ public class ErrorHandler {
           +command.getErrorMissingOperand());
     }
     
-    public static void missingString(String[] tokens) {
-      StandardOutput.println(tokens[1] 
-        +": no string found, format  string as \"string\"");
+    public static void missingString(Command command, String[] tokens) {
+      StandardOutput.println(command.getIdentifier()+": "+tokens[1] 
+        +": no string found, format string as \"string\"");
     }
     
     public static void illegalString() {
