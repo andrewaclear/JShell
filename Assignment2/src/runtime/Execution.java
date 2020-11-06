@@ -1,6 +1,7 @@
 package runtime;
 
 import data.*;
+import io.StandardOutput;
 import commands.*;
 import java.util.HashMap;
 
@@ -35,11 +36,13 @@ public class Execution {
         } else if (tokens.length < command.getMinNumOfArguments()) {
           ErrorHandler.missingOperand(command);
         }
+      } else if (tokens[1].equals("Failed Parsing")) {
+        ErrorHandler.commandNotFound(tokens);
       } else {
         ErrorHandler.commandNotFound(tokens);
       }
     } catch (Exception e) {
-        
+      //StandardOutput.println("Invalid command and parameters");
     }
     
     return run;

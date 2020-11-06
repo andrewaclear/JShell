@@ -16,37 +16,42 @@ public class Echo extends Command {
       + " the only thing in OUTFILE should be STRING.");
     
     this.setIdentifier("echo");
-    this.setMaxNumOfArguments(3);
+    this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
-    this.setErrorTooManyArguments("");
+    this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("Please specify a string to print");
   }
   
   
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
-    //for (String token: tokens) {
-     // StandardOutput.println(token);
-   // }
+    //If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
         StandardOutput.println(tokens[1].replaceAll("\"", ""));
       } else {
         ErrorHandler.missingString(tokens);
       }
-      
-    } else if (tokens.length == 3) {
-      if (fSystem.getCurrentDirectory().isChildInside(tokens[2])) {
+    //If called with echo "STRING" > file, then prints STRING to file
+    } else if (tokens.length == 4 && tokens[2].equals(">")) {
+      //If file exists, then override its contents
+      if (fSystem.getCurrentDirectory().getDirectory()
+          .getFile(tokens[3]) != null) {
         fSystem.getCurrentDirectory().getDirectory()
-          .getFile(tokens[2]).setContent(tokens[1]);
+          .getFile(tokens[3]).setContent(tokens[1]);
+      //If file doesn't exist then create new file with specified contents
       } else {
-        File newFile = new File(tokens[2]);
+        File newFile = new File(tokens[3]);
         newFile.setContent(tokens[1].replaceAll("\"", ""));
      
         fSystem.getCurrentDirectory().getDirectory().addFile(newFile);     
       }
+    //Else invalid combination of arguments
+    } else {
+      ErrorHandler.invalidComboOfParams(this, tokens);
     }
     
     return true;
   }
 }
+
