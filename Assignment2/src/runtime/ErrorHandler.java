@@ -42,4 +42,12 @@ public class ErrorHandler {
     public static void fileNotFound(String file) {
       StandardOutput.println(file + ": file not found");
     }
+    
+    public static void invalidComboOfParams(Command command, String[] tokens) {
+      StandardOutput.print(command.getIdentifier() + ": ");
+      for (int i = 1; i < tokens.length; i++) {
+        StandardOutput.print(tokens[i] + " ");
+      }
+      StandardOutput.print(": invalid combination of arguments\n");
+    }
 }
