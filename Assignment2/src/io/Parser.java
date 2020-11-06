@@ -57,9 +57,9 @@ public class Parser {
   // Used to clear tokens list when parser has bad input
   private ArrayList<String> failedParsing(ArrayList<String> tokens) {
     ErrorHandler.illegalString();
-    String command = tokens.get(0);
+   // String command = tokens.get(0);
     tokens.clear();
-    tokens.add(command);
+   // tokens.add(command);
     tokens.add("Failed Parsing");
     
     return tokens;
