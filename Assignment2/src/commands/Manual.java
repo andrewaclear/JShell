@@ -97,7 +97,10 @@ public class Manual extends Command {
     while (i < tokens.length) {
       if (descriptions.containsKey(tokens[i])) {
         StandardOutput.println("Documentation for: " + tokens[i] + "\n");
-        StandardOutput.println(descriptions.get(tokens[i]) + "\n");
+        StandardOutput.println(descriptions.get(tokens[i]));
+        if (i + 1 < tokens.length) {
+          StandardOutput.print("\n\n\n");
+        }
       } else {
         ErrorHandler.commandNotFoundManual(tokens[i]);
       }
