@@ -1,5 +1,9 @@
 package commands;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import data.File;
 import data.FileSystem;
 import io.StandardOutput;
 import runtime.ErrorHandler;
@@ -36,7 +40,15 @@ public class Echo extends Command {
       }
       
     } else if (tokens.length == 3) {
-      
+      if (fSystem.getCurrentDirectory().isChildInside(tokens[2])) {
+        fSystem.getCurrentDirectory().getDirectory()
+          .getFile(tokens[2]).setContent(tokens[1]);
+      } else {
+        File newFile = new File(tokens[2]);
+        newFile.setContent(tokens[1].replaceAll("\"", ""));
+     
+        fSystem.getCurrentDirectory().getDirectory().addFile(newFile);     
+      }
     }
     
     return true;

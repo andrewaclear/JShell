@@ -32,4 +32,8 @@ public class ErrorHandler {
     public static void illegalString() {
       StandardOutput.println("Illegal character in string");
     }
+    
+    public static void fileNotFound(String file) {
+      StandardOutput.println(file + ": file not found");
+    }
 }

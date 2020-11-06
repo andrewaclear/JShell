@@ -34,4 +34,14 @@ public class Directory {
     return this.files;
   }
   
+  public File getFile(String name) {
+    for (File currentFile: this.files) {
+      if (currentFile.getFileName().equals(name)) {
+        return currentFile;
+      }
+    }
+    
+    return null;
+  }
+  
 }
