@@ -1,9 +1,8 @@
 package runtime;
 
-import data.FileSystem;
-import io.StandardOutput;
-import java.util.HashMap;
+import data.*;
 import commands.*;
+import java.util.HashMap;
 
 public class Execution {
   private HashMap<String, String> 
@@ -17,31 +16,30 @@ public class Execution {
     initHashMap(commandHashMap);
   }
   
-  public boolean executeCommand(String[] tokens, FileSystem fSystem) {
+  public boolean executeCommand(String[] tokens, FileSystem fSystem, 
+                                Cache cache) {
     boolean run = true;
     
-    if (commandHashMap.containsKey(tokens[0])) {
-      String commandName = commandHashMap.get(tokens[0]);
-      
-      try {
+    try {
+      if (commandHashMap.containsKey(tokens[0])) {
+        String commandName = commandHashMap.get(tokens[0]);
         Command command = (Command) Class.forName(commandName).
                           getDeclaredConstructor().newInstance();
       
         if ((command.getMaxNumOfArguments() < 0 ||
              tokens.length <= command.getMaxNumOfArguments()) &&
             tokens.length >= command.getMinNumOfArguments()) {
-          run = command.run(tokens, fSystem);
+          run = command.run(tokens, fSystem, cache);
         } else if (tokens.length > command.getMaxNumOfArguments()) {
           ErrorHandler.tooManyArguments(command);
         } else if (tokens.length < command.getMinNumOfArguments()) {
           ErrorHandler.missingOperand(command);
         }
-      } catch (Exception e) {
-        
+      } else {
+        ErrorHandler.commandNotFound(tokens);
       }
-
-    } else {
-      ErrorHandler.commandNotFound(tokens);
+    } catch (Exception e) {
+        
     }
     
     return run;

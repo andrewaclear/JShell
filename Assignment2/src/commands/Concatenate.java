@@ -1,5 +1,6 @@
 package commands;
 
+import data.Cache;
 import data.FileSystem;
 import io.StandardOutput;
 import runtime.ErrorHandler;
@@ -9,7 +10,7 @@ public class Concatenate extends Command {
   public Concatenate() {
     this.setIdentifier("cat");
     this.setDescription("Display the contents of FILE1 and other files"
-        + " (i.e. File2 ....) concatenated in the shell.");
+      + " (i.e. File2 ....) concatenated in the shell.");
     
     this.setMaxNumOfArguments(-1);
     this.setMinNumOfArguments(2);
@@ -18,7 +19,7 @@ public class Concatenate extends Command {
   }
   
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     while (i < tokens.length) {
      

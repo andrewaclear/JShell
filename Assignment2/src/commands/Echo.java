@@ -1,10 +1,6 @@
 package commands;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import data.File;
-import data.FileSystem;
+import data.*;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -12,12 +8,12 @@ public class Echo extends Command {
   
   public Echo() {
     this.setDescription("If OUTFILE is not provided, print STRING"
-        + " on the shell. Otherwise, put \nSTRING into :ile OUTFILE."
-        + " STRING is a string of"
-        + " characters surrounded \nby double  quotation marks. This"
-        + " creates a new :ile if OUTFILE does \nnot exists and erases"
-        + " the old contents if OUTFILE already exists. \nIn either case,"
-        + " the only thing in OUTFILE should be STRING. ");
+      + " on the shell. Otherwise, put \nSTRING into :ile OUTFILE."
+      + " STRING is a string of"
+      + " characters surrounded \nby double  quotation marks. This"
+      + " creates a new :ile if OUTFILE does \nnot exists and erases"
+      + " the old contents if OUTFILE already exists. \nIn either case,"
+      + " the only thing in OUTFILE should be STRING.");
     
     this.setIdentifier("echo");
     this.setMaxNumOfArguments(3);
@@ -28,7 +24,7 @@ public class Echo extends Command {
   
   
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     //for (String token: tokens) {
      // StandardOutput.println(token);
    // }

@@ -1,6 +1,6 @@
 package commands;
 
-import data.FileSystem;
+import data.*;
 import io.StandardOutput;
 
 public class PrintWorkingDirectory extends Command {
@@ -12,7 +12,7 @@ public class PrintWorkingDirectory extends Command {
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
     this.setDescription("Print the current working directory"
-        + " (including the whole path).  ");
+      + " (including the whole path). ");
     this.setErrorTooManyArguments("no parameters are accepted");
     this.setMissingOperand("identifier pwd is missing");
     
@@ -20,7 +20,7 @@ public class PrintWorkingDirectory extends Command {
   
   //When run, PrintWorkingDirectory have to display the current Directory in the FileSystem
   @Override
-  public boolean run(String[] tokens, FileSystem system) {
+  public boolean run(String[] tokens, FileSystem system, Cache cache) {
     
     //Print the path of the current directory
     StandardOutput.println(system.getCurrentDirectory().getPath());

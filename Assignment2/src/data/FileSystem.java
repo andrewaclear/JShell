@@ -88,7 +88,8 @@ public class FileSystem {
        //if the counter is equal to the number of children, the child is not 
        //a children of tracker so return null because the path is invalid
        
-       System.out.println(givenPath + " is an invalid path");
+       // I(ANDREW)COMMENTED THIS OUT AS I'M TAKING CARE OF THE ERROR PRINT OUT
+       //  System.out.println(givenPath + " is an invalid path");
        
        return null;
        

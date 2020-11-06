@@ -1,5 +1,6 @@
 package commands;
 
+import data.Cache;
 import data.FileSystem;
 
 public class Exit extends Command {
@@ -12,11 +13,11 @@ public class Exit extends Command {
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("doesn't take any arguments");
     this.setMissingOperand("");
-    this.setDescription("Quit the program ");
+    this.setDescription("Quit the program");
   }
 
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     return false;
   }
 

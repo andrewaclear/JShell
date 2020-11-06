@@ -1,16 +1,10 @@
 package commands;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-
 import data.*;
 import io.StandardOutput;
-
+import runtime.ErrorHandler;
 
 public class History extends Command {
-
-  private ArrayList<String> data = new ArrayList<String>();
 
   public History() {
     this.setIdentifier("history");
@@ -18,34 +12,40 @@ public class History extends Command {
                       + " one command per line. ");
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(1);
-    this.setErrorTooManyArguments("Too many arguments.");
+    this.setErrorTooManyArguments("too many arguments");
     this.setMissingOperand("");
   }
 
-  public void addLine(String line) {
-    data.add(line);
-    // StandardOutput.println(data.get(0));
-  }
-
-  public void printHistory(int last) {
-    int n = data.size();
-    for (int i = 1; (n-i >= 0 && i<last); i++) {
-      StandardOutput.println(String.valueOf(i)+". "+data.get(n-i));
+  private int tryNonNegInteger(String token) {
+    try {
+      int truncate = Integer.parseInt(token);
+      if (truncate>=0) return truncate;
+      else return -1;
+    } catch(Exception e) {
+      return -1;
     }
-    // StandardOutput.println(data.get(last));
   }
 
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem) {
-    int last;
-    data.trimToSize();
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+    int start;
+    int n=cache.getHistorySize();
 
-    if (tokens.length == 1) last = data.size();
-    else last = Integer.valueOf(tokens[1]);
+    if (tokens.length == 1) start = 1;
+    else {
+      int truncate = tryNonNegInteger(tokens[1]);
+      if (truncate >= n) start = 0;
+      else if (truncate >= 0) start = n-truncate;
+      else {
+        ErrorHandler.badInput(this, "operand must be a non-negative integer");
+        return true;
+      }
+    }
 
-    printHistory(last);
-    // System.out.println(String.valueOf(last));
-    
+    for (int i = start; i<n; i++) {
+      StandardOutput.println(String.valueOf(i)+". "+cache.getHistory(i));
+    }    
+
     return true;
   }
 }
