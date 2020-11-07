@@ -42,7 +42,7 @@ public class Execution {
         ErrorHandler.commandNotFound(tokens);
       }
     } catch (Exception e) {
-      //StandardOutput.println("Invalid command and parameters");
+     // StandardOutput.println(e.getMessage());
     }
     
     return run;
