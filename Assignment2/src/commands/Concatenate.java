@@ -28,12 +28,6 @@ public class Concatenate extends Command {
     }
   }
   
- // private String getPath() {
-   
- // }
-  
-  
-  
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
