@@ -63,6 +63,7 @@ public class Concatenate extends Command {
             }
           } else {
             ErrorHandler.fileNotFound(tokens[i]);
+            break;
           }
           i++;
       }
