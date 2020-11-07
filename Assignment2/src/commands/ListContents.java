@@ -57,22 +57,23 @@ public class ListContents extends Command {
       }
 
     } else {
-      // FINISH AFTER
-      // // check if the token is just a file
-      // String subPath = path.substring(0, path.lastIndexOf('/'));
-      // FileSystemNode subNode = tryGetFileSystemNode(subPath, fSystem);
+      // check if the token is just a file
+      String subPath = path.substring(0, path.lastIndexOf('/')+1);
+      FileSystemNode subNode = tryGetFileSystemNode(subPath, fSystem);
+      String fileName = path.substring(path.lastIndexOf('/')+1);
 
-      // if (subNode != null && subNode.getDirectory().getFiles().
-      //     indexOf(path.substring(path.lastIndexOf('/'))) >= 0) {
-      //   // List<File> files = subNode.getDirectory().getFiles();
-      //   // String file = path.substring(path.lastIndexOf('/'));
-      //   // if (files.indexOf(file) >= 0) StandardOutput.println(token);
-      //   StandardOutput.println(token);
-      // } else {
+      // System.out.println("Path:"+path+" subpath:"+subPath+" filename"+fileName);
+
+      if (subNode != null && subNode.getDirectory().getFile(fileName) != null) {
+        // List<File> files = subNode.getDirectory().getFiles();
+        // String file = path.substring(path.lastIndexOf('/'));
+        // if (files.indexOf(file) >= 0) StandardOutput.println(token);
+        StandardOutput.println(token);
+      } else {
         ErrorHandler.badInput(this, "cannot access '"+token
                                     +"': No such file or directory");
         return false;
-      // }
+      }
     }
     return true;
   }
