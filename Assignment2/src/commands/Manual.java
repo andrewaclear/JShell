@@ -29,7 +29,7 @@ public class Manual extends Command {
     this.setIdentifier("man");
     this.setMaxNumOfArguments(-1);
     this.setMinNumOfArguments(2);
-    this.setErrorTooManyArguments("Too many arguments");
+    this.setErrorTooManyArguments("too many arguments");
     this.setMissingOperand("What manual page do you want?");
     
   }

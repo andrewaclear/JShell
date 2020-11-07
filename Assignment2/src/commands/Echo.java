@@ -18,8 +18,8 @@ public class Echo extends Command {
     this.setIdentifier("echo");
     this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
-    this.setErrorTooManyArguments("Too many arguments");
-    this.setMissingOperand("Please specify a string to print");
+    this.setErrorTooManyArguments("too many arguments");
+    this.setMissingOperand("please specify a string to print");
   }
   
   
