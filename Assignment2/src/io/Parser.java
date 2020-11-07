@@ -30,7 +30,8 @@ public class Parser {
               tempString += temp.charAt(j);
               j++;
               if (j >= temp.length()) { // No closing " for the string
-                tokens = failedParsing(tokens);
+                ErrorHandler.illegalString();
+                //tokens = failedParsing(tokens);
                 break mainLoop;
               }
             }
@@ -38,7 +39,8 @@ public class Parser {
             i = j + 2; //Update counter to new position in input string; temp
             tempString = "";
           } else {
-            tokens = failedParsing(tokens);
+            ErrorHandler.illegalString();
+            //tokens = failedParsing(tokens);
             break mainLoop;
           }
       //Continue adding characters to build string argument
@@ -55,13 +57,13 @@ public class Parser {
     return tokens.toArray(tokensArray);
   }
   // Used to clear tokens list when parser has bad input
-  private ArrayList<String> failedParsing(ArrayList<String> tokens) {
+ /* private ArrayList<String> failedParsing(ArrayList<String> tokens) {
     ErrorHandler.illegalString();
-   // String command = tokens.get(0);
+    String command = tokens.get(0);
     tokens.clear();
-   // tokens.add(command);
+    tokens.add(command);
     tokens.add("Failed Parsing");
     
     return tokens;
-  }
+  }*/
 }

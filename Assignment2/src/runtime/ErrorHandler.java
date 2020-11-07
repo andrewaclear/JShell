@@ -50,4 +50,14 @@ public class ErrorHandler {
       }
       StandardOutput.print(": invalid combination of arguments\n");
     }
+    
+    public static void invalidPath(Command command) {
+      StandardOutput.println(command.getIdentifier() +
+          ": invalid path");
+    }
+    
+    public static void invalidName(Command command, String[] tokens) {
+      StandardOutput.println(command.getIdentifier() +
+          ": " + tokens[3] + ": invalid file and directory name");
+    }
 }
