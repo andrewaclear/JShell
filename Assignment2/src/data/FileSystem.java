@@ -151,7 +151,8 @@ public class FileSystem {
    
    }
    
-   //Check if givenPath referred to the current Directory or a Directory at the root
+   //Check if givenPath referred to the current Directory or 
+   //a Directory at the root
    if (splitPath.length != 1) {
    
      for (int i = 0; i < splitPath.length - 2; i = i + 1) {
