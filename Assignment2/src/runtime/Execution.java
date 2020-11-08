@@ -5,18 +5,36 @@ import io.StandardOutput;
 import commands.*;
 import java.util.HashMap;
 
+/**
+ * Takes in an array of tokens from Parser and executes the
+ * the specified command from tokens. 
+ */
 public class Execution {
+  /**
+   * HashMap that stores entries <String commandId, String commandClass>
+   */
   private HashMap<String, String> 
     commandHashMap = new HashMap<String, String>();
   
-  /*Takes in an array of tokens and attempts to execute a command. 
-    Returns true if the command is successfully executed;
-    else returns false. (in future returns an error msg)
-  */
+  /**
+   * Constructor for Execution class. It initializes the commandHashMap
+   * HashMap.
+   */
   public Execution () {
     initHashMap(commandHashMap);
   }
   
+  /**
+   * Takes in an array of tokens and attempts to execute a command. 
+   * Returns true when exit command is executed. Verifies that  the number of 
+   * command arguments are within designated max and min lengths. 
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true when exit is entered into terminal
+   */
   public boolean executeCommand(String[] tokens, FileSystem fSystem, 
                                 Cache cache) {
     boolean run = true;
@@ -48,6 +66,12 @@ public class Execution {
     return run;
   }
   
+  /**
+   * Initializes the commandHashMap with command ids and command classes
+   * 
+   * @param commandHashMap, a hashmap mapping commandId to command class
+   * @return returns void
+   */
   private static void initHashMap(HashMap<String, String> commandHashMap)  {
     commandHashMap.put("man", "commands.Manual");
     commandHashMap.put("cd", "commands.ChangeDirectory");
