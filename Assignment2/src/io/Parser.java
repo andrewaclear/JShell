@@ -29,8 +29,19 @@ import java.util.List;
 import java.util.Scanner;
 import runtime.ErrorHandler;
 
+/**
+ * Takes in a line of input from JShell and parses ( by spaces and
+ * quotation marks " ") it in into an array of tokens.
+ */
 public class Parser {
-  //Takes in a line as a String and returns an array of tokens of type String
+  /**
+   * Takes in a line as a String, seperates it ( by spaces and
+   * quotation marks " ") and then returns an array of tokens of type String
+   * 
+   * @param line, a string representing a line of entered text from 
+   * the terminal
+   * @return returns an array of string tokens which are command args
+   */
   public String[] parse(String line) {
     String temp; // input string parsed to remove extra spaces
     String tempString = ""; //temp string used to build each argument
@@ -80,14 +91,4 @@ public class Parser {
  
     return tokens.toArray(tokensArray);
   }
-  // Used to clear tokens list when parser has bad input
- /* private ArrayList<String> failedParsing(ArrayList<String> tokens) {
-    ErrorHandler.illegalString();
-    String command = tokens.get(0);
-    tokens.clear();
-    tokens.add(command);
-    tokens.add("Failed Parsing");
-    
-    return tokens;
-  }*/
 }
