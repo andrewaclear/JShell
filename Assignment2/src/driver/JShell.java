@@ -22,6 +22,12 @@
 // I have also read the plagiarism section in the course info
 // sheet of CSC B07 and understand the consequences.
 // *********************************************************
+package driver;
+
+import io.*;
+import runtime.*;
+import data.*;
+
 /**
 * The JShell program is a Java implementation of a bash shell. 
 * The following commands are included: exit, mkdir, cd, ls, pwd, pushd, popd,
@@ -40,12 +46,6 @@
 * @version 173
 * @since   2020/11/10
 */
-package driver;
-
-import io.*;
-import runtime.*;
-import data.*;
-
 public class JShell {
 
   public static void main(String[] args) {
