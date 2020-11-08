@@ -26,16 +26,25 @@ package io;
 
 import java.util.Scanner;
 
+/**
+ * Defines how the system receives input from the shell.
+ */
 public class StandardInput {
 
-    // Counts as CommandLineReader
+    // create new instance of Scanner to read user input in shell
     private Scanner scan = new Scanner(System.in); 
-    public String current_line = "";
+    public String currentLine = "";
     
+    /**
+     * Read next line of the current scan.
+     */
     public void nextLine() {
-        current_line = scan.nextLine(); //Awaits input 
+        currentLine = scan.nextLine(); //Awaits input 
     }
 
+    /**
+     * Close the scan.
+     */
     public void close() {
         scan.close();
     }
