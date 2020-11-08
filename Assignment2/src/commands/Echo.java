@@ -74,6 +74,7 @@ public class Echo extends Command {
    * @return returns a boolean true to mark successful execution
    * @Override overrides run method from super class Command
    */
+  @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     //If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {

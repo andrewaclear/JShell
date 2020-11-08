@@ -27,11 +27,17 @@ package commands;
 import data.Cache;
 import data.FileSystem;
 
+/**
+ * Quit the program.
+ */
 public class Exit extends Command {
 
+  /**
+   * Constructor for Exit class. It initializes Description, Identifier,
+   * MaxNumOfArguments, ErrorTooManyArguments, MissingOperand from its
+   * super class Commands.
+   */
   public Exit() {
-    // String tooManyArguments = "exit: doesn't take any arguments";
-
     this.setIdentifier("exit");
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
@@ -40,6 +46,16 @@ public class Exit extends Command {
     this.setDescription("Quit the program");
   }
 
+  /**
+   * When exit is run, it sends signal to terminate.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return false to signal terminal to terminate
+   * @Override overrides run method from super class Command
+   */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     return false;

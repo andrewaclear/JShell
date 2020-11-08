@@ -64,9 +64,9 @@ public class JShell {
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       // add line to history
-      cache.addHistoryLine(input.current_line);
+      cache.addHistoryLine(input.currentLine);
       //Parses input into tokens and then executes the command
-      run = execute.executeCommand(parse.parse(input.current_line),
+      run = execute.executeCommand(parse.parse(input.currentLine),
           fSystem, cache);
     }
     input.close();
