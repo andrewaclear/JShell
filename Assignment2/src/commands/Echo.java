@@ -32,7 +32,8 @@ public class Echo extends Command {
         ErrorHandler.missingString(this, tokens);
       }
     //If called with echo "STRING" > file, then prints STRING to file
-    } else if (tokens.length == 4 && tokens[2].equals(">") || tokens[2].equals(">>")) {
+    } else if (tokens.length == 4 && tokens[2].equals(">") 
+        || tokens[2].equals(">>")) {
        EchoToFile echoFile = new EchoToFile();
        echoFile.run(tokens, fSystem, cache);
     //Else invalid combination of arguments
