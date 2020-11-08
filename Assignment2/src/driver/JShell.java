@@ -5,17 +5,12 @@
 // UT Student #: 1006171009
 // Author: Christian Chen Liu
 //
-// Student2:
-// UTORID user_name:
-// UT Student #:
-// Author:
+// Student2: Christopher Suh
+// UTORID user_name: suhchris
+// UT Student #: 1006003664
+// Author: Christopher Suh
 //
 // Student3:
-// UTORID user_name:
-// UT Student #:
-// Author:
-//
-// Student4:
 // UTORID user_name:
 // UT Student #:
 // Author:
@@ -43,19 +38,18 @@ public class JShell {
     StandardInput input = new StandardInput();
     FileSystem fSystem = new FileSystem();
     Cache cache = new Cache();
-    //Note: Consider adding error checking for parser
-    //Also Note we need an extensive error class with all types of different
-    //errors.
     
     //Main program loop
     while (run) {
-      StandardOutput.print(fSystem.getCurrentDirectory().getDirectory().getDirectoryName()+" #: ");
+      StandardOutput.print(fSystem.getCurrentDirectory()
+          .getDirectory().getDirectoryName()+" #: ");
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       // add line to history
       cache.addHistoryLine(input.current_line);
       //Parses input into tokens and then executes the command
-      run = execute.executeCommand(parse.parse(input.current_line), fSystem, cache);
+      run = execute.executeCommand(parse.parse(input.current_line),
+          fSystem, cache);
     }
     input.close();
   }
