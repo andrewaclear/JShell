@@ -41,24 +41,34 @@ public class MakeDirectory extends Command {
     targetNode2 = fileSystem.getSemiFileSystemNode(tokens[2]);
     
     //Check if path1 is valid
-    if (targetNode1 != null & !targetNode1.isChildInside(fileSystem.getPathLastEntry(tokens[1]))) {
+    if (targetNode1 != null & !targetNode1.isChildInside(
+        fileSystem.getPathLastEntry(tokens[1]))) {
       
-      //Check if the Directory already exists in the children of FileSystemNode given by path1
+      //Check if the Directory already exists in the children 
+      //of FileSystemNode given by path1
         
       //Add Directory to the FileSystemNode given by path1
-      targetNode1.addChild(new FileSystemNode(new Directory(fileSystem.getPathLastEntry(tokens[1]))));
+      targetNode1.addChild(new FileSystemNode(new Directory(
+          fileSystem.getPathLastEntry(tokens[1]))));
       
-      System.out.println("Sucessfully added Directory " + fileSystem.getPathLastEntry(tokens[1]) + " at " + targetNode1.getPath());
+      System.out.println("Sucessfully added Directory " + 
+      fileSystem.getPathLastEntry(tokens[1]) + " at path " 
+          + targetNode1.getPath());
         
         //Check if path2 is valid
-        if (targetNode2 != null & !targetNode2.isChildInside(fileSystem.getPathLastEntry(tokens[2]))) {
+        if (targetNode2 != null & !targetNode2.isChildInside(
+            fileSystem.getPathLastEntry(tokens[2]))) {
           
-           //Check if the Directory already exists in the children of FIleSystemNode given by path1
+           //Check if the Directory already exists in the children 
+           //of FIleSystemNode given by path1
                  
            //Add Directory to the FileSystemNode given by path2
-           targetNode2.addChild(new FileSystemNode(new Directory(fileSystem.getPathLastEntry(tokens[2]))));
+           targetNode2.addChild(new FileSystemNode(new Directory(
+               fileSystem.getPathLastEntry(tokens[2]))));
            
-           System.out.println("Sucessfully added Directory " + fileSystem.getPathLastEntry(tokens[2]) + " at " + targetNode2.getPath());
+           System.out.println("Sucessfully added Directory " + 
+           fileSystem.getPathLastEntry(tokens[2]) + " at path " 
+               + targetNode2.getPath());
          
         }
     }
