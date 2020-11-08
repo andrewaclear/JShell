@@ -1,6 +1,7 @@
 package data;
 
-import java.util.*; 
+import java.util.*;
+import runtime.ErrorHandler; 
 
 public class FileSystemNode {
   
@@ -94,6 +95,7 @@ public class FileSystemNode {
     
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
+        ErrorHandler.childAlreadyExistant(directoryName, this);
         return true;
       }
     }

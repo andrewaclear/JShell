@@ -1,4 +1,5 @@
 package data;
+import runtime.ErrorHandler;
 
 public class FileSystem {
   
@@ -31,8 +32,14 @@ public class FileSystem {
    FileSystemNode tracker = null;
    
    if (givenPath.equals("/")) {
-     return this.root;
+     return getRoot();
+   } else if (givenPath.equals(" ")){
+     return getCurrentDirectory();
+   } else if (inappropriatePath(givenPath)) {
+     return null;
    }
+   
+   
    
    //Check if the givenPath is a full or relative path
    if (givenPath.charAt(0) == '/'){
@@ -88,8 +95,7 @@ public class FileSystem {
        //if the counter is equal to the number of children, the child is not 
        //a children of tracker so return null because the path is invalid
        
-       // I(ANDREW)COMMENTED THIS OUT AS I'M TAKING CARE OF THE ERROR PRINT OUT
-       //  System.out.println(givenPath + " is an invalid path");
+       ErrorHandler.invalidPath(givenPath);
        
        return null;
        
@@ -104,5 +110,66 @@ public class FileSystem {
    return tracker;
    
  }
+ 
+ public boolean inappropriatePath(String givenPath) {
+   
+   String junkCharacters = ". !@#$%^&*(){}~|<>?";
+   
+   if (givenPath.indexOf("//") != -1) {
+     ErrorHandler.inappropriatePath(givenPath);
+     return true;
+   }
+   
+   for (int i=0; i < givenPath.length(); i = i + 1) {
+     if (junkCharacters.indexOf(givenPath.charAt(i)) != -1) {
+       ErrorHandler.inappropriatePath(givenPath);
+       return true;
+     }
+   }
+   
+   return false;
+   
+ }
+ 
+ public FileSystemNode getSemiFileSystemNode(String givenPath) {
+   
+   String[] splitPath;
+   String targetPath = "";
+   
+   if (inappropriatePath(givenPath)) {
+     return null;
+   }
+   
+   if (givenPath.charAt(0) == '/') {
+     
+     splitPath = givenPath.substring(1).split("/");
+     targetPath = "/";
+     
+   } else {
+   
+     splitPath = givenPath.split("/");
+   
+   }
+   
+   //Check if givenPath referred to the current Directory or a Directory at the root
+   if (splitPath.length != 1) {
+   
+     for (int i = 0; i < splitPath.length - 2; i = i + 1) {
+       targetPath = targetPath + splitPath[i] + "/";
+     }
+     
+     targetPath += splitPath[splitPath.length - 2];
+     
+   } else {
+     
+     if (givenPath.charAt(0) != '/') {
+       targetPath = " ";
+     }
+   }
+   
+   return getFileSystemNode(targetPath);
+   
+ }
+ 
  
 }

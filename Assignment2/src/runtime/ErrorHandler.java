@@ -2,6 +2,8 @@ package runtime;
 
 import io.StandardOutput;
 import commands.Command;
+import data.FileSystem;
+import data.FileSystemNode;
 
 // import java.lang.reflect.Array;
 // import java.util.Arrays;
@@ -60,4 +62,18 @@ public class ErrorHandler {
       StandardOutput.println(command.getIdentifier() +
           ": " + tokens[3] + ": invalid file and directory name");
     }
+    
+    public static void childAlreadyExistant(String directoryName, FileSystemNode node) {
+      StandardOutput.println("The directory " + directoryName +" already exists at " 
+          + node.getPath());
+    }
+    
+    public static void inappropriatePath(String givenPath) {
+      StandardOutput.println("The given path : " + givenPath + " constains illicit characters");
+    }
+    
+    public static void invalidPath(String givenPath) {
+      StandardOutput.println("The given : " + givenPath + " is not a valid path");
+    }
+    
 }
