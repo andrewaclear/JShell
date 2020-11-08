@@ -171,5 +171,18 @@ public class FileSystem {
    
  }
  
+ public String getPathLastEntry(String givenPath) {
+   
+   String[] splitPath;
+   
+   if (givenPath.charAt(0) == '/') {
+     splitPath = givenPath.substring(1).split("/");
+   } else {
+     splitPath = givenPath.split("/");
+   }
+   
+   return splitPath[splitPath.length - 1];
+ }
+ 
  
 }
