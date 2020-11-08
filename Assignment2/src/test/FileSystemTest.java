@@ -6,9 +6,11 @@ public class FileSystemTest {
   
   public static void main(String[] args) {
   
-    FileSystem my_file_system = new FileSystem();
+    FileSystem myFileSystem = new FileSystem();
     
-    System.out.println(my_file_system.getRoot().getPath());
+    System.out.println(myFileSystem.getRoot().getPath());
+    
+    System.out.println(myFileSystem.inappropriatePath("a"));
     
   }
 }

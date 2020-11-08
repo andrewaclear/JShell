@@ -1,6 +1,9 @@
 package commands;
 
-import data.*;
+import data.Cache;
+import data.Directory;
+import data.FileSystem;
+import data.FileSystemNode;
 import io.StandardOutput;
 
 public class MakeDirectory extends Command {
@@ -15,28 +18,26 @@ public class MakeDirectory extends Command {
     
     //Error Handling
     this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand("only accepts two parameters");
+    this.setMissingOperand(" only accepts two parameters");
     
     //Description
     this.setDescription("This command takes in two arguments only."
-      + " Create directories, \neach of which may be relative"
-      + " to the current directory or may \nbe a full path."
-      + " If creating DIR1 results in any kind of error,"
-      + " \ndo not proceed with creating DIR 2. However, if DIR1"
-      + " was created \nsuccessfully, and DIR2 creation results in an error,"
-      + " then give \nback an error specific to DIR2.");
+        + " Create directories, \neach of which may be relative"
+        + " to the current directory or may \nbe a full path."
+        + " If creating DIR1 results in any kind of error,"
+        + " \ndo not proceed with creating DIR 2. However, if DIR1"
+        + " was created \nsuccessfully, and DIR2 creation results in an error,"
+        + " then give \nback an error specific to DIR2. ");
   }
   
   //MakeDirectory given two parameters, makes two directories
   @Override
-  public boolean run(String[] tokens, FileSystem system, Cache cache) {
+  public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
     
     //actualPath1 is the array of the Directories path1 traverses
     //actualPath2 is the array of the Directories path2 traverses
     String[] splitPath1;
     String[] splitPath2;
-    
-    String targetPath1 = "", targetPath2 = "";
     
     FileSystemNode targetNode1 = null, targetNode2 = null; 
     
@@ -45,40 +46,22 @@ public class MakeDirectory extends Command {
     if (tokens[1].charAt(0) == '/') {
       
       splitPath1 = tokens[1].substring(1).split("/");
-      targetPath1 = "/";
+
       
     } else {
     
       splitPath1 = tokens[1].split("/");
     
     }
+
     
-    //Check if token[1] referred to the current Directory or a Directory at the root
-    if (splitPath1.length != 1) {
-    
-      for (int i = 0; i < splitPath1.length - 2; i ++) {
-        targetPath1 = targetPath1 + splitPath1[i] + "/";
-      }
-      
-      targetPath1 += splitPath1[splitPath1.length - 2];
-      
-      targetNode1 = system.getFileSystemNode(targetPath1);
-      
-    } else {
-      
-      if (tokens[1].charAt(0) == '/') {
-        targetNode1 = system.getRoot();
-      } else {
-        targetNode1 = system.getCurrentDirectory();
-      }
-    }
-    
+    targetNode1 = fileSystem.getSemiFileSystemNode(tokens[1]);
     
     //The targetPath2 is path2 excluding the last Directory
     if (tokens[2].charAt(0) == '/') {
       
       splitPath2 = tokens[2].substring(1).split("/");
-      targetPath2 = "/";
+
       
     } else {
     
@@ -86,25 +69,7 @@ public class MakeDirectory extends Command {
     
     }
     
-    if (splitPath2.length != 1) {
-    
-      for (int i = 0; i < splitPath2.length - 2; i ++) {
-      targetPath2 = targetPath2 + splitPath2[i] + "/";
-      }
-      
-      targetPath2 += splitPath2[splitPath2.length - 2];
-      
-      targetNode2 = system.getFileSystemNode(targetPath2);
-    
-    }  else {
-      
-      if (tokens[2].charAt(0) == '/') {
-        targetNode2 = system.getRoot();
-      } else {
-        targetNode2 = system.getCurrentDirectory();
-      }
-      
-    }
+    targetNode2 = fileSystem.getSemiFileSystemNode(tokens[2]);
     
     //Check if path1 is valid
     if (targetNode1 != null) {
@@ -113,14 +78,9 @@ public class MakeDirectory extends Command {
       if (targetNode1.isChildInside(splitPath1[splitPath1.length - 1])) {
         
         // TODO:Add error of invalid, the Directory is already inside
-        if (targetPath1.equals("/")) {
-          StandardOutput.println(splitPath1[splitPath1.length - 1] + " already exists at " 
-          + targetPath1);
-        } else
-        {
-          StandardOutput.println(splitPath1[splitPath1.length - 1] + " already exists at " 
-              + targetPath1 + "/");
-        }
+        /*StandardOutput.println("The Directory " + splitPath1[splitPath1.length - 1] 
+            + " already exists at " + targetNode1.getPath());
+        */
         
       } 
       else {
@@ -128,7 +88,7 @@ public class MakeDirectory extends Command {
         //Add Directory to the FileSystemNode given by path1
         targetNode1.addChild(new FileSystemNode(new Directory(splitPath1[splitPath1.length - 1])));
         
-        System.out.println("Sucessfully added " + splitPath1[splitPath1.length - 1]);
+        System.out.println("Sucessfully added Directory " + splitPath1[splitPath1.length - 1] + " at " + targetNode1.getPath());
         
         //Check if path2 is valid
         if (targetNode2 != null) {
@@ -137,8 +97,10 @@ public class MakeDirectory extends Command {
           if (targetNode2.isChildInside(splitPath2[splitPath2.length - 1])) {
             
             // TODO:Add error of invalid, the Directory is already inside
-            StandardOutput.println(splitPath2[splitPath2.length - 1] + " already exists at " 
-            + targetPath2 + "/");
+            /*
+            StandardOutput.println("The Directory " + splitPath2[splitPath2.length - 1] 
+                + " already exists at " + targetNode2.getPath());
+            */
             
              } 
              else {
@@ -146,7 +108,7 @@ public class MakeDirectory extends Command {
                //Add Directory to the FileSystemNode given by path2
                targetNode2.addChild(new FileSystemNode(new Directory(splitPath2[splitPath2.length - 1])));
                
-               System.out.println("Sucessfully added " + splitPath2[splitPath2.length - 1]);
+               System.out.println("Sucessfully added Directory " + splitPath2[splitPath2.length - 1] + " at " + targetNode2.getPath());
                
              }
         } 
