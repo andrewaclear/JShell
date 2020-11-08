@@ -19,8 +19,8 @@ public class Manual extends Command {
   
   /**
    * Constructor for Manual class. It initializes the description HashMap and
-   * Identifier, MaxNumOfArguments, ErrorTooManyArguments, MissingOperand
-   * from its super class Commands.
+   * Description, Identifier, MaxNumOfArguments, ErrorTooManyArguments,
+   * MissingOperand from its super class Commands.
    */
   public Manual() {
     this.setDescription("Print documentation for CMD (s)");

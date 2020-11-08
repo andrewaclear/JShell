@@ -31,7 +31,7 @@
 * Further, it was to practice developing in an Agile environment; writing
 * dailyScrum meeting logs and meeting with our team to write sprint backlogs 
 * and a product backlog. Finally, we also created an auto tester using
-* JUnit and assert and then generated documentation using javadocs.
+* JUnit and assert and then generated documentation using Javadocs.
 * Logistics: Collaborated and commited code using SVN
 * 
 * @author  Christopher Suh
