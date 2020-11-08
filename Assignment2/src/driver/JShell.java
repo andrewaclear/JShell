@@ -22,6 +22,24 @@
 // I have also read the plagiarism section in the course info
 // sheet of CSC B07 and understand the consequences.
 // *********************************************************
+/**
+* The JShell program is a Java implementation of a bash shell. 
+* The following commands are included: exit, mkdir, cd, ls, pwd, pushd, popd,
+* history, cat, echo, man. 
+* The goal of this project is make smart design choices about when to use: 
+* inheritance, composition, polymorphism, reflection and/or interfaces.
+* Further, it was to practice developing in an Agile environment; writing
+* dailyScrum meeting logs and meeting with our team to write sprint backlogs 
+* and a product backlog. Finally, we also created an auto tester using
+* JUnit and assert.
+* Logistics: Collaborated and commited code using SVN
+* 
+* @author  Christopher Suh
+* @author  Christian Chen Liu
+* @author  Andrew D'Amario
+* @version 173
+* @since   2020/11/10
+*/
 package driver;
 
 import io.*;
