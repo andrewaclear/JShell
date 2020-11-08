@@ -6,8 +6,17 @@ import data.FileSystemNode;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
+/**
+ * Takes in an array of tokens from execution and executes the
+ * Concatenate command. The Concatenate command; displays the contents of
+ * FILE1 and other files (i.e. File2 ....) concatenated in the shell.
+ */
 public class Concatenate extends Command {
-
+  /**
+   * Constructor for Concatenate class. It initializes Description, Identifier,
+   * MaxNumOfArguments, ErrorTooManyArguments, MissingOperand from its
+   * super class Commands.
+   */
   public Concatenate() {
     this.setIdentifier("cat");
     this.setDescription("Display the contents of FILE1 and other files"
@@ -19,6 +28,15 @@ public class Concatenate extends Command {
     this.setMissingOperand("Which files do you wish to display?");
   }
   
+  /**
+   * Tries to get a FileSystemNode from path, return a FileSystemNode if 
+   * successful, else return null.
+   * 
+   * @param path, a path to a file in the file system
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @return returns a FileSystemNode at the specified path
+   */
   private FileSystemNode tryGetFileSystemNode(String path, FileSystem fSystem) {
     try {
       FileSystemNode node = fSystem.getFileSystemNode(path);
@@ -28,7 +46,16 @@ public class Concatenate extends Command {
     }
   }
   
-  @Override
+  /**
+   * Prints the contents of a specified file to the terminal.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true to mark successful execution
+   * @Override overrides run method from super class Command
+   */
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     String path, name;
@@ -74,10 +101,3 @@ public class Concatenate extends Command {
     return true;
   }
 }
-
-/*
- * String path = tokens[3];
-    String name;
-    FileSystemNode node;
-    */
-    

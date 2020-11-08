@@ -6,8 +6,22 @@ import data.FileSystem;
 import data.FileSystemNode;
 import runtime.ErrorHandler;
 
+/**
+ * Takes in an array of tokens from execution and executes the Echo command.
+ * echo "STRING > OUTFILE does the following: 
+ * Puts STRING into file OUTFILE. STRING is a string of characters surrounded 
+ * by double  quotation marks. This creates a new file if OUTFILE does not
+ * exists and erases the old contents if OUTFILE already exists. In either
+ * case, the only thing in OUTFILE should be STRING. 
+ * echo "STRING" >> OUTFILE:
+ * Like the previous command, but appends instead of overwrites. 
+ */
 public class EchoToFile extends Command{
-
+  /**
+   * Constructor for EchoToFile class. It initializes Description, Identifier,
+   * MaxNumOfArguments, ErrorTooManyArguments, MissingOperand from its
+   * super class Commands.
+   */
   public EchoToFile() {
     this.setDescription("If OUTFILE is not provided, print STRING"
       + " on the shell. Otherwise, put \nSTRING into file OUTFILE."
@@ -24,6 +38,15 @@ public class EchoToFile extends Command{
     this.setMissingOperand("please specify a string to print");
   }
   
+  /**
+   * Tries to get a FileSystemNode from path, return a FileSystemNode if 
+   * successful, else return null.
+   * 
+   * @param path, a path to a file in the file system
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @return returns a FileSystemNode at the specified path
+   */
   private FileSystemNode tryGetFileSystemNode(String path, FileSystem fSystem) {
     try {
       FileSystemNode node = fSystem.getFileSystemNode(path);
@@ -33,6 +56,17 @@ public class EchoToFile extends Command{
     }
   }
   
+  
+  /**
+   * Updates a file's contents specified from tokens or creates a new file
+   * if file doesn't exist.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param node, an instance of FileSystemNode class that holds the position
+   * of the file in the path directory tree
+   * @param name, name of the file
+   * @return returns void
+   */
   private void toFile(String[] tokens, FileSystemNode node, String name) {
     File curFile = node.getDirectory().getFile(name);
     String desc = tokens[1].replaceAll("\"", "");
@@ -51,7 +85,17 @@ public class EchoToFile extends Command{
     }
   }
  
-  @Override
+  /**
+   * Writes STRING to a new file, overrides contents
+   * of a file if file already exists and/or appends STRING to a file.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true to mark successful execution
+   * @Override overrides run method for super class Command
+   */
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     String path = tokens[3];
     String name;
@@ -78,7 +122,7 @@ public class EchoToFile extends Command{
         ErrorHandler.invalidName(this, tokens);
         return true;
       }
-     
+      
       toFile(tokens, node, name);
       } catch (Exception e) {
         ErrorHandler.invalidPath(this);
