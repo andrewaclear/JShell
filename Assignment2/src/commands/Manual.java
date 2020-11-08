@@ -6,10 +6,22 @@ import data.*;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
+
+/**
+ * Takes in an array of tokens from execution and executes the Manual command.
+ * Manual prints documentation for CMD (s)
+ */
 public class Manual extends Command {
-  //HashMap that stores entries <Command Identifier, Command Description>
+  /**
+   * HashMap that stores entries <Command Identifier, Command Description>
+   */
   private HashMap<String, String> descriptions = new HashMap<String, String>();
   
+  /**
+   * Constructor for Manual class. It initializes the description HashMap and
+   * Identifier, MaxNumOfArguments, ErrorTooManyArguments, MissingOperand
+   * from its super class Commands.
+   */
   public Manual() {
     this.setDescription("Print documentation for CMD (s)");
     
@@ -33,7 +45,17 @@ public class Manual extends Command {
     this.setMissingOperand("What manual page do you want?");
     
   }
-  @Override
+  
+  /**
+   * Prints out documentation for a specified command from tokens
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true to mark successful execution
+   * @Override overrides run method for super class Command
+   */
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     while (i < tokens.length) {
