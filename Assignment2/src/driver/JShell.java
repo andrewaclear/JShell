@@ -10,10 +10,10 @@
 // UT Student #: 1006003664
 // Author: Christopher Suh
 //
-// Student3:
-// UTORID user_name:
-// UT Student #:
-// Author:
+// Student3: Andrew D'Amario
+// UTORID user_name: damario4
+// UT Student #: 1006618947
+// Author: Andrew D'Amario
 //
 //
 // Honor Code: I pledge that this program represents my own
