@@ -30,7 +30,7 @@ public class FileSystemTest {
   
   public static void main(String[] args) {
   
-    FileSystem myFileSystem = new FileSystem();
+    FileSystem myFileSystem = FileSystem.createFileSystem();
 
     
   }

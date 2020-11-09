@@ -39,7 +39,7 @@ public class MakeDirectoryTest {
     //System.out.println(huah[1]);
     
     
-    FileSystem fSystem = new FileSystem();
+    FileSystem fSystem = FileSystem.createFileSystem();
     Cache cache = new Cache();
     
     MakeDirectory mkdir = new MakeDirectory();

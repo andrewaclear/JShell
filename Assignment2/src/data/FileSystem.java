@@ -40,7 +40,7 @@ public class FileSystem {
   * FileSystemNode that has as in its Directory the directoryName "/" and the 
   * currentFileSystemNode to the root
   */
- public FileSystem() {
+ private FileSystem() {
    this.root = new FileSystemNode(new Directory("/"));
    this.currentFileSystemNode = root;
  }
