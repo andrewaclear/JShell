@@ -26,13 +26,24 @@ package data;
 import runtime.ErrorHandler;
 
 public class FileSystem {
-  
- /**
-  * FileSystem has a root and a currentFileSystemNode
-  */
- private FileSystemNode root = new FileSystemNode(new Directory("/"));
- private FileSystemNode currentFileSystemNode = root;
  
+ /**
+  * FileSystem has a FileSystem fileSystem, a FileSystemNode root, 
+  * and a FileSystemNode currentFileSystemNode
+  */
+ private static FileSystem fileSystem = null;
+ private FileSystemNode root;
+ private FileSystemNode currentFileSystemNode;
+ 
+ /**
+  * Constructor of FileSystem class. It initializes the root to a new 
+  * FileSystemNode that has as in its Directory the directoryName "/" and the 
+  * currentFileSystemNode to the root
+  */
+ public FileSystem() {
+   this.root = new FileSystemNode(new Directory("/"));
+   this.currentFileSystemNode = root;
+ }
  
  /**
   * getRoot returns the root of this FileSystem
@@ -223,6 +234,18 @@ public class FileSystem {
      childrenCounter = 0;
    }
    return nodeTracker;
+ }
+ 
+ /*
+  * createFileSystem ensures we only ever have a single FileSystem
+  */
+ public static FileSystem createFileSystem() {
+   
+   if (fileSystem == null) {
+     fileSystem = new FileSystem();
+   }
+   
+   return fileSystem;
  }
  
  
