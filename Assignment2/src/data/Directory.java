@@ -28,7 +28,9 @@ import java.util.*;
 
 public class Directory {
 
-  //A Directory has a name: directoryName and Files in a linked list: files
+  /*
+   * A Directory has a String directoryName and an ArrayList of File: files
+   */
   private String directoryName = "";
   private List<File> files  = new ArrayList<File>();
   

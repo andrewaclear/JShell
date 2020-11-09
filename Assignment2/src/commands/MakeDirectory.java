@@ -28,11 +28,14 @@ import data.Cache;
 import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
-import io.StandardOutput;
 
 public class MakeDirectory extends Command {
   
-  //Constructor
+  /**
+   * Constructor for MakeDirectory class. It initializes identifier, 
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
+   */
   public MakeDirectory() {
     this.setIdentifier("mkdir");
     
@@ -54,8 +57,21 @@ public class MakeDirectory extends Command {
         + " then give \nback an error specific to DIR2. ");
   }
   
-  //MakeDirectory given two parameters, makes two directories
-  @Override
+  /**
+   * The run method of MakeDirectory makes two directories in the given path
+   * tokens[1] and tokens[2] if both paths are valid/appropropiate in 
+   * fileSystem, or makes a directory in the path tokens[1] if tokens[1] is a 
+   * valid/appropriate  path in fileSystem but tokens[2] is not, or 
+   * makes no directories at all if tokens[1] is not a valid/appropriate path 
+   * in fileSystem. In any case, returns true after being done.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true to mark successful execution
+   * @Override overrides run method from super class Command
+   */
   public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
     
     FileSystemNode targetNode1 = null, targetNode2 = null; 
@@ -93,7 +109,6 @@ public class MakeDirectory extends Command {
            System.out.println("Sucessfully added Directory " + 
            fileSystem.getPathLastEntry(tokens[2]) + " at path " 
                + targetNode2.getPath());
-         
         }
     }
    
