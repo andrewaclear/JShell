@@ -29,6 +29,11 @@ import data.FileSystemNode;
 
 public class ChangeDirectory extends Command {
   
+  /**
+   * Constructor for ChangeDirectory class. It initializes identifier, 
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
+   */
   public ChangeDirectory() {
     this.setIdentifier("cd");
     
@@ -48,23 +53,35 @@ public class ChangeDirectory extends Command {
       + " file system is a single slash: /.");
   }
   
-  @Override
-  public boolean run(String[] tokens, FileSystem system, Cache cache) {
+  /**
+   * The run method of ChangeDirectory changes the currentDirectory of the 
+   * fileSystem to the given path in tokens[1] if it is a valid/appropriate 
+   * path in fileSystem, otherwise, give back an error message. In any case, 
+   * return true after being done.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, store the current directory stack
+   * @return returns a boolean true to mark successful execution
+   * @Override overrides run method from super class Command
+   */
+  public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
     
     FileSystemNode targetNode = null;
     
     if (tokens[1].equals("..")) {
       
-      targetNode = system.getCurrentDirectory().getParent();
+      targetNode = fileSystem.getCurrentDirectory().getParent();
       
     } else if (tokens[1].equals(".")) {
       
-      targetNode = system.getCurrentDirectory();
+      targetNode = fileSystem.getCurrentDirectory();
       
     } else {
     
       //Set targetNode to the FileSystemNode that the path leads to
-      targetNode = system.getFileSystemNode(tokens[1]);
+      targetNode = fileSystem.getFileSystemNode(tokens[1]);
       
     }
     //Check if the targetNode is in the root
@@ -72,7 +89,7 @@ public class ChangeDirectory extends Command {
     {
       System.out.println("CD: now at " + targetNode.getPath());
       //Set the current Directory to the targetNode
-      system.setCurrentDirectory(targetNode);
+      fileSystem.setCurrentDirectory(targetNode);
       
     } else {
       

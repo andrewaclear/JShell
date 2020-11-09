@@ -26,31 +26,52 @@ package data;
 
 public class File {
   
-  //A File has a string: content and a name: fileName
+  /*
+   * A File has two Strings fileName and content
+   */
   String fileName = "";
   String content = "";
   
-  //Constructor
+  /**
+   * Constructor for File class. It initializes fileName to
+   * the parameter name 
+   */
   public File(String name) {
     fileName = name;
   }
   
-  //setContent changes the content of a File
+  /**
+   * setContent sets the content of this File to the parameter content
+   *
+   * @param content, a string
+   */
   public void setContent(String content) {
     this.content = content;
   } 
   
-  //getFileName returns the name of this File: fileName
+  /**
+   * setFileName sets the name of this File to the parameter name
+   *
+   * @param name, a string without innapropriate characters
+   */
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
   
-  //getFileName returns the name of this File: fileName
+  /**
+   * getFileName returns the name of this File
+   *
+   * @return The name of this File
+   */
   public String getFileName() {
     return this.fileName;
   }
   
-  //getContent returns the content of this File: content
+  /**
+   * getContent returns the content of this File
+   * 
+   * @return The content of this file
+   */
   public String getContent() {
     return this.content;
   }

@@ -29,17 +29,29 @@ import runtime.ErrorHandler;
 
 public class FileSystemNode {
   
-  //A FileSystemNode
+  /**
+   * A FileSystemNode has a Directory directory, an ArrayList of FileSystemNodes 
+   * called children and a FileSystemNode parent
+   */
   private Directory directory;
   private List<FileSystemNode> children = new ArrayList<FileSystemNode>();
   private FileSystemNode parent = null;
   
-  //Constructor
+  /**
+   * Constructor of FileSystemNode. It initializes the directory in this 
+   * FileSystemNode to the parameter directory
+   * 
+   * @param directory, an instance of a Directory
+   */
   public FileSystemNode(Directory directory) {
       this.directory = directory;
   }
   
-  //addChild adds a child to the children of this FileSystemNode
+  /**
+   * addChild adds a FileSystemnode child to the children of this FileSystemNode
+   * 
+   * @param child, an instance of a FileSystemNode
+   */
   public void addChild(FileSystemNode child) {
     
       //Set the parent of this child to be this FileSystem
@@ -50,38 +62,66 @@ public class FileSystemNode {
       
   }
 
-  //getChildren returns the children of this FileSystemNode
+  /**
+   * getChildren returns the children of this FileSystemNode
+   * 
+   * @return The children of this FileSystemNode
+   */
   public List<FileSystemNode> getChildren() {
       return this.children;
   }
 
-  //setParent sets the parent of this FileSystemNode to the given parent
+  /**
+   * setParent sets the parent of this FileSystemNode to the paramaeter parent
+   * 
+   * @param parent, an instance of a FileSystemNode
+   */
   private void setParent(FileSystemNode parent) {
       this.parent = parent;
   }
 
-  //FileSystemNode returns the parent of this FileSystemNode
+  /**
+   * FileSystemNode returns the parent of this FileSystemNode
+   * 
+   * @return The parent of this FileSystemNode
+   */
   public FileSystemNode getParent() {
       return this.parent;
   }
   
-  //addFiles adds a file to the directory of this FileSystemNode
+  /**
+   * addFiles adds file to the directory of this FileSystemNode
+   * 
+   * @param file, an instance of a File
+   */
   public void addFile(File file) {
     this.directory.addFile(file);
   }
   
-  //getDirectory returns the directory of this FileSystemNode
+  /**
+   * getDirectory returns the directory of this FileSystemNode
+   * 
+   * @return The directory of this FileSystemNode
+   */
   public Directory getDirectory() {
     return this.directory;
   }
   
-  //setDirectory sets the directory of this FileSystemNode 
-  //to the given directory 
+  /** 
+   * setDirectory sets the directory of this FileSystemNode 
+   * to the given directory 
+   * 
+   * @param directory, an instance of a Directory
+   */
   public void setDirectory(Directory directory) {
     this.directory = directory;
   }
   
-  //getPath returns the path of this FIleSystemNode
+  /**
+   * getPath returns the path of this FileSystemNode
+   * 
+   * @return The path of this FileSystemNode which is a String
+   */
   public String getPath() {
     
     String path = this.directory.getDirectoryName();
@@ -113,8 +153,14 @@ public class FileSystemNode {
     return path;
   }
   
-  //isChildInside returns true if one of the children of this FileSystemNode 
-  //has the given directoryName, otherwise, false
+  /**
+   * isChildInside returns true if one of the children of this FileSystemNode 
+   * has the given directoryName, otherwise, false
+   * 
+   * @param directoryName, a String
+   * @return true if one of the children of this FileSystemNode has the given
+   * directoryName, otherwise, false
+   */
   public boolean isChildInside(String directoryName) {
     
     for (FileSystemNode child : this.children) {

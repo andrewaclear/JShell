@@ -27,56 +27,50 @@ import runtime.ErrorHandler;
 
 public class FileSystem {
   
- /*
+ /**
   * FileSystem has a root and a currentFileSystemNode
-  * 
   */
  private FileSystemNode root = new FileSystemNode(new Directory("/"));
  private FileSystemNode currentFileSystemNode = root;
  
  
- /*
+ /**
   * getRoot returns the root of this FileSystem
   * 
   * @return The root of this FileSystem
-  * 
   */
  public FileSystemNode getRoot() {
    return this.root;
  }
  
  
- /* 
+ /**
   * getCurrentDirectory returns the currentFileSystemNode of this FileSystem
   *
   * @return The currentFileSystemNode of this FileSystem
-  *
   */
  public FileSystemNode getCurrentDirectory() {
    return this.currentFileSystemNode;
  }
  
  
- /* 
+ /** 
   * setCurrentDirectory sets the currentFileSystemNode to targetNode
   * 
   * @param targetNode A FileSystemNode
-  * 
   */
  public void setCurrentDirectory(FileSystemNode targetNode) {
    this.currentFileSystemNode = targetNode;
  }
  
  
- /*
+ /**
   * getFileSystemNode returns the FileSystemNode the givenPath refers to if its
   * a valid/appropriate path, otherwise, return null 
   * and display an error message
   * 
   * @param givenPath A relative or full path
-  * 
   * @return The FileSystemNode that givenPath points to
-  * 
   */
  public FileSystemNode getFileSystemNode(String givenPath) {
    
@@ -91,17 +85,15 @@ public class FileSystem {
    return traversePath(givenPath);
  }
  
- /*
+ /**
   * inappropraitePath returns true and an error message when the givenPath
   * is not an appropriate path (contains illicit characters), 
   * or false otherwise
   * 
   * @param givenPath A relative or full path
-  * 
   * @return true if the given path is inappropriate, otherwise, false
-  * 
   */
- public boolean inappropriatePath(String givenPath) {
+ private boolean inappropriatePath(String givenPath) {
    
    String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
    
@@ -121,16 +113,14 @@ public class FileSystem {
    
  }
  
- /*
+ /**
   * getSemiFileSystemNode returns the FileSystemNode the givenPath refers to
   * excluding the last entry if its an valid/appropriate path, 
   * otherwise, return null and display an error message
   * 
   * @param givenPath A relative or full path
-  * 
   * @return The FileSystemNode the givenPath refers to excluding the last entry
   *         which is null if the givenPath is an invalid/inaproapiate path 
-  * 
   */
  public FileSystemNode getSemiFileSystemNode(String givenPath) {
    
@@ -173,13 +163,11 @@ public class FileSystem {
    
  }
  
- /*
+ /**
   * getPathLastEntry returns the last FileSystemNode the givenPath refers to
   * 
   * @param givenPath A relative or full path
-  * 
   * @return The last FileSystemNode the givenPath refers to
-  *  
   */
  public String getPathLastEntry(String givenPath) {
    
@@ -195,13 +183,11 @@ public class FileSystem {
  }
  
  
- /*
+ /**
   * traversePath returns the FileSystemNode the givenPath refers to
   * 
   * @param givenPath A relative or full path
-  * 
   * @return The FileSystemNode the givenPath points to
-  * 
   */
  private FileSystemNode traversePath(String givenPath) {
    
