@@ -54,7 +54,7 @@ public class JShell {
     Parser parse = new Parser();
     Execution execute = new Execution();
     StandardInput input = new StandardInput();
-    FileSystem fSystem = new FileSystem();
+    FileSystem fSystem = FileSystem.createFileSystem();
     Cache cache = new Cache();
     
     //Main program loop
