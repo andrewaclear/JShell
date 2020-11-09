@@ -34,35 +34,66 @@ public class Directory {
   private String directoryName = "";
   private List<File> files  = new ArrayList<File>();
   
-  //Constructor
-  public Directory(String name) {
-    this.directoryName = name;
+  
+  /**
+  * Constructor for Directory class. It initializes directoryName to
+  * the parameter directoryName 
+  */
+  public Directory(String directoryName) {
+    this.directoryName = directoryName;
   }
   
-  //setDirectoryName changes the directoryName
-  public void setDirectoryName(String name) {
-    this.directoryName = name;
+  
+  /**
+   * setDirectoryName sets the directoryName of this Directory to the 
+   * given directoryName
+   * 
+   * @param directoryName, a String
+   */
+  public void setDirectoryName(String directoryName) {
+    this.directoryName = directoryName;
   }
   
-  //getDirectoryName returns the directoryName
+  
+  /**
+   * getDirectoryName returns the directoryName of this Directory
+   * 
+   * @return The directoryName of this Directory
+   */
   public String getDirectoryName() {
     return this.directoryName;
   }
   
-  //addFile adds a file to the Directory
+  
+  /**
+   * addFile adds file to the files of this Directory
+   * 
+   * @param file, an instance of a File
+   */
   public void addFile(File file) {
     //adds the file to the files
     files.add(file);
   }
   
-  //getFiles returns files stored in the Directory
+  
+  /**
+   * getFiles returns the files of this Directory
+   * 
+   * @return The files of this Directory
+   */
   public List<File> getFiles() {
     return this.files;
   }
-  
-  public File getFile(String name) {
+ 
+ /**
+  * getFile returns the File in files that has targetFileName as its fileName
+  *  
+  * @param targetFileName, a String
+  * @return The File in files that has the targetFileName as its fileName
+  */
+  public File getFile(String targetFileName) {
     for (File currentFile: this.files) {
-      if (currentFile.getFileName().equals(name)) {
+      if (currentFile.getFileName().equals(targetFileName)) {
         return currentFile;
       }
     }
