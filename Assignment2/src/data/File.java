@@ -34,34 +34,34 @@ public class File {
   
   /**
    * Constructor for File class. It initializes fileName to
-   * the parameter name 
+   * the parameter fileName 
    */
-  public File(String name) {
-    fileName = name;
+  public File(String fileName) {
+    this.fileName = fileName;
   }
   
   /**
    * setContent sets the content of this File to the parameter content
    *
-   * @param content, a string
+   * @param content, a String
    */
   public void setContent(String content) {
     this.content = content;
   } 
   
   /**
-   * setFileName sets the name of this File to the parameter name
+   * setFileName sets the fileName of this File to the parameter fileName
    *
-   * @param name, a string without innapropriate characters
+   * @param name, a String
    */
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
   
   /**
-   * getFileName returns the name of this File
+   * getFileName returns the fileName of this File
    *
-   * @return The name of this File
+   * @return The fileName of this File
    */
   public String getFileName() {
     return this.fileName;
