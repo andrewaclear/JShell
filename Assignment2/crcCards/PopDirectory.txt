@@ -5,10 +5,10 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities:
--Gets path from top of DirectoryStack and changes Directory into it.
+-Gets path from top of directory stack in Cache and changes Directory into it.
 -Returns error message if the DirectoryStack is empty.
 
 Collaborators:
 -ChangeDirectory
--DirectoryStack
+-Cache
 -ErrorHandler
