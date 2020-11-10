@@ -8,8 +8,11 @@
 
 ### ls, cat, man
 
-- [ ] add .. and . To ls (maybe to file system)
+- [x] add .. and . To ls (maybe to file system)
 - [ ] Ls cat and man must stop and not look for another argument once they reach an error 
+  - [x] ls
+  - [ ] cat
+  - [ ] man
 
 
 
@@ -45,8 +48,9 @@
 
 - [ ] remove commented code
 - [ ] Fix spelling
-- [ ] No underscores 
+- [x] No underscores 
 - [ ] Appropriate error for bad character input 
+- [ ] remove so of the other print outs??
 
 
 
