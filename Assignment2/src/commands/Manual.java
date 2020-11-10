@@ -43,8 +43,8 @@ public class Manual extends Command {
   
   /**
    * Constructor for Manual class. It initializes the description HashMap and
-   * Description, Identifier, MaxNumOfArguments, ErrorTooManyArguments,
-   * MissingOperand from its super class Commands.
+   * description, identifier, maxNumOfArguments, errorTooManyArguments,
+   * missingOperand from its super class Commands.
    */
   public Manual() {
     this.setDescription("Print documentation for CMD (s)");
@@ -94,6 +94,7 @@ public class Manual extends Command {
       //Else, then give command not found error
       } else {
         ErrorHandler.commandNotFoundManual(tokens[i]);
+        break;
       }
       i++;
     }
