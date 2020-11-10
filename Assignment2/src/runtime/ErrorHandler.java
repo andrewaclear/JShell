@@ -179,7 +179,7 @@ public class ErrorHandler {
      */
     public static void inappropriatePath(String givenPath) {
       StandardOutput.println("The given path : " + givenPath 
-          + " constains illicit characters");
+          + " contains illicit characters");
     }
     
     /**

@@ -26,66 +26,145 @@ package commands;
 
 import data.*;
 
+/**
+ * Command is the super class which defines the structure of all commands, 
+ * their constants and how to access them, and the method run to run them.
+ */
 public class Command {
+  // the identifier is the shorthand for the command that 
+  // is entered in the terminal
   private String identifier;
+  // max and min number of arguments the command can take
   private int maxNumOfArguments;
   private int minNumOfArguments;
+  // error messages when given the wrong number of parameters
   private String errorTooManyArguments;
   private String errorMissingOperand;
+  // the command's description
   private String description;
   
+  /**
+   * Set the identifier.
+   * 
+   * @param iden, the identifier to set for the command
+   */
   public void setIdentifier(String iden) {
     this.identifier = iden;
   }
 
+  /**
+   * Set the max number of arguments.
+   * 
+   * @param num, the number to set for the max number of arguments of the 
+   * command
+   */
   public void setMaxNumOfArguments(int num) {
     this.maxNumOfArguments = num;
   }
 
+  /**
+   * Set the min number of arguments.
+   * 
+   * @param num, the number to set for the min number of arguments of the 
+   * command
+   */
   public void setMinNumOfArguments(int num) {
     this.minNumOfArguments = num;
   }
 
+  /**
+   * Set the error message for when too many arguments are given to the command.
+   * 
+   * @param err, the error message to set for too many arguments
+   */
   public void setErrorTooManyArguments(String err) {
     this.errorTooManyArguments = err;
   }
 
+  /**
+   * Set the error message for missing operand(s) for the command.
+   * 
+   * @param err, the error message to set for missing operands
+   */
   public void setMissingOperand(String err) {
     this.errorMissingOperand = err;
   }
 
-  public String getIdentifier() {
-    return this.identifier;
-  }
-
-  public int getMaxNumOfArguments() {
-    return this.maxNumOfArguments;
-  }
-
-  public int getMinNumOfArguments() {
-    return this.minNumOfArguments;
-  }
-
-  public String getErrorTooManyArguments() {
-    return this.errorTooManyArguments;
-  }
-
-  public String getErrorMissingOperand() {
-    return this.errorMissingOperand;
-  }
-  
-  public String getDescription() {
-    return description;
-  }
-
+  /**
+   * Set the description for the command.
+   * 
+   * @param description, the description for the command
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
-  // run command, overridden by subclasses
+  /**
+   * Get the identifier of the command.
+   * 
+   * @return returns a string of the command's identifier
+   */
+  public String getIdentifier() {
+    return this.identifier;
+  }
+
+  /**
+   * Get the max number of arguments for the command.
+   * 
+   * @return returns an int of the max number of arguments for the command
+   */
+  public int getMaxNumOfArguments() {
+    return this.maxNumOfArguments;
+  }
+
+  /**
+   * Get the min number of arguments for the command.
+   * 
+   * @return returns an int of the min number of arguments for the command
+   */
+  public int getMinNumOfArguments() {
+    return this.minNumOfArguments;
+  }
+
+  /**
+   * Get the error message for too many arguments for the command.
+   * 
+   * @return return a string of the error message for too many arguments
+   */
+  public String getErrorTooManyArguments() {
+    return this.errorTooManyArguments;
+  }
+
+  /**
+   * Get the error message for missing operand(s) for the command.
+   * 
+   * @return return a string of the error message for missing operand(s)
+   */
+  public String getErrorMissingOperand() {
+    return this.errorMissingOperand;
+  }
+  
+  /**
+   * Get the description for the command.
+   * 
+   * @return returns a string of the description for the command
+   */
+  public String getDescription() {
+    return description;
+  }
+
+  /**
+   * Runs the command (to be implemented for each command, 
+   * overridden by each subclass).
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, stores the history and directory stack of the running 
+   * terminal
+   * @return returns a boolean true signal the shell to continue running
+   */
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     return true;
   }
-
-
 }

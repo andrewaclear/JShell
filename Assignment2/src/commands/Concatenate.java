@@ -36,16 +36,16 @@ import runtime.ErrorHandler;
  * FILE1 and other files (i.e. File2 ....) concatenated in the shell.
  */
 public class Concatenate extends Command {
+
   /**
-   * Constructor for Concatenate class. It initializes Description, Identifier,
-   * MaxNumOfArguments, ErrorTooManyArguments, MissingOperand from its
-   * super class Commands.
+   * Constructor for Concatenate class. It initializes identifier, 
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
    */
   public Concatenate() {
     this.setIdentifier("cat");
     this.setDescription("Display the contents of FILE1 and other files"
       + " (i.e. File2 ....) concatenated in the shell.");
-    
     this.setMaxNumOfArguments(-1);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("");
@@ -76,10 +76,12 @@ public class Concatenate extends Command {
    * @param tokens, array of string tokens holding command arguments
    * @param fSystem, an instance of FileSystem class to read and write
    * to the file structure.
-   * @param cache, store the current directory stack
-   * @return returns a boolean true to mark successful execution
+   * @param cache, stores the history and directory stack of the running 
+   * terminal
+   * @return returns a boolean true signal the shell to continue running
    * @Override overrides run method from super class Command
    */
+  @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     String path, name;

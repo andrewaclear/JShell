@@ -48,6 +48,11 @@ import data.*;
 */
 public class JShell {
 
+  /**
+   * Run main to run the java shell.
+   * 
+   * @param args, required arguments
+   */
   public static void main(String[] args) {
     
     boolean run = true;

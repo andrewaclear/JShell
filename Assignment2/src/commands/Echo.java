@@ -43,9 +43,9 @@ import runtime.ErrorHandler;
 public class Echo extends Command {
   
   /**
-   * Constructor for Echo class. It initializes Description, Identifier,
-   * MaxNumOfArguments, ErrorTooManyArguments, MissingOperand from its
-   * super class Commands.
+   * Constructor for Echo class. It initializes identifier, 
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
    */
   public Echo() {
     this.setDescription("If OUTFILE is not provided, print STRING"
@@ -55,7 +55,6 @@ public class Echo extends Command {
       + " creates a new file if OUTFILE does \nnot exists and erases"
       + " the old contents if OUTFILE already exists. \nIn either case,"
       + " the only thing in OUTFILE should be STRING.");
-    
     this.setIdentifier("echo");
     this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
@@ -70,8 +69,9 @@ public class Echo extends Command {
    * @param tokens, array of string tokens holding command arguments
    * @param fSystem, an instance of FileSystem class to read and write
    * to the file structure.
-   * @param cache, store the current directory stack
-   * @return returns a boolean true to mark successful execution
+   * @param cache, stores the history and directory stack of the running 
+   * terminal
+   * @return returns a boolean true signal the shell to continue running
    * @Override overrides run method from super class Command
    */
   @Override
@@ -79,7 +79,7 @@ public class Echo extends Command {
     //If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
-        StandardOutput.println(tokens[1].replaceAll("\"", ""));
+        StandardOutput.println(tokens[1].replace("\"", ""));
       } else {
         ErrorHandler.missingString(this, tokens);
       }

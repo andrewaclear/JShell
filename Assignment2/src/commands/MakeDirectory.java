@@ -29,6 +29,13 @@ import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
 
+/**
+ * This command takes in two arguments only. Create directories, each of which
+ * may be relative to the current directory or may be a full path. If creating 
+ * DIR1 results in any kind of error, do not proceed with creating DIR 2. 
+ * However, if DIR1 was created successfully, and DIR2 creation results in an 
+ * error, then give back an error specific to DIR2.
+ */
 public class MakeDirectory extends Command {
   
   /**
@@ -59,7 +66,7 @@ public class MakeDirectory extends Command {
   
   /**
    * The run method of MakeDirectory makes two directories in the given path
-   * tokens[1] and tokens[2] if both paths are valid/appropropiate in 
+   * tokens[1] and tokens[2] if both paths are valid/appropriate in 
    * fileSystem, or makes a directory in the path tokens[1] if tokens[1] is a 
    * valid/appropriate  path in fileSystem but tokens[2] is not, or 
    * makes no directories at all if tokens[1] is not a valid/appropriate path 
@@ -72,6 +79,7 @@ public class MakeDirectory extends Command {
    * @return returns a boolean true to mark successful execution
    * @Override overrides run method from super class Command
    */
+  @Override
   public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
     
     FileSystemNode targetNode1 = null, targetNode2 = null; 
@@ -100,7 +108,7 @@ public class MakeDirectory extends Command {
             fileSystem.getPathLastEntry(tokens[2]))) {
           
            //Check if the Directory already exists in the children 
-           //of FIleSystemNode given by path1
+           //of FileSystemNode given by path1
                  
            //Add Directory to the FileSystemNode given by path2
            targetNode2.addChild(new FileSystemNode(new Directory(

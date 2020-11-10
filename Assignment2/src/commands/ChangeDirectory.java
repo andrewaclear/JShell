@@ -26,7 +26,15 @@ package commands;
 
 import data.*;
 import data.FileSystemNode;
+import io.StandardOutput;
+import runtime.ErrorHandler;
 
+/**
+ * Change directory to DIR, which may be relative to the current directory or
+ * may be a full path. As with Unix, .. means a parent directory and a . means
+ * the current directory. The directory must be /, the forward slash. 
+ * The root of the file system is a single slash: /.
+ */
 public class ChangeDirectory extends Command {
   
   /**
@@ -62,40 +70,27 @@ public class ChangeDirectory extends Command {
    * @param tokens, array of string tokens holding command arguments
    * @param fSystem, an instance of FileSystem class to read and write
    * to the file structure.
-   * @param cache, store the current directory stack
-   * @return returns a boolean true to mark successful execution
+   * @param cache, stores the history and directory stack of the running 
+   * terminal
+   * @return returns a boolean true signal the shell to continue running
    * @Override overrides run method from super class Command
    */
+  @Override
   public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
     
     FileSystemNode targetNode = null;
     
-    if (tokens[1].equals("..")) {
-      
-      targetNode = fileSystem.getCurrentDirectory().getParent();
-      
-    } else if (tokens[1].equals(".")) {
-      
-      targetNode = fileSystem.getCurrentDirectory();
-      
-    } else {
-    
-      //Set targetNode to the FileSystemNode that the path leads to
-      targetNode = fileSystem.getFileSystemNode(tokens[1]);
-      
-    }
+    //Set targetNode to the FileSystemNode that the path leads to
+    targetNode = fileSystem.getFileSystemNode(tokens[1]);
+
     //Check if the targetNode is in the root
-    if (targetNode != null)
-    {
-      System.out.println("CD: now at " + targetNode.getPath());
+    if (targetNode != null) {
+      StandardOutput.println("cd: now at " + targetNode.getPath());
       //Set the current Directory to the targetNode
       fileSystem.setCurrentDirectory(targetNode);
-      
     } else {
-      
-      //TODO: Add error of invalid path
-      System.out.println("CD: Bad path");
-      
+      // invalid path error
+      ErrorHandler.badInput(this, "bad path");      
     }
     
     return true;

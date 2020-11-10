@@ -80,6 +80,7 @@ public class Manual extends Command {
    * @return returns a boolean true to mark successful execution
    * @Override overrides run method for super class Command
    */
+  @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     int i = 1;
     while (i < tokens.length) {
