@@ -27,8 +27,17 @@ package commands;
 import data.*;
 import runtime.ErrorHandler;
 
+/**
+ * Allows user to push current directory to directory stack and change 
+ * directories to a directory they give.
+ */
 public class PushDirectory extends Command {
 
+  /**
+   * Constructor for PushDirectory class. It initializes identifier, 
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
+   */
   public PushDirectory() {
     this.setIdentifier("pushd");
     this.setDescription("Saves the current working directory by pushing"
@@ -45,13 +54,31 @@ public class PushDirectory extends Command {
     this.setMissingOperand("must provide a directory to navigate to");
   }
 
+  /**
+   * Saves the current working directory by pushing onto directory stack and 
+   * then changes the new current working directory to DIR. The push must be
+   * consistent as per the LIFO behavior of a stack. The pushd command saves
+   * the old current working directory in directory stack so that it can be 
+   * returned to at any time (via the popd command). The size of the directory 
+   * stack is dynamic and dependent on the pushd and the popd commands.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param fSystem, an instance of FileSystem class to read and write
+   * to the file structure.
+   * @param cache, stores the history and directory stack of the running 
+   * terminal
+   * @return returns a boolean true signal the shell to continue running
+   * @Override overrides run method from super class Command
+   */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
 
     FileSystemNode node = fSystem.getFileSystemNode(tokens[1]);
+    // if the directory exists, push the current directory and go to the given
     if (node != null) {
       cache.pushDirectoryStack(fSystem.getCurrentDirectory().getPath());
       fSystem.setCurrentDirectory(node);
+    // else print error
     } else {
       ErrorHandler.badInput(this, "invalid directory");
     }
