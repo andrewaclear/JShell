@@ -86,8 +86,12 @@ public class Echo extends Command {
     //If called with echo "STRING" > file, then prints STRING to file
     } else if (tokens.length == 4 && tokens[2].equals(">") 
         || tokens[2].equals(">>")) {
+      if (tokens[1].charAt(0) == '"') {
        EchoToFile echoFile = new EchoToFile();
        echoFile.run(tokens, fSystem, cache);
+      } else {
+        ErrorHandler.missingString(this, tokens);
+      }
     //Else invalid combination of arguments
     } else {
       ErrorHandler.invalidComboOfParams(this, tokens);
