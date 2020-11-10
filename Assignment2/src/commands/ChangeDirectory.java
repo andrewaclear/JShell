@@ -45,10 +45,9 @@
 // *********************************************************
 package commands;
 
-import data.*;
+import data.FileSystem;
 import data.FileSystemNode;
-import io.StandardOutput;
-import runtime.ErrorHandler;
+import data.Cache;
 
 /**
  * Change directory to DIR, which may be relative to the current directory or
@@ -84,7 +83,7 @@ public class ChangeDirectory extends Command {
   
   /**
    * The run method of ChangeDirectory changes the currentDirectory of the 
-   * fileSystem to the given path in tokens[1] if it is a valid/appropriate 
+   * fileSystem to the given path tokens[1] if it is a valid/appropriate 
    * path in fileSystem, otherwise, give back an error message. In any case, 
    * return true after being done.
    * 

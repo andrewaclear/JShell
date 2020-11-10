@@ -12,5 +12,6 @@ Responsibilities:
   -Stays on the current directory given the parameter .
 
 Collaborators:
--JShell
 -FileSystem
+-FileSystemNode
+-Cache
