@@ -48,6 +48,9 @@ package data;
 import java.util.*;
 import runtime.ErrorHandler; 
 
+/**
+ * Data type of the tree structure required for a FileSystem
+ */
 public class FileSystemNode {
   
   /**

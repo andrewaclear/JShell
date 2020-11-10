@@ -47,6 +47,9 @@ package data;
 
 import java.util.*; 
 
+/**
+ * Data type that contains a list of Files and has a name/identifier
+ */
 public class Directory {
 
   /*

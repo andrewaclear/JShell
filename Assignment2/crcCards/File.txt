@@ -5,7 +5,7 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Content is contained
--Has a name
+-Contains a content which is a string
+-Has a name/identifier
 
 Collaborators: None

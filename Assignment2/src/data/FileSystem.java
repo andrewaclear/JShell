@@ -46,6 +46,10 @@
 package data;
 import runtime.ErrorHandler;
 
+/**
+ * Maintains a tree structure of FileSystemNodes: keeping both the root of the 
+ * tree and the current position in the tree
+ */
 public class FileSystem {
   
   /**
@@ -109,7 +113,7 @@ public class FileSystem {
     // root
     if (givenPath.equals("/")) return getRoot();
     // current directory
-    if (givenPath.equals(".") || givenPath.equals(" ")) 
+    if (givenPath.equals(".")) 
       return getCurrentDirectory();
     // parent directory
     if (givenPath.equals("..")) return getCurrentDirectory().getParent();
