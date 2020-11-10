@@ -10,6 +10,6 @@ Responsibilities:
 -Allows user to print out the n>=0 most recent entered inputs.
 
 Collaborators:
--Shell
 -StandardOutput
 -Cache
+-ErrorHandler

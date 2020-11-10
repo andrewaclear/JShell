@@ -110,7 +110,7 @@ public class MakeDirectory extends Command {
     targetNode2 = fileSystem.getSemiFileSystemNode(tokens[2]);
     
     //Check if path1 is valid
-    if (targetNode1 != null & !targetNode1.isChildInside(
+    if (targetNode1 != null && !targetNode1.isChildInside(
         fileSystem.getPathLastEntry(tokens[1]))) {
       
       //Check if the Directory already exists in the children 
@@ -121,7 +121,7 @@ public class MakeDirectory extends Command {
           fileSystem.getPathLastEntry(tokens[1]))));
         
         //Check if path2 is valid
-        if (targetNode2 != null & !targetNode2.isChildInside(
+        if (targetNode2 != null && !targetNode2.isChildInside(
             fileSystem.getPathLastEntry(tokens[2]))) {
           
            //Check if the Directory already exists in the children 
