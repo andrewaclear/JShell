@@ -73,7 +73,7 @@ public class MakeDirectory extends Command {
    * in fileSystem. In any case, returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write
+   * @param fileSystem, an instance of FileSystem class to read and write
    * to the file structure.
    * @param cache, store the current directory stack
    * @return returns a boolean true to mark successful execution
