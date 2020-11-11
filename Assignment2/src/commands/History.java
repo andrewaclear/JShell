@@ -74,8 +74,9 @@ public class History extends Command {
    * Prints out the recent commands, one command per line. The first column is
    * numbered such that the line with the highest number is the most recent
    * command. The output can be truncated by specifying a number as a second
-   * token (>=0) after the command, say n, which will show n recent commands. If
-   * n is greater than the history, it will print all the history.
+   * token (less or equal to 0) after the command, say n, which will show n
+   * recent commands. If n is greater than the history, it will print all the
+   * history.
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param fSystem, an instance of FileSystem class to read and write to the
