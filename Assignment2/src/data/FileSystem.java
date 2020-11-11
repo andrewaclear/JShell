@@ -243,7 +243,12 @@ public class FileSystem {
   }
   
   /**
-   * createFileSystem ensures we only ever have a single FileSystem
+   * createFileSystem ensures we only ever have a single FileSystem: if we 
+   * already have a fileSystem, returns it, if not, creates a new one and
+   * returns that one
+   * 
+   * @return A new fileSystem if there fileSystem was null, 
+   * otherwise, fileSystem
    */
   public static FileSystem createFileSystem() {
     
