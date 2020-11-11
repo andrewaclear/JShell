@@ -28,24 +28,24 @@ import data.*;
 import runtime.ErrorHandler;
 
 /**
- * Allows user to get the most recent directory from the stack, pop it, 
- * and change directory into it.
+ * Allows user to get the most recent directory from the stack, pop it, and
+ * change directory into it.
  */
 public class PopDirectory extends Command {
-  
+
   /**
-   * Constructor for PopDirectory class. It initializes identifier, 
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
-   * missingOperand, and description from its super class Commands.
+   * Constructor for PopDirectory class. It initializes identifier,
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
+   * and description from its super class Commands.
    */
   public PopDirectory() {
     this.setIdentifier("popd");
     this.setDescription("Remove the top entry from the directory stack,"
-      + " and cd into it. \nThe removal must be consistent as per the LIFO"
-      + " behavior of  a \nstack. The popd command removes the top"
-      + " most directory from \nthe directory stack and makes it the"
-      + " current working directory. \nIf there is no directory onto"
-      + " the stack, then give appropriate \nerror message. ");
+        + " and cd into it. \nThe removal must be consistent as per the LIFO"
+        + " behavior of  a \nstack. The popd command removes the top"
+        + " most directory from \nthe directory stack and makes it the"
+        + " current working directory. \nIf there is no directory onto"
+        + " the stack, then give appropriate \nerror message. ");
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("doesn't take any arguments");
@@ -56,22 +56,22 @@ public class PopDirectory extends Command {
    * Remove the top entry from the directory stack, and cd into it. The removal
    * must be consistent as per the LIFO behavior of a stack. The popd command
    * removes the top most directory from the directory stack and makes it the
-   * current working directory. If there is no directory onto the stack, then 
+   * current working directory. If there is no directory onto the stack, then
    * give appropriate error message.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write
-   * to the file structure.
-   * @param cache, stores the history and directory stack of the running 
-   * terminal
+   * @param fSystem, an instance of FileSystem class to read and write to the
+   *        file structure.
+   * @param cache, stores the history and directory stack of the running
+   *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
-    
+
     try {
       String path = cache.popDirectoryStack();
-      fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));  
+      fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));
     } catch (Exception e) {
       ErrorHandler.badInput(this, "directory stack is empty");
     }

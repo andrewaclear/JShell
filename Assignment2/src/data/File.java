@@ -29,23 +29,23 @@ package data;
  * Data type that contains a string and has a name/identifier
  */
 public class File {
-  
+
   /*
    * A File has two Strings fileName and content
    */
   String fileName = "";
   String content = "";
-  
+
   /**
-   * Constructor for File class. It initializes fileName to
-   * the parameter fileName 
+   * Constructor for File class. It initializes fileName to the parameter
+   * fileName
    * 
    * @param fileName, a String
    */
   public File(String fileName) {
     this.fileName = fileName;
   }
-  
+
   /**
    * setContent sets the content of this File to the parameter content
    *
@@ -53,8 +53,8 @@ public class File {
    */
   public void setContent(String content) {
     this.content = content;
-  } 
-  
+  }
+
   /**
    * setFileName sets the fileName of this File to the parameter fileName
    *
@@ -63,7 +63,7 @@ public class File {
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
-  
+
   /**
    * getFileName returns the fileName of this File
    *
@@ -72,7 +72,7 @@ public class File {
   public String getFileName() {
     return this.fileName;
   }
-  
+
   /**
    * getContent returns the content of this File
    * 
@@ -81,5 +81,5 @@ public class File {
   public String getContent() {
     return this.content;
   }
-  
+
 }

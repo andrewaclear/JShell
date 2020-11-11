@@ -27,11 +27,11 @@ package commands;
 import data.*;
 
 /**
- * Command is the super class which defines the structure of all commands, 
- * their constants and how to access them, and the method run to run them.
+ * Command is the super class which defines the structure of all commands, their
+ * constants and how to access them, and the method run to run them.
  */
 public class Command {
-  // the identifier is the shorthand for the command that 
+  // the identifier is the shorthand for the command that
   // is entered in the terminal
   private String identifier;
   // max and min number of arguments the command can take
@@ -42,7 +42,7 @@ public class Command {
   private String errorMissingOperand;
   // the command's description
   private String description;
-  
+
   /**
    * Set the identifier.
    * 
@@ -55,8 +55,8 @@ public class Command {
   /**
    * Set the max number of arguments.
    * 
-   * @param num, the number to set for the max number of arguments of the 
-   * command
+   * @param num, the number to set for the max number of arguments of the
+   *        command
    */
   public void setMaxNumOfArguments(int num) {
     this.maxNumOfArguments = num;
@@ -65,8 +65,8 @@ public class Command {
   /**
    * Set the min number of arguments.
    * 
-   * @param num, the number to set for the min number of arguments of the 
-   * command
+   * @param num, the number to set for the min number of arguments of the
+   *        command
    */
   public void setMinNumOfArguments(int num) {
     this.minNumOfArguments = num;
@@ -143,7 +143,7 @@ public class Command {
   public String getErrorMissingOperand() {
     return this.errorMissingOperand;
   }
-  
+
   /**
    * Get the description for the command.
    * 
@@ -154,14 +154,14 @@ public class Command {
   }
 
   /**
-   * Runs the command (to be implemented for each command, 
-   * overridden by each subclass).
+   * Runs the command (to be implemented for each command, overridden by each
+   * subclass).
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write
-   * to the file structure.
-   * @param cache, stores the history and directory stack of the running 
-   * terminal
+   * @param fSystem, an instance of FileSystem class to read and write to the
+   *        file structure.
+   * @param cache, stores the history and directory stack of the running
+   *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
