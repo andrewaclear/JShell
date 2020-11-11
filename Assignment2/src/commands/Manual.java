@@ -78,7 +78,6 @@ public class Manual extends Command {
    * to the file structure.
    * @param cache, store the current directory stack
    * @return returns a boolean true to mark successful execution
-   * @Override overrides run method for super class Command
    */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {

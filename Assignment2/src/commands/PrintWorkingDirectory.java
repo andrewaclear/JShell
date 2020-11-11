@@ -60,16 +60,16 @@ public class PrintWorkingDirectory extends Command {
    * currentDirectory in fileSystem and returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fileSystem, an instance of FileSystem class to read and write
+   * @param fSystem, an instance of FileSystem class to read and write
    * to the file structure.
    * @param cache, store the current directory stack
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     
     //Print the path of the current directory
-    StandardOutput.println(fileSystem.getCurrentDirectory().getPath());
+    StandardOutput.println(fSystem.getCurrentDirectory().getPath());
     
     return true;
     

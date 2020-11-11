@@ -39,7 +39,6 @@ public class ErrorHandler {
    * Prints tooManyArguments error message
    * 
    * @param command, an instance of Command class or its subclasses
-   * @return void
    */
     public static void tooManyArguments(Command command) {
         StandardOutput.println(command.getIdentifier()+": "
