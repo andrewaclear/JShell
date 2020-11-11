@@ -41,6 +41,8 @@ public class Directory {
   /**
   * Constructor for Directory class. It initializes directoryName to
   * the parameter directoryName 
+  * 
+  * @param directoryName, a String
   */
   public Directory(String directoryName) {
     this.directoryName = directoryName;
