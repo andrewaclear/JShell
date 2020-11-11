@@ -145,7 +145,7 @@ public class ListContents extends Command {
       ErrorHandler.badInput(this,
           "no files or directories in the current directory");
 
-    return notEmpty;
+    return true;
   }
 
   /**
