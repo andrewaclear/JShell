@@ -89,7 +89,6 @@ public class EchoToFile extends Command{
    * @param node, an instance of FileSystemNode class that holds the position
    * of the file in the path directory tree
    * @param name, name of the file
-   * @return returns void
    */
   private void toFile(String[] tokens, FileSystemNode node, String name) {
     File curFile = node.getDirectory().getFile(name);
