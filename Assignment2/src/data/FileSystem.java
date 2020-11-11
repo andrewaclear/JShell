@@ -249,8 +249,6 @@ public class FileSystem {
    * 
    * @return A new fileSystem if there fileSystem was null, 
    * otherwise, fileSystem
-   * 
-   * @return return new instance of FileSystem
    */
   public static FileSystem createFileSystem() {
     
