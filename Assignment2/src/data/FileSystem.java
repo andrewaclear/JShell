@@ -172,7 +172,7 @@ public class FileSystem {
     } else {
       
       if (givenPath.charAt(0) != '/') {
-        targetPath = " ";
+        targetPath = ".";
       }
     }
     
