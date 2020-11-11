@@ -10,7 +10,7 @@ Responsibilities:
 -Replace the File's content with the provided string
 
 Collaborators:
--File
--CreateFile
--AppendToFile
--ReplaceFile
+-FileSystem
+-EchoToFile
+-StandardOutput
+-ErrorHandler

@@ -10,3 +10,5 @@ Responsibilities:
 
 Collaborators: 
 -File
+-Cache
+-ErrorHandler

@@ -8,4 +8,5 @@ Responsibilities:
 -Contains a content which is a string
 -Has a name/identifier
 
-Collaborators: None
+Collaborators: 
+-ErrorHandler

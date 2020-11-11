@@ -8,4 +8,4 @@ Responsibilities:
 -Receives output to be printed from commands and prints it in the Shell. 
 
 Collaborators:
--Shell
+-JShell
