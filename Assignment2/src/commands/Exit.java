@@ -55,7 +55,6 @@ public class Exit extends Command {
    * @param cache, stores the history and directory stack of the running 
    * terminal
    * @return boolean false to signal terminal to terminate
-   * @Override overrides run method from super class Command
    */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
