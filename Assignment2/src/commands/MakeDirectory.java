@@ -81,7 +81,7 @@ public class MakeDirectory extends Command {
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     
-    FileSystemNode targetNode1 = null, targetNode2 = null; 
+    FileSystemNode targetNode1 = null, targetNode2 = null;
 
     targetNode1 = fSystem.getSemiFileSystemNode(tokens[1]);
     
