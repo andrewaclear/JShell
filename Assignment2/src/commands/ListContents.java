@@ -183,6 +183,8 @@ public class ListContents extends Command {
             || tokens[i].equals(".."))
           path = tokens[i];
         // relative path
+        else if (fSystem.getCurrentDirectory() == "/")
+          path = '/' + tokens[i];
         else
           path = fSystem.getCurrentDirectory().getPath() + '/' + tokens[i];
         // list contents, stop if there are none or path is bad
