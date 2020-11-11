@@ -72,7 +72,6 @@ public class Echo extends Command {
    * @param cache, stores the history and directory stack of the running 
    * terminal
    * @return returns a boolean true signal the shell to continue running
-   * @Override overrides run method from super class Command
    */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
