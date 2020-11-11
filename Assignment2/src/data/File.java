@@ -39,6 +39,8 @@ public class File {
   /**
    * Constructor for File class. It initializes fileName to
    * the parameter fileName 
+   * 
+   * @param fileName, a String
    */
   public File(String fileName) {
     this.fileName = fileName;

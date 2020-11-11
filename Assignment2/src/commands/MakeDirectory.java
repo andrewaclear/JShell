@@ -52,7 +52,7 @@ public class MakeDirectory extends Command {
     
     //Error Handling
     this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand(" only accepts two parameters");
+    this.setMissingOperand("only two parameters are accepted");
     
     //Description
     this.setDescription("This command takes in two arguments only."
