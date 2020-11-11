@@ -32,46 +32,46 @@ import io.StandardOutput;
  * Print the current working directory (including the whole path).
  */
 public class PrintWorkingDirectory extends Command {
-  
+
   /**
-   * Constructor for PrintWorkingDirectory class. It initializes identifier, 
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
-   * missingOperand, and description from its super class Commands.
+   * Constructor for PrintWorkingDirectory class. It initializes identifier,
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
+   * and description from its super class Commands.
    */
   public PrintWorkingDirectory() {
     this.setIdentifier("pwd");
-    
-    //PrintWorkingDirectory must not have any arguments
+
+    // PrintWorkingDirectory must not have any arguments
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
-    
-    //Error Handling
+
+    // Error Handling
     this.setErrorTooManyArguments("no parameters are accepted");
     this.setMissingOperand("identifier pwd is missing");
-    
-    //Description
+
+    // Description
     this.setDescription("The command PrintWorkingDirectory prints "
         + "the current working directory (including the whole path).");
-    
+
   }
-  
+
   /**
-   * The run method of PrintWorkingDirectory displays the full path of the 
+   * The run method of PrintWorkingDirectory displays the full path of the
    * currentDirectory in fileSystem and returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write
-   * to the file structure.
+   * @param fSystem, an instance of FileSystem class to read and write to the
+   *        file structure.
    * @param cache, store the current directory stack
    * @return returns a boolean true to mark successful execution
    */
   @Override
   public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
-    
-    //Print the path of the current directory
+
+    // Print the path of the current directory
     StandardOutput.println(fSystem.getCurrentDirectory().getPath());
-    
+
     return true;
-    
+
   }
 }

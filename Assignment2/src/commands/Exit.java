@@ -33,9 +33,9 @@ import data.FileSystem;
 public class Exit extends Command {
 
   /**
-   * Constructor for Exit class. It initializes identifier, 
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
-   * missingOperand, and description from its super class Commands.
+   * Constructor for Exit class. It initializes identifier, maxNumOfArguments,
+   * minNumOfArguments errorTooManyArguments, missingOperand, and description
+   * from its super class Commands.
    */
   public Exit() {
     this.setIdentifier("exit");
@@ -50,10 +50,10 @@ public class Exit extends Command {
    * When exit is run, it sends signal to terminate.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write
-   * to the file structure.
-   * @param cache, stores the history and directory stack of the running 
-   * terminal
+   * @param fSystem, an instance of FileSystem class to read and write to the
+   *        file structure.
+   * @param cache, stores the history and directory stack of the running
+   *        terminal
    * @return boolean false to signal terminal to terminate
    */
   @Override

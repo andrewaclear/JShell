@@ -24,7 +24,7 @@
 // *********************************************************
 package data;
 
-import java.util.*; 
+import java.util.*;
 
 /**
  * Data type that contains a list of Files and has a name/identifier
@@ -35,31 +35,31 @@ public class Directory {
    * A Directory has a String directoryName and an ArrayList of File: files
    */
   private String directoryName = "";
-  private List<File> files  = new ArrayList<File>();
-  
-  
+  private List<File> files = new ArrayList<File>();
+
+
   /**
-  * Constructor for Directory class. It initializes directoryName to
-  * the parameter directoryName 
-  * 
-  * @param directoryName, a String
-  */
+   * Constructor for Directory class. It initializes directoryName to the
+   * parameter directoryName
+   * 
+   * @param directoryName, a String
+   */
   public Directory(String directoryName) {
     this.directoryName = directoryName;
   }
-  
-  
+
+
   /**
-   * setDirectoryName sets the directoryName of this Directory to the 
-   * given directoryName
+   * setDirectoryName sets the directoryName of this Directory to the given
+   * directoryName
    * 
    * @param directoryName, a String
    */
   public void setDirectoryName(String directoryName) {
     this.directoryName = directoryName;
   }
-  
-  
+
+
   /**
    * getDirectoryName returns the directoryName of this Directory
    * 
@@ -68,19 +68,19 @@ public class Directory {
   public String getDirectoryName() {
     return this.directoryName;
   }
-  
-  
+
+
   /**
    * addFile adds file to the files of this Directory
    * 
    * @param file, an instance of a File
    */
   public void addFile(File file) {
-    //adds the file to the files
+    // adds the file to the files
     files.add(file);
   }
-  
-  
+
+
   /**
    * getFiles returns the files of this Directory
    * 
@@ -89,21 +89,21 @@ public class Directory {
   public List<File> getFiles() {
     return this.files;
   }
- 
- /**
-  * getFile returns the File in files that has targetFileName as its fileName
-  *  
-  * @param targetFileName, a String
-  * @return The File in files that has the targetFileName as its fileName
-  */
+
+  /**
+   * getFile returns the File in files that has targetFileName as its fileName
+   * 
+   * @param targetFileName, a String
+   * @return The File in files that has the targetFileName as its fileName
+   */
   public File getFile(String targetFileName) {
-    for (File currentFile: this.files) {
+    for (File currentFile : this.files) {
       if (currentFile.getFileName().equals(targetFileName)) {
         return currentFile;
       }
     }
-    
+
     return null;
   }
-  
+
 }

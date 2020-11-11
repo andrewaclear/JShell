@@ -31,64 +31,64 @@ import data.Cache;
 /**
  * Change directory to DIR, which may be relative to the current directory or
  * may be a full path. As with Unix, .. means a parent directory and a . means
- * the current directory. The directory must be /, the forward slash. 
- * The root of the file system is a single slash: /.
+ * the current directory. The directory must be /, the forward slash. The root
+ * of the file system is a single slash: /.
  */
 public class ChangeDirectory extends Command {
-  
+
   /**
-   * Constructor for ChangeDirectory class. It initializes identifier, 
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
-   * missingOperand, and description from its super class Commands.
+   * Constructor for ChangeDirectory class. It initializes identifier,
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
+   * and description from its super class Commands.
    */
   public ChangeDirectory() {
     this.setIdentifier("cd");
-    
-    //ChangeDirectory must have two tokens
+
+    // ChangeDirectory must have two tokens
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
-    
-    //Error Handling
+
+    // Error Handling
     this.setErrorTooManyArguments("only one parameter is accepted");
     this.setMissingOperand("only accepts one parameter");
-    
-    //Description
+
+    // Description
     this.setDescription("Change directory to DIR, which may be relative to"
-      + " the current directory\nor may be a full path. As with Unix, .."
-      + " means a parent directory and a . \nmeans the current directory."
-      + " The directory must be /, the forward slash. \nThe foot of the"
-      + " file system is a single slash: /.");
+        + " the current directory\nor may be a full path. As with Unix, .."
+        + " means a parent directory and a . \nmeans the current directory."
+        + " The directory must be /, the forward slash. \nThe foot of the"
+        + " file system is a single slash: /.");
   }
-  
+
   /**
-   * The run method of ChangeDirectory changes the currentDirectory of the 
-   * fileSystem to the given path tokens[1] if it is a valid/appropriate 
-   * path in fileSystem, otherwise, give back an error message. In any case, 
-   * return true after being done.
+   * The run method of ChangeDirectory changes the currentDirectory of the
+   * fileSystem to the given path tokens[1] if it is a valid/appropriate path in
+   * fileSystem, otherwise, give back an error message. In any case, return true
+   * after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fileSystem, an instance of FileSystem class to read and write
-   * to the file structure.
-   * @param cache, stores the history and directory stack of the running 
-   * terminal
+   * @param fileSystem, an instance of FileSystem class to read and write to the
+   *        file structure.
+   * @param cache, stores the history and directory stack of the running
+   *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
   public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
-    
+
     FileSystemNode targetNode = null;
-    
-    //Set targetNode to the FileSystemNode that the path leads to
+
+    // Set targetNode to the FileSystemNode that the path leads to
     targetNode = fileSystem.getFileSystemNode(tokens[1]);
 
-    //Check if the targetNode is in the root
+    // Check if the targetNode is in the root
     if (targetNode != null) {
-      //Set the current Directory to the targetNode
+      // Set the current Directory to the targetNode
       fileSystem.setCurrentDirectory(targetNode);
-    } 
-    
+    }
+
     return true;
-    
+
   }
-  
+
 }

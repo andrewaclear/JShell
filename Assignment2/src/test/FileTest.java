@@ -50,44 +50,44 @@ import data.File;
 public class FileTest {
 
   public static void main(String[] args) {
-    
-    //Create a new file with fileName "GoodFile"
+
+    // Create a new file with fileName "GoodFile"
     File myFile = new File("GoodFile");
-    
-    //The fileName of myFile should be GoodFile
+
+    // The fileName of myFile should be GoodFile
     if (!(myFile.getFileName().equals("GoodFile"))) {
-      System.out.println("ERROR: The name of this file is " 
-        + myFile.getFileName());
+      System.out
+          .println("ERROR: The name of this file is " + myFile.getFileName());
     }
-    
+
     myFile.setContent("This is some real content right inside here");
-    
-    //The content of myFileName should be "This is some real content right 
-    //inside here"
-    if (!(myFile.getContent().equals("This is some real content right "
-        + "inside here"))) {
-      System.out.println("ERROR: The content of this file is " 
-        + myFile.getContent());
+
+    // The content of myFileName should be "This is some real content right
+    // inside here"
+    if (!(myFile.getContent()
+        .equals("This is some real content right " + "inside here"))) {
+      System.out
+          .println("ERROR: The content of this file is " + myFile.getContent());
     }
 
     myFile.setContent("This content is so so");
-    
-    //Print "The content of this file is This content is so so"
+
+    // Print "The content of this file is This content is so so"
     if (!(myFile.getContent().equals("This content is so so"))) {
-      System.out.println("ERROR: The content of this file is " 
-        +  myFile.getContent());
+      System.out
+          .println("ERROR: The content of this file is " + myFile.getContent());
     }
-    
+
     myFile.setContent("");
-    
-    //The content of myFile should be ""
+
+    // The content of myFile should be ""
     if (!(myFile.getContent().equals(""))) {
-      System.out.println("ERROR: The content of this file is " 
-       +  myFile.getContent());
+      System.out
+          .println("ERROR: The content of this file is " + myFile.getContent());
     }
-    
+
     System.out.println("DONE");
-    
+
   }
 
 }

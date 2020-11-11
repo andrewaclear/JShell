@@ -21,34 +21,35 @@
 // help from no one in designing and debugging my program.
 // I have also read the plagiarism section in the course info
 // sheet of CSC B07 and understand the consequences.
-//*********************************************************
+// *********************************************************
 package data;
+
 import runtime.ErrorHandler;
 
 /**
- * Maintains a tree structure of FileSystemNodes: keeping both the root of the 
+ * Maintains a tree structure of FileSystemNodes: keeping both the root of the
  * tree and the current position in the tree
  */
 public class FileSystem {
-  
+
   /**
-   * FileSystem has a FileSystem fileSystem, a FileSystemNode root, 
-   * and a FileSystemNode currentFileSystemNode
+   * FileSystem has a FileSystem fileSystem, a FileSystemNode root, and a
+   * FileSystemNode currentFileSystemNode
    */
   private static FileSystem fileSystem = null;
   private FileSystemNode root;
   private FileSystemNode currentFileSystemNode;
-  
+
   /**
-   * Constructor of FileSystem class. It initializes the root to a new 
-   * FileSystemNode that has as in its Directory the directoryName "/" and the 
+   * Constructor of FileSystem class. It initializes the root to a new
+   * FileSystemNode that has as in its Directory the directoryName "/" and the
    * currentFileSystemNode to the root
    */
   private FileSystem() {
     this.root = new FileSystemNode(new Directory("/"));
     this.currentFileSystemNode = root;
   }
-  
+
   /**
    * getRoot returns the root of this FileSystem
    * 
@@ -57,8 +58,8 @@ public class FileSystem {
   public FileSystemNode getRoot() {
     return this.root;
   }
-  
-  
+
+
   /**
    * getCurrentDirectory returns the currentFileSystemNode of this FileSystem
    *
@@ -67,9 +68,9 @@ public class FileSystem {
   public FileSystemNode getCurrentDirectory() {
     return this.currentFileSystemNode;
   }
-  
-  
-  /** 
+
+
+  /**
    * setCurrentDirectory sets the currentFileSystemNode to targetNode
    * 
    * @param targetNode A FileSystemNode
@@ -77,109 +78,111 @@ public class FileSystem {
   public void setCurrentDirectory(FileSystemNode targetNode) {
     this.currentFileSystemNode = targetNode;
   }
-  
-  
+
+
   /**
    * getFileSystemNode returns the FileSystemNode the givenPath refers to if its
-   * a valid/appropriate path, otherwise, return null 
-   * and display an error message
+   * a valid/appropriate path, otherwise, return null and display an error
+   * message
    * 
    * @param givenPath A relative or full path
    * @return The FileSystemNode that givenPath points to
    */
   public FileSystemNode getFileSystemNode(String givenPath) {
-    
+
     // root
-    if (givenPath.equals("/")) return getRoot();
+    if (givenPath.equals("/"))
+      return getRoot();
     // current directory
-    if (givenPath.equals(".")) 
+    if (givenPath.equals("."))
       return getCurrentDirectory();
     // parent directory
-    if (givenPath.equals("..")) return getCurrentDirectory().getParent();
+    if (givenPath.equals(".."))
+      return getCurrentDirectory().getParent();
     // bad path
-    if (inappropriatePath(givenPath)) return null;
+    if (inappropriatePath(givenPath))
+      return null;
     // return path
     return traversePath(givenPath);
   }
-  
+
   /**
-   * inappropraitePath returns true and an error message when the givenPath
-   * is not an appropriate path (contains illicit characters), 
-   * or false otherwise
+   * inappropraitePath returns true and an error message when the givenPath is
+   * not an appropriate path (contains illicit characters), or false otherwise
    * 
    * @param givenPath A relative or full path
    * @return true if the given path is inappropriate, otherwise, false
    */
   private boolean inappropriatePath(String givenPath) {
-    
+
     String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
-    
+
     if (givenPath.indexOf("//") != -1) {
       ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
-    
-    for (int i=0; i < givenPath.length(); i = i + 1) {
+
+    for (int i = 0; i < givenPath.length(); i = i + 1) {
       if (inappropriateCharacters.indexOf(givenPath.charAt(i)) != -1) {
         ErrorHandler.inappropriatePath(givenPath);
         return true;
       }
     }
-    
+
     return false;
-    
+
   }
-  
+
   /**
    * getSemiFileSystemNode returns the FileSystemNode the givenPath refers to
-   * excluding the last entry if its an valid/appropriate path, 
-   * otherwise, return null and display an error message
+   * excluding the last entry if its an valid/appropriate path, otherwise,
+   * return null and display an error message
    * 
    * @param givenPath A relative or full path
    * @return The FileSystemNode the givenPath refers to excluding the last entry
-   *         which is null if the givenPath is an invalid/inaproapiate path 
+   *         which is null if the givenPath is an invalid/inaproapiate path
    */
   public FileSystemNode getSemiFileSystemNode(String givenPath) {
-    
+
     String[] splitPath;
     String targetPath = "";
-    
+
     if (inappropriatePath(givenPath)) {
       return null;
     }
-    
+
     if (givenPath.charAt(0) == '/') {
-      
+
       splitPath = givenPath.substring(1).split("/");
       targetPath = "/";
-      
+
     } else {
-    
+
       splitPath = givenPath.split("/");
-    
+
     }
-    
-    //Check if givenPath referred to the current Directory or 
-    //a Directory at the root
+
+    // Check if givenPath referred to the current Directory or
+    // a Directory at the root
     if (splitPath.length != 1) {
-    
+
       for (int i = 0; i < splitPath.length - 2; i = i + 1) {
         targetPath = targetPath + splitPath[i] + "/";
       }
-      
+
       targetPath += splitPath[splitPath.length - 2];
-      
+
     } else {
-      
+
       if (givenPath.charAt(0) != '/') {
         targetPath = ".";
       }
     }
-    
+
     return getFileSystemNode(targetPath);
-    
+
   }
-  
+
   /**
    * getPathLastEntry returns the last FileSystemNode the givenPath refers to
    * 
@@ -187,19 +190,19 @@ public class FileSystem {
    * @return The last FileSystemNode the givenPath refers to
    */
   public String getPathLastEntry(String givenPath) {
-    
+
     String[] splitPath;
-    
+
     if (givenPath.charAt(0) == '/') {
       splitPath = givenPath.substring(1).split("/");
     } else {
       splitPath = givenPath.split("/");
     }
-    
+
     return splitPath[splitPath.length - 1];
   }
-  
-  
+
+
   /**
    * traversePath returns the FileSystemNode the givenPath refers to
    * 
@@ -207,25 +210,26 @@ public class FileSystem {
    * @return The FileSystemNode the givenPath points to
    */
   private FileSystemNode traversePath(String givenPath) {
-    
-    String splitPath[]; FileSystemNode nodeTracker = null;
 
-    //Check if the givenPath is a full or relative path,
-    //thats provides where the tracker should start
-    if (givenPath.charAt(0) == '/'){
+    String splitPath[];
+    FileSystemNode nodeTracker = null;
+
+    // Check if the givenPath is a full or relative path,
+    // thats provides where the tracker should start
+    if (givenPath.charAt(0) == '/') {
       splitPath = givenPath.substring(1).split("/");
       nodeTracker = root;
     } else {
       splitPath = givenPath.split("/");
       nodeTracker = currentFileSystemNode;
     }
-    
+
     int childrenCounter = 0, totalChildren = 0;
 
     for (String singlePath : splitPath) {
-      
+
       totalChildren = nodeTracker.getChildren().size();
-      
+
       for (FileSystemNode child : nodeTracker.getChildren()) {
         if (child.getDirectory().getDirectoryName().equals(singlePath)) {
           nodeTracker = child;
@@ -241,23 +245,23 @@ public class FileSystem {
     }
     return nodeTracker;
   }
-  
+
   /**
-   * createFileSystem ensures we only ever have a single FileSystem: if we 
+   * createFileSystem ensures we only ever have a single FileSystem: if we
    * already have a fileSystem, returns it, if not, creates a new one and
    * returns that one
    * 
-   * @return A new fileSystem if there fileSystem was null, 
-   * otherwise, fileSystem
+   * @return A new fileSystem if there fileSystem was null, otherwise,
+   *         fileSystem
    */
   public static FileSystem createFileSystem() {
-    
+
     if (fileSystem == null) {
       fileSystem = new FileSystem();
     }
-    
+
     return fileSystem;
   }
-  
-  
+
+
 }

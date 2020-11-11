@@ -31,55 +31,55 @@ import java.util.List;
  * Stores the history and directory stack of the current session of the shell.
  */
 public class Cache {
-    
-    // history
-    private List<String> history = new LinkedList<String>();
-    // directory stack
-    private LinkedList<String> dirStack = new LinkedList<String>();
 
-    /**
-     * add user input line to the history list
-     * 
-     * @param line, string of user input line too add to history
-     */
-    public void addHistoryLine(String line) {
-        history.add(line);
-    }
+  // history
+  private List<String> history = new LinkedList<String>();
+  // directory stack
+  private LinkedList<String> dirStack = new LinkedList<String>();
 
-    /**
-     * Get history line at given index.
-     * 
-     * @param i, index of line to get from history
-     * @return returns string of the history line at index i
-     */
-    public String getHistory(int i) {
-        return history.get(i);
-    }
+  /**
+   * add user input line to the history list
+   * 
+   * @param line, string of user input line too add to history
+   */
+  public void addHistoryLine(String line) {
+    history.add(line);
+  }
 
-    /**
-     * Get size of history list.
-     * 
-     * @return returns integer of the size of the history list.
-     */
-    public int getHistorySize() {
-        return history.size();
-    }
+  /**
+   * Get history line at given index.
+   * 
+   * @param i, index of line to get from history
+   * @return returns string of the history line at index i
+   */
+  public String getHistory(int i) {
+    return history.get(i);
+  }
 
-    /**
-     * Pop the top directory from the directory stack.
-     * 
-     * @return returns the popped directory
-     */
-    public String popDirectoryStack() {
-        return dirStack.pop();
-    }
+  /**
+   * Get size of history list.
+   * 
+   * @return returns integer of the size of the history list.
+   */
+  public int getHistorySize() {
+    return history.size();
+  }
 
-    /**
-     * Push given directory to the directory stack.
-     * 
-     * @param path, string of path to push to the directory stack
-     */
-    public void pushDirectoryStack(String path) {
-        dirStack.push(path);
-    }
+  /**
+   * Pop the top directory from the directory stack.
+   * 
+   * @return returns the popped directory
+   */
+  public String popDirectoryStack() {
+    return dirStack.pop();
+  }
+
+  /**
+   * Push given directory to the directory stack.
+   * 
+   * @param path, string of path to push to the directory stack
+   */
+  public void pushDirectoryStack(String path) {
+    dirStack.push(path);
+  }
 }

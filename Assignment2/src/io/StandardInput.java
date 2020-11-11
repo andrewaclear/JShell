@@ -31,21 +31,21 @@ import java.util.Scanner;
  */
 public class StandardInput {
 
-    // create new instance of Scanner to read user input in shell
-    private Scanner scan = new Scanner(System.in); 
-    public String currentLine = "";
-    
-    /**
-     * Read next line of the current scan.
-     */
-    public void nextLine() {
-        currentLine = scan.nextLine(); //Awaits input 
-    }
+  // create new instance of Scanner to read user input in shell
+  private Scanner scan = new Scanner(System.in);
+  public String currentLine = "";
 
-    /**
-     * Close the scan.
-     */
-    public void close() {
-        scan.close();
-    }
+  /**
+   * Read next line of the current scan.
+   */
+  public void nextLine() {
+    currentLine = scan.nextLine(); // Awaits input
+  }
+
+  /**
+   * Close the scan.
+   */
+  public void close() {
+    scan.close();
+  }
 }

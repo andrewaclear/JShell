@@ -30,21 +30,21 @@ package io;
 public class StandardOutput {
 
 
-    /**
-     * Prints message out to the shell on it's own line.
-     * 
-     * @param message, to be printed out to the shell
-     */
-    public static void println(String message) {
-        System.out.println(message);
-    }
+  /**
+   * Prints message out to the shell on it's own line.
+   * 
+   * @param message, to be printed out to the shell
+   */
+  public static void println(String message) {
+    System.out.println(message);
+  }
 
-    /**
-     * Prints message out to the shell without adding a line return.
-     * 
-     * @param message, to be printed out to the shell
-     */
-    public static void print(String message) {
-        System.out.print(message);
-    }
+  /**
+   * Prints message out to the shell without adding a line return.
+   * 
+   * @param message, to be printed out to the shell
+   */
+  public static void print(String message) {
+    System.out.print(message);
+  }
 }
