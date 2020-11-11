@@ -70,40 +70,40 @@ public class MakeDirectory extends Command {
    * fileSystem, or makes a directory in the path tokens[1] if tokens[1] is a 
    * valid/appropriate  path in fileSystem but tokens[2] is not, or 
    * makes no directories at all if tokens[1] is not a valid/appropriate path 
-   * in fileSystem. In any case, returns true after being done.
+   * in fSystem. In any case, returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fileSystem, an instance of FileSystem class to read and write
+   * @param fSystem, an instance of FileSystem class to read and write
    * to the file structure.
    * @param cache, store the current directory stack
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
     
     FileSystemNode targetNode1 = null, targetNode2 = null; 
 
-    targetNode1 = fileSystem.getSemiFileSystemNode(tokens[1]);
+    targetNode1 = fSystem.getSemiFileSystemNode(tokens[1]);
     
-    targetNode2 = fileSystem.getSemiFileSystemNode(tokens[2]);
+    targetNode2 = fSystem.getSemiFileSystemNode(tokens[2]);
     
     //Check if path1 is valid and the Directory already exists in the children 
     //of FileSystemNode given by path1
     if (targetNode1 != null && !targetNode1.isChildInside(
-        fileSystem.getPathLastEntry(tokens[1]))) {
+        fSystem.getPathLastEntry(tokens[1]))) {
         
       //Add Directory to the FileSystemNode given by path1
       targetNode1.addChild(new FileSystemNode(new Directory(
-          fileSystem.getPathLastEntry(tokens[1]))));
+          fSystem.getPathLastEntry(tokens[1]))));
         
         //Check if path2 is valid and if Directory already exists in the 
         //of FileSystemNode
         if (targetNode2 != null && !targetNode2.isChildInside(
-            fileSystem.getPathLastEntry(tokens[2]))) {
+            fSystem.getPathLastEntry(tokens[2]))) {
      
            //Add Directory to the FileSystemNode given by path2
            targetNode2.addChild(new FileSystemNode(new Directory(
-               fileSystem.getPathLastEntry(tokens[2]))));
+               fSystem.getPathLastEntry(tokens[2]))));
 
         }
     }
