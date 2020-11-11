@@ -31,13 +31,13 @@ import runtime.ErrorHandler;
 
 /**
  * Takes in an array of tokens from execution and executes the Echo command.
- * echo "STRING > OUTFILE does the following: If OUTFILE is not provided, print
- * STRING on the shell. Otherwise, put STRING into file OUTFILE. STRING is a
- * string of characters surrounded by double quotation marks. This creates a new
- * file if OUTFILE does not exists and erases the old contents if OUTFILE
+ * echo "STRING arrow OUTFILE does the following: If OUTFILE is not provided,
+ * print STRING on the shell. Otherwise, put STRING into file OUTFILE. STRING is
+ * a string of characters surrounded by double quotation marks. This creates a
+ * new file if OUTFILE does not exists and erases the old contents if OUTFILE
  * already exists. In either case, the only thing in OUTFILE should be STRING.
- * echo "STRING" >> OUTFILE: Like the previous command, but appends instead of
- * overwrites.
+ * echo "STRING" double_arrow OUTFILE: Like the previous command, but appends
+ * instead of overwrites.
  */
 public class Echo extends Command {
 
