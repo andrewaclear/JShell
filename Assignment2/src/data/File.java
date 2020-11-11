@@ -58,7 +58,7 @@ public class File {
   /**
    * setFileName sets the fileName of this File to the parameter fileName
    *
-   * @param name, a String
+   * @param fileName, a String
    */
   public void setFileName(String fileName) {
     this.fileName = fileName;
