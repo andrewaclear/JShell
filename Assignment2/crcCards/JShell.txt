@@ -1,4 +1,4 @@
-Class name: Shell
+Class name: JShell
 
 Parent class: None
 

@@ -8,4 +8,4 @@ Responsibilities:
 -Displays an error message when the given command is nonexistent
 
 Collaborators: 
--None
+-StandardOutput
