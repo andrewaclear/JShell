@@ -1,0 +1,15 @@
+Class name: Move
+
+Parent class (if any): Copy
+
+Subclasses (if any): None
+
+Responsibilities:
+-Move a File or Directory to another location
+    -Copy the contents of the first parameter path into the path given in the second parameter
+    -Remove the File or Directory denoted by the first parameter
+
+Collaborators:
+-FileSystem
+-Remove
+-ErrorHandler

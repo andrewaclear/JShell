@@ -1,0 +1,14 @@
+Class name: Get
+
+Parent class (if any): Command
+
+Subclasses (if any): None
+
+Responsibilities:
+-Retrieves the File at given URL
+-Adds the retrieved File to the current Directory
+
+Collaborators:
+-FileSystem
+-ErrorHandler
+-StandardOutput
