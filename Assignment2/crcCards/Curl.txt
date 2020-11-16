@@ -1,4 +1,4 @@
-Class name: Get
+Class name: Curl
 
 Parent class (if any): Command
 
