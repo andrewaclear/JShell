@@ -5,7 +5,7 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities:
--Loads the state of FileSystem in my computer
+-Load the state the of FileSystem in my computer.
 
 Collaborators:
 -ErrorHandler
