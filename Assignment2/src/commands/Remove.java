@@ -10,7 +10,7 @@ public class Remove extends Command {
     public Remove() {
       this.setIdentifier("rm");
   
-      // ChangeDirectory must have two tokens
+      // Remove must only have two tokens
       this.setMaxNumOfArguments(2);
       this.setMinNumOfArguments(2);
   
@@ -20,7 +20,8 @@ public class Remove extends Command {
   
       // Description
       this.setDescription("Removes the directory from the fileSystem "
-          + "including the children of the directory");
+          + "including the children of the directory as well as the subpaths "
+          + "in the stack");
   }
     
     public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
@@ -32,10 +33,13 @@ public class Remove extends Command {
         beforeNode = fileSystem.getSemiFileSystemNode(tokens[1]);
         
         if (beforeNode != null) {
-          if (!fileSystem.getCurrentDirectory().getPath().startsWith(tokens[1])) {
+          if (!fileSystem.getCurrentDirectory().getPath().startsWith(
+              fileSystem.getFileSystemNode(tokens[1]).getPath())) {
             
             beforeNode.removeChild(fileSystem.getPathLastEntry(tokens[1]));
-            cache.removeDirectory(tokens[1]);
+            
+            cache.removeDirectory(fileSystem.getFileSystemNode(
+                tokens[1]).getPath());
             
           } else {
             

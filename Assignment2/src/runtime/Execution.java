@@ -107,6 +107,7 @@ public class Execution {
     commandHashMap.put("pwd", "commands.PrintWorkingDirectory");
     commandHashMap.put("pushd", "commands.PushDirectory");
     commandHashMap.put("rm", "commands.Remove");
+    commandHashMap.put("tree", "commands.Tree");
   }
 }
 
