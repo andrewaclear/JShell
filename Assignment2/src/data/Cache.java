@@ -82,4 +82,17 @@ public class Cache {
   public void pushDirectoryStack(String path) {
     dirStack.push(path);
   }
+
+  /**
+   * Remove all the paths in dirStack that are path or sub-directories of path.
+   * 
+   * @param path, path of directory to be removed
+   */
+  public void removeDirectory(String path) {
+    for (int i = 0; i < dirStack.size(); i++) {
+      if (path.equals(dirStack.get(i).substring(0, path.length()))) {
+        dirStack.remove(i);
+      }
+    }
+  }
 }
