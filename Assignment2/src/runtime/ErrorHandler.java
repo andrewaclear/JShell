@@ -175,5 +175,12 @@ public class ErrorHandler {
   public static void invalidPath(String givenPath) {
     StandardOutput.println("The given : " + givenPath + " is not a valid path");
   }
+  
+  public static void removeDirectoryError(String givenPath) {
+    StandardOutput.println("The given path: " + givenPath 
+        + " cannot be removed because it is a "
+        + "subpath to the current directory");
+  }
+  
 
 }

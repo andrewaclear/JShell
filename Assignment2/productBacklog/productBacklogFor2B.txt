@@ -19,6 +19,6 @@ As an user, I want to move a directory or file to another directory.            
 As an user, I want to copy a directory.                                                               ~  3.5 hr
 As an user, I want to retrieve a file from the internet.                                              ~  2 hr
 As an user, I want to save the state of the JShell on my computer.                                    ~  5 hr
-As an user, I want to load the state of a JShell on my computer.                                      ~  4 hr
+As an user, I want to load the state of a Jshell on my computer.                                      ~  4 hr
 As an user, I want to be able to search for directories or files.                                     ~  5 hr
-As an user, I want to see the whole JShell as a tree.                                                 ~  5 hr
+As an user, I want to see the whole FileSystem as a tree.                                                 ~  5 hr

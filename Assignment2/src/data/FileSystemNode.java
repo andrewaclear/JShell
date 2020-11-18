@@ -175,5 +175,18 @@ public class FileSystemNode {
     return false;
 
   }
+  
+  
+  public void removeChild(String directoryName) {
+    
+    int index = 0;
+    
+    for (FileSystemNode child : this.children) {
+      if (child.getDirectory().getDirectoryName().equals(directoryName)) {
+        this.children.remove(index);
+      }
+      index += 1;
+    }
+  }
 
 }
