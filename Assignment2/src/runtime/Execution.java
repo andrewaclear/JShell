@@ -106,6 +106,7 @@ public class Execution {
     commandHashMap.put("popd", "commands.PopDirectory");
     commandHashMap.put("pwd", "commands.PrintWorkingDirectory");
     commandHashMap.put("pushd", "commands.PushDirectory");
+    commandHashMap.put("rm", "commands.Remove");
   }
 }
 
