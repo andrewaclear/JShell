@@ -67,24 +67,24 @@ public class ChangeDirectory extends Command {
    * after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fileSystem, an instance of FileSystem class to read and write to the
+   * @param fSystem, an instance of FileSystem class to read and write to the
    *        file structure.
    * @param cache, stores the history and directory stack of the running
    *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fileSystem, Cache cache) {
+  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
 
     FileSystemNode targetNode = null;
 
     // Set targetNode to the FileSystemNode that the path leads to
-    targetNode = fileSystem.getFileSystemNode(tokens[1]);
+    targetNode = fSystem.getFileSystemNode(tokens[1]);
 
     // Check if the targetNode is in the root
     if (targetNode != null) {
       // Set the current Directory to the targetNode
-      fileSystem.setCurrentDirectory(targetNode);
+      fSystem.setCurrentDirectory(targetNode);
     }
 
     return true;
