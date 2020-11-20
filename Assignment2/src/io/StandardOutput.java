@@ -24,6 +24,9 @@
 // *********************************************************
 package io;
 
+import commands.EchoToFile;
+import data.File;
+
 /**
  * Defines how the system prints out to the shell.
  */
@@ -38,6 +41,15 @@ public class StandardOutput {
   public static void println(String message) {
     System.out.println(message);
   }
+
+  public static void println(String message, File outFile, boolean append) {
+    if (append) {
+      // echo to file and let echo deal with it
+      // EchoToFile echo = new EchoToFile();
+      // echo.to
+    }
+  }
+
 
   /**
    * Prints message out to the shell without adding a line return.
