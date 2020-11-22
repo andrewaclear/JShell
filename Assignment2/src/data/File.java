@@ -33,8 +33,8 @@ public class File {
   /*
    * A File has two Strings fileName and content
    */
-  String fileName = "";
-  String content = "";
+  private String fileName = "";
+  private String content = "";
 
   /**
    * Constructor for File class. It initializes fileName to the parameter
