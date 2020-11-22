@@ -24,10 +24,8 @@
 // *********************************************************
 package commands;
 
-import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
-import data.Cache;
 
 /**
  * Change directory to DIR, which may be relative to the current directory or
