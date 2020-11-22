@@ -80,7 +80,7 @@ public class Manual extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
     int i = 1;
     while (i < tokens.length) {
       // If command is recognized, then print manual for it

@@ -74,7 +74,7 @@ public class ChangeDirectory extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
 
     FileSystemNode targetNode = null;
 

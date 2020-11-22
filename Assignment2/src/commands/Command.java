@@ -164,7 +164,7 @@ public class Command {
    *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
     return true;
   }
 }

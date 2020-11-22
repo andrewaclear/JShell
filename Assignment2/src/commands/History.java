@@ -87,7 +87,7 @@ public class History extends Command {
    */
 
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
     // start counting from
     int start;
     // size of history

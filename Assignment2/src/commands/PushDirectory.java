@@ -70,7 +70,7 @@ public class PushDirectory extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
 
     FileSystemNode node = fSystem.getFileSystemNode(tokens[1]);
     // if the directory exists, push the current directory and go to the given
