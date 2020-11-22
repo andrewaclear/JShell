@@ -24,7 +24,8 @@
 // *********************************************************
 package data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Data type that contains a list of Files and has a name/identifier
