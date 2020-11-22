@@ -25,6 +25,7 @@
 package commands;
 
 import data.FileSystem;
+import driver.JShell;
 import data.Cache;
 import io.StandardOutput;
 
@@ -67,7 +68,9 @@ public class PrintWorkingDirectory extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
+    
     // Print the path of the current directory
     StandardOutput.println(fSystem.getCurrentDirectory().getPath());
 

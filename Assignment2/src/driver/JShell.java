@@ -75,8 +75,7 @@ public class JShell {
       // add line to history
       cache.addHistoryLine(input.currentLine);
       // Parses input into tokens and then executes the command
-      run = execute.executeCommand(parse.parse(input.currentLine), fSystem,
-          cache);
+      run = execute.executeCommand(parse.parse(input.currentLine), this);
     }
     input.close();
   }

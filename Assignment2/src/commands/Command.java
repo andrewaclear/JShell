@@ -24,7 +24,7 @@
 // *********************************************************
 package commands;
 
-import data.*;
+import driver.JShell;
 
 /**
  * Command is the super class which defines the structure of all commands, their

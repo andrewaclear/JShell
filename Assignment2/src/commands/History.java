@@ -25,6 +25,7 @@
 package commands;
 
 import data.*;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -88,6 +89,8 @@ public class History extends Command {
 
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     // start counting from
     int start;
     // size of history

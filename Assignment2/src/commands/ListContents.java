@@ -26,6 +26,7 @@ package commands;
 
 import java.util.List;
 import data.*;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -165,6 +166,8 @@ public class ListContents extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     String path;
     // success will be set to false if nothing is found
     boolean success = true;

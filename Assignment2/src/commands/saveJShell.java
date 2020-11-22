@@ -2,6 +2,7 @@ package commands;
 
 import data.Cache;
 import data.FileSystem;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 import java.io.*;
@@ -27,7 +28,9 @@ public class saveJShell extends Command {
   }
   
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     try {
       FileOutputStream file = new FileOutputStream(tokens[1]);
       ObjectOutputStream outStream = new ObjectOutputStream(file);

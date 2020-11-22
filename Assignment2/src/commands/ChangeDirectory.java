@@ -26,6 +26,7 @@ package commands;
 
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 import data.Cache;
 
 /**
@@ -79,12 +80,12 @@ public class ChangeDirectory extends Command {
     FileSystemNode targetNode = null;
 
     // Set targetNode to the FileSystemNode that the path leads to
-    targetNode = fSystem.getFileSystemNode(tokens[1]);
+    targetNode = shell.getfSystem().getFileSystemNode(tokens[1]);
 
     // Check if the targetNode is in the root
     if (targetNode != null) {
       // Set the current Directory to the targetNode
-      fSystem.setCurrentDirectory(targetNode);
+      shell.getfSystem().setCurrentDirectory(targetNode);
     }
 
     return true;

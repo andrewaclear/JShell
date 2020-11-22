@@ -28,6 +28,7 @@ import data.Cache;
 import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 
 /**
  * This command takes in two arguments only. Create directories, each of which
@@ -80,7 +81,9 @@ public class MakeDirectory extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
+    
     FileSystemNode targetNode1 = null, targetNode2 = null;
 
     targetNode1 = fSystem.getSemiFileSystemNode(tokens[1]);

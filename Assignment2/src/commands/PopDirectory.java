@@ -25,6 +25,7 @@
 package commands;
 
 import data.*;
+import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
@@ -68,7 +69,9 @@ public class PopDirectory extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
+    
     try {
       String path = cache.popDirectoryStack();
       fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));

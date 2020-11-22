@@ -70,7 +70,7 @@ public class Execution {
         if ((command.getMaxNumOfArguments() < 0
             || tokens.length <= command.getMaxNumOfArguments())
             && tokens.length >= command.getMinNumOfArguments()) {
-          run = command.run(tokens, fSystem, cache);
+          run = command.run(tokens, shell);
         } else if (tokens.length > command.getMaxNumOfArguments()) {
           ErrorHandler.tooManyArguments(command);
         } else if (tokens.length < command.getMinNumOfArguments()) {
@@ -108,6 +108,8 @@ public class Execution {
     commandHashMap.put("pushd", "commands.PushDirectory");
     commandHashMap.put("rm", "commands.Remove");
     commandHashMap.put("tree", "commands.Tree");
+    commandHashMap.put("saveJShell", "commands.saveJShell");
+    commandHashMap.put("loadJShell", "commands.loadJShell");
   }
 }
 

@@ -25,6 +25,7 @@
 package commands;
 
 import data.*;
+import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
@@ -71,7 +72,8 @@ public class PushDirectory extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     FileSystemNode node = fSystem.getFileSystemNode(tokens[1]);
     // if the directory exists, push the current directory and go to the given
     if (node != null) {

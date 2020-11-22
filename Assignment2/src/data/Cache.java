@@ -30,12 +30,14 @@ import java.util.List;
 /**
  * Stores the history and directory stack of the current session of the shell.
  */
-public class Cache {
+public class Cache implements java.io.Serializable {
 
   // history
   private List<String> history = new LinkedList<String>();
+ 
   // directory stack
   private LinkedList<String> dirStack = new LinkedList<String>();
+
 
   /**
    * add user input line to the history list
