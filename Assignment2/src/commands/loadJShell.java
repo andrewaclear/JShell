@@ -34,8 +34,8 @@ public class loadJShell extends Command {
     try {
       FileInputStream file = new FileInputStream(tokens[1]);
       ObjectInputStream inStream = new ObjectInputStream(file);
-      JShell.setfSystem((FileSystem) inStream.readObject());
-      JShell.setCache((Cache) inStream.readObject());
+      shell.setfSystem((FileSystem) inStream.readObject());
+      shell.setCache((Cache) inStream.readObject());
      
       inStream.close();
       file.close();
