@@ -1,0 +1,60 @@
+User Stories from Product Backlog that we will address in this sprint:
+
+a) As an user, I want to see error messages when there is an error or I put in bad input.                ~  5 hr
+b) As an user, I want to create directories.                                                             ~  5 hr
+c) As an user, I want to change directories.                                                             ~  3 hr
+d) As an user, I want to see the contents of a directory.                                                ~  2 hr
+e) As an user, I want to see the contents of a file or document.                                         ~  2 hr
+f) As an user, I want to know the full path of my current directory.                                     ~  2 hr
+g) As an user, I want to save the path to the current directory in a stack.                              ~  1.5 hr
+h) As an user, I want to take a path from the stack of directories.                                      ~  1.5 hr
+i) As an user, I want to know which commands I have used so far.                                         ~  2 hr
+   As an user, I want to write to a file, document, or print to the shell.                                  ~  2.5 hr
+As an user, I want to see documentation for an available command.                                        ~  1.5 hr
+As an user, I want to redirect into a file the output of a command.                                      ~  3 hr
+As an user, I want to remove a directory.                                                                ~  4 hr
+As an user, I want to see all the subdirectories, and their content, of a directory.                     ~  3 hr
+As an user, I want to move a directory or file to another directory.                                     ~  2 hr
+As an user, I want to copy a directory.                                                                  ~  3.5 hr
+As an user, I want to retrieve a file from the internet.                                                 ~  2 hr
+As an user, I want to save the state of the JShell on my computer.                                       ~  5 hr
+As an user, I want to load the state of a Jshell on my computer.                                         ~  4 hr
+As an user, I want to be able to search for directories or files.                                        ~  5 hr
+As an user, I want to see the whole FileSystem as a tree.                                                ~  5 hr
+
+Specific tasks to be accomplished:
+
+a-1. (ErrorHandler) Update the ErrorHandler so that it works correctly with redirection.
+a-2. (ErrorHandler) Implement any missing error cases for the commands.
+a-3. (Testing) Test the ErrorHandler is behaving as expected by creating test cases for it.
+b-1. (MakeDirectory) Update MakeDirectory to handle the a list of directories with arbitrary size rather than only two
+b-2. (MakeDirectory) Ensure MakeDirectory is stopping at the right occasion and displaying a proper error message.
+b-3. (Testing) Create sufficient test cases for MakeDirectory to guarantee it is behaving as expected. 
+c-1. (ChangeDirectory and FileSystem) Update the FileSystem path traversal so that ChangeDirectory behaves as wanted
+c-2. (ChangeDirectory) Ensure ChangeDirectory is displaying the right error message.
+c-3. (Testing) Check ChangeDirectory is working properly by making test cases 
+d-1. (ListContents) Update the implementation of ListContents so that it works as required when having the parameter -R
+d-2. (ListContents and ErrorHandler) Ensure ListContents is properly displaying its error messages.
+d-3. (ListContents) Ensure ListContents works with redirection. 
+d-4. (Testing) Test the ListContents is behaving as expected by creating test cases for it.
+e-1. (Concatenate) Update the Concatenate so that it works as expected with a list of files
+e-2. (Concatenate) Ensure Concatenate  
+e-3. (Concatenate) Verify Concante works with redirection.
+e-4. (Testing) Check ListContents is working properly by creating test cases
+
+
+
+f-1. Update & Review CRC cards related to tasks a)
+f-2. Update & Review CRC cards related to tasks b) d)
+f-3. Update & Review CRC cards related to tasks c) d)
+
+These tasks are assigned as follows:
+
+User: Christian Chen Liu
+Tasks:
+
+User: Andrew D'Amario
+Tasks: 
+
+User: Christopher Suh
+Tasks: 
