@@ -47,20 +47,24 @@ import data.*;
  */
 public class JShell {
 
-  /**
-   * Run main to run the java shell.
-   * 
-   * @param args, required arguments
-   */
-  public static void main(String[] args) {
+  private boolean run;
+  private Parser parse;
+  private Execution execute;
+  private StandardInput input;
+  private FileSystem fSystem;
+  private Cache cache;
 
-    boolean run = true;
-    Parser parse = new Parser();
-    Execution execute = new Execution();
-    StandardInput input = new StandardInput();
-    FileSystem fSystem = FileSystem.createFileSystem();
-    Cache cache = new Cache();
+  public JShell() {
+    this.run = true;
+    this.parse = new Parser();
+    this.execute = new Execution();
+    this.input = new StandardInput();
+    // TODO: set normal constructor
+    this.fSystem = FileSystem.createFileSystem();
+    this.cache = new Cache();
+  }
 
+  public void runShell() {
     // Main program loop
     while (run) {
       StandardOutput
@@ -75,5 +79,31 @@ public class JShell {
           cache);
     }
     input.close();
+  }
+
+  public FileSystem getfSystem() {
+    return fSystem;
+  }
+
+  public void setfSystem(FileSystem fSystem) {
+    this.fSystem = fSystem;
+  }
+
+  public Cache getCache() {
+    return cache;
+  }
+
+  public void setCache(Cache cache) {
+    this.cache = cache;
+  }
+
+  /**
+   * Run main to run the java shell.
+   * 
+   * @param args, required arguments
+   */
+  public static void main(String[] args) {
+    JShell shell = new JShell();
+    shell.runShell();
   }
 }
