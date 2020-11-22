@@ -75,8 +75,6 @@ public class Echo extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
     // If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
