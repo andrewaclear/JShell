@@ -27,6 +27,7 @@ package commands;
 import java.util.HashMap;
 
 import data.*;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -81,6 +82,8 @@ public class Manual extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     int i = 1;
     while (i < tokens.length) {
       // If command is recognized, then print manual for it

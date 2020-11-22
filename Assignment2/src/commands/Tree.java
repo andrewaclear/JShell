@@ -4,6 +4,7 @@ import data.Cache;
 import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 import io.StandardOutput;
 
 public class Tree extends Command {
@@ -41,7 +42,8 @@ public class Tree extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   public boolean run(String[] tokens, JShell shell) {
-    
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     int level = 0;
     
     recursiveTreeDisplay(fSystem.getRoot(), level);

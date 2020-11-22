@@ -30,7 +30,7 @@ import runtime.ErrorHandler;
 /**
  * Data type of the tree structure required for a FileSystem
  */
-public class FileSystemNode {
+public class FileSystemNode implements java.io.Serializable {
 
   /**
    * A FileSystemNode has a Directory directory, an ArrayList of FileSystemNodes

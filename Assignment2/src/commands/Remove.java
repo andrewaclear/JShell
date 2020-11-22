@@ -3,6 +3,7 @@ package commands;
 import data.Cache;
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 import runtime.ErrorHandler;
 
 public class Remove extends Command {
@@ -44,7 +45,8 @@ public class Remove extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   public boolean run(String[] tokens, JShell shell) {
-    
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     FileSystemNode beforeNode = null;
     
     if (fSystem.getFileSystemNode(tokens[1]) != null) {

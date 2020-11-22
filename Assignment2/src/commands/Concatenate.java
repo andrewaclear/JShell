@@ -27,6 +27,7 @@ package commands;
 import data.Cache;
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -82,6 +83,7 @@ public class Concatenate extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
     int i = 1;
     String path, name;
     FileSystemNode node;

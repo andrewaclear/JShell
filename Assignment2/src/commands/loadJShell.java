@@ -28,7 +28,9 @@ public class loadJShell extends Command {
   }
   
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) { 
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     try {
       FileInputStream file = new FileInputStream(tokens[1]);
       ObjectInputStream inStream = new ObjectInputStream(file);

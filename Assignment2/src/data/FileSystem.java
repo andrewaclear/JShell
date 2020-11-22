@@ -30,7 +30,7 @@ import runtime.ErrorHandler;
  * Maintains a tree structure of FileSystemNodes: keeping both the root of the
  * tree and the current position in the tree
  */
-public class FileSystem {
+public class FileSystem implements java.io.Serializable {
 
   /**
    * FileSystem has a FileSystem fileSystem, a FileSystemNode root, and a

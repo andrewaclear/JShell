@@ -28,7 +28,7 @@ package data;
 /**
  * Data type that contains a string and has a name/identifier
  */
-public class File {
+public class File implements java.io.Serializable {
 
   /*
    * A File has two Strings fileName and content

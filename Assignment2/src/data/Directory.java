@@ -29,7 +29,7 @@ import java.util.*;
 /**
  * Data type that contains a list of Files and has a name/identifier
  */
-public class Directory {
+public class Directory implements java.io.Serializable {
 
   /*
    * A Directory has a String directoryName and an ArrayList of File: files

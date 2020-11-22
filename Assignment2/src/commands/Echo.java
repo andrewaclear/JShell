@@ -25,6 +25,7 @@
 package commands;
 
 import data.*;
+import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
 
@@ -74,6 +75,8 @@ public class Echo extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     // If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
@@ -86,7 +89,7 @@ public class Echo extends Command {
         || tokens[2].equals(">>")) {
       if (tokens[1].charAt(0) == '"') {
         EchoToFile echoFile = new EchoToFile();
-        echoFile.run(tokens, fSystem, cache);
+        echoFile.run(tokens, shell);
       } else {
         ErrorHandler.missingString(this, tokens);
       }

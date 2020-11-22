@@ -28,6 +28,7 @@ import data.Cache;
 import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
+import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
@@ -120,6 +121,8 @@ public class EchoToFile extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
     String path = tokens[3];
     String name;
     FileSystemNode node;
