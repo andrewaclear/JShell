@@ -66,7 +66,7 @@ public class PrintWorkingDirectory extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
 
     // Print the path of the current directory
     StandardOutput.println(fSystem.getCurrentDirectory().getPath());

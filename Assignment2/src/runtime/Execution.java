@@ -25,6 +25,7 @@
 package runtime;
 
 import data.*;
+import driver.JShell;
 import commands.*;
 import java.util.HashMap;
 
@@ -57,8 +58,7 @@ public class Execution {
    * @param cache, store the current directory stack
    * @return returns a boolean true when exit is entered into terminal
    */
-  public boolean executeCommand(String[] tokens, FileSystem fSystem,
-      Cache cache) {
+  public boolean executeCommand(String[] tokens, JShell shell) {
     boolean run = true;
 
     try {

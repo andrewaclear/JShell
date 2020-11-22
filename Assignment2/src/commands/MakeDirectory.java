@@ -79,7 +79,7 @@ public class MakeDirectory extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, FileSystem fSystem, Cache cache) {
+  public boolean run(String[] tokens, JShell shell) {
 
     FileSystemNode targetNode1 = null, targetNode2 = null;
 
