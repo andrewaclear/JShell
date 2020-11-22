@@ -77,8 +77,8 @@ t-2. (Search and ErrorHandler) Verify that Search displays an appropriate error 
 t-3. (test) Ensure Search is behaving as expected by the creation of test cases.
 u-1. (test) Test Tree is correctly displaying the FileSystem as a tree structure by creating test cases.
 v-1. Update & Review CRC cards related to tasks and make sure Classes have the appropriate Collaborators b) c) f) m) o) p) u)
-v-2. Update & Review CRC cards related to tasks and make sure Classes have the appropriate Collaborators 
-v-3. Update & Review CRC cards related to tasks and make sure Classes have the appropriate Collaborators
+v-2. Update & Review CRC cards related to tasks and make sure Classes have the appropriate Collaborators a) d) g) h) i) l) n) t) 
+v-3. Update & Review CRC cards related to tasks and make sure Classes have the appropriate Collaborators e) j) k) l) q) r) s) 
 
 These tasks are assigned as follows:
 
