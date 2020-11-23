@@ -42,11 +42,18 @@ public class StandardOutput {
     System.out.println(message);
   }
 
+  public static boolean containsArrow(String[] tokens) {
+    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
+
+    return tokens[indexArrow].equals(">") ||
+          tokens[indexArrow].equals(">>");
+
+  }
+
   public static void println(String[] tokens, String output, JShell shell) {
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
    
-    boolean  containsArrow = tokens[indexArrow].equals(">") ||
-        tokens[indexArrow].equals(">>");
+    boolean containsArrow = containsArrow(tokens);
 
     if (!containsArrow) {
       System.out.println(output);
