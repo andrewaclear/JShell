@@ -129,8 +129,9 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    */
-  public static void invalidPath(Command command) {
-    StandardOutput.println(command.getIdentifier() + ": invalid path");
+  public static void invalidPath(Command command, String path) {
+    StandardOutput.println(command.getIdentifier() +": \"" + path 
+        + "\": No such file or directory");
   }
 
   /**
@@ -140,8 +141,8 @@ public class ErrorHandler {
    * @param tokens, array of string tokens holding command arguments
    */
   public static void invalidName(Command command, String[] tokens) {
-    StandardOutput.println(command.getIdentifier() + ": " + tokens[3]
-        + ": invalid file and directory name");
+    StandardOutput.println(command.getIdentifier() + ": \"" + tokens[3]
+        + "\": Invalid file and/or directory name");
   }
 
   /**

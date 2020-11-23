@@ -24,7 +24,6 @@
 // *********************************************************
 package commands;
 
-import data.Cache;
 import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
@@ -122,33 +121,23 @@ public class EchoToFile extends Command {
   @Override
   public boolean run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    String path = tokens[3];
+    // String path = tokens[3];
     String name;
     FileSystemNode node;
 
-    try {
-      // Only file name and no path (Located in currentDirectory)
-      if (!path.contains("/")) {
-        node = fSystem.getCurrentDirectory();
-        name = path;
-      } else { // Must follow path to find location of file
-        // remove fileName from path
-        name = path.substring(path.lastIndexOf('/') + 1);
-        path = path.substring(0, path.lastIndexOf('/') + 1);
-        // True then path is relative, else path is absolute
-        if (!(path.charAt(0) == '/')) {
-          path = fSystem.getCurrentDirectory().getPath() + path;
-        }
-        node = tryGetFileSystemNode(path, fSystem);
-      }
-      if (name.matches("(.+)?[ /.!@#$%^&*(){}~|<>?](.+)?")) {
-        ErrorHandler.invalidName(this, tokens);
-        return true;
-      }
-      toFile(tokens, node, name);
-    } catch (Exception e) {
-      ErrorHandler.invalidPath(this);
+    name = fSystem.getPathLastEntry(tokens[3]);
+    node = fSystem.getSemiFileSystemNode(tokens[3]);
+
+    if (name.matches("(.+)?[ /.!@#$%^&*(){}~|<>?](.+)?")) {
+      ErrorHandler.invalidName(this, tokens);
+      return true;
     }
+    if (node != null && !name.equals("")) {
+      toFile(tokens, node, name);
+    } else {
+      ErrorHandler.invalidPath(this, tokens[3]);
+    }
+
     return true;
   }
 }
