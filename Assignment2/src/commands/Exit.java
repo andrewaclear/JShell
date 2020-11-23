@@ -24,8 +24,6 @@
 // *********************************************************
 package commands;
 
-import data.Cache;
-import data.FileSystem;
 import driver.JShell;
 
 /**

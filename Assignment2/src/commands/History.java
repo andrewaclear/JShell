@@ -24,7 +24,7 @@
 // *********************************************************
 package commands;
 
-import data.*;
+import data.Cache;
 import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
@@ -44,7 +44,7 @@ public class History extends Command {
     this.setIdentifier("history");
     this.setDescription("This command will print out recent commands,"
         + " one command per line. ");
-    this.setMaxNumOfArguments(2);
+    this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("too many arguments");
     this.setMissingOperand("");
@@ -89,15 +89,17 @@ public class History extends Command {
 
   @Override
   public boolean run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
+    String output = "";
+    boolean containArrow = StandardOutput.containsArrow(tokens);
+
     // start counting from
     int start;
     // size of history
     int n = cache.getHistorySize();
 
     // if no number is given, start from the beginning
-    if (tokens.length == 1)
+    if (tokens.length == 1 || (tokens.length == 3 && containArrow))
       start = 0;
     else {
       // try to get the truncate value to start at
@@ -109,17 +111,20 @@ public class History extends Command {
       else if (truncate >= 0)
         start = n - truncate;
       else {
-        ErrorHandler.badInput(this, "operand must be a non-negative integer");
+        ErrorHandler.badInput(this, "Operand must be a non-negative integer");
         return true;
       }
     }
 
+
     for (int i = start; i < n; i++) {
       // for each line, print the history line from start to n-1 (the most
       // recent) numbering starting at 1 (i+1)
-      StandardOutput
-          .println(String.valueOf(i + 1) + ". " + cache.getHistory(i));
+      output += String.valueOf(i + 1) + ". " + cache.getHistory(i);
+      if (i+1 < n) output += "\n";
     }
+
+    StandardOutput.println(tokens, output, shell);
 
     return true;
   }

@@ -70,11 +70,7 @@ public class Concatenate extends Command {
     String name;
     FileSystemNode node;
     String output = "";
-    boolean containsArrow = false;
-    
-    int indexArrow = tokens.length - 2;
-    containsArrow = tokens[indexArrow].equals(">") ||
-        tokens[indexArrow].equals(">>");
+    boolean containsArrow = StandardOutput.containsArrow(tokens);
     int shift = containsArrow? - 2 : 0;
     
     while (i < tokens.length && !tokens[i].equals(">") && 
