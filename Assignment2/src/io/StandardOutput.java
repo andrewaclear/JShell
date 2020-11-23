@@ -24,8 +24,8 @@
 // *********************************************************
 package io;
 
-import commands.EchoToFile;
-import data.File;
+import commands.Echo;
+import driver.JShell;
 
 /**
  * Defines how the system prints out to the shell.
@@ -42,11 +42,24 @@ public class StandardOutput {
     System.out.println(message);
   }
 
-  public static void println(String message, File outFile, boolean append) {
-    if (append) {
-      // echo to file and let echo deal with it
-      // EchoToFile echo = new EchoToFile();
-      // echo.to
+  public static void println(String[] tokens, String output, JShell shell) {
+    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
+   
+    boolean  containsArrow = tokens[indexArrow].equals(">") ||
+        tokens[indexArrow].equals(">>");
+
+    if (!containsArrow) {
+      System.out.println(output);
+    } else {
+      String[] tokens2 = new String[4];
+      
+      tokens2[0] = "echo";
+      tokens2[1] = "\"" + output + "\"";
+      tokens2[2] = tokens[indexArrow];
+      tokens2[3] = tokens[indexArrow + 1];
+
+      Echo echo = new Echo();
+      echo.run(tokens2, shell);
     }
   }
 
