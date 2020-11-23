@@ -62,25 +62,6 @@ public class EchoToFile extends Command {
   }
 
   /**
-   * Tries to get a FileSystemNode from path, return a FileSystemNode if
-   * successful, else return null.
-   * 
-   * @param path, a path to a file in the file system
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @return returns a FileSystemNode at the specified path
-   */
-  private FileSystemNode tryGetFileSystemNode(String path, FileSystem fSystem) {
-    try {
-      FileSystemNode node = fSystem.getFileSystemNode(path);
-      return node;
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-
-  /**
    * Updates a file's contents specified from tokens or creates a new file if
    * file doesn't exist.
    * 
