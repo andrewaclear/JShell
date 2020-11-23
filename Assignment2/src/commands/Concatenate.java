@@ -24,6 +24,7 @@
 // *********************************************************
 package commands;
 
+import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
@@ -53,24 +54,6 @@ public class Concatenate extends Command {
   }
 
   /**
-   * Tries to get a FileSystemNode from path, return a FileSystemNode if
-   * successful, else return null.
-   * 
-   * @param path, a path to a file in the file system
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @return returns a FileSystemNode at the specified path
-   */
-  private FileSystemNode tryGetFileSystemNode(String path, FileSystem fSystem) {
-    try {
-      FileSystemNode node = fSystem.getFileSystemNode(path);
-      return node;
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-  /**
    * Prints the contents of a specified file to the terminal.
    * 
    * @param tokens, array of string tokens holding command arguments
@@ -84,45 +67,38 @@ public class Concatenate extends Command {
   public boolean run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     int i = 1;
-    String path, name;
+    String name;
     FileSystemNode node;
-    try {
-      while (i < tokens.length) {
-        path = tokens[i];
+    String output = "";
+    boolean containsArrow = false;
+    
+    int indexArrow = tokens.length - 2;
+    containsArrow = tokens[indexArrow].equals(">") ||
+        tokens[indexArrow].equals(">>");
+    int shift = containsArrow? - 2 : 0;
+    
+    while (i < tokens.length && !tokens[i].equals(">") && 
+        !tokens[i].equals(">>")) {
 
-        // Only file name and no path (Located in currentDirectory)
-        if (!path.contains("/")) {
-          node = fSystem.getCurrentDirectory();
-          name = path;
-        } else { // Must follow path to find location of file
-          // remove fileName from path
-          name = path.substring(path.lastIndexOf('/') + 1);
-          path = path.substring(0, path.lastIndexOf('/') + 1);
-          // True then path is relative, else path is absolute
-          if (!(path.charAt(0) == '/')) {
-            path = fSystem.getCurrentDirectory().getPath() + path;
-          }
+      name = fSystem.getPathLastEntry(tokens[i]);
+      node = fSystem.getSemiFileSystemNode(tokens[i]);
+      // }
+      File file = node.getDirectory().getFile(name);
+      if (node != null && file != null) {
 
-          node = tryGetFileSystemNode(path, fSystem);
+        output += file.getContent();
+        //small fix
+        if (i + 1 < tokens.length + shift) {
+          output += "\n\n\n";
         }
-
-        if (node.getDirectory().getFile(name) != null) {
-
-          StandardOutput
-              .println(node.getDirectory().getFile(name).getContent());
-
-          if (i + 1 < tokens.length) {
-            StandardOutput.println("\n\n\n");
-          }
-        } else {
-          ErrorHandler.fileNotFound(tokens[i]);
-          break;
-        }
-        i++;
+      } else {
+        ErrorHandler.fileNotFound(tokens[i]);
+        break;
       }
-    } catch (Exception e) {
-      ErrorHandler.invalidPath(this);
+      i++;
     }
+    
+    StandardOutput.println(tokens, output, shell);
 
     return true;
   }

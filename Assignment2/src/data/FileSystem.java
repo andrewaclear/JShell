@@ -115,19 +115,23 @@ public class FileSystem implements java.io.Serializable {
    */
   private boolean inappropriatePath(String givenPath) {
 
-    String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
+   // String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
 
     if (givenPath.indexOf("//") != -1) {
       ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
-
-    for (int i = 0; i < givenPath.length(); i = i + 1) {
+    
+    if (givenPath.matches("(.+)?[ .!@#$%^&*(){}~|<>?](.+)?")) {
+      ErrorHandler.inappropriatePath(givenPath);
+      return true;
+    }
+   /* for (int i = 0; i < givenPath.length(); i = i + 1) {
       if (inappropriateCharacters.indexOf(givenPath.charAt(i)) != -1) {
         ErrorHandler.inappropriatePath(givenPath);
         return true;
       }
-    }
+    }*/
 
     return false;
 
@@ -140,7 +144,7 @@ public class FileSystem implements java.io.Serializable {
    * 
    * @param givenPath A relative or full path
    * @return The FileSystemNode the givenPath refers to excluding the last entry
-   *         which is null if the givenPath is an invalid/inaproapiate path
+   *         which is null if the givenPath is an invalid/inappropriate path
    */
   public FileSystemNode getSemiFileSystemNode(String givenPath) {
 
