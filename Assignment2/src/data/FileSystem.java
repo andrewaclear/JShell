@@ -118,12 +118,12 @@ public class FileSystem implements java.io.Serializable {
    // String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
 
     if (givenPath.indexOf("//") != -1) {
-      ErrorHandler.inappropriatePath(givenPath);
+    //  ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
     
     if (givenPath.matches("(.+)?[ .!@#$%^&*(){}~|<>?](.+)?")) {
-      ErrorHandler.inappropriatePath(givenPath);
+    //  ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
    /* for (int i = 0; i < givenPath.length(); i = i + 1) {
@@ -242,7 +242,7 @@ public class FileSystem implements java.io.Serializable {
         childrenCounter += 1;
       }
       if (childrenCounter == totalChildren) {
-        ErrorHandler.invalidPath(givenPath);
+       // ErrorHandler.invalidPath(givenPath);
         return null;
       }
       childrenCounter = 0;
