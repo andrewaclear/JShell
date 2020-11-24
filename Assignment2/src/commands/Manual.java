@@ -62,6 +62,7 @@ public class Manual extends Command {
     descriptions.put("popd", new PopDirectory().getDescription());
     descriptions.put("pwd", new PrintWorkingDirectory().getDescription());
     descriptions.put("pushd", new PushDirectory().getDescription());
+    
 
     this.setIdentifier("man");
     this.setMaxNumOfArguments(-1);
