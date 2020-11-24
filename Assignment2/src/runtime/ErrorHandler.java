@@ -26,6 +26,7 @@ package runtime;
 
 import io.StandardOutput;
 import commands.Command;
+import commands.Manual;
 import data.FileSystemNode;
 
 
@@ -51,7 +52,7 @@ public class ErrorHandler {
    * @param tokens, array of string tokens holding command arguments
    */
   public static void commandNotFound(String[] tokens) {
-    StandardOutput.println(tokens[0] + ": command not found");
+    StandardOutput.println(tokens[0] + ": Command not found");
   }
 
   /**
@@ -59,8 +60,9 @@ public class ErrorHandler {
    * 
    * @param commandNotFound, name of command for which error occured
    */
-  public static void commandNotFoundManual(String commandNotFound) {
-    StandardOutput.println(commandNotFound + ": command not found");
+  public static void commandNotFoundManual(Manual man, String commandNotFound) {
+    StandardOutput.println(man.getIdentifier() + ": No manual entry for: " 
+      + commandNotFound);
   }
 
   /**
@@ -81,7 +83,7 @@ public class ErrorHandler {
    */
   public static void missingString(Command command, String[] tokens) {
     StandardOutput.println(command.getIdentifier() + ": " + tokens[1]
-        + ": no string found, format string as \"string\"");
+        + ": No string found, format string as \"string\"");
   }
 
   /**
@@ -99,15 +101,6 @@ public class ErrorHandler {
    */
   public static void badInput(Command command, String message) {
     StandardOutput.println(command.getIdentifier() + ": " + message);
-  }
-
-  /**
-   * Prints fileNotFound error message
-   * 
-   * @param file, name of file not found
-   */
-  public static void fileNotFound(String file) {
-    StandardOutput.println(file + ": file not found");
   }
   
   /**
@@ -131,7 +124,7 @@ public class ErrorHandler {
     for (int i = 1; i < tokens.length; i++) {
       StandardOutput.print(tokens[i] + " ");
     }
-    StandardOutput.print(": invalid combination of arguments\n");
+    StandardOutput.print(": Invalid combination of arguments\n");
   }
 
   /**
@@ -176,15 +169,6 @@ public class ErrorHandler {
   public static void inappropriatePath(String givenPath) {
     StandardOutput.println(
         "The given path : " + givenPath + " contains illicit characters");
-  }
-
-  /**
-   * Prints invalidPath error message
-   * 
-   * @param givenPath, the invalid path
-   */
-  public static void invalidPath(String givenPath) {
-    StandardOutput.println("The given : " + givenPath + " is not a valid path");
   }
   
   public static void removeDirectoryError(String givenPath) {

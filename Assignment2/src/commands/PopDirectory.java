@@ -76,7 +76,7 @@ public class PopDirectory extends Command {
       String path = cache.popDirectoryStack();
       fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));
     } catch (Exception e) {
-      ErrorHandler.badInput(this, "directory stack is empty");
+      ErrorHandler.badInput(this, "Directory stack is empty");
     }
 
     return true;

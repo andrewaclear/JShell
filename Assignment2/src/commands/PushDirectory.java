@@ -81,7 +81,7 @@ public class PushDirectory extends Command {
       fSystem.setCurrentDirectory(node);
       // else print error
     } else {
-      ErrorHandler.badInput(this, "invalid directory");
+      ErrorHandler.invalidPath(this, tokens[1]);
     }
     return true;
   }
