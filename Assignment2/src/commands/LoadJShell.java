@@ -7,14 +7,14 @@ import io.StandardOutput;
 import runtime.ErrorHandler;
 import java.io.*;
 
-public class loadJShell extends Command {
+public class LoadJShell extends Command {
 
   /**
    * Constructor for loadJShell class. It initializes identifier,
    * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
    * and description from its super class Commands.
    */
-  public loadJShell() {
+  public LoadJShell() {
     this.setIdentifier("saveJShell");
     this.setDescription(
         "The file FileName is some file that is stored on the actual filesystem"
@@ -29,8 +29,6 @@ public class loadJShell extends Command {
   
   @Override
   public boolean run(String[] tokens, JShell shell) { 
-    FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
     try {
       FileInputStream file = new FileInputStream(tokens[1]);
       ObjectInputStream inStream = new ObjectInputStream(file);
@@ -40,11 +38,8 @@ public class loadJShell extends Command {
       inStream.close();
       file.close();
       
-    } catch (IOException e) {
-      StandardOutput.println("Invalid filepath given");
-    } catch (ClassNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    } catch (IOException | ClassNotFoundException e) {
+      ErrorHandler.invalidPath(this, tokens[1]);
     }
 
     return true;

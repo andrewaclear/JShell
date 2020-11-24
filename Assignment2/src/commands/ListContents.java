@@ -57,23 +57,6 @@ public class ListContents extends Command {
   }
 
   /**
-   * Tries to get the file system node at the given path. Return null if it does
-   * not exits.
-   * 
-   * @param path, string of path to node
-   * @param fSystem, an instance of FileSystem
-   * @return returns the file system node if it exits, and null otherwise
-   */
-  private FileSystemNode tryGetFileSystemNode(String path, FileSystem fSystem) {
-    try {
-      FileSystemNode node = fSystem.getFileSystemNode(path);
-      return node;
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-  /**
    * List the sub folders and files at the given path in the file system. Prints
    * an error if the path does not exist in the file system.
    * 
@@ -85,68 +68,54 @@ public class ListContents extends Command {
    * @return returns a boolean true if it exits in the fSystem and has contents
    *         and false otherwise
    */
-  private boolean listSubFoldersFiles(String token, FileSystem fSystem,
-      String path) {
+  private String listSubFoldersFiles(String path, JShell shell) {
+
+    String output = "";
+    FileSystem fSystem = shell.getfSystem();
 
     // try to get folder at path
-    FileSystemNode node = tryGetFileSystemNode(path, fSystem);
-    boolean notEmpty = false;
+    FileSystemNode node = fSystem.getFileSystemNode(path);
 
     // if it exits
     if (node != null) {
       // print the given path with a colon when given
-      if (!token.equals(""))
-        StandardOutput.println(token + ":");
+      if (!path.equals("."))
+        output += path + ":\n";
 
       // get subFolders
       List<FileSystemNode> subFolders = node.getChildren();
       // print out sub-folders
       for (int i = 0; i < subFolders.size(); i++) {
-        StandardOutput
-            .println(subFolders.get(i).getDirectory().getDirectoryName());
+        output += subFolders.get(i).getDirectory().getDirectoryName() + "\n";
       }
 
       // get files
       List<File> files = node.getDirectory().getFiles();
       // print out files in directory
       for (int i = 0; i < files.size(); i++) {
-        StandardOutput.println(files.get(i).getFileName());
+        output += files.get(i).getFileName() + "\n";
       }
 
-      // set notEmpty if there are folders and/or files
-      if (subFolders.size() > 0 || files.size() > 0)
-        notEmpty = true;
-
+    // check if the token is just a file
     } else {
-      // check if the token is just a file
-
-      // everything up to the last slash is a folder path
-      String subPath = path.substring(0, path.lastIndexOf('/') + 1);
-      // try to get this folder
-      FileSystemNode subNode = tryGetFileSystemNode(subPath, fSystem);
+      // try to get parent folder of file
+      FileSystemNode subNode = fSystem.getSemiFileSystemNode(path);
       // the file name would be the last part after the last / in the path
-      String fileName = path.substring(path.lastIndexOf('/') + 1);
+      String fileName = fSystem.getPathLastEntry(path);
 
       // if the subfolder and file exits
       if (subNode != null && subNode.getDirectory().getFile(fileName) != null) {
-        // this files exists so notEmpty
-        notEmpty = true;
         // print the name of the the file
-        StandardOutput.println(token);
+        output += path + "\n";
       } else {
         // non-existant or empty
         ErrorHandler.badInput(this,
-            "cannot access '" + token + "': no such file or directory");
-        return false;
+            "Cannot access \"" + path + "\": No such file or directory");
+        return null;
       }
     }
 
-    // if it's empty print the error
-    if (!notEmpty)
-      ErrorHandler.badInput(this,
-          "no files or directories in the current directory");
-
-    return true;
+    return output.substring(0, output.length()-1);
   }
 
   /**
@@ -166,34 +135,34 @@ public class ListContents extends Command {
    */
   @Override
   public boolean run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
-    String path;
-    // success will be set to false if nothing is found
-    boolean success = true;
-    // print out current directory case, no given paths
-    if (tokens.length == 1) {
-      path = fSystem.getCurrentDirectory().getPath();
-      success = listSubFoldersFiles("", fSystem, path);
-    } else {
-      // go through the given paths, stop if an invalid path is found
-      for (int i = 1; i < tokens.length && success; i++) {
-        // print an extra line when listing given directories after first one
-        if (success && i != 1)
-          StandardOutput.print("\n");
-        // absolute path, current directory, or parent directory
-        if (tokens[i].charAt(0) == '/' || tokens[i].equals(".")
-            || tokens[i].equals(".."))
-          path = tokens[i];
-        // relative path
-        else if (fSystem.getCurrentDirectory().getPath().equals("/")) 
-          path = '/' + tokens[i];
-        else path = fSystem.getCurrentDirectory().getPath() + '/' + tokens[i];
-        // list contents, stop if there are none or path is bad
-        success = listSubFoldersFiles(tokens[i], fSystem, path);
+    boolean containsArrow = StandardOutput.containsArrow(tokens);
+    int shift = containsArrow? - 2 : 0;
 
+    //TODO
+    // if (tokens[1].equals("-R")) tokens
+
+    // output sting to be sent to StandardOutput
+    String output = "";
+    // print out current directory case, no given paths
+    if (tokens.length == 1 || (containsArrow && tokens.length == 3)) {
+      output = listSubFoldersFiles(".", shell);
+    } else {
+      String partOutput = "";
+      // go through the given paths, stop if an invalid path is found
+      for (int i = 1; i < tokens.length+shift && partOutput != null; i++) {
+        // list contents, stop if there are none or path is bad
+        partOutput = listSubFoldersFiles(tokens[i], shell);
+        // print an extra line when listing given directories after first one
+        if (partOutput != null) {
+          if (i != 1) output += "\n\n";
+          output += partOutput;
+        }
       }
     }
+
+    if (output != null && !output.equals("")) 
+      StandardOutput.println(tokens, output, shell);
+
     return true;
   }
 

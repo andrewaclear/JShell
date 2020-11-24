@@ -96,7 +96,7 @@ public class Manual extends Command {
         }
         // Else, then give command not found error
       } else {
-        ErrorHandler.commandNotFoundManual(tokens[i]);
+        ErrorHandler.commandNotFoundManual(this, tokens[i]);
         break;
       }
       i++;
