@@ -88,7 +88,7 @@ public class Concatenate extends Command {
           output += "\n\n\n";
         }
       } else {
-        ErrorHandler.fileNotFound(tokens[i]);
+        ErrorHandler.invalidPath(this, tokens[i]);
         break;
       }
       i++;
