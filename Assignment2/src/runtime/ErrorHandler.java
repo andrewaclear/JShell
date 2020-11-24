@@ -109,6 +109,16 @@ public class ErrorHandler {
   public static void fileNotFound(String file) {
     StandardOutput.println(file + ": file not found");
   }
+  
+  /**
+   * Prints fileAlreadyExist error message
+   * 
+   * @param file, name of file not found
+   */
+  public static void fileAlreadyExist(Command command, String file) {
+    StandardOutput.println(command.getIdentifier() +": " + file 
+        + ": File with given name already exists");
+  }
 
   /**
    * Prints invalidComboOfParams error message
@@ -183,5 +193,14 @@ public class ErrorHandler {
         + "subpath to the current directory");
   }
   
+  /**
+   * Prints invalidUrl error message
+   * 
+   * @param command, an instance of Command class or its subclasses
+   */
+  public static void invalidUrl(Command command, String url) {
+    StandardOutput.println(command.getIdentifier() +": \"" + url 
+        + "\": Invalid valid URL or file found");
+  }
 
 }

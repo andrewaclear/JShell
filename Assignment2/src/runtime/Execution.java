@@ -109,6 +109,7 @@ public class Execution {
     commandHashMap.put("tree", "commands.Tree");
     commandHashMap.put("saveJShell", "commands.saveJShell");
     commandHashMap.put("loadJShell", "commands.loadJShell");
+    commandHashMap.put("curl", "commands.ClientUrl");
   }
 }
 
