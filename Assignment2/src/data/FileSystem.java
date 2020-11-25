@@ -233,20 +233,26 @@ public class FileSystem implements java.io.Serializable {
     for (String singlePath : splitPath) {
 
       totalChildren = nodeTracker.getChildren().size();
-
-      for (FileSystemNode child : nodeTracker.getChildren()) {
-        if (child.getDirectory().getDirectoryName().equals(singlePath)) {
-          nodeTracker = child;
-          break;
+      
+      if (singlePath.equals("..")) {
+        nodeTracker = nodeTracker.getParent();
+      }
+      else if (!singlePath.equals(".")){
+        for (FileSystemNode child : nodeTracker.getChildren()) {
+          if (child.getDirectory().getDirectoryName().equals(singlePath)) {
+            nodeTracker = child;
+            break;
+          }
+          childrenCounter += 1;
         }
-        childrenCounter += 1;
+        if (childrenCounter == totalChildren) {
+          // ErrorHandler.invalidPath(givenPath);
+           return null;
+         }
+         childrenCounter = 0;
+       }
       }
-      if (childrenCounter == totalChildren) {
-       // ErrorHandler.invalidPath(givenPath);
-        return null;
-      }
-      childrenCounter = 0;
-    }
+      
     return nodeTracker;
   }
 

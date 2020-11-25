@@ -24,6 +24,7 @@
 // *********************************************************
 package commands;
 
+import java.util.Arrays;
 import data.Cache;
 import data.Directory;
 import data.FileSystem;
@@ -48,8 +49,8 @@ public class MakeDirectory extends Command {
     this.setIdentifier("mkdir");
 
     // MakeDirectory must have three tokens
-    this.setMaxNumOfArguments(3);
-    this.setMinNumOfArguments(3);
+    this.setMaxNumOfArguments(-1);
+    this.setMinNumOfArguments(2);
 
     // Error Handling
     this.setErrorTooManyArguments("only two parameters are accepted");
@@ -82,33 +83,27 @@ public class MakeDirectory extends Command {
   @Override
   public boolean run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
     
-    FileSystemNode targetNode1 = null, targetNode2 = null;
+    FileSystemNode targetNode = null;
+    
+    String[] pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length) ;
+    
+    for (String token : pathTokens) {
+        
+        targetNode = fSystem.getSemiFileSystemNode(token);
+        
+        if (targetNode != null && 
+            !targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+          
+          targetNode.addChild(new FileSystemNode(
+              new Directory(fSystem.getPathLastEntry(token))));
+          
+        } else {
+          
+          break;
+          
+        }
 
-    targetNode1 = fSystem.getSemiFileSystemNode(tokens[1]);
-
-    targetNode2 = fSystem.getSemiFileSystemNode(tokens[2]);
-
-    // Check if path1 is valid and the Directory already exists in the children
-    // of FileSystemNode given by path1
-    if (targetNode1 != null
-        && !targetNode1.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
-
-      // Add Directory to the FileSystemNode given by path1
-      targetNode1.addChild(new FileSystemNode(
-          new Directory(fSystem.getPathLastEntry(tokens[1]))));
-
-      // Check if path2 is valid and if Directory already exists in the
-      // of FileSystemNode
-      if (targetNode2 != null
-          && !targetNode2.isChildInside(fSystem.getPathLastEntry(tokens[2]))) {
-
-        // Add Directory to the FileSystemNode given by path2
-        targetNode2.addChild(new FileSystemNode(
-            new Directory(fSystem.getPathLastEntry(tokens[2]))));
-
-      }
     }
 
     return true;
