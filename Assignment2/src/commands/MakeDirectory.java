@@ -93,25 +93,17 @@ public class MakeDirectory extends Command {
         
         if (targetNode != null) {
            if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
-          
              targetNode.addChild(new FileSystemNode(
                   new Directory(fSystem.getPathLastEntry(token))));
-          
           } else {
-            
             ErrorHandler.childAlreadyExistant(fSystem.getPathLastEntry(token), 
                 targetNode);
-            
             break;
-            
           }
         } else {
-          
           ErrorHandler.invalidPath(this, token);
           break;
-          
         }
-
     }
 
     return true;

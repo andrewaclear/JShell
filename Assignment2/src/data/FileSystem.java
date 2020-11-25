@@ -93,14 +93,8 @@ public class FileSystem implements java.io.Serializable {
     // root
     if (givenPath.equals("/"))
       return getRoot();
-    // current directory
-    if (givenPath.equals("."))
-      return getCurrentDirectory();
-    // parent directory
-    if (givenPath.equals(".."))
-      return getCurrentDirectory().getParent();
     // bad path
-    if (inappropriatePath(givenPath))
+    if (inappropriatePath(givenPath)) 
       return null;
     // return path
     return traversePath(givenPath);
@@ -120,7 +114,7 @@ public class FileSystem implements java.io.Serializable {
       return true;
     }
     
-    if (givenPath.matches("(.+)?[ .!@#$%^&*(){}~|<>?](.+)?")) {
+    if (givenPath.matches("(.+)?[ !@#$%^&*(){}~|<>?](.+)?")) {
     //  ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
@@ -148,14 +142,10 @@ public class FileSystem implements java.io.Serializable {
     }
 
     if (givenPath.charAt(0) == '/') {
-
       splitPath = givenPath.substring(1).split("/");
       targetPath = "/";
-
     } else {
-
       splitPath = givenPath.split("/");
-
     }
 
     // Check if givenPath referred to the current Directory or
@@ -206,12 +196,9 @@ public class FileSystem implements java.io.Serializable {
    * @return The FileSystemNode the givenPath points to
    */
   private FileSystemNode traversePath(String givenPath) {
-
     String splitPath[];
     FileSystemNode nodeTracker = null;
-
-    // Check if the givenPath is a full or relative path,
-    // thats provides where the tracker should start
+    // Check if the givenPath is a full or relative path, set the tracker
     if (givenPath.charAt(0) == '/') {
       splitPath = givenPath.substring(1).split("/");
       nodeTracker = root;
@@ -238,13 +225,11 @@ public class FileSystem implements java.io.Serializable {
           childrenCounter += 1;
         }
         if (childrenCounter == totalChildren) {
-          // ErrorHandler.invalidPath(givenPath);
            return null;
          }
          childrenCounter = 0;
-       }
       }
-      
+    }
     return nodeTracker;
   }
 
