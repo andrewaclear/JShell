@@ -115,8 +115,6 @@ public class FileSystem implements java.io.Serializable {
    */
   private boolean inappropriatePath(String givenPath) {
 
-   // String inappropriateCharacters = ". !@#$%^&*(){}~|<>?";
-
     if (givenPath.indexOf("//") != -1) {
     //  ErrorHandler.inappropriatePath(givenPath);
       return true;
@@ -126,12 +124,6 @@ public class FileSystem implements java.io.Serializable {
     //  ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
-   /* for (int i = 0; i < givenPath.length(); i = i + 1) {
-      if (inappropriateCharacters.indexOf(givenPath.charAt(i)) != -1) {
-        ErrorHandler.inappropriatePath(givenPath);
-        return true;
-      }
-    }*/
 
     return false;
 

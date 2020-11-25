@@ -43,7 +43,6 @@ public class Tree extends Command {
    */
   public boolean run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
     int level = 0;
     
     recursiveTreeDisplay(fSystem.getRoot(), level);
