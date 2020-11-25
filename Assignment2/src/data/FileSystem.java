@@ -214,9 +214,11 @@ public class FileSystem implements java.io.Serializable {
       totalChildren = nodeTracker.getChildren().size();
       
       if (singlePath.equals("..")) {
-        nodeTracker = nodeTracker.getParent();
-      }
-      else if (!singlePath.equals(".")){
+        if (nodeTracker.getParent() != null) 
+          nodeTracker = nodeTracker.getParent();
+        else 
+          return null;
+      } else if (!singlePath.equals(".")){
         for (FileSystemNode child : nodeTracker.getChildren()) {
           if (child.getDirectory().getDirectoryName().equals(singlePath)) {
             nodeTracker = child;
@@ -228,6 +230,7 @@ public class FileSystem implements java.io.Serializable {
            return null;
          }
          childrenCounter = 0;
+      
       }
     }
     return nodeTracker;
