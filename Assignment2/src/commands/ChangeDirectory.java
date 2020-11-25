@@ -26,6 +26,7 @@ package commands;
 
 import data.FileSystemNode;
 import driver.JShell;
+import runtime.ErrorHandler;
 
 /**
  * Change directory to DIR, which may be relative to the current directory or
@@ -80,10 +81,14 @@ public class ChangeDirectory extends Command {
     // Set targetNode to the FileSystemNode that the path leads to
     targetNode = shell.getfSystem().getFileSystemNode(tokens[1]);
 
-    // Check if the targetNode is in the root
+    // Check if the targetNode is in the FileSystem
     if (targetNode != null) {
       // Set the current Directory to the targetNode
       shell.getfSystem().setCurrentDirectory(targetNode);
+    } else {
+      
+      ErrorHandler.invalidPath(this, tokens[1]);
+      
     }
 
     return true;
