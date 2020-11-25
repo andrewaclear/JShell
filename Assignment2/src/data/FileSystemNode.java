@@ -168,7 +168,7 @@ public class FileSystemNode implements java.io.Serializable {
 
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
-        ErrorHandler.childAlreadyExistant(directoryName, this);
+//        ErrorHandler.childAlreadyExistant(directoryName, this);
         return true;
       }
     }

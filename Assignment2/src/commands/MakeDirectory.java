@@ -30,6 +30,7 @@ import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
+import runtime.ErrorHandler;
 
 /**
  * This command takes in two arguments only. Create directories, each of which
@@ -75,9 +76,7 @@ public class MakeDirectory extends Command {
    * In any case, returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, store the current directory stack
+   * @param JShell contains the FileSystem and cache
    * @return returns a boolean true to mark successful execution
    */
   @Override
@@ -92,14 +91,23 @@ public class MakeDirectory extends Command {
         
         targetNode = fSystem.getSemiFileSystemNode(token);
         
-        if (targetNode != null && 
-            !targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+        if (targetNode != null) {
+           if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
           
-          targetNode.addChild(new FileSystemNode(
-              new Directory(fSystem.getPathLastEntry(token))));
+             targetNode.addChild(new FileSystemNode(
+                  new Directory(fSystem.getPathLastEntry(token))));
           
+          } else {
+            
+            ErrorHandler.childAlreadyExistant(fSystem.getPathLastEntry(token), 
+                targetNode);
+            
+            break;
+            
+          }
         } else {
           
+          ErrorHandler.invalidPath(this, token);
           break;
           
         }
