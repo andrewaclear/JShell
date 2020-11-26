@@ -94,7 +94,7 @@ public class Concatenate extends Command {
       i++;
     }
     
-    StandardOutput.println(tokens, output, shell);
+    StandardOutput.println(tokens, output, shell, this);
 
     return true;
   }

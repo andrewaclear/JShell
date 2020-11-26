@@ -54,8 +54,8 @@ public class MakeDirectory extends Command {
     this.setMinNumOfArguments(2);
 
     // Error Handling
-    this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand("only two parameters are accepted");
+    this.setErrorTooManyArguments("Only two parameters are accepted");
+    this.setMissingOperand("Only two parameters are accepted");
 
     // Description
     this.setDescription("This command takes in two arguments only."

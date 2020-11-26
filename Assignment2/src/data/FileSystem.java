@@ -93,7 +93,19 @@ public class FileSystem implements java.io.Serializable {
     // root
     if (givenPath.equals("/"))
       return getRoot();
-    // bad path
+
+    // NEED FOR LIST CONTENTS FIX!!!!!!!!! Andrew D'Amario
+    if (givenPath.equals(""))
+      return getCurrentDirectory();
+
+    // // current directory
+    // if (givenPath.equals(".") || givenPath.equals(""))
+    //   return getCurrentDirectory();
+    // // parent directory
+    // if (givenPath.equals(".."))
+    //   return getCurrentDirectory().getParent();
+
+      // bad path
     if (inappropriatePath(givenPath)) 
       return null;
     // return path

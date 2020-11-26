@@ -40,7 +40,7 @@ public class Exit extends Command {
     this.setIdentifier("exit");
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
-    this.setErrorTooManyArguments("doesn't take any arguments");
+    this.setErrorTooManyArguments("Doesn't take any arguments");
     this.setMissingOperand("");
     this.setDescription("Quit the program");
   }

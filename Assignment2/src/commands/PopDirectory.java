@@ -49,7 +49,7 @@ public class PopDirectory extends Command {
         + " the stack, then give appropriate \nerror message. ");
     this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
-    this.setErrorTooManyArguments("doesn't take any arguments");
+    this.setErrorTooManyArguments("Doesn't take any arguments");
     this.setMissingOperand("");
   }
 

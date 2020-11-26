@@ -5,7 +5,6 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
-import commands.Remove;
 
 public class Move extends Command {
   
@@ -22,8 +21,8 @@ public class Move extends Command {
     this.setMinNumOfArguments(3);
 
     // Error Handling
-    this.setErrorTooManyArguments("only two parameters are accepted");
-    this.setMissingOperand("only two parameters are accepted");
+    this.setErrorTooManyArguments("Only two parameters are accepted");
+    this.setMissingOperand("Only two parameters are accepted");
 
     // Description
     this.setDescription("This command moves a directory or file into the"
