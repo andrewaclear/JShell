@@ -176,6 +176,14 @@ public class ErrorHandler {
         + " cannot be removed because it is a "
         + "subpath to the current directory");
   }
+
+  
+  public static void moveDirectoryError(String givenPath) {
+    StandardOutput.println("The given path: " + givenPath 
+        + " cannot be used to move because it is inside "
+        + "the target path");
+  }
+  
   
   /**
    * Prints invalidUrl error message
