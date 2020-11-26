@@ -207,11 +207,7 @@ public class FileSystem implements java.io.Serializable {
       nodeTracker = currentFileSystemNode;
     }
 
-    int childrenCounter = 0, totalChildren = 0;
-
     for (String singlePath : splitPath) {
-
-      totalChildren = nodeTracker.getChildren().size();
       
       if (singlePath.equals("..")) {
         if (nodeTracker.getParent() != null) 
@@ -219,23 +215,21 @@ public class FileSystem implements java.io.Serializable {
         else 
           return null;
       } else if (!singlePath.equals(".")){
-        for (FileSystemNode child : nodeTracker.getChildren()) {
-          if (child.getDirectory().getDirectoryName().equals(singlePath)) {
-            nodeTracker = child;
-            break;
-          }
-          childrenCounter += 1;
-        }
-        if (childrenCounter == totalChildren) {
+        
+        if (nodeTracker.getChildByDirectoryName(singlePath) != null) {
+            nodeTracker = nodeTracker.getChildByDirectoryName(singlePath);
+           
+        } else {
+  
            return null;
-         }
-         childrenCounter = 0;
-      
+           
+        }
       }
     }
     return nodeTracker;
   }
 
+  
   /**
    * createFileSystem ensures we only ever have a single FileSystem: if we
    * already have a fileSystem, returns it, if not, creates a new one and
@@ -252,6 +246,54 @@ public class FileSystem implements java.io.Serializable {
 
     return fileSystem;
   }
+  
+  
+  public FileSystemNode forcedGetFileSystemNode(String givenPath) {
 
+    // root
+    if (givenPath.equals("/"))
+      return getRoot();
+    // bad path
+    if (inappropriatePath(givenPath)) 
+      return null;
+    // return path
+    return forcedTraversePath(givenPath);
+  }
+  
+  
+  private FileSystemNode forcedTraversePath(String givenPath) {
+    String splitPath[];
+    FileSystemNode nodeTracker = null;
+    // Check if the givenPath is a full or relative path, set the tracker
+    if (givenPath.charAt(0) == '/') {
+      splitPath = givenPath.substring(1).split("/");
+      nodeTracker = root;
+    } else {
+      splitPath = givenPath.split("/");
+      nodeTracker = currentFileSystemNode;
+    }
 
+    for (String singlePath : splitPath) {
+      
+      if (singlePath.equals("..")) {
+        if (nodeTracker.getParent() != null) 
+          nodeTracker = nodeTracker.getParent();
+        else 
+          return null;
+      } else if (!singlePath.equals(".")){
+        
+        if (nodeTracker.getChildByDirectoryName(singlePath) != null) {
+            nodeTracker = nodeTracker.getChildByDirectoryName(singlePath);
+           
+        } else {
+           //Difference, add FileSystemNode
+           nodeTracker.addChild(new FileSystemNode(new Directory(singlePath)));
+           nodeTracker = nodeTracker.getChildByDirectoryName(singlePath);
+        }
+         
+      }
+    }
+    return nodeTracker;
+  }
+  
 }

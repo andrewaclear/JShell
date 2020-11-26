@@ -189,5 +189,41 @@ public class FileSystemNode implements java.io.Serializable {
       index += 1;
     }
   }
-
+  
+  public File getFile(String targetFileName) {
+    
+    for (File file : this.getDirectory().getFiles()) {
+      if (file.getFileName().equals(targetFileName)) {
+        return file;
+      }
+    }
+  
+  return null;
+  }
+  
+  
+  public FileSystemNode getChildByDirectoryName(String targetFileSystemNode) {
+    
+    for (FileSystemNode child : this.children) {
+      if (child.getDirectory().getDirectoryName().equals(targetFileSystemNode)) {
+        return child;
+      }
+    }
+    
+    return null;
+      
+  }
+  
+  
+  public boolean isFileInsideByFileName(String givenFileName) {
+    
+    for (File file : this.getDirectory().getFiles()) {
+      if (file.getFileName().equals(givenFileName)) {
+        return true;
+      }
+    }
+  
+  return false;
+  }
+  
 }
