@@ -106,5 +106,18 @@ public class Directory implements java.io.Serializable {
 
     return null;
   }
+  
+  public void removeFile(String targetFileName) {
+    
+    int index = 0;
+    
+    for (File currentFile : this.files) {
+      if (currentFile.getFileName().equals(targetFileName)) {
+        this.files.remove(index);
+        break;
+      }
+      index += 1;
+    }
+  }
 
 }
