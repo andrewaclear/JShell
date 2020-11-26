@@ -3,18 +3,17 @@ package commands;
 import data.Cache;
 import data.FileSystem;
 import driver.JShell;
-import io.StandardOutput;
 import runtime.ErrorHandler;
 import java.io.*;
 
-public class saveJShell extends Command {
+public class SaveJShell extends Command {
 
   /**
    * Constructor for saveJShell class. It initializes identifier,
    * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
    * and description from its super class Commands.
    */
-  public saveJShell() {
+  public SaveJShell() {
     this.setIdentifier("saveJShell");
     this.setDescription(
         "The file FileName is some file that is stored on the actual filesystem"
@@ -40,7 +39,7 @@ public class saveJShell extends Command {
       file.close();
       
     } catch (IOException e) {
-      StandardOutput.println("Invalid filepath given");
+      ErrorHandler.badInput(this, "Invalid filepath given");
     }
 
     return true;

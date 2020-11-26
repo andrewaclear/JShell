@@ -18,12 +18,12 @@ public class Tree extends Command {
     this.setIdentifier("tree");
 
     // Tree must only have one token
-    this.setMaxNumOfArguments(1);
+    this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("no parameter is accepted");
-    this.setMissingOperand("no parameter is accepted");
+    this.setErrorTooManyArguments("No parameter is accepted");
+    this.setMissingOperand("No parameter is accepted");
 
     // Description
     this.setDescription("Displays the whole fileSystem in a tree structure"
@@ -41,36 +41,40 @@ public class Tree extends Command {
   public boolean run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     int level = 0;
+    String output = recursiveTreeDisplay("", fSystem.getRoot(), level);
     
-    recursiveTreeDisplay(fSystem.getRoot(), level);
+    StandardOutput.println(tokens, output.substring(0,output.length()-1), 
+    shell, this);
     
     return true;
     
   }
 
 
-  private void recursiveTreeDisplay(FileSystemNode fileSystemNode, int level) {
+  private String recursiveTreeDisplay(String output,
+    FileSystemNode fileSystemNode, int level) {
     
     String indentationUnit = "  ";
     
-    StandardOutput.println(indentationUnit.repeat(level) + 
-        fileSystemNode.getDirectory().getDirectoryName());
+    output += indentationUnit.repeat(level) + 
+              fileSystemNode.getDirectory().getDirectoryName() + "\n";
     
     int nextLevel = level + 1;
     
     for (File file : fileSystemNode.getDirectory().getFiles()) {
-      StandardOutput.println(indentationUnit.repeat(nextLevel)  
-          + file.getFileName());
+      output += indentationUnit.repeat(nextLevel) + file.getFileName() + "\n";
     }
     
     for (FileSystemNode child : fileSystemNode.getChildren()) {
       
       if (child.getChildren().size() != 0) {
-        recursiveTreeDisplay(child, nextLevel);
+        output += recursiveTreeDisplay("", child, nextLevel);
       } else {
-        StandardOutput.println(indentationUnit.repeat(nextLevel) 
-            + child.getDirectory().getDirectoryName());
+        output += indentationUnit.repeat(nextLevel) + 
+                  child.getDirectory().getDirectoryName() + "\n";
       }
     }
+
+    return output;
   }
 }

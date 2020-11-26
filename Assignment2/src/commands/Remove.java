@@ -21,8 +21,8 @@ public class Remove extends Command {
     this.setMinNumOfArguments(2);
     
     // Error Handling
-    this.setErrorTooManyArguments("only one parameter is accepted");
-    this.setMissingOperand("only one parameter is accepted");
+    this.setErrorTooManyArguments("Only one parameter is accepted");
+    this.setMissingOperand("Only one parameter is accepted");
     
     // Description
     this.setDescription("Removes the directory from the fileSystem "

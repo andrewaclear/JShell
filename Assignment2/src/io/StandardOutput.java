@@ -24,8 +24,10 @@
 // *********************************************************
 package io;
 
+import commands.Command;
 import commands.Echo;
 import driver.JShell;
+import runtime.ErrorHandler;
 
 /**
  * Defines how the system prints out to the shell.
@@ -50,14 +52,12 @@ public class StandardOutput {
 
   }
 
-  public static void println(String[] tokens, String output, JShell shell) {
+  public static void println(String[] tokens, String output, JShell shell, Command command) {
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
    
     boolean containsArrow = containsArrow(tokens);
 
-    if (!containsArrow) {
-      System.out.println(output);
-    } else {
+    if (containsArrow) {
       String[] tokens2 = new String[4];
       
       tokens2[0] = "echo";
@@ -67,6 +67,11 @@ public class StandardOutput {
 
       Echo echo = new Echo();
       echo.run(tokens2, shell);
+    } else if (tokens.length == command.getMaxNumOfArguments()-2 
+               || command.getMaxNumOfArguments() == -1) {
+      System.out.println(output);
+    } else {
+      ErrorHandler.invalidComboOfParams(command, tokens);
     }
   }
 

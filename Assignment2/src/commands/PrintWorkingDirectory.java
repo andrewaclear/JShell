@@ -43,12 +43,12 @@ public class PrintWorkingDirectory extends Command {
     this.setIdentifier("pwd");
 
     // PrintWorkingDirectory must not have any arguments
-    this.setMaxNumOfArguments(1);
+    this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("no parameters are accepted");
-    this.setMissingOperand("identifier pwd is missing");
+    this.setErrorTooManyArguments("No parameters are accepted");
+    this.setMissingOperand("Identifier pwd is missing");
 
     // Description
     this.setDescription("The command PrintWorkingDirectory prints "
@@ -71,7 +71,8 @@ public class PrintWorkingDirectory extends Command {
     FileSystem fSystem = shell.getfSystem();
     
     // Print the path of the current directory
-    StandardOutput.println(fSystem.getCurrentDirectory().getPath());
+    StandardOutput.println(tokens, fSystem.getCurrentDirectory().getPath(), 
+                           shell, this);
 
     return true;
 

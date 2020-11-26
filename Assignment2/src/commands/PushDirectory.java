@@ -51,8 +51,8 @@ public class PushDirectory extends Command {
         + " and the popd commands.");
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
-    this.setErrorTooManyArguments("too many arguments");
-    this.setMissingOperand("must provide a directory to navigate to");
+    this.setErrorTooManyArguments("Too many arguments");
+    this.setMissingOperand("Must provide a directory to navigate to");
   }
 
   /**

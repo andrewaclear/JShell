@@ -25,6 +25,7 @@
 package commands;
 
 import java.util.List;
+
 import data.*;
 import driver.JShell;
 import io.StandardOutput;
@@ -56,6 +57,44 @@ public class ListContents extends Command {
         + " new line. \n If p does not exist, print a suitable message.");
   }
 
+  private String listSubFoldersFiles(FileSystemNode node, String path, JShell shell, 
+                                boolean recursive) {
+      List<FileSystemNode> subFolders = node.getChildren();
+      String partOutput = "";
+      String subOutput = "";
+
+      // print out sub-folders
+      for (int i = 0; i < subFolders.size(); i++) {
+        partOutput += subFolders.get(i).getDirectory().getDirectoryName()+"\n";
+        if (recursive) {
+          if (!path.equals("")) {
+            subOutput += "\n" + listItems(
+              path+"/"+subFolders.get(i).getDirectory().getDirectoryName(), 
+              shell, recursive)+"\n";
+          } else {
+            subOutput += "\n" + listItems(
+              subFolders.get(i).getDirectory().getDirectoryName(), 
+              shell, recursive)+"\n";
+          }
+        }
+      }
+
+      // get files
+      partOutput += listSubFiles(node);
+
+      return partOutput + subOutput;
+  }
+
+  private String listSubFiles(FileSystemNode node) {
+    List<File> files = node.getDirectory().getFiles();
+    String partOutput = "";
+    // print out files in directory
+    for (int i = 0; i < files.size(); i++) {
+      partOutput += files.get(i).getFileName() + "\n";
+    }
+    return partOutput;
+  }
+
   /**
    * List the sub folders and files at the given path in the file system. Prints
    * an error if the path does not exist in the file system.
@@ -68,41 +107,24 @@ public class ListContents extends Command {
    * @return returns a boolean true if it exits in the fSystem and has contents
    *         and false otherwise
    */
-  private String listSubFoldersFiles(String path, JShell shell) {
-
+  private String listItems(String path, JShell shell, boolean recursive) {
     String output = "";
     FileSystem fSystem = shell.getfSystem();
-
     // try to get folder at path
     FileSystemNode node = fSystem.getFileSystemNode(path);
-
     // if it exits
     if (node != null) {
       // print the given path with a colon when given
-      if (!path.equals("."))
+      if (!path.equals("") || recursive)
         output += path + ":\n";
-
-      // get subFolders
-      List<FileSystemNode> subFolders = node.getChildren();
-      // print out sub-folders
-      for (int i = 0; i < subFolders.size(); i++) {
-        output += subFolders.get(i).getDirectory().getDirectoryName() + "\n";
-      }
-
-      // get files
-      List<File> files = node.getDirectory().getFiles();
-      // print out files in directory
-      for (int i = 0; i < files.size(); i++) {
-        output += files.get(i).getFileName() + "\n";
-      }
-
+      // get subFolders and files
+      output += listSubFoldersFiles(node, path, shell, recursive);
     // check if the token is just a file
     } else {
       // try to get parent folder of file
       FileSystemNode subNode = fSystem.getSemiFileSystemNode(path);
       // the file name would be the last part after the last / in the path
       String fileName = fSystem.getPathLastEntry(path);
-
       // if the subfolder and file exits
       if (subNode != null && subNode.getDirectory().getFile(fileName) != null) {
         // print the name of the the file
@@ -136,32 +158,35 @@ public class ListContents extends Command {
   @Override
   public boolean run(String[] tokens, JShell shell) {
     boolean containsArrow = StandardOutput.containsArrow(tokens);
-    int shift = containsArrow? - 2 : 0;
-
-    //TODO
-    // if (tokens[1].equals("-R")) tokens
+    boolean recursive = tokens.length > 1 && tokens[1].equals("-R");
+    int startShift = recursive? 2 : 1;
+    int endShift = containsArrow? - 2 : 0;
 
     // output sting to be sent to StandardOutput
     String output = "";
     // print out current directory case, no given paths
-    if (tokens.length == 1 || (containsArrow && tokens.length == 3)) {
-      output = listSubFoldersFiles(".", shell);
+      // cases: ls, ls -R, ls > file, ls -R > file
+    if (tokens.length == 1 
+        || (tokens.length == 2 && recursive)
+        || (tokens.length == 3 && containsArrow)
+        || (tokens.length == 4 && containsArrow && recursive)) {
+      output = listItems("", shell, recursive);
     } else {
       String partOutput = "";
       // go through the given paths, stop if an invalid path is found
-      for (int i = 1; i < tokens.length+shift && partOutput != null; i++) {
+      for (int i = startShift; i < tokens.length+endShift && partOutput != null; i++) {
         // list contents, stop if there are none or path is bad
-        partOutput = listSubFoldersFiles(tokens[i], shell);
+        partOutput = listItems(tokens[i], shell, recursive);
         // print an extra line when listing given directories after first one
         if (partOutput != null) {
-          if (i != 1) output += "\n\n";
+          if (i != startShift) output += "\n\n";
           output += partOutput;
         }
       }
     }
 
     if (output != null && !output.equals("")) 
-      StandardOutput.println(tokens, output, shell);
+      StandardOutput.println(tokens, output, shell, this);
 
     return true;
   }

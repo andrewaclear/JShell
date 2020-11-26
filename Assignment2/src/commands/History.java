@@ -46,7 +46,7 @@ public class History extends Command {
         + " one command per line. ");
     this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(1);
-    this.setErrorTooManyArguments("too many arguments");
+    this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("");
   }
 
@@ -124,7 +124,7 @@ public class History extends Command {
       if (i+1 < n) output += "\n";
     }
 
-    StandardOutput.println(tokens, output, shell);
+    StandardOutput.println(tokens, output, shell, this);
 
     return true;
   }

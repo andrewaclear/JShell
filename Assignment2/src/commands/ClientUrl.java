@@ -80,7 +80,7 @@ public class ClientUrl extends Command {
       if (fSystem.getCurrentDirectory().getDirectory()
           .getFile(fileName) == null) {
         String[] tokens2 = {"default", ">", fileName};
-        StandardOutput.println(tokens2, output, shell);
+        StandardOutput.println(tokens2, output, shell, this);
       } else {
         ErrorHandler.fileAlreadyExist(this, fileName);
       }
