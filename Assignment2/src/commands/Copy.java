@@ -5,27 +5,28 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
+import commands.Remove;
 
-public class Move extends Command {
+public class Copy extends Command {
   
   /**
    * Constructor for Move class. It initializes identifier,
    * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
    * and description from its super class Commands.
    */
-  public Move() {
-    this.setIdentifier("mv");
+  public Copy() {
+    this.setIdentifier("cp");
 
     // MakeDirectory must have three tokens
     this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(3);
 
     // Error Handling
-    this.setErrorTooManyArguments("Only two parameters are accepted");
-    this.setMissingOperand("Only two parameters are accepted");
+    this.setErrorTooManyArguments("only two parameters are accepted");
+    this.setMissingOperand("only two parameters are accepted");
 
     // Description
-    this.setDescription("This command moves a directory or file into the"
+    this.setDescription("This command copies a directory or file into the"
         + " desired directory etiher new or already existing one");
   }
   
@@ -55,33 +56,7 @@ public class Move extends Command {
     if (tokens[2].startsWith(tokens[1])) 
       ErrorHandler.moveDirectoryError(tokens[2]);
     else if (givenNode != null || targetFile != null) {
-        if (givenNode != null) {
-          targetNode = fSystem.forcedGetFileSystemNode(tokens[2]);
-          if (!targetNode.isChildInside(
-              givenNode.getDirectory().getDirectoryName())) {
-            fSystem.forcedGetFileSystemNode(tokens[2]).addChild(givenNode);
-            Remove remove = new Remove();
-            remove.run(tokens, shell);
-          }
-          else {
-            //ADD ERROR 
-          }
-        } else {
-          targetNode = fSystem.getFileSystemNode(tokens[2]);
-          if (targetNode != null) {
-            if (targetNode.isFileInsideByFileName(targetFile.getFileName())) {
-              targetNode.addFile(targetFile);
-            } else {
-              targetNode.getFile(targetFile.getFileName()).setContent(
-                  targetFile.getContent());
-            }
-            fSystem.getSemiFileSystemNode(tokens[1]).getDirectory().removeFile(
-                targetFile.getFileName());
-            ;
-          } else {
-            //ADD ERROR
-          }
-        }
+        
 
     } else {
       ErrorHandler.invalidPath(this, tokens[1]);
