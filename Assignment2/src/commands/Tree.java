@@ -35,10 +35,7 @@ public class Tree extends Command {
    * subdirectories and files
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
+   * @param JShell contains the FileSystem and cache
    * @return returns a boolean true signal the shell to continue running
    */
   public boolean run(String[] tokens, JShell shell) {
