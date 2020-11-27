@@ -42,6 +42,45 @@ public class Command {
   private String errorMissingOperand;
   // the command's description
   private String description;
+  private String output;
+  private String errors;
+  
+  /**
+   * Get the output for the command.
+   * 
+   * @return returns the output for the command
+   */
+  public String getOutput() {
+    return output;
+  }
+  
+  /**
+   * Set the output.
+   * 
+   * @param output, the output to set for the command
+   */
+  public void setOutput(String output) {
+    this.output = output;
+  }
+
+  
+  /**
+   * Get the errors for the command.
+   * 
+   * @return returns the error for the command
+   */
+  public String getErrors() {
+    return errors;
+  }
+  
+  /**
+   * Set  the error.
+   * 
+   * @param errors, the errors to set for the command
+   */
+  public void setErrors(String errors) {
+    this.errors = errors;
+  }
 
   /**
    * Set the identifier.
@@ -164,7 +203,9 @@ public class Command {
    *        terminal
    * @return returns a boolean true signal the shell to continue running
    */
-  public boolean run(String[] tokens, JShell shell) {
-    return true;
+  public Command run(String[] tokens, JShell shell) {
+    // Returns an array of strings [Output(if any, else ""), Error (if any, else
+    // "")]
+    return null;
   }
 }

@@ -64,7 +64,7 @@ public class Concatenate extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     int i = 1;
     String name;
@@ -78,7 +78,7 @@ public class Concatenate extends Command {
 
       name = fSystem.getPathLastEntry(tokens[i]);
       node = fSystem.getSemiFileSystemNode(tokens[i]);
-      // }
+      
       File file = node.getDirectory().getFile(name);
       if (node != null && file != null) {
 
@@ -88,14 +88,14 @@ public class Concatenate extends Command {
           output += "\n\n\n";
         }
       } else {
-        ErrorHandler.invalidPath(this, tokens[i]);
+        this.setErrors(ErrorHandler.invalidPath(this, tokens[i]));
         break;
       }
       i++;
     }
     
-    StandardOutput.println(tokens, output, shell, this);
-
-    return true;
+    this.setOutput(output);
+   
+    return this;
   }
 }

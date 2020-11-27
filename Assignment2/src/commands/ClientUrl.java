@@ -70,7 +70,7 @@ public class ClientUrl extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     String output = getFileContent(tokens[1]);
 
@@ -82,11 +82,11 @@ public class ClientUrl extends Command {
         String[] tokens2 = {"default", ">", fileName};
         StandardOutput.println(tokens2, output, shell, this);
       } else {
-        ErrorHandler.fileAlreadyExist(this, fileName);
+        this.setErrors(ErrorHandler.fileAlreadyExist(this, fileName));
       }
     }
 
-    return true;
+    return this;
   }
   // Test: curl http://www.cs.cmu.edu/~spok/grimmtmp/073.txt
 }

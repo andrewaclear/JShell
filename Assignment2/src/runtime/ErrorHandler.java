@@ -41,9 +41,8 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    */
-  public static void tooManyArguments(Command command) {
-    StandardOutput.println(
-        command.getIdentifier() + ": " + command.getErrorTooManyArguments());
+  public static String tooManyArguments(Command command) {
+    return command.getIdentifier() + ": " + command.getErrorTooManyArguments();
   }
 
   /**
@@ -51,8 +50,8 @@ public class ErrorHandler {
    * 
    * @param tokens, array of string tokens holding command arguments
    */
-  public static void commandNotFound(String[] tokens) {
-    StandardOutput.println(tokens[0] + ": Command not found");
+  public static String commandNotFound(String[] tokens) {
+    return tokens[0] + ": Command not found";
   }
 
   /**
@@ -60,9 +59,9 @@ public class ErrorHandler {
    * 
    * @param commandNotFound, name of command for which error occured
    */
-  public static void commandNotFoundManual(Manual man, String commandNotFound) {
-    StandardOutput.println(man.getIdentifier() + ": No manual entry for: " 
-      + commandNotFound);
+  public static String commandNotFoundManual(Manual man,
+      String commandNotFound) {
+    return man.getIdentifier() + ": No manual entry for: " + commandNotFound;
   }
 
   /**
@@ -70,9 +69,8 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    */
-  public static void missingOperand(Command command) {
-    StandardOutput.println(
-        command.getIdentifier() + ": " + command.getErrorMissingOperand());
+  public static String missingOperand(Command command) {
+    return command.getIdentifier() + ": " + command.getErrorMissingOperand();
   }
 
   /**
@@ -81,16 +79,16 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
    */
-  public static void missingString(Command command, String[] tokens) {
-    StandardOutput.println(command.getIdentifier() + ": " + tokens[1]
-        + ": No string found, format string as \"string\"");
+  public static String missingString(Command command, String[] tokens) {
+    return command.getIdentifier() + ": " + tokens[1]
+        + ": No string found, format string as \"string\"";
   }
 
   /**
    * Prints illegalString error message
    */
-  public static void illegalString() {
-    StandardOutput.println("Illegal character in string");
+  public static String illegalString() {
+    return "Illegal character in string";
   }
 
   /**
@@ -99,18 +97,18 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param message, error message to be printed
    */
-  public static void badInput(Command command, String message) {
-    StandardOutput.println(command.getIdentifier() + ": " + message);
+  public static String badInput(Command command, String message) {
+    return command.getIdentifier() + ": " + message;
   }
-  
+
   /**
    * Prints fileAlreadyExist error message
    * 
    * @param file, name of file not found
    */
-  public static void fileAlreadyExist(Command command, String file) {
-    StandardOutput.println(command.getIdentifier() +": " + file 
-        + ": File with given name already exists");
+  public static String fileAlreadyExist(Command command, String file) {
+    return command.getIdentifier() + ": " + file
+        + ": File with given name already exists";
   }
 
   /**
@@ -119,12 +117,14 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
    */
-  public static void invalidComboOfParams(Command command, String[] tokens) {
-    StandardOutput.print(command.getIdentifier() + ": ");
+  public static String invalidComboOfParams(Command command, String[] tokens) {
+    String output = "";
+    output += command.getIdentifier() + ": ";
     for (int i = 1; i < tokens.length; i++) {
-      StandardOutput.print(tokens[i] + " ");
+      output += tokens[i] + " ";
     }
-    StandardOutput.print(": Invalid combination of arguments\n");
+    output += ": Invalid combination of arguments\n";
+    return output;
   }
 
   /**
@@ -132,9 +132,9 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    */
-  public static void invalidPath(Command command, String path) {
-    StandardOutput.println(command.getIdentifier() +": \"" + path 
-        + "\": No such file or directory");
+  public static String invalidPath(Command command, String path) {
+    return command.getIdentifier() + ": \"" + path
+        + "\": No such file or directory";
   }
 
   /**
@@ -143,9 +143,9 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
    */
-  public static void invalidName(Command command, String[] tokens) {
-    StandardOutput.println(command.getIdentifier() + ": \"" + tokens[3]
-        + "\": Invalid file and/or directory name");
+  public static String invalidName(Command command, String[] tokens) {
+    return command.getIdentifier() + ": \"" + tokens[3]
+        + "\": Invalid file and/or directory name";
   }
 
   /**
@@ -155,10 +155,10 @@ public class ErrorHandler {
    * @param node, an instance of FileSystemNode that holds the position of child
    *        node in FileSystem
    */
-  public static void childAlreadyExistant(String directoryName,
+  public static String childAlreadyExistant(String directoryName,
       FileSystemNode node) {
-    StandardOutput.println("The directory " + directoryName
-        + " already exists at " + node.getPath());
+    return "The directory " + directoryName + " already exists at "
+        + node.getPath();
   }
 
   /**
@@ -166,33 +166,31 @@ public class ErrorHandler {
    * 
    * @param givenPath, the invalid path
    */
-  public static void inappropriatePath(String givenPath) {
-    StandardOutput.println(
-        "The given path : " + givenPath + " contains illicit characters");
-  }
-  
-  public static void removeDirectoryError(String givenPath) {
-    StandardOutput.println("The given path: " + givenPath 
-        + " cannot be removed because it is a "
-        + "subpath to the current directory");
+  public static String inappropriatePath(String givenPath) {
+    return "The given path : " + givenPath + " contains illicit characters";
   }
 
-  
-  public static void moveDirectoryError(String givenPath) {
-    StandardOutput.println("The given path: " + givenPath 
-        + " cannot be used to move because it is inside "
-        + "the target path");
+  public static String removeDirectoryError(String givenPath) {
+    return "The given path: " + givenPath
+        + " cannot be removed because it is a "
+        + "subpath to the current directory";
   }
-  
-  
+
+
+  public static String moveDirectoryError(String givenPath) {
+    return "The given path: " + givenPath
+        + " cannot be used to move because it is inside " + "the target path";
+  }
+
+
   /**
    * Prints invalidUrl error message
    * 
    * @param command, an instance of Command class or its subclasses
    */
-  public static void invalidUrl(Command command, String url) {
-    StandardOutput.println(command.getIdentifier() +": \"" + url 
-        + "\": Invalid valid URL or file found");
+  public static String invalidUrl(Command command, String url) {
+    return command.getIdentifier() + ": \"" + url
+        + "\": Invalid valid URL or file found";
   }
 
 }

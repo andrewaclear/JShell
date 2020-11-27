@@ -41,7 +41,7 @@ public class Remove extends Command {
    * @param JShell contains the FileSystem and cache
    * @return returns a boolean true signal the shell to continue running
    */
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     FileSystemNode beforeNode = null;
@@ -62,12 +62,12 @@ public class Remove extends Command {
         } else {
           
           //ERROR: Cannot remove directories because it is a subdirectory 
-          ErrorHandler.removeDirectoryError(tokens[1]);
+          this.setErrors(ErrorHandler.removeDirectoryError(tokens[1]));
         }
       }
       
     }
-    return true;
+    return this;
   }
     
 }

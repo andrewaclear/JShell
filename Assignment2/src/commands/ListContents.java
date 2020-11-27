@@ -131,8 +131,8 @@ public class ListContents extends Command {
         output += path + "\n";
       } else {
         // non-existant or empty
-        ErrorHandler.badInput(this,
-            "Cannot access \"" + path + "\": No such file or directory");
+        this.setErrors(ErrorHandler.badInput(this,
+            "Cannot access \"" + path + "\": No such file or directory"));
         return null;
       }
     }
@@ -156,7 +156,7 @@ public class ListContents extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     boolean containsArrow = StandardOutput.containsArrow(tokens);
     boolean recursive = tokens.length > 1 && tokens[1].equals("-R");
     int startShift = recursive? 2 : 1;
@@ -186,9 +186,9 @@ public class ListContents extends Command {
     }
 
     if (output != null && !output.equals("")) 
-      StandardOutput.println(tokens, output, shell, this);
+      this.setOutput(output);
 
-    return true;
+    return this;
   }
 
 }

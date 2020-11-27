@@ -27,7 +27,7 @@ public class LoadJShell extends Command {
   }
   
   @Override
-  public boolean run(String[] tokens, JShell shell) { 
+  public Command run(String[] tokens, JShell shell) { 
     try {
       FileInputStream file = new FileInputStream(tokens[1]);
       ObjectInputStream inStream = new ObjectInputStream(file);
@@ -38,9 +38,9 @@ public class LoadJShell extends Command {
       file.close();
       
     } catch (IOException | ClassNotFoundException e) {
-      ErrorHandler.invalidPath(this, tokens[1]);
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     }
 
-    return true;
+    return this;
   }
 }

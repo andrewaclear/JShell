@@ -26,6 +26,7 @@ package driver;
 
 import io.*;
 import runtime.*;
+import commands.Command;
 import data.*;
 
 /**
@@ -47,7 +48,8 @@ import data.*;
  */
 public class JShell {
 
-  private boolean run;
+  // private boolean exit;
+  private Command run;
   private Parser parse;
   private Execution execute;
   private StandardInput input;
@@ -55,7 +57,8 @@ public class JShell {
   private Cache cache;
 
   public JShell() {
-    this.run = true;
+    this.run = new Command();
+    this.run.setIdentifier("command");
     this.parse = new Parser();
     this.execute = new Execution();
     this.input = new StandardInput();
@@ -66,7 +69,7 @@ public class JShell {
 
   public void runShell() {
     // Main program loop
-    while (run) {
+    while (!run.getIdentifier().equals("exit")) {
       StandardOutput
           .print(fSystem.getCurrentDirectory().getDirectory().getDirectoryName()
               + " #: ");
@@ -75,7 +78,13 @@ public class JShell {
       // add line to history
       cache.addHistoryLine(input.currentLine);
       // Parses input into tokens and then executes the command
-      run = execute.executeCommand(parse.parse(input.currentLine), this);
+      String[] tokens = parse.parse(input.currentLine);
+      run = execute.executeCommand(tokens, this);
+      if (run.getErrors() == null && run.getOutput() != null) {
+        StandardOutput.println(tokens, run.getOutput(), this, run);
+      } else if (run.getErrors() != null) {
+        StandardOutput.println(run.getErrors());
+      }
     }
     input.close();
   }

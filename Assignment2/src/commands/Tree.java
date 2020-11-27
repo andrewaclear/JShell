@@ -38,15 +38,14 @@ public class Tree extends Command {
    * @param JShell contains the FileSystem and cache
    * @return returns a boolean true signal the shell to continue running
    */
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     int level = 0;
     String output = recursiveTreeDisplay("", fSystem.getRoot(), level);
     
-    StandardOutput.println(tokens, output.substring(0,output.length()-1), 
-    shell, this);
+    this.setOutput(output.substring(0,output.length()-1));
     
-    return true;
+    return this;
     
   }
 

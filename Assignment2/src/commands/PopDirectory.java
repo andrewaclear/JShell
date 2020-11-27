@@ -68,7 +68,7 @@ public class PopDirectory extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     
@@ -76,9 +76,9 @@ public class PopDirectory extends Command {
       String path = cache.popDirectoryStack();
       fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));
     } catch (Exception e) {
-      ErrorHandler.badInput(this, "Directory stack is empty");
+      this.setErrors(ErrorHandler.badInput(this, "Directory stack is empty"));
     }
 
-    return true;
+    return this;
   }
 }

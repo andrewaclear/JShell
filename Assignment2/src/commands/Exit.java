@@ -56,8 +56,8 @@ public class Exit extends Command {
    * @return boolean false to signal terminal to terminate
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
-    return false;
+  public Command run(String[] tokens, JShell shell) {
+    return this;
   }
 
 }

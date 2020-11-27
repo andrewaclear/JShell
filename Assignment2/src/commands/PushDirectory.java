@@ -71,7 +71,7 @@ public class PushDirectory extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     FileSystemNode node = fSystem.getFileSystemNode(tokens[1]);
@@ -81,8 +81,8 @@ public class PushDirectory extends Command {
       fSystem.setCurrentDirectory(node);
       // else print error
     } else {
-      ErrorHandler.invalidPath(this, tokens[1]);
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     }
-    return true;
+    return this;
   }
 }

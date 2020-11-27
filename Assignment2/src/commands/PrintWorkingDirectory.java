@@ -67,14 +67,13 @@ public class PrintWorkingDirectory extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
     // Print the path of the current directory
-    StandardOutput.println(tokens, fSystem.getCurrentDirectory().getPath(), 
-                           shell, this);
+    this.setOutput(fSystem.getCurrentDirectory().getPath());
 
-    return true;
+    return this;
 
   }
 }
