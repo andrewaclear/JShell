@@ -80,7 +80,7 @@ public class JShell {
       // Parses input into tokens and then executes the command
       String[] tokens = parse.parse(input.currentLine);
       run = execute.executeCommand(tokens, this);
-      if (run.getErrors() == null && run.getOutput() != null) {
+      if (run.getOutput() != null) {
         StandardOutput.println(tokens, run.getOutput(), this, run);
       } else if (run.getErrors() != null) {
         StandardOutput.println(run.getErrors());
