@@ -52,8 +52,8 @@ public class Move extends Command {
     else if (givenNode != null) {
         if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
           moveDirectoryInFileSystem(tokens[1], tokens[2], shell);
-        } else if (givenNode.isFileInsideByFileName(fSystem.getPathLastEntry(
-            tokens[1]))){
+        } else if (givenNode.getDirectory().isFileInsideByFileName(
+            fSystem.getPathLastEntry(tokens[1]))){
           moveFileInFileSystem(tokens[1], tokens[2], shell);
             }
           } else 
@@ -95,21 +95,14 @@ public class Move extends Command {
     FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
     
     if (targetNode != null) {
-      if (targetNode.isChildInside(fSystem.getPathLastEntry(targetPath))) {
-        Echo echoCommand = new Echo();
-        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
-            fSystem.getPathLastEntry(givenPath));
-        String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
-            targetPath + fSystem.getPathLastEntry(givenPath)};
-        echoCommand.run(echoTokens, shell);
-      } else {
-        Echo echoCommand = new Echo();
-        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
-            fSystem.getPathLastEntry(givenPath));
-        String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
-            targetPath};
-        echoCommand.run(echoTokens, shell);
-      }
+
+      Echo echoCommand = new Echo();
+      File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+          fSystem.getPathLastEntry(givenPath));
+      String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
+          targetPath};
+      echoCommand.run(echoTokens, shell);
+    
       Remove remove = new Remove();
       String[] removeTokens = {"rm", givenPath};
       remove.run(removeTokens, shell);

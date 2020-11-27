@@ -44,27 +44,25 @@ public class Remove extends Command {
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
-    FileSystemNode beforeNode = null;
+    FileSystemNode beforeNode = fSystem.getSemiFileSystemNode(tokens[1]);
     
-    if (fSystem.getFileSystemNode(tokens[1]) != null) {
-      // Set targetNode to the FileSystemNode that the path leads to
-      beforeNode = fSystem.getSemiFileSystemNode(tokens[1]);
-      
-      if (beforeNode != null) {
-        if (!fSystem.getCurrentDirectory().getPath().startsWith(
-            fSystem.getFileSystemNode(tokens[1]).getPath())) {
+    if (beforeNode != null) {
+
+        if (!fSystem.getCurrentDirectory().getPath().startsWith(tokens[1])) {
+          if (beforeNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+            cache.removeDirectory(fSystem.getFileSystemNode(
+                tokens[1]).getPath());
+            
+            beforeNode.removeChild(fSystem.getPathLastEntry(tokens[1]));
+          } else if (beforeNode.getDirectory().isFileInsideByFileName(tokens[1])) {
+            beforeNode.getDirectory().removeFile(tokens[1]);
+          } else {
+            //ADD ERROR
+          }
           
-          cache.removeDirectory(fSystem.getFileSystemNode(
-              tokens[1]).getPath());
-          
-          beforeNode.removeChild(fSystem.getPathLastEntry(tokens[1]));
-          
-        } else {
-          
-          //ERROR: Cannot remove directories because it is a subdirectory 
+        } else 
           this.setErrors(ErrorHandler.removeDirectoryError(tokens[1]));
-        }
-      }
+        
       
     }
     return this;

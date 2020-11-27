@@ -53,8 +53,8 @@ public class Copy extends Command {
     else if (givenNode != null) {
       if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
         copyFileSystemNodeInFileSystem(tokens[1], tokens[2], shell);
-      } else if (givenNode.isFileInsideByFileName(fSystem.getPathLastEntry(
-          tokens[1]))) {
+      } else if (givenNode.getDirectory().isFileInsideByFileName(
+          fSystem.getPathLastEntry(tokens[1]))) {
         Echo echoCommand = new Echo();
         String[] echoTokens = {givenNode.getDirectory().getFile(
             fSystem.getPathLastEntry(tokens[1])).getContent(), ">", tokens[2]};
