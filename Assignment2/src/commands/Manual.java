@@ -72,7 +72,7 @@ public class Manual extends Command {
     
 
     this.setIdentifier("man");
-    this.setMaxNumOfArguments(-1);
+    this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("What manual page do you want?");
@@ -91,22 +91,21 @@ public class Manual extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String output = "";
-    int i = 1;
-    while (i < tokens.length) {
-      // If command is recognized, then print manual for it
-      if (descriptions.containsKey(tokens[i])) {
-        output += "Documentation for: " + tokens[i] + "\n";
-        output += descriptions.get(tokens[i]) + "\n";
-        if (i + 1 < tokens.length) {
-          output += "\n\n\n";
-        }
-        // Else, then give command not found error
+      boolean arrows = StandardOutput.containsArrow(tokens);
+      boolean check = arrows && tokens.length == 4;
+      if (!arrows && tokens.length == 2 || check) {
+        // If command is recognized, then print manual for it
+        if (descriptions.containsKey(tokens[1])) {
+          output += "Documentation for: " + tokens[1] + "\n";
+          output += descriptions.get(tokens[1]) + "\n";
+          // Else, then give command not found error
+        } else {
+          this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[1]));
+        }  
       } else {
-        this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[i]));
-        break;
+        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
       }
-      i++;
-    }
+      
     this.setOutput(output);
     return this;
   }
