@@ -119,5 +119,16 @@ public class Directory implements java.io.Serializable {
       index += 1;
     }
   }
+  
+  public boolean isFileInsideByFileName(String givenFileName) {
+    
+    for (File file : this.getFiles()) {
+      if (file.getFileName().equals(givenFileName)) {
+        return true;
+      }
+    }
+  
+  return false;
+  }
 
 }

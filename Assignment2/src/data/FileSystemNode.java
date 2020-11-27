@@ -214,16 +214,7 @@ public class FileSystemNode implements java.io.Serializable {
   }
   
   
-  public boolean isFileInsideByFileName(String givenFileName) {
-    
-    for (File file : this.getDirectory().getFiles()) {
-      if (file.getFileName().equals(givenFileName)) {
-        return true;
-      }
-    }
-  
-  return false;
-  }
+
   
   
   public FileSystemNode cloneFileSystemNode(FileSystemNode clonedFileSystemNode) {
