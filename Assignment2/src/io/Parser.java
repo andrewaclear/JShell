@@ -70,7 +70,7 @@ public class Parser {
           i = j + 2; // Update counter to new position in input string; temp
           tempString = "";
         } else {
-          ErrorHandler.illegalString();
+          StandardOutput.println(ErrorHandler.illegalString());
           // tokens = failedParsing(tokens);
           break mainLoop;
         }
