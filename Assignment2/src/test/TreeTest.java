@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.*;
+/*import static org.junit.Assert.*;
 import org.junit.Test;
 import data.FileSystem;
 
@@ -16,3 +16,4 @@ public class TreeTest {
   }
 
 }
+*/

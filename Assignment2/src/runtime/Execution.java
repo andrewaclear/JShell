@@ -83,7 +83,7 @@ public class Execution {
         run.setErrors(ErrorHandler.commandNotFound(tokens));
       }
     } catch (Exception e) {
-      run.setErrors(e.getMessage());
+      //run.setErrors(e.getMessage());
     }
 
     return run;
@@ -115,6 +115,7 @@ public class Execution {
     commandHashMap.put("mv", "commands.Move");
     commandHashMap.put("search", "commands.Search");
     commandHashMap.put("cp", "commands.Copy");
+    commandHashMap.put("redirect", "commands.Redirection");
   }
 }
 

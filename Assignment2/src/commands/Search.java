@@ -73,6 +73,7 @@ public class Search extends Command {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[iPath]));
           break;
         }
+        found = false;
       }
     } else {
       this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));

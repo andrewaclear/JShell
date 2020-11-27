@@ -31,34 +31,26 @@ import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
- * Takes in an array of tokens from execution and executes the Echo command.
- * echo "STRING arrow OUTFILE does the following: Puts STRING into file OUTFILE.
- * STRING is a string of characters surrounded by double quotation marks. This
- * creates a new file if OUTFILE does not exists and erases the old contents if
- * OUTFILE already exists. In either case, the only thing in OUTFILE should be
- * STRING. echo "STRING" double_arrow OUTFILE: Like the previous command, but
+ * Takes in an array of tokens from execution and executes redirects output to a
+ * file. Creates a new file if OUTFILE does not exists and erases the old
+ * contents if OUTFILE already exists. In either case, the only thing in OUTFILE
+ * should be STRING. If double_arrow OUTFILE: Like the single_arrow, but 
  * appends instead of overwrites.
  */
-public class EchoToFile extends Command {
+public class Redirection extends Command {
 
   /**
-   * Constructor for EchoToFile class. It initializes identifier,
+   * Constructor for Redirection class. It initializes identifier,
    * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
    * and description from its super class Commands.
    */
-  public EchoToFile() {
-    this.setDescription("If OUTFILE is not provided, print STRING"
-        + " on the shell. Otherwise, put \nSTRING into file OUTFILE."
-        + " STRING is a string of"
-        + " characters surrounded \nby double  quotation marks. This"
-        + " creates a new file if OUTFILE does \nnot exists and erases"
-        + " the old contents if OUTFILE already exists. \nIn either case,"
-        + " the only thing in OUTFILE should be STRING.");
-    this.setIdentifier("echo");
-    this.setMaxNumOfArguments(4);
-    this.setMinNumOfArguments(2);
+  public Redirection() {
+    this.setDescription("Redirects output to a file when > or >> is added");
+    this.setIdentifier("redirect");
+    this.setMaxNumOfArguments(-1);
+    this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("Too many arguments");
-    this.setMissingOperand("Please specify a string to print");
+    this.setMissingOperand("Please specify a file");
   }
 
   /**
@@ -101,6 +93,7 @@ public class EchoToFile extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
+
     FileSystem fSystem = shell.getfSystem();
     String name;
     FileSystemNode node;
