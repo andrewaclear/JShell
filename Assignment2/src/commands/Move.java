@@ -5,6 +5,7 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
+import commands.Remove;
 
 public class Move extends Command {
   
@@ -42,7 +43,7 @@ public class Move extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
     FileSystemNode givenNode = fSystem.getFileSystemNode(tokens[1]);
@@ -53,7 +54,7 @@ public class Move extends Command {
     FileSystemNode targetNode = null;
     
     if (tokens[2].startsWith(tokens[1])) 
-      ErrorHandler.moveDirectoryError(tokens[2]);
+      this.setErrors(ErrorHandler.moveDirectoryError(tokens[2]));
     else if (givenNode != null || targetFile != null) {
         if (givenNode != null) {
           targetNode = fSystem.forcedGetFileSystemNode(tokens[2]);
@@ -75,18 +76,15 @@ public class Move extends Command {
               targetNode.getFile(targetFile.getFileName()).setContent(
                   targetFile.getContent());
             }
-            fSystem.getSemiFileSystemNode(tokens[1]).getDirectory().removeFile(
-                targetFile.getFileName());
-            ;
           } else {
             //ADD ERROR
           }
         }
 
     } else {
-      ErrorHandler.invalidPath(this, tokens[1]);
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     }
-    return true;
+    return this;
   }
   
 }
