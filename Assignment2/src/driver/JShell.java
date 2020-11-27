@@ -82,7 +82,8 @@ public class JShell {
       run = execute.executeCommand(tokens, this);
       if (run.getOutput() != null) {
         StandardOutput.println(tokens, run.getOutput(), this, run);
-      } else if (run.getErrors() != null) {
+      } 
+      if (run.getErrors() != null) {
         StandardOutput.println(run.getErrors());
       }
     }
