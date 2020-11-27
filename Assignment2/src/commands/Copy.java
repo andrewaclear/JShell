@@ -1,11 +1,11 @@
 package commands;
 
+import data.Directory;
 import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
-import commands.Echo;
 
 public class Copy extends Command {
   
@@ -74,16 +74,18 @@ public class Copy extends Command {
     
     FileSystem fSystem = shell.getfSystem();
     
-    FileSystemNode clonedFileSystemNode = null;
+    FileSystemNode clonedFileSystemNode = new FileSystemNode(
+        new Directory("Dummy"));
         
     clonedFileSystemNode = fSystem.getFileSystemNode(
         givenPath).cloneFileSystemNode(clonedFileSystemNode);
     
     FileSystemNode targetNode = fSystem.getFileSystemNode(targetPath);
-    
-    if (targetNode != null) 
+
+    if (targetNode != null) {
+      clonedFileSystemNode.setParent(targetNode);
       targetNode.addChild(clonedFileSystemNode);
-    else 
+    } else 
       ErrorHandler.invalidPath(this, targetPath);
 
   }

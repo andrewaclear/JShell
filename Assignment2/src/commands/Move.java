@@ -5,7 +5,6 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
-import commands.Remove;
 
 public class Move extends Command {
   
@@ -46,45 +45,76 @@ public class Move extends Command {
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
-    FileSystemNode givenNode = fSystem.getFileSystemNode(tokens[1]);
-    
-    File targetFile = fSystem.getSemiFileSystemNode(tokens[1]).
-        getFile(fSystem.getPathLastEntry(tokens[1]));
-    
-    FileSystemNode targetNode = null;
+    FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
     
     if (tokens[2].startsWith(tokens[1])) 
       this.setErrors(ErrorHandler.moveDirectoryError(tokens[2]));
-    else if (givenNode != null || targetFile != null) {
-        if (givenNode != null) {
-          targetNode = fSystem.forcedGetFileSystemNode(tokens[2]);
-          if (!targetNode.isChildInside(
-              givenNode.getDirectory().getDirectoryName())) {
-            fSystem.forcedGetFileSystemNode(tokens[2]).addChild(givenNode);
-            Remove remove = new Remove();
-            remove.run(tokens, shell);
-          }
-          else {
-            //ADD ERROR 
-          }
-        } else {
-          targetNode = fSystem.getFileSystemNode(tokens[2]);
-          if (targetNode != null) {
-            if (targetNode.isFileInsideByFileName(targetFile.getFileName())) {
-              targetNode.addFile(targetFile);
-            } else {
-              targetNode.getFile(targetFile.getFileName()).setContent(
-                  targetFile.getContent());
+    else if (givenNode != null) {
+        if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+          moveDirectoryInFileSystem(tokens[1], tokens[2], shell);
+        } else if (givenNode.isFileInsideByFileName(fSystem.getPathLastEntry(
+            tokens[1]))){
+          moveFileInFileSystem(tokens[1], tokens[2], shell);
             }
-          } else {
-            //ADD ERROR
-          }
-        }
+          } else 
+            this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
 
-    } else {
-      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
-    }
     return this;
   }
   
+  public void moveDirectoryInFileSystem(String givenPath, 
+      String targetPath, JShell shell) {
+    
+    FileSystem fSystem = shell.getfSystem();
+    
+    FileSystemNode targetNode = fSystem.forcedGetFileSystemNode(targetPath);
+    
+    FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
+    
+    if (targetNode != null) {
+      if (!targetNode.isChildInside(
+          givenNode.getDirectory().getDirectoryName())) {
+        targetNode.addChild(givenNode);
+        givenNode.setParent(targetNode);
+        Remove remove = new Remove();
+        String[] removeTokens = {"rm", givenPath};
+        remove.run(removeTokens, shell);
+      } else 
+        this.setErrors(ErrorHandler.invalidPath(this, targetPath));
+      
+    } else 
+      this.setErrors(ErrorHandler.invalidPath(this, targetPath));
+    
+  }
+  
+  
+  public void moveFileInFileSystem(String givenPath, 
+      String targetPath, JShell shell) {
+    
+    FileSystem fSystem = shell.getfSystem();
+    FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
+    
+    if (targetNode != null) {
+      if (targetNode.isChildInside(fSystem.getPathLastEntry(targetPath))) {
+        Echo echoCommand = new Echo();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
+            targetPath + fSystem.getPathLastEntry(givenPath)};
+        echoCommand.run(echoTokens, shell);
+      } else {
+        Echo echoCommand = new Echo();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
+            targetPath};
+        echoCommand.run(echoTokens, shell);
+      }
+      Remove remove = new Remove();
+      String[] removeTokens = {"rm", givenPath};
+      remove.run(removeTokens, shell);
+    } else 
+      this.setErrors(ErrorHandler.invalidPath(this, targetPath));
+    
+  }
 }
