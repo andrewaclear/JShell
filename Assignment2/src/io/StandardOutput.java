@@ -26,6 +26,7 @@ package io;
 
 import commands.Command;
 import commands.Echo;
+import commands.Redirection;
 import driver.JShell;
 import runtime.ErrorHandler;
 
@@ -57,16 +58,19 @@ public class StandardOutput {
    
     boolean containsArrow = containsArrow(tokens);
 
-    if (containsArrow && !command.getIdentifier().equals("echo")) {
+    if (containsArrow) {
       String[] tokens2 = new String[4];
       
-      tokens2[0] = "echo";
+      tokens2[0] = "redirect";
       tokens2[1] = "\"" + output + "\"";
       tokens2[2] = tokens[indexArrow];
       tokens2[3] = tokens[indexArrow + 1];
 
-      Echo echo = new Echo();
-      echo.run(tokens2, shell);
+      Redirection redirect = new Redirection();
+      redirect = (Redirection) redirect.run(tokens2, shell);
+      if (redirect.getErrors() != null) {
+       StandardOutput.println(redirect.getErrors());
+      }
     } else if (tokens.length == command.getMaxNumOfArguments()-2 
                || command.getMaxNumOfArguments() == -1) {
       System.out.println(output);

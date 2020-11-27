@@ -76,26 +76,15 @@ public class Echo extends Command {
   public Command run(String[] tokens, JShell shell) {
     String output = "";
     // If called with just echo "STRING", prints STRING to terminal
-    if (tokens.length == 2) {
+    //if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
         output += tokens[1].replace("\"", "");
       } else {
         this.setErrors(ErrorHandler.missingString(this, tokens));
       }
-      // If called with echo "STRING" > file, then prints STRING to file
-    } else if (tokens.length == 4 && tokens[2].equals(">")
-        || tokens[2].equals(">>")) {
-      if (tokens[1].charAt(0) == '"') {
-        EchoToFile echoFile = new EchoToFile();
-        echoFile.run(tokens, shell);
-        this.setErrors(echoFile.getErrors());
-      } else {
-        this.setErrors(ErrorHandler.missingString(this, tokens));
-      }
-      // Else invalid combination of arguments
-    } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-    }
+   // } else {
+    //  this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+   // }
 
     this.setOutput(output);
 
