@@ -114,6 +114,7 @@ public class Execution {
     commandHashMap.put("curl", "commands.ClientUrl");
     commandHashMap.put("mv", "commands.Move");
     commandHashMap.put("search", "commands.Search");
+    commandHashMap.put("cp", "commands.Copy");
   }
 }
 
