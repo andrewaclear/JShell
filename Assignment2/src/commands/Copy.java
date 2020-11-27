@@ -5,7 +5,7 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
-import commands.Remove;
+import commands.Echo;
 
 public class Copy extends Command {
   
@@ -46,22 +46,69 @@ public class Copy extends Command {
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
-    FileSystemNode givenNode = fSystem.getFileSystemNode(tokens[1]);
-    
-    File targetFile = fSystem.getSemiFileSystemNode(tokens[1]).
-        getFile(fSystem.getPathLastEntry(tokens[1]));
-    
-    FileSystemNode targetNode = null;
+    FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
     
     if (tokens[2].startsWith(tokens[1])) 
       ErrorHandler.moveDirectoryError(tokens[2]);
-    else if (givenNode != null || targetFile != null) {
-        
+    else if (givenNode != null) {
+      if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+        copyFileSystemNodeInFileSystem(tokens[1], tokens[2], shell);
+      } else if (givenNode.isFileInsideByFileName(fSystem.getPathLastEntry(
+          tokens[1]))) {
+        Echo echoCommand = new Echo();
+        String[] echoTokens = {givenNode.getDirectory().getFile(
+            fSystem.getPathLastEntry(tokens[1])).getContent(), ">", tokens[2]};
+        echoCommand.run(echoTokens, shell);
+      } else
+        ErrorHandler.invalidPath(this, tokens[1]);
 
     } else {
       ErrorHandler.invalidPath(this, tokens[1]);
     }
     return this;
   }
+  
+  
+  public void copyFileSystemNodeInFileSystem(String givenPath, 
+      String targetPath, JShell shell) {
+    
+    FileSystem fSystem = shell.getfSystem();
+    
+    FileSystemNode clonedFileSystemNode = null;
+        
+    clonedFileSystemNode = fSystem.getFileSystemNode(
+        givenPath).cloneFileSystemNode(clonedFileSystemNode);
+    
+    FileSystemNode targetNode = fSystem.getFileSystemNode(targetPath);
+    
+    if (targetNode != null) 
+      targetNode.addChild(clonedFileSystemNode);
+    else 
+      ErrorHandler.invalidPath(this, targetPath);
+
+  }
+  
+  
+  public void copyFileInFileSystem(String givenPath, 
+      String targetPath, JShell shell) {
+    
+    FileSystem fSystem = shell.getfSystem();
+
+    FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
+    
+    if (targetNode != null) {
+      Echo echoCommand = new Echo();
+      File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+          fSystem.getPathLastEntry(givenPath));
+      String[] echoTokens = {"\"" + file.getContent() + "\"", ">", 
+          targetPath};
+      echoCommand.run(echoTokens, shell);
+
+    } else 
+      ErrorHandler.invalidPath(this, targetPath);
+
+  }
+  
+
   
 }
