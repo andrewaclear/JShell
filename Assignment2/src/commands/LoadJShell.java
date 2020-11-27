@@ -28,19 +28,22 @@ public class LoadJShell extends Command {
   
   @Override
   public Command run(String[] tokens, JShell shell) { 
-    try {
-      FileInputStream file = new FileInputStream(tokens[1]);
-      ObjectInputStream inStream = new ObjectInputStream(file);
-      shell.setfSystem((FileSystem) inStream.readObject());
-      shell.setCache((Cache) inStream.readObject());
-     
-      inStream.close();
-      file.close();
-      
-    } catch (IOException | ClassNotFoundException e) {
-      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
+    if (shell.getCache().getHistorySize() == 0) {
+      try {
+        FileInputStream file = new FileInputStream(tokens[1]);
+        ObjectInputStream inStream = new ObjectInputStream(file);
+        shell.setfSystem((FileSystem) inStream.readObject());
+        shell.setCache((Cache) inStream.readObject());
+       
+        inStream.close();
+        file.close();
+        
+      } catch (IOException | ClassNotFoundException e) {
+        this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
+      }
+    } else {
+      this.setErrors(ErrorHandler.badInput(this, "Non-empty JShell"));
     }
-
     return this;
   }
 }
