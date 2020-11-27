@@ -43,7 +43,7 @@ public class Copy extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
     FileSystemNode givenNode = fSystem.getFileSystemNode(tokens[1]);
@@ -61,7 +61,7 @@ public class Copy extends Command {
     } else {
       ErrorHandler.invalidPath(this, tokens[1]);
     }
-    return true;
+    return this;
   }
   
 }
