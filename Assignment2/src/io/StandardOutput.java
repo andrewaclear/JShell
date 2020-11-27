@@ -57,7 +57,7 @@ public class StandardOutput {
    
     boolean containsArrow = containsArrow(tokens);
 
-    if (containsArrow) {
+    if (containsArrow && !command.getIdentifier().equals("echo")) {
       String[] tokens2 = new String[4];
       
       tokens2[0] = "echo";

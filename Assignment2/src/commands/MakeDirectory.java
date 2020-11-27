@@ -80,33 +80,32 @@ public class MakeDirectory extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    
+
     FileSystemNode targetNode = null;
-    
-    String[] pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length) ;
-    
+
+    String[] pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length);
+
     for (String token : pathTokens) {
-        
-        targetNode = fSystem.getSemiFileSystemNode(token);
-        
-        if (targetNode != null) {
-           if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
-             targetNode.addChild(new FileSystemNode(
-                  new Directory(fSystem.getPathLastEntry(token))));
-          } else {
-            ErrorHandler.childAlreadyExistant(fSystem.getPathLastEntry(token), 
-                targetNode);
-            break;
-          }
+
+      targetNode = fSystem.getSemiFileSystemNode(token);
+
+      if (targetNode != null) {
+        if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+          targetNode.addChild(new FileSystemNode(
+              new Directory(fSystem.getPathLastEntry(token))));
         } else {
-          ErrorHandler.invalidPath(this, token);
+          this.setErrors(ErrorHandler.childAlreadyExistant(
+              fSystem.getPathLastEntry(token), targetNode));
           break;
         }
+      } else {
+        this.setErrors(ErrorHandler.invalidPath(this, token));
+        break;
+      }
     }
 
-    return true;
-
+    return this;
   }
 }

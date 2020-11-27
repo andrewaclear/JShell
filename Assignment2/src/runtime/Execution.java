@@ -57,8 +57,9 @@ public class Execution {
    * @param cache, store the current directory stack
    * @return returns a boolean true when exit is entered into terminal
    */
-  public boolean executeCommand(String[] tokens, JShell shell) {
-    boolean run = true;
+  public Command executeCommand(String[] tokens, JShell shell) {
+    Command run = new Command();
+    run.setIdentifier("command");
 
     try {
       if (commandHashMap.containsKey(tokens[0])) {
@@ -69,19 +70,20 @@ public class Execution {
         if ((command.getMaxNumOfArguments() < 0
             || tokens.length <= command.getMaxNumOfArguments())
             && tokens.length >= command.getMinNumOfArguments()) {
-          run = command.run(tokens, shell);
-        } else if (tokens.length > command.getMaxNumOfArguments()) {
-          ErrorHandler.tooManyArguments(command);
+          return command.run(tokens, shell);
+        } else if (tokens.length > command.getMaxNumOfArguments() &&
+            !(command.getMaxNumOfArguments() < 0)) {
+          run.setErrors(ErrorHandler.tooManyArguments(command));
         } else if (tokens.length < command.getMinNumOfArguments()) {
-          ErrorHandler.missingOperand(command);
+          run.setErrors(ErrorHandler.missingOperand(command));
         }
         // } else if (tokens[1].equals("Failed Parsing")) {
         // ErrorHandler.commandNotFound(tokens);
       } else {
-        ErrorHandler.commandNotFound(tokens);
+        run.setErrors(ErrorHandler.commandNotFound(tokens));
       }
     } catch (Exception e) {
-      // StandardOutput.println(e.getMessage());
+      run.setErrors(e.getMessage());
     }
 
     return run;
@@ -111,6 +113,7 @@ public class Execution {
     commandHashMap.put("loadJShell", "commands.loadJShell");
     commandHashMap.put("curl", "commands.ClientUrl");
     commandHashMap.put("mv", "commands.Move");
+    commandHashMap.put("search", "commands.Search");
   }
 }
 

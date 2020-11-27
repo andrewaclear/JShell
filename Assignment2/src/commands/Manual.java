@@ -62,6 +62,13 @@ public class Manual extends Command {
     descriptions.put("popd", new PopDirectory().getDescription());
     descriptions.put("pwd", new PrintWorkingDirectory().getDescription());
     descriptions.put("pushd", new PushDirectory().getDescription());
+    descriptions.put("search", new Search().getDescription());
+    descriptions.put("loadJShell", new LoadJShell().getDescription());
+    descriptions.put("saveJShell", new SaveJShell().getDescription());
+    descriptions.put("tree", new Tree().getDescription());
+    descriptions.put("mv", new Move().getDescription());
+    //descriptions.put("cp", new Copy().getDescription());
+    descriptions.put("curl", new ClientUrl().getDescription());
     
 
     this.setIdentifier("man");
@@ -82,25 +89,25 @@ public class Manual extends Command {
    * @return returns a boolean true to mark successful execution
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
+  public Command run(String[] tokens, JShell shell) {
+    String output = "";
     int i = 1;
     while (i < tokens.length) {
       // If command is recognized, then print manual for it
       if (descriptions.containsKey(tokens[i])) {
-        StandardOutput.println("Documentation for: " + tokens[i] + "\n");
-        StandardOutput.println(descriptions.get(tokens[i]));
+        output += "Documentation for: " + tokens[i] + "\n";
+        output += descriptions.get(tokens[i]) + "\n";
         if (i + 1 < tokens.length) {
-          StandardOutput.print("\n\n\n");
+          output += "\n\n\n";
         }
         // Else, then give command not found error
       } else {
-        ErrorHandler.commandNotFoundManual(this, tokens[i]);
+        this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[i]));
         break;
       }
       i++;
     }
-    return true;
+    this.setOutput(output);
+    return this;
   }
 }

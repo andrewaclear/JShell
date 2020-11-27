@@ -27,7 +27,7 @@ public class SaveJShell extends Command {
   }
   
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     try {
@@ -39,9 +39,9 @@ public class SaveJShell extends Command {
       file.close();
       
     } catch (IOException e) {
-      ErrorHandler.badInput(this, "Invalid filepath given");
+      this.setErrors(ErrorHandler.badInput(this, "Invalid filepath given"));
     }
 
-    return true;
+    return this;
   }
 }

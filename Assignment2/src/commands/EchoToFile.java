@@ -100,9 +100,8 @@ public class EchoToFile extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    // String path = tokens[3];
     String name;
     FileSystemNode node;
 
@@ -110,15 +109,15 @@ public class EchoToFile extends Command {
     node = fSystem.getSemiFileSystemNode(tokens[3]);
 
     if (name.matches("(.+)?[ /.!@#$%^&*(){}~|<>?](.+)?")) {
-      ErrorHandler.invalidName(this, tokens);
-      return true;
+      this.setErrors(ErrorHandler.invalidName(this, tokens));
+      return this;
     }
     if (node != null && !name.equals("")) {
       toFile(tokens, node, name);
     } else {
-      ErrorHandler.invalidPath(this, tokens[3]);
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[3]));
     }
 
-    return true;
+    return this;
   }
 }

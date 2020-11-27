@@ -88,7 +88,7 @@ public class History extends Command {
    */
 
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
     Cache cache = shell.getCache();
     String output = "";
     boolean containArrow = StandardOutput.containsArrow(tokens);
@@ -111,8 +111,9 @@ public class History extends Command {
       else if (truncate >= 0)
         start = n - truncate;
       else {
-        ErrorHandler.badInput(this, "Operand must be a non-negative integer");
-        return true;
+        this.setErrors(ErrorHandler.badInput(this, "Operand must"
+            + " be a non-negative integer"));
+        return this;
       }
     }
 
@@ -124,8 +125,8 @@ public class History extends Command {
       if (i+1 < n) output += "\n";
     }
 
-    StandardOutput.println(tokens, output, shell, this);
+    this.setOutput(output);
 
-    return true;
+    return this;
   }
 }

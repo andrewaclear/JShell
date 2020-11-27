@@ -73,13 +73,14 @@ public class Echo extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   @Override
-  public boolean run(String[] tokens, JShell shell) {
+  public Command run(String[] tokens, JShell shell) {
+    String output = "";
     // If called with just echo "STRING", prints STRING to terminal
     if (tokens.length == 2) {
       if (tokens[1].charAt(0) == '"') {
-        StandardOutput.println(tokens[1].replace("\"", ""));
+        output += tokens[1].replace("\"", "");
       } else {
-        ErrorHandler.missingString(this, tokens);
+        this.setErrors(ErrorHandler.missingString(this, tokens));
       }
       // If called with echo "STRING" > file, then prints STRING to file
     } else if (tokens.length == 4 && tokens[2].equals(">")
@@ -87,15 +88,18 @@ public class Echo extends Command {
       if (tokens[1].charAt(0) == '"') {
         EchoToFile echoFile = new EchoToFile();
         echoFile.run(tokens, shell);
+        this.setErrors(echoFile.getErrors());
       } else {
-        ErrorHandler.missingString(this, tokens);
+        this.setErrors(ErrorHandler.missingString(this, tokens));
       }
       // Else invalid combination of arguments
     } else {
-      ErrorHandler.invalidComboOfParams(this, tokens);
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
     }
 
-    return true;
+    this.setOutput(output);
+
+    return this;
   }
 }
 
