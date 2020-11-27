@@ -26,7 +26,6 @@ package data;
 
 import java.util.List;
 import java.util.ArrayList;
-import runtime.ErrorHandler;
 
 /**
  * Data type of the tree structure required for a FileSystem
@@ -80,7 +79,7 @@ public class FileSystemNode implements java.io.Serializable {
    * 
    * @param parent, an instance of a FileSystemNode
    */
-  private void setParent(FileSystemNode parent) {
+  public void setParent(FileSystemNode parent) {
     this.parent = parent;
   }
 
