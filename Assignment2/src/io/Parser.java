@@ -61,8 +61,9 @@ public class Parser {
             tempString += temp.charAt(j);
             j++;
             if (j >= temp.length()) { // No closing " for the string
-              ErrorHandler.illegalString();
-              // tokens = failedParsing(tokens);
+              StandardOutput.println(ErrorHandler.illegalString());
+              tokens.clear();
+              tokens.add("~FailedParsing~");
               break mainLoop;
             }
           }
@@ -71,7 +72,8 @@ public class Parser {
           tempString = "";
         } else {
           StandardOutput.println(ErrorHandler.illegalString());
-          // tokens = failedParsing(tokens);
+          tokens.clear();
+          tokens.add("~FailedParsing~");
           break mainLoop;
         }
         // Continue adding characters to build string argument
