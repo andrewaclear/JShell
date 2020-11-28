@@ -2,7 +2,6 @@ package commands;
 
 import data.FileSystemNode;
 import driver.JShell;
-import io.StandardOutput;
 import runtime.ErrorHandler;
 
 public class Search extends Command {
@@ -31,10 +30,11 @@ public class Search extends Command {
   public Command run(String[] tokens, JShell shell) {
     String output = "";
     FileSystemNode node;
-    boolean found = false;
+    boolean found;
     int len = tokens.length;
     int n = 0;
     String item = tokens[len-1].replace("\"","");
+    String name = tokens[len-1];
 
     boolean typeParam = tokens[len-4].equals("-type");
     boolean fParam = tokens[len-3].equals("f");
@@ -44,8 +44,8 @@ public class Search extends Command {
 
     if (typeParam && (fParam || dParam) && nameParam && stringParam) {
       for (int iPath = 1; iPath < len-4; iPath++) {
+        found = false;
         node = shell.getfSystem().getFileSystemNode(tokens[iPath]);
-        // System.out.println(node.getDirectory().getDirectoryName());
 
         if (node != null) {
           if (fParam) {
@@ -53,33 +53,32 @@ public class Search extends Command {
             for (int i = 0; i < n; i++) {
               found = node.getDirectory().getFiles().get(i).getFileName().equals(item);
               if (found) {
-                output += tokens[iPath] + ": contains file: " + item + "\n";
+                output += tokens[iPath] + ": contains file: " + name + "\n";
                 break;
               }
             }
-            if (!found) output += tokens[iPath] + ": does not contain file: " + item + "\n";
+            if (!found) output += tokens[iPath] + ": does not contain file: " + name + "\n";
           } else {
             n = node.getChildren().size();
             for (int i = 0; i < n; i++) {
               found = node.getChildren().get(i).getDirectory().getDirectoryName().equals(item);
               if (found) {
-                output += tokens[iPath] + ": contains directory: " + item + "\n";
+                output += tokens[iPath] + ": contains directory: " + name + "\n";
                 break;
               }
             }
-            if (!found) output += tokens[iPath] + ": does not contain directory: " + item + "\n";
+            if (!found) output += tokens[iPath] + ": does not contain directory: " + name + "\n";
           }
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[iPath]));
           break;
         }
-        found = false;
       }
     } else {
       this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
     }
-
-    if (!output.equals("")) this.setOutput(output.substring(0, output.length()-1));
+    
+    if (output.length() > 1) this.setOutput(output.substring(0, output.length()-1));
 
     return this;
   }

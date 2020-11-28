@@ -137,7 +137,8 @@ public class ListContents extends Command {
       }
     }
 
-    return output.substring(0, output.length()-1);
+    if (output.length() > 1) return output.substring(0, output.length()-1);
+    else return null;
   }
 
   /**
@@ -185,8 +186,7 @@ public class ListContents extends Command {
       }
     }
 
-    if (output != null && !output.equals("")) 
-      this.setOutput(output);
+    this.setOutput(output);
 
     return this;
   }

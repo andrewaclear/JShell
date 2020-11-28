@@ -71,7 +71,7 @@ public class StandardOutput {
       if (redirect.getErrors() != null) {
        StandardOutput.println(redirect.getErrors());
       }
-    } else if (tokens.length == command.getMaxNumOfArguments()-2 
+    } else if (tokens.length <= command.getMaxNumOfArguments()-2 
                || command.getMaxNumOfArguments() == -1) {
       System.out.println(output);
     } else {

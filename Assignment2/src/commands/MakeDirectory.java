@@ -25,7 +25,6 @@
 package commands;
 
 import java.util.Arrays;
-import data.Cache;
 import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
@@ -89,21 +88,26 @@ public class MakeDirectory extends Command {
 
     for (String token : pathTokens) {
 
-      targetNode = fSystem.getSemiFileSystemNode(token);
+        targetNode = fSystem.getSemiFileSystemNode(token);
 
-      if (targetNode != null) {
-        if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
-          targetNode.addChild(new FileSystemNode(
-              new Directory(fSystem.getPathLastEntry(token))));
+        if (targetNode != null) {
+          if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+            String name = fSystem.getPathLastEntry(token);
+            if (!fSystem.inappropriateName(name)) {          
+              targetNode.addChild(new FileSystemNode(new Directory(name)));
+            } else {
+              this.setErrors(ErrorHandler.invalidName(this, name));
+              break;
+            }
+          } else {
+            this.setErrors(ErrorHandler.childAlreadyExistant(
+                fSystem.getPathLastEntry(token), targetNode));
+            break;
+          }
         } else {
-          this.setErrors(ErrorHandler.childAlreadyExistant(
-              fSystem.getPathLastEntry(token), targetNode));
+          this.setErrors(ErrorHandler.invalidPath(this, token));
           break;
         }
-      } else {
-        this.setErrors(ErrorHandler.invalidPath(this, token));
-        break;
-      }
     }
 
     return this;
