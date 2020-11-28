@@ -67,14 +67,6 @@ public class Remove extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   public Command run(String[] tokens, JShell shell) {
-    if (tokens.length > 2) {
-      if (Command.containsArrow(tokens)) {
-        this.setOutput("");
-      } else {
-        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-        return this;
-      }
-    }
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     FileSystemNode beforeNode = fSystem.getSemiFileSystemNode(tokens[1]);

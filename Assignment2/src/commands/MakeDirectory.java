@@ -84,7 +84,6 @@ public class MakeDirectory extends Command {
     String[] pathTokens;
     if (Command.containsArrow(tokens)) {
       pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length - 2);
-      this.setOutput("");
     } else
       pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length);
     FileSystem fSystem = shell.getfSystem();

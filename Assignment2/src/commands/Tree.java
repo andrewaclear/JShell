@@ -44,13 +44,6 @@ public class Tree extends Command {
     int level = 0;
     String output = recursiveTreeDisplay("", fSystem.getRoot(), level);
 
-    if (tokens.length > 1) {
-      if (!Command.containsArrow(tokens)) {
-        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-        return this;
-      }
-    }
-
     this.setOutput(output.substring(0, output.length() - 1));
 
     return this;

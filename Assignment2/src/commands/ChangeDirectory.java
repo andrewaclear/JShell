@@ -79,16 +79,6 @@ public class ChangeDirectory extends Command {
   public Command run(String[] tokens, JShell shell) {
 
     FileSystem fSystem = shell.getfSystem();
-
-    if (tokens.length > 2) {
-      if (Command.containsArrow(tokens)) {
-        this.setOutput("");
-      } else {
-        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-        return this;
-      }
-    }
-
     FileSystemNode targetNode = null;
     // Set targetNode to the FileSystemNode that the path leads to
     targetNode = fSystem.getFileSystemNode(tokens[1]);

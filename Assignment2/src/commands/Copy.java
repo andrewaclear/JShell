@@ -67,15 +67,6 @@ public class Copy extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    if (tokens.length > 3) {
-      if (Command.containsArrow(tokens)) {
-        this.setOutput("");
-      } else {
-        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-        return this;
-      }
-    }
-
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
