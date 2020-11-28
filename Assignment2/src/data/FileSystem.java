@@ -132,7 +132,17 @@ public class FileSystem implements java.io.Serializable {
     }
 
     return false;
+  }
 
+  /**
+   * Checks if the String name has valid format.
+   *  
+   * @param name string to check if is valid
+   * @return true if name is a valid name
+   */
+  public boolean inappropriateName(String name) {
+    return name.matches("(.+)?[ /.!@#$%^&*(){}~|<>?](.+)?");
+    
   }
 
   /**

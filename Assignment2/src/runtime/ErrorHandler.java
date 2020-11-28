@@ -143,8 +143,8 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
    */
-  public static String invalidName(Command command, String[] tokens) {
-    return command.getIdentifier() + ": \"" + tokens[3]
+  public static String invalidName(Command command, String token) {
+    return command.getIdentifier() + ": \"" + token
         + "\": Invalid file and/or directory name";
   }
 
@@ -182,7 +182,6 @@ public class ErrorHandler {
         + " cannot be used to move because it is inside " + "the target path";
   }
 
-
   /**
    * Prints invalidUrl error message
    * 
@@ -192,5 +191,4 @@ public class ErrorHandler {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
   }
-
 }
