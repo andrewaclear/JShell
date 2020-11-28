@@ -101,6 +101,7 @@ public class Redirection extends Command {
     name = fSystem.getPathLastEntry(tokens[3]);
     node = fSystem.getSemiFileSystemNode(tokens[3]);
 
+
     if (fSystem.inappropriateName(name)) {          
       this.setErrors(ErrorHandler.invalidName(this, tokens[3]));
       return this;
