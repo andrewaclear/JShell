@@ -29,6 +29,7 @@ import data.Directory;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
+import io.StandardOutput;
 import runtime.ErrorHandler;
 
 /**
@@ -53,8 +54,8 @@ public class MakeDirectory extends Command {
     this.setMinNumOfArguments(2);
 
     // Error Handling
-    this.setErrorTooManyArguments("Only two parameters are accepted");
-    this.setMissingOperand("Only two parameters are accepted");
+    this.setErrorTooManyArguments("there are too many arguments");
+    this.setMissingOperand("there must be at least one parameter");
 
     // Description
     this.setDescription("This command takes in two arguments only."
@@ -80,16 +81,16 @@ public class MakeDirectory extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
+    String[] pathTokens;
+    if (StandardOutput.containsArrow(tokens)) {
+      pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length- 2);
+      this.setOutput("");
+    } else 
+      pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length);
     FileSystem fSystem = shell.getfSystem();
-
     FileSystemNode targetNode = null;
-
-    String[] pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length);
-
     for (String token : pathTokens) {
-
         targetNode = fSystem.getSemiFileSystemNode(token);
-
         if (targetNode != null) {
           if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
             String name = fSystem.getPathLastEntry(token);
@@ -104,12 +105,14 @@ public class MakeDirectory extends Command {
                 fSystem.getPathLastEntry(token), targetNode));
             break;
           }
-        } else {
+        } else if (!fSystem.inappropriatePath(token)){
           this.setErrors(ErrorHandler.invalidPath(this, token));
+          break;
+        } else {
+          this.setErrors(ErrorHandler.inappropriatePath(this, token));
           break;
         }
     }
-
     return this;
   }
 }

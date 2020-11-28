@@ -166,8 +166,9 @@ public class ErrorHandler {
    * 
    * @param givenPath, the invalid path
    */
-  public static String inappropriatePath(String givenPath) {
-    return "The given path : " + givenPath + " contains illicit characters";
+  public static String inappropriatePath(Command command, String givenPath) {
+    return command.getIdentifier() + ": " + givenPath 
+        + " contains illicit characters";
   }
 
   public static String removeDirectoryError(String givenPath) {

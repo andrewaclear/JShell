@@ -1,9 +1,34 @@
+// **********************************************************
+// Assignment2:
+// Student1: Christian Chen Liu
+// UTORID user_name: Chenl147
+// UT Student #: 1006171009
+// Author: Christian Chen Liu
+//
+// Student2: Christopher Suh
+// UTORID user_name: suhchris
+// UT Student #: 1006003664
+// Author: Christopher Suh
+//
+// Student3: Andrew D'Amario
+// UTORID user_name: damario4
+// UT Student #: 1006618947
+// Author: Andrew D'Amario
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read the plagiarism section in the course info
+// sheet of CSC B07 and understand the consequences.
+// *********************************************************
 package commands;
 
 import data.Cache;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
+import io.StandardOutput;
 import runtime.ErrorHandler;
 
 public class Remove extends Command {
@@ -17,12 +42,12 @@ public class Remove extends Command {
     this.setIdentifier("rm");
   
     // Remove must only have two tokens
-    this.setMaxNumOfArguments(2);
+    this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
     
     // Error Handling
-    this.setErrorTooManyArguments("Only one parameter is accepted");
-    this.setMissingOperand("Only one parameter is accepted");
+    this.setErrorTooManyArguments("at most three parameters are accepted");
+    this.setMissingOperand("there must be at least one parameter");
     
     // Description
     this.setDescription("Removes the directory from the fileSystem "
@@ -42,28 +67,37 @@ public class Remove extends Command {
    * @return returns a boolean true signal the shell to continue running
    */
   public Command run(String[] tokens, JShell shell) {
+    if (tokens.length > 2) {
+      if (StandardOutput.containsArrow(tokens)) {
+        this.setOutput("");
+      } else {
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+      return this;
+      }
+    }
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
     FileSystemNode beforeNode = fSystem.getSemiFileSystemNode(tokens[1]);
-    
     if (beforeNode != null) {
-
         if (!fSystem.getCurrentDirectory().getPath().startsWith(tokens[1])) {
           if (beforeNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
             cache.removeDirectory(fSystem.getFileSystemNode(
                 tokens[1]).getPath());
-            
             beforeNode.removeChild(fSystem.getPathLastEntry(tokens[1]));
-          } else if (beforeNode.getDirectory().isFileInsideByFileName(tokens[1])) {
+          } else if (beforeNode.getDirectory().isFileInsideByFileName(
+              tokens[1])) {
             beforeNode.getDirectory().removeFile(tokens[1]);
           } else {
-            //ADD ERROR
+            this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
           }
           
         } else 
           this.setErrors(ErrorHandler.removeDirectoryError(tokens[1]));
-        
-      
+
+    } else if (!fSystem.inappropriatePath(tokens[1])){
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
+    } else {
+      this.setErrors(ErrorHandler.inappropriatePath(this, tokens[1]));
     }
     return this;
   }

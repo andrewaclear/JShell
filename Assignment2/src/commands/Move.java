@@ -1,9 +1,34 @@
+// **********************************************************
+// Assignment2:
+// Student1: Christian Chen Liu
+// UTORID user_name: Chenl147
+// UT Student #: 1006171009
+// Author: Christian Chen Liu
+//
+// Student2: Christopher Suh
+// UTORID user_name: suhchris
+// UT Student #: 1006003664
+// Author: Christopher Suh
+//
+// Student3: Andrew D'Amario
+// UTORID user_name: damario4
+// UT Student #: 1006618947
+// Author: Andrew D'Amario
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// I have also read the plagiarism section in the course info
+// sheet of CSC B07 and understand the consequences.
+// *********************************************************
 package commands;
 
 import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
+import io.StandardOutput;
 import runtime.ErrorHandler;
 
 public class Move extends Command {
@@ -17,12 +42,12 @@ public class Move extends Command {
     this.setIdentifier("mv");
 
     // MakeDirectory must have three tokens
-    this.setMaxNumOfArguments(3);
+    this.setMaxNumOfArguments(5);
     this.setMinNumOfArguments(3);
 
     // Error Handling
-    this.setErrorTooManyArguments("Only two parameters are accepted");
-    this.setMissingOperand("Only two parameters are accepted");
+    this.setErrorTooManyArguments("at most four parameters are accepted");
+    this.setMissingOperand("there must be at least two parameters");
 
     // Description
     this.setDescription("This command moves a directory or file into the"
@@ -41,8 +66,17 @@ public class Move extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
     
+    if (tokens.length > 3) {
+      if (StandardOutput.containsArrow(tokens)) {
+        this.setOutput("");
+      } else {
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+      return this;
+      }
+    }
+
+    FileSystem fSystem = shell.getfSystem();
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
     
     if (tokens[2].startsWith(tokens[1])) 
@@ -54,11 +88,17 @@ public class Move extends Command {
             fSystem.getPathLastEntry(tokens[1]))){
           moveFile(tokens[1], tokens[2], shell);
             }
-          } else 
+          } else if (!fSystem.inappropriatePath(tokens[1])) {
             this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
+          } else 
+            this.setErrors(ErrorHandler.inappropriatePath(this, tokens[1]));
 
     return this;
   }
+  
+  
+  
+  
   
   /**
    * moveDirectory moves a FileSystemNode that the givenPath refers to
@@ -69,11 +109,9 @@ public class Move extends Command {
    */
   private void moveFileSystemNode(String givenPath, 
       String targetPath, JShell shell) {
-    
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode targetNode = fSystem.forcedGetFileSystemNode(targetPath);
     FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
-    
     if (targetNode != null) {
       if (!targetNode.isChildInside(givenNode.getDirectory().
           getDirectoryName())) {
@@ -84,9 +122,10 @@ public class Move extends Command {
         remove.run(removeTokens, shell);
       } else 
         this.setErrors(ErrorHandler.invalidPath(this, targetPath));
-      
-    } else 
+    } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
+    } else 
+      this.setErrors(ErrorHandler.inappropriatePath(this, targetPath));
     
   }
   
@@ -123,8 +162,9 @@ public class Move extends Command {
       Remove remove = new Remove();
       String[] removeTokens = {"rm", givenPath};
       remove.run(removeTokens, shell);
-    } else 
+    } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
-    
+    } else 
+      this.setErrors(ErrorHandler.inappropriatePath(this, targetPath));
   }
 }

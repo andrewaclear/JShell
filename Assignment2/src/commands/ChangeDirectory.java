@@ -24,8 +24,10 @@
 // *********************************************************
 package commands;
 
+import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
+import io.StandardOutput;
 import runtime.ErrorHandler;
 
 /**
@@ -45,12 +47,12 @@ public class ChangeDirectory extends Command {
     this.setIdentifier("cd");
 
     // ChangeDirectory must have two tokens
-    this.setMaxNumOfArguments(2);
+    this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
 
     // Error Handling
-    this.setErrorTooManyArguments("only one parameter is accepted");
-    this.setMissingOperand("only accepts one parameter");
+    this.setErrorTooManyArguments("at most three parameters are accepted");
+    this.setMissingOperand("there must be at least one parameter");
 
     // Description
     this.setDescription("Change directory to DIR, which may be relative to"
@@ -75,22 +77,31 @@ public class ChangeDirectory extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-
+    
+    FileSystem fSystem = shell.getfSystem();
+    
+    if (tokens.length > 2) {
+      if (StandardOutput.containsArrow(tokens)) {
+        this.setOutput("");
+      } else {
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+      return this;
+      }
+    }
+    
     FileSystemNode targetNode = null;
-
     // Set targetNode to the FileSystemNode that the path leads to
-    targetNode = shell.getfSystem().getFileSystemNode(tokens[1]);
+    targetNode = fSystem.getFileSystemNode(tokens[1]);
 
     // Check if the targetNode is in the FileSystem
     if (targetNode != null) {
       // Set the current Directory to the targetNode
       shell.getfSystem().setCurrentDirectory(targetNode);
-    } else {
-      
+    } else if (!fSystem.inappropriatePath(tokens[1])){
       this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
-      
+    } else {
+      this.setErrors(ErrorHandler.inappropriatePath(this, tokens[1]));
     }
-
     return this;
 
   }

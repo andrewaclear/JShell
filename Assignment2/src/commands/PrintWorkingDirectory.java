@@ -28,6 +28,7 @@ import data.FileSystem;
 import driver.JShell;
 import data.Cache;
 import io.StandardOutput;
+import runtime.ErrorHandler;
 
 /**
  * Print the current working directory (including the whole path).
@@ -47,8 +48,8 @@ public class PrintWorkingDirectory extends Command {
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("No parameters are accepted");
-    this.setMissingOperand("Identifier pwd is missing");
+    this.setErrorTooManyArguments("at most two parameters are accepted");
+    this.setMissingOperand("identifier pwd is missing");
 
     // Description
     this.setDescription("The command PrintWorkingDirectory prints "
@@ -69,6 +70,13 @@ public class PrintWorkingDirectory extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
+    
+    if (tokens.length > 2) {
+      if (!StandardOutput.containsArrow(tokens)) {
+        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+        return this;
+      }
+    }
     
     // Print the path of the current directory
     this.setOutput(fSystem.getCurrentDirectory().getPath());

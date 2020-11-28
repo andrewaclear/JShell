@@ -24,8 +24,6 @@
 // *********************************************************
 package data;
 
-import runtime.ErrorHandler;
-
 /**
  * Maintains a tree structure of FileSystemNodes: keeping both the root of the
  * tree and the current position in the tree
@@ -119,7 +117,7 @@ public class FileSystem implements java.io.Serializable {
    * @param givenPath A relative or full path
    * @return true if the given path is inappropriate, otherwise, false
    */
-  private boolean inappropriatePath(String givenPath) {
+  public boolean inappropriatePath(String givenPath) {
 
     if (givenPath.indexOf("//") != -1) {
     //  ErrorHandler.inappropriatePath(givenPath);
