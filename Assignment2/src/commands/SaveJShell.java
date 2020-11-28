@@ -29,24 +29,21 @@ public class SaveJShell extends Command {
 
   @Override
   public Command run(String[] tokens, JShell shell) {
-    boolean arrow = Command.containsArrow(tokens);
-    if (!arrow && tokens.length == 2 || arrow && tokens.length == 4) {
-      FileSystem fSystem = shell.getfSystem();
-      Cache cache = shell.getCache();
-      try {
-        FileOutputStream file = new FileOutputStream(tokens[1]);
-        ObjectOutputStream outStream = new ObjectOutputStream(file);
-        outStream.writeObject(fSystem);
-        outStream.writeObject(cache);
-        outStream.close();
-        file.close();
 
-      } catch (IOException e) {
-        this.setErrors(ErrorHandler.badInput(this, "Invalid filepath given"));
-      }
-    } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+    FileSystem fSystem = shell.getfSystem();
+    Cache cache = shell.getCache();
+    try {
+      FileOutputStream file = new FileOutputStream(tokens[1]);
+      ObjectOutputStream outStream = new ObjectOutputStream(file);
+      outStream.writeObject(fSystem);
+      outStream.writeObject(cache);
+      outStream.close();
+      file.close();
+
+    } catch (IOException e) {
+      this.setErrors(ErrorHandler.badInput(this, "Invalid filepath given"));
     }
+
     return this;
   }
 }

@@ -91,19 +91,14 @@ public class Manual extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String output = "";
-    boolean arrows = Command.containsArrow(tokens);
-    boolean check = arrows && tokens.length == 4;
-    if (!arrows && tokens.length == 2 || check) {
-      // If command is recognized, then print manual for it
-      if (descriptions.containsKey(tokens[1])) {
-        output += "Documentation for: " + tokens[1] + "\n";
-        output += descriptions.get(tokens[1]) + "\n";
-        // Else, then give command not found error
-      } else {
-        this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[1]));
-      }
+
+    // If command is recognized, then print manual for it
+    if (descriptions.containsKey(tokens[1])) {
+      output += "Documentation for: " + tokens[1] + "\n";
+      output += descriptions.get(tokens[1]) + "\n";
+      // Else, then give command not found error
     } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+      this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[1]));
     }
 
     this.setOutput(output);

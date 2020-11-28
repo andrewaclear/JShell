@@ -47,7 +47,7 @@ public class PopDirectory extends Command {
         + " most directory from \nthe directory stack and makes it the"
         + " current working directory. \nIf there is no directory onto"
         + " the stack, then give appropriate \nerror message. ");
-    this.setMaxNumOfArguments(1);
+    this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("Doesn't take any arguments");
     this.setMissingOperand("");
