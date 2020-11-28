@@ -33,22 +33,31 @@ import runtime.ErrorHandler;
  */
 public class Parser {
   /**
-   * Takes in a line as a String, seperates it ( by spaces and quotation marks "
+   * Takes in a line as a String, separates it ( by spaces and quotation marks "
    * ") and then returns an array of tokens of type String
    * 
    * @param line, a string representing a line of entered text from the terminal
    * @return returns an array of string tokens which are command args
    */
   public String[] parse(String line) {
-    String temp; // input string parsed to remove extra spaces
-    String tempString = ""; // temp string used to build each argument
-    int i = 0, j = 0; // counters
-    // Stores tokens dynamically, later converted to an array
-    ArrayList<String> tokens = new ArrayList<String>();
+    String temp = line.replaceAll(" +", " ").trim();
+    ArrayList<String> tokens = getListTokens(new ArrayList<String>(), temp);
 
-    temp = line.replaceAll(" +", " ");
-    temp = temp.trim();
+    String[] tokensArray = new String[tokens.size()];
 
+    return tokens.toArray(tokensArray);
+  }
+
+/**
+ * Takes in a line of input and then returns a list of tokens of type String
+ * @param tokens, ArrayList to store parsed tokens into
+ * @param temp, line of input to be parsed into tokens
+ * @return return an ArrayList of tokens
+ */
+  public ArrayList<String> getListTokens(ArrayList<String> tokens,
+      String temp) {
+    String tempString = "";
+    int i = 0, j = 0;
     mainLoop: while (i < temp.length()) {
       if (temp.charAt(i) == ' ') { // ' ' marks the end of an argument
         tokens.add(tempString);
@@ -79,15 +88,11 @@ public class Parser {
         // Continue adding characters to build string argument
       } else {
         tempString += temp.charAt(i);
-        // Last character before end of input
-        if (i + 1 == temp.length())
+        if (i + 1 == temp.length()) // Last character before end of input
           tokens.add(tempString);
         i++;
       }
     }
-
-    String[] tokensArray = new String[tokens.size()];
-
-    return tokens.toArray(tokensArray);
+    return tokens;
   }
 }
