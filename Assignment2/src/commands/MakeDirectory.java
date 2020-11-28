@@ -82,36 +82,36 @@ public class MakeDirectory extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String[] pathTokens;
-    if (StandardOutput.containsArrow(tokens)) {
-      pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length- 2);
+    if (Command.containsArrow(tokens)) {
+      pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length - 2);
       this.setOutput("");
-    } else 
+    } else
       pathTokens = Arrays.copyOfRange(tokens, 1, tokens.length);
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode targetNode = null;
     for (String token : pathTokens) {
-        targetNode = fSystem.getSemiFileSystemNode(token);
-        if (targetNode != null) {
-          if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
-            String name = fSystem.getPathLastEntry(token);
-            if (!fSystem.inappropriateName(name)) {          
-              targetNode.addChild(new FileSystemNode(new Directory(name)));
-            } else {
-              this.setErrors(ErrorHandler.invalidName(this, name));
-              break;
-            }
+      targetNode = fSystem.getSemiFileSystemNode(token);
+      if (targetNode != null) {
+        if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+          String name = fSystem.getPathLastEntry(token);
+          if (!fSystem.inappropriateName(name)) {
+            targetNode.addChild(new FileSystemNode(new Directory(name)));
           } else {
-            this.setErrors(ErrorHandler.childAlreadyExistant(
-                fSystem.getPathLastEntry(token), targetNode));
+            this.setErrors(ErrorHandler.invalidName(this, name));
             break;
           }
-        } else if (!fSystem.inappropriatePath(token)){
-          this.setErrors(ErrorHandler.invalidPath(this, token));
-          break;
         } else {
-          this.setErrors(ErrorHandler.inappropriatePath(this, token));
+          this.setErrors(ErrorHandler.childAlreadyExistant(
+              fSystem.getPathLastEntry(token), targetNode));
           break;
         }
+      } else if (!fSystem.inappropriatePath(token)) {
+        this.setErrors(ErrorHandler.invalidPath(this, token));
+        break;
+      } else {
+        this.setErrors(ErrorHandler.inappropriatePath(this, token));
+        break;
+      }
     }
     return this;
   }

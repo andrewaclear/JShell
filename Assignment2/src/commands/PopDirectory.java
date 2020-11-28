@@ -71,7 +71,7 @@ public class PopDirectory extends Command {
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     Cache cache = shell.getCache();
-    
+
     try {
       String path = cache.popDirectoryStack();
       fSystem.setCurrentDirectory(fSystem.getFileSystemNode(path));

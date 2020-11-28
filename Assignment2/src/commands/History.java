@@ -91,7 +91,7 @@ public class History extends Command {
   public Command run(String[] tokens, JShell shell) {
     Cache cache = shell.getCache();
     String output = "";
-    boolean containArrow = StandardOutput.containsArrow(tokens);
+    boolean containArrow = Command.containsArrow(tokens);
 
     // start counting from
     int start;
@@ -111,8 +111,8 @@ public class History extends Command {
       else if (truncate >= 0)
         start = n - truncate;
       else {
-        this.setErrors(ErrorHandler.badInput(this, "Operand must"
-            + " be a non-negative integer"));
+        this.setErrors(ErrorHandler.badInput(this,
+            "Operand must" + " be a non-negative integer"));
         return this;
       }
     }
@@ -122,7 +122,8 @@ public class History extends Command {
       // for each line, print the history line from start to n-1 (the most
       // recent) numbering starting at 1 (i+1)
       output += String.valueOf(i + 1) + ". " + cache.getHistory(i);
-      if (i+1 < n) output += "\n";
+      if (i + 1 < n)
+        output += "\n";
     }
 
     this.setOutput(output);

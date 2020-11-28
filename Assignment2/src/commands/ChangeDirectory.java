@@ -77,18 +77,18 @@ public class ChangeDirectory extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    
+
     FileSystem fSystem = shell.getfSystem();
-    
+
     if (tokens.length > 2) {
-      if (StandardOutput.containsArrow(tokens)) {
+      if (Command.containsArrow(tokens)) {
         this.setOutput("");
       } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-      return this;
+        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+        return this;
       }
     }
-    
+
     FileSystemNode targetNode = null;
     // Set targetNode to the FileSystemNode that the path leads to
     targetNode = fSystem.getFileSystemNode(tokens[1]);
@@ -97,7 +97,7 @@ public class ChangeDirectory extends Command {
     if (targetNode != null) {
       // Set the current Directory to the targetNode
       shell.getfSystem().setCurrentDirectory(targetNode);
-    } else if (!fSystem.inappropriatePath(tokens[1])){
+    } else if (!fSystem.inappropriatePath(tokens[1])) {
       this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     } else {
       this.setErrors(ErrorHandler.inappropriatePath(this, tokens[1]));

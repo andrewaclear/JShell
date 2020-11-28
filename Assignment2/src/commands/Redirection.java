@@ -34,8 +34,8 @@ import runtime.ErrorHandler;
  * Takes in an array of tokens from execution and executes redirects output to a
  * file. Creates a new file if OUTFILE does not exists and erases the old
  * contents if OUTFILE already exists. In either case, the only thing in OUTFILE
- * should be STRING. If double_arrow OUTFILE: Like the single_arrow, but 
- * appends instead of overwrites.
+ * should be STRING. If double_arrow OUTFILE: Like the single_arrow, but appends
+ * instead of overwrites.
  */
 public class Redirection extends Command {
 
@@ -102,7 +102,7 @@ public class Redirection extends Command {
     node = fSystem.getSemiFileSystemNode(tokens[3]);
 
 
-    if (fSystem.inappropriateName(name)) {          
+    if (fSystem.inappropriateName(name)) {
       this.setErrors(ErrorHandler.invalidName(this, tokens[3]));
       return this;
     }

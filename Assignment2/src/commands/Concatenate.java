@@ -70,20 +70,20 @@ public class Concatenate extends Command {
     String name;
     FileSystemNode node;
     String output = "";
-    boolean containsArrow = StandardOutput.containsArrow(tokens);
-    int shift = containsArrow? - 2 : 0;
-    
-    while (i < tokens.length && !tokens[i].equals(">") && 
-        !tokens[i].equals(">>")) {
+    boolean containsArrow = Command.containsArrow(tokens);
+    int shift = containsArrow ? -2 : 0;
+
+    while (i < tokens.length && !tokens[i].equals(">")
+        && !tokens[i].equals(">>")) {
 
       name = fSystem.getPathLastEntry(tokens[i]);
       node = fSystem.getSemiFileSystemNode(tokens[i]);
-      
+
       File file = node.getDirectory().getFile(name);
       if (node != null && file != null) {
 
         output += file.getContent();
-        //small fix
+        // small fix
         if (i + 1 < tokens.length + shift) {
           output += "\n\n\n";
         }
@@ -93,9 +93,9 @@ public class Concatenate extends Command {
       }
       i++;
     }
-    
+
     this.setOutput(output);
-   
+
     return this;
   }
 }

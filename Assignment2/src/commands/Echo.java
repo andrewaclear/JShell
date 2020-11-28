@@ -75,8 +75,8 @@ public class Echo extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String output = "";
-    boolean arrow = StandardOutput.containsArrow(tokens);
-    
+    boolean arrow = Command.containsArrow(tokens);
+
     // If called with just echo "STRING", prints STRING to terminal
     if (!arrow && tokens.length == 2 || arrow && tokens.length == 4) {
       if (tokens[1].charAt(0) == '"') {

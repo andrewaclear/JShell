@@ -57,32 +57,33 @@ public class ListContents extends Command {
         + " new line. \n If p does not exist, print a suitable message.");
   }
 
-  private String listSubFoldersFiles(FileSystemNode node, String path, JShell shell, 
-                                boolean recursive) {
-      List<FileSystemNode> subFolders = node.getChildren();
-      String partOutput = "";
-      String subOutput = "";
+  private String listSubFoldersFiles(FileSystemNode node, String path,
+      JShell shell, boolean recursive) {
+    List<FileSystemNode> subFolders = node.getChildren();
+    String partOutput = "";
+    String subOutput = "";
 
-      // print out sub-folders
-      for (int i = 0; i < subFolders.size(); i++) {
-        partOutput += subFolders.get(i).getDirectory().getDirectoryName()+"\n";
-        if (recursive) {
-          if (!path.equals("")) {
-            subOutput += "\n" + listItems(
-              path+"/"+subFolders.get(i).getDirectory().getDirectoryName(), 
-              shell, recursive)+"\n";
-          } else {
-            subOutput += "\n" + listItems(
-              subFolders.get(i).getDirectory().getDirectoryName(), 
-              shell, recursive)+"\n";
-          }
+    // print out sub-folders
+    for (int i = 0; i < subFolders.size(); i++) {
+      partOutput += subFolders.get(i).getDirectory().getDirectoryName() + "\n";
+      if (recursive) {
+        if (!path.equals("")) {
+          subOutput += "\n" + listItems(
+              path + "/" + subFolders.get(i).getDirectory().getDirectoryName(),
+              shell, recursive) + "\n";
+        } else {
+          subOutput += "\n"
+              + listItems(subFolders.get(i).getDirectory().getDirectoryName(),
+                  shell, recursive)
+              + "\n";
         }
       }
+    }
 
-      // get files
-      partOutput += listSubFiles(node);
+    // get files
+    partOutput += listSubFiles(node);
 
-      return partOutput + subOutput;
+    return partOutput + subOutput;
   }
 
   private String listSubFiles(FileSystemNode node) {
@@ -119,7 +120,7 @@ public class ListContents extends Command {
         output += path + ":\n";
       // get subFolders and files
       output += listSubFoldersFiles(node, path, shell, recursive);
-    // check if the token is just a file
+      // check if the token is just a file
     } else {
       // try to get parent folder of file
       FileSystemNode subNode = fSystem.getSemiFileSystemNode(path);
@@ -137,8 +138,10 @@ public class ListContents extends Command {
       }
     }
 
-    if (output.length() > 1) return output.substring(0, output.length()-1);
-    else return null;
+    if (output.length() > 1)
+      return output.substring(0, output.length() - 1);
+    else
+      return null;
   }
 
   /**
@@ -158,29 +161,30 @@ public class ListContents extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    boolean containsArrow = StandardOutput.containsArrow(tokens);
+    boolean containsArrow = Command.containsArrow(tokens);
     boolean recursive = tokens.length > 1 && tokens[1].equals("-R");
-    int startShift = recursive? 2 : 1;
-    int endShift = containsArrow? - 2 : 0;
+    int startShift = recursive ? 2 : 1;
+    int endShift = containsArrow ? -2 : 0;
 
     // output sting to be sent to StandardOutput
     String output = "";
     // print out current directory case, no given paths
-      // cases: ls, ls -R, ls > file, ls -R > file
-    if (tokens.length == 1 
-        || (tokens.length == 2 && recursive)
+    // cases: ls, ls -R, ls > file, ls -R > file
+    if (tokens.length == 1 || (tokens.length == 2 && recursive)
         || (tokens.length == 3 && containsArrow)
         || (tokens.length == 4 && containsArrow && recursive)) {
       output = listItems("", shell, recursive);
     } else {
       String partOutput = "";
       // go through the given paths, stop if an invalid path is found
-      for (int i = startShift; i < tokens.length+endShift && partOutput != null; i++) {
+      for (int i = startShift; i < tokens.length + endShift
+          && partOutput != null; i++) {
         // list contents, stop if there are none or path is bad
         partOutput = listItems(tokens[i], shell, recursive);
         // print an extra line when listing given directories after first one
         if (partOutput != null) {
-          if (i != startShift) output += "\n\n";
+          if (i != startShift)
+            output += "\n\n";
           output += partOutput;
         }
       }
