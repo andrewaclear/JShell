@@ -6,6 +6,7 @@ import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
 import io.StandardOutput;
+import runtime.ErrorHandler;
 
 public class Tree extends Command {
   
@@ -22,8 +23,8 @@ public class Tree extends Command {
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("No parameter is accepted");
-    this.setMissingOperand("No parameter is accepted");
+    this.setErrorTooManyArguments("at most two parameters are accepted");
+    this.setMissingOperand("identifier tree is missing");
 
     // Description
     this.setDescription("Displays the whole fileSystem in a tree structure"
@@ -42,6 +43,13 @@ public class Tree extends Command {
     FileSystem fSystem = shell.getfSystem();
     int level = 0;
     String output = recursiveTreeDisplay("", fSystem.getRoot(), level);
+    
+    if (tokens.length > 2) {
+      if (!StandardOutput.containsArrow(tokens)) {
+        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+        return this;
+      }
+    }
     
     this.setOutput(output.substring(0,output.length()-1));
     
