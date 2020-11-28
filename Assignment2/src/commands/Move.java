@@ -92,17 +92,25 @@ public class Move extends Command {
       String targetPath, JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
-    FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
+    FileSystemNode beforeNode = fSystem.getSemiFileSystemNode(targetPath);
+    FileSystemNode possibleNode = fSystem.getFileSystemNode(targetPath);
     
-    if (targetNode != null) {
-
-      Echo echoCommand = new Echo();
-      File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
-          fSystem.getPathLastEntry(givenPath));
-      String[] echoTokens = {"echo", "\"" + file.getContent() + "\"", ">", 
-          targetPath};
-      echoCommand.run(echoTokens, shell);
-    
+    if (beforeNode != null) {
+      if (possibleNode != null) {
+        Redirection redirectionCommand = new Redirection();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] redirectionTokens = {"redirect", "\"" + file.getContent() + 
+            "\"", ">", targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
+        redirectionCommand.run(redirectionTokens, shell);
+      } else {
+        Redirection redirectionCommand = new Redirection();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] redirectionTokens = {"redirect", "\"" + file.getContent() + "\"", 
+            ">", targetPath};
+        redirectionCommand.run(redirectionTokens, shell);
+      }
       Remove remove = new Remove();
       String[] removeTokens = {"rm", givenPath};
       remove.run(removeTokens, shell);
