@@ -30,16 +30,13 @@ public class Search extends Command {
 
     int numFiles = node.getDirectory().getFiles().size();
     String partOutput = "";
-    // boolean found = false;
 
     for (int i = 0; i < numFiles; i++) {
       if (node.getDirectory().getFiles().get(i).getFileName().equals(item)) {
         partOutput += path + ": contains file: " + searchStr + "\n";
-        // found = true;
         break;
       }
     }
-    // if (!found) partOutput += path + ": does not contain file: " + searchStr + "\n";
 
     return partOutput;
   }
@@ -51,21 +48,16 @@ public class Search extends Command {
     String subOutput = "";
     String dirName = "";
     String item = searchStr.replace("\"", "");
-    // boolean found = false;
     int numFolders = node.getChildren().size();
 
     for (int i = 0; i < numFolders; i++) {
       dirName = node.getChildren().get(i).getDirectory().getDirectoryName();
       if (!fParam && dirName.equals(item)) {
         partOutput += path + ": contains directory: " + searchStr + "\n";
-        // found = true;
       }
       if (path.charAt(path.length()-1) != '/') path += "/";
       subOutput += searchNode(node.getChildren().get(i), searchStr, path+dirName, fParam);
     }
-    // if (!fParam && !found) {
-    //   partOutput += path + ": does not contain directory: " + searchStr + "\n";
-    // }
 
     if (fParam) partOutput += searchForFiles(node, searchStr, item, path);
 
@@ -74,17 +66,15 @@ public class Search extends Command {
   
   @Override
   public Command run(String[] tokens, JShell shell) {
-    String output = "";
-    FileSystemNode node;
     int len = tokens.length;
-    String searchStr = tokens[len - 1];
-    String temp = "";
+    String output = "", temp = "", searchStr = tokens[len - 1];
+    FileSystemNode node;
 
     boolean typeParam = tokens[len - 4].equals("-type");
     boolean fParam = tokens[len - 3].equals("f");
     boolean dParam = tokens[len - 3].equals("d");
     boolean nameParam = tokens[len - 2].equals("-name");
-    boolean stringParam = searchStr.charAt(0) == '\"' && searchStr.charAt(searchStr.length()-1) == '\"';
+    boolean stringParam = (searchStr.charAt(0) == '\"' && searchStr.charAt(searchStr.length()-1) == '\"');
 
     if (typeParam && (fParam || dParam) && nameParam && stringParam) {
       for (int iPath = 1; iPath < len - 4; iPath++) {
@@ -104,14 +94,11 @@ public class Search extends Command {
           break;
         }
       }
-    } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-    }
+    } else this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
 
     if (output.length() > 1)
       this.setOutput(output.substring(0, output.length() - 1));
 
     return this;
   }
-
 }
