@@ -75,16 +75,18 @@ public class Echo extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String output = "";
+    boolean arrow = StandardOutput.containsArrow(tokens);
+    
     // If called with just echo "STRING", prints STRING to terminal
-    //if (tokens.length == 2) {
+    if (!arrow && tokens.length == 2 || arrow && tokens.length == 4) {
       if (tokens[1].charAt(0) == '"') {
         output += tokens[1].replace("\"", "");
       } else {
         this.setErrors(ErrorHandler.missingString(this, tokens));
       }
-   // } else {
-    //  this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-   // }
+    } else {
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+    }
 
     this.setOutput(output);
 
