@@ -71,7 +71,7 @@ public class PrintWorkingDirectory extends Command {
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     
-    if (tokens.length > 2) {
+    if (tokens.length > 1) {
       if (!StandardOutput.containsArrow(tokens)) {
         this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
         return this;
