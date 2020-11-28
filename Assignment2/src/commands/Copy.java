@@ -31,12 +31,10 @@ public class Copy extends Command {
   }
   
   /**
-   * The run method of MakeDirectory makes two directories in the given path
-   * tokens[1] and tokens[2] if both paths are valid/appropriate in fileSystem,
-   * or makes a directory in the path tokens[1] if tokens[1] is a
-   * valid/appropriate path in fileSystem but tokens[2] is not, or makes no
-   * directories at all if tokens[1] is not a valid/appropriate path in fSystem.
-   * In any case, returns true after being done.
+   * The run method of Copy copies a FileSystemNode into another FileSystemNode 
+   * or copies a File into another FileSystemNode or overwrites a file into 
+   * another File path that already exists or copies the content of a file 
+   * into another File path
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param JShell contains the FileSystem and cache
@@ -52,10 +50,10 @@ public class Copy extends Command {
       ErrorHandler.moveDirectoryError(tokens[2]);
     else if (givenNode != null) {
       if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
-        copyFileSystemNodeInFileSystem(tokens[1], tokens[2], shell);
+        copyFileSystemNode(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory().isFileInsideByFileName(
           fSystem.getPathLastEntry(tokens[1]))) {
-        copyFileInFileSystem(tokens[1], tokens[2], shell);
+        copyFile(tokens[1], tokens[2], shell);
       } else
         ErrorHandler.invalidPath(this, tokens[1]);
     } else {
@@ -64,9 +62,15 @@ public class Copy extends Command {
     return this;
   }
   
-  
-  private void copyFileSystemNodeInFileSystem(String givenPath, 
-      String targetPath, JShell shell) {
+  /**
+   * copyFileSystemNode copies a FileSystemNode that the givenPath refers to
+   * to another FileSystemNode that targetPath refers 
+   * 
+   * @param givenPath, a path to a FileSystemNode
+   * @param targetPath, a path to a FileSystemNode
+   */
+  private void copyFileSystemNode(String givenPath, String targetPath, 
+      JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
     
@@ -86,9 +90,15 @@ public class Copy extends Command {
 
   }
   
-  
-  private void copyFileInFileSystem(String givenPath, 
-      String targetPath, JShell shell) {
+  /**
+   * copyFile copies a File that the givenPath refers to
+   * to another FileSystemNode or File that targetPath refers, if the File
+   * already exists, overwrite it's content instead.
+   * 
+   * @param givenPath, a path to a FileSystemNode
+   * @param targetPath, a path to a FileSystemNode
+   */
+  private void copyFile(String givenPath, String targetPath, JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
@@ -114,7 +124,5 @@ public class Copy extends Command {
     } else 
       ErrorHandler.invalidPath(this, targetPath);
   }
-  
 
-  
 }
