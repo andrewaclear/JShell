@@ -88,7 +88,7 @@ public class ErrorHandler {
    * Prints illegalString error message
    */
   public static String illegalString() {
-    return "Illegal character in string";
+    return "parser: Illegal character in string";
   }
 
   /**
@@ -123,7 +123,7 @@ public class ErrorHandler {
     for (int i = 1; i < tokens.length; i++) {
       output += tokens[i] + " ";
     }
-    output += ": Invalid combination of arguments\n";
+    output += ": Invalid combination of arguments";
     return output;
   }
 
