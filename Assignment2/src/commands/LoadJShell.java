@@ -18,19 +18,19 @@ public class LoadJShell extends Command {
     this.setIdentifier("loadJShell");
     this.setDescription(
         "The file FileName is some file that is stored on the actual filesystem"
-        + " of your computer. The purpose of this\r\n"
-        + "command is to load the saved session of the JShell before the user"
-        + " closed it down. ");
+            + " of your computer. The purpose of this\r\n"
+            + "command is to load the saved session of the JShell before the user"
+            + " closed it down. ");
     this.setMaxNumOfArguments(4);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments, please enter fileName");
     this.setMissingOperand("What file name, do wish to call the save?");
   }
-  
+
   @Override
-  public Command run(String[] tokens, JShell shell) { 
-    boolean arrow = StandardOutput.containsArrow(tokens);
-    
+  public Command run(String[] tokens, JShell shell) {
+    boolean arrow = Command.containsArrow(tokens);
+
     if (!arrow && tokens.length == 2 || arrow && tokens.length == 4) {
       if (shell.getCache().getHistorySize() == 1) {
         try {
@@ -38,10 +38,10 @@ public class LoadJShell extends Command {
           ObjectInputStream inStream = new ObjectInputStream(file);
           shell.setfSystem((FileSystem) inStream.readObject());
           shell.setCache((Cache) inStream.readObject());
-         
+
           inStream.close();
           file.close();
-          
+
         } catch (IOException | ClassNotFoundException e) {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
         }

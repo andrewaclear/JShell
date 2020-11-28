@@ -70,14 +70,14 @@ public class PrintWorkingDirectory extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    
+
     if (tokens.length > 1) {
-      if (!StandardOutput.containsArrow(tokens)) {
+      if (!Command.containsArrow(tokens)) {
         this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
         return this;
       }
     }
-    
+
     // Print the path of the current directory
     this.setOutput(fSystem.getCurrentDirectory().getPath());
 

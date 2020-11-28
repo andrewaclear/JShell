@@ -25,6 +25,8 @@
 package commands;
 
 import driver.JShell;
+import io.StandardOutput;
+import runtime.ErrorHandler;
 
 /**
  * Command is the super class which defines the structure of all commands, their
@@ -44,7 +46,7 @@ public class Command {
   private String description;
   private String output;
   private String errors;
-  
+
   /**
    * Get the output for the command.
    * 
@@ -53,7 +55,7 @@ public class Command {
   public String getOutput() {
     return output;
   }
-  
+
   /**
    * Set the output.
    * 
@@ -63,7 +65,7 @@ public class Command {
     this.output = output;
   }
 
-  
+
   /**
    * Get the errors for the command.
    * 
@@ -72,9 +74,9 @@ public class Command {
   public String getErrors() {
     return errors;
   }
-  
+
   /**
-   * Set  the error.
+   * Set the error.
    * 
    * @param errors, the errors to set for the command
    */
@@ -193,6 +195,38 @@ public class Command {
   }
 
   /**
+   * Checks if the tokens contains arrow or double_arrow
+   * 
+   * @param tokens, an array of string tokens containing command arguments
+   * @return returns true if tokens contains arrow or double_arrow, else false
+   */
+  public static boolean containsArrow(String[] tokens) {
+    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
+
+    return tokens[indexArrow].equals(">") || tokens[indexArrow].equals(">>");
+  }
+
+  /**
+   * Checks if tokens has a valid redirection
+   * 
+   * @param tokens, an array of string tokens containing command arguments
+   * @return returns true if tokens has a valid redirection, else false
+   */
+  public Command checkRun(String[] tokens, JShell shell) {
+    boolean arrow = containsArrow(tokens);
+    if (this.getMaxNumOfArguments() == -1
+        || !arrow && tokens.length == this.getMaxNumOfArguments() - 2
+        || arrow && tokens.length == this.getMaxNumOfArguments()) {
+      return this.run(tokens, shell);
+
+    }
+    this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+    return this;
+  }
+
+
+
+  /**
    * Runs the command (to be implemented for each command, overridden by each
    * subclass).
    * 
@@ -208,4 +242,6 @@ public class Command {
     // "")]
     return null;
   }
+
+
 }

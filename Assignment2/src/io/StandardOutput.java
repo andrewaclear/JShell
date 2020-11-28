@@ -45,18 +45,11 @@ public class StandardOutput {
     System.out.println(message);
   }
 
-  public static boolean containsArrow(String[] tokens) {
-    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
-
-    return tokens[indexArrow].equals(">") ||
-          tokens[indexArrow].equals(">>");
-
-  }
 
   public static void println(String[] tokens, String output, JShell shell, Command command) {
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
    
-    boolean containsArrow = containsArrow(tokens);
+    boolean containsArrow = Command.containsArrow(tokens);
 
     if (containsArrow) {
       String[] tokens2 = new String[4];

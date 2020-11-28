@@ -70,7 +70,7 @@ public class Execution {
         if ((command.getMaxNumOfArguments() < 0
             || tokens.length <= command.getMaxNumOfArguments())
             && tokens.length >= command.getMinNumOfArguments()) {
-          return command.run(tokens, shell);
+          return command.checkRun(tokens, shell);
         } else if (tokens.length > command.getMaxNumOfArguments() &&
             !(command.getMaxNumOfArguments() < 0)) {
           run.setErrors(ErrorHandler.tooManyArguments(command));

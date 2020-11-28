@@ -67,9 +67,9 @@ public class Manual extends Command {
     descriptions.put("saveJShell", new SaveJShell().getDescription());
     descriptions.put("tree", new Tree().getDescription());
     descriptions.put("mv", new Move().getDescription());
-    //descriptions.put("cp", new Copy().getDescription());
+    // descriptions.put("cp", new Copy().getDescription());
     descriptions.put("curl", new ClientUrl().getDescription());
-    
+
 
     this.setIdentifier("man");
     this.setMaxNumOfArguments(4);
@@ -91,21 +91,21 @@ public class Manual extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
     String output = "";
-      boolean arrows = StandardOutput.containsArrow(tokens);
-      boolean check = arrows && tokens.length == 4;
-      if (!arrows && tokens.length == 2 || check) {
-        // If command is recognized, then print manual for it
-        if (descriptions.containsKey(tokens[1])) {
-          output += "Documentation for: " + tokens[1] + "\n";
-          output += descriptions.get(tokens[1]) + "\n";
-          // Else, then give command not found error
-        } else {
-          this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[1]));
-        }  
+    boolean arrows = Command.containsArrow(tokens);
+    boolean check = arrows && tokens.length == 4;
+    if (!arrows && tokens.length == 2 || check) {
+      // If command is recognized, then print manual for it
+      if (descriptions.containsKey(tokens[1])) {
+        output += "Documentation for: " + tokens[1] + "\n";
+        output += descriptions.get(tokens[1]) + "\n";
+        // Else, then give command not found error
       } else {
-        this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+        this.setErrors(ErrorHandler.commandNotFoundManual(this, tokens[1]));
       }
-      
+    } else {
+      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+    }
+
     this.setOutput(output);
     return this;
   }

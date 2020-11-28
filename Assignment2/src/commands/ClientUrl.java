@@ -71,25 +71,21 @@ public class ClientUrl extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    boolean arrow = StandardOutput.containsArrow(tokens);
-    if (!arrow && tokens.length == 2 || arrow && tokens.length == 4) {
-      FileSystem fSystem = shell.getfSystem();
-      String output = getFileContent(tokens[1]);
-  
-      if (output != null) {
-        String fileName = fSystem.getPathLastEntry(tokens[1].replace(".", ""));
-  
-        if (fSystem.getCurrentDirectory().getDirectory()
-            .getFile(fileName) == null) {
-          String[] tokens2 = {"default", ">", fileName};
-          StandardOutput.println(tokens2, output, shell, this);
-        } else {
-          this.setErrors(ErrorHandler.fileAlreadyExist(this, fileName));
-        }
+    FileSystem fSystem = shell.getfSystem();
+    String output = getFileContent(tokens[1]);
+
+    if (output != null) {
+      String fileName = fSystem.getPathLastEntry(tokens[1].replace(".", ""));
+
+      if (fSystem.getCurrentDirectory().getDirectory()
+          .getFile(fileName) == null) {
+        String[] tokens2 = {"default", ">", fileName};
+        StandardOutput.println(tokens2, output, shell, this);
+      } else {
+        this.setErrors(ErrorHandler.fileAlreadyExist(this, fileName));
       }
-    } else {
-      this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
     }
+
     return this;
   }
   // Test: curl http://www.cs.cmu.edu/~spok/grimmtmp/073.txt
