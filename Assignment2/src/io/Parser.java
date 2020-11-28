@@ -41,7 +41,7 @@ public class Parser {
    */
   public String[] parse(String line) {
     String temp = line.replaceAll(" +", " ").trim();
-    ArrayList<String> tokens = getListTokens(new ArrayList<String>(), temp);
+    ArrayList<String> tokens = getTokens(new ArrayList<String>(), temp);
 
     String[] tokensArray = new String[tokens.size()];
 
@@ -54,8 +54,7 @@ public class Parser {
  * @param temp, line of input to be parsed into tokens
  * @return return an ArrayList of tokens
  */
-  public ArrayList<String> getListTokens(ArrayList<String> tokens,
-      String temp) {
+  public ArrayList<String> getTokens(ArrayList<String> tokens, String temp) {
     String tempString = "";
     int i = 0, j = 0;
     mainLoop: while (i < temp.length()) {
@@ -70,9 +69,7 @@ public class Parser {
             tempString += temp.charAt(j);
             j++;
             if (j >= temp.length()) { // No closing " for the string
-              StandardOutput.println(ErrorHandler.illegalString());
-              tokens.clear();
-              tokens.add("~FailedParsing~");
+              tokens = failedParsing(tokens);
               break mainLoop;
             }
           }
@@ -80,19 +77,28 @@ public class Parser {
           i = j + 2; // Update counter to new position in input string; temp
           tempString = "";
         } else {
-          StandardOutput.println(ErrorHandler.illegalString());
-          tokens.clear();
-          tokens.add("~FailedParsing~");
+          tokens = failedParsing(tokens);
           break mainLoop;
-        }
-        // Continue adding characters to build string argument
-      } else {
+        }    
+      } else { // Continue adding characters to build string argument
         tempString += temp.charAt(i);
         if (i + 1 == temp.length()) // Last character before end of input
           tokens.add(tempString);
         i++;
       }
     }
+    return tokens;
+  }
+  
+  /**
+   *  Clears tokens and sets tokens[0] to error message
+   * @param tokens, ArrayList of tokens
+   * @return returns ArrayList of tokens
+   */
+  public ArrayList<String> failedParsing(ArrayList<String> tokens) {
+    StandardOutput.println(ErrorHandler.illegalString());
+    tokens.clear();
+    tokens.add("~FailedParsing~");
     return tokens;
   }
 }
