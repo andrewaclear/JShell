@@ -40,7 +40,8 @@ public class Parser {
    * @return returns an array of string tokens which are command args
    */
   public String[] parse(String line) {
-    String temp = line.replaceAll(" +", " ").trim();
+    // String temp = line.replaceAll(" +", " ").trim();
+    String temp = line.trim();
     ArrayList<String> tokens = getTokens(new ArrayList<String>(), temp);
 
     String[] tokensArray = new String[tokens.size()];
@@ -48,21 +49,27 @@ public class Parser {
     return tokens.toArray(tokensArray);
   }
 
-/**
- * Takes in a line of input and then returns a list of tokens of type String
- * @param tokens, ArrayList to store parsed tokens into
- * @param temp, line of input to be parsed into tokens
- * @return return an ArrayList of tokens
- */
+  /**
+   * Takes in a line of input and then returns a list of tokens of type String
+   * 
+   * @param tokens, ArrayList to store parsed tokens into
+   * @param temp, line of input to be parsed into tokens
+   * @return return an ArrayList of tokens
+   */
   public ArrayList<String> getTokens(ArrayList<String> tokens, String temp) {
     String tempString = "";
     int i = 0, j = 0;
     mainLoop: while (i < temp.length()) {
-      if (temp.charAt(i) == ' ') { // ' ' marks the end of an argument
+      if (temp.charAt(i) == ' ' && i + 1 <= temp.length()
+          && temp.charAt(i + 1) != ' ') { // ' ' marks the end of an argument
         tokens.add(tempString);
         tempString = "";
         i++;
       } else if (temp.charAt(i) == '\"') { // Start of a string (ignore spaces)
+        if (i != 0 && temp.charAt(i - 1) != ' ') {
+          tokens = failedParsing(tokens);
+          break mainLoop;
+        }
         j = i + 1;
         if (j < temp.length()) { // In case input is just "
           while (temp.charAt(j) != '\"') { // get whole string as single arg
@@ -73,15 +80,20 @@ public class Parser {
               break mainLoop;
             }
           }
+          if (j + 1 < temp.length() && temp.charAt(j + 1) != ' ') {
+            tokens = failedParsing(tokens);
+            break mainLoop;
+          }
           tokens.add("\"" + tempString + "\""); // Add string to tokens
           i = j + 2; // Update counter to new position in input string; temp
           tempString = "";
         } else {
           tokens = failedParsing(tokens);
           break mainLoop;
-        }    
+        }
       } else { // Continue adding characters to build string argument
-        tempString += temp.charAt(i);
+        if (temp.charAt(i) != ' ')
+          tempString += temp.charAt(i);
         if (i + 1 == temp.length()) // Last character before end of input
           tokens.add(tempString);
         i++;
@@ -89,9 +101,10 @@ public class Parser {
     }
     return tokens;
   }
-  
+
   /**
-   *  Clears tokens and sets tokens[0] to error message
+   * Clears tokens and sets tokens[0] to error message
+   * 
    * @param tokens, ArrayList of tokens
    * @return returns ArrayList of tokens
    */
