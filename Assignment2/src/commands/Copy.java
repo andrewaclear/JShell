@@ -55,13 +55,9 @@ public class Copy extends Command {
         copyFileSystemNodeInFileSystem(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory().isFileInsideByFileName(
           fSystem.getPathLastEntry(tokens[1]))) {
-        Echo echoCommand = new Echo();
-        String[] echoTokens = {givenNode.getDirectory().getFile(
-            fSystem.getPathLastEntry(tokens[1])).getContent(), ">", tokens[2]};
-        echoCommand.run(echoTokens, shell);
+        copyFileInFileSystem(tokens[1], tokens[2], shell);
       } else
         ErrorHandler.invalidPath(this, tokens[1]);
-
     } else {
       ErrorHandler.invalidPath(this, tokens[1]);
     }
@@ -69,7 +65,7 @@ public class Copy extends Command {
   }
   
   
-  public void copyFileSystemNodeInFileSystem(String givenPath, 
+  private void copyFileSystemNodeInFileSystem(String givenPath, 
       String targetPath, JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
@@ -91,24 +87,32 @@ public class Copy extends Command {
   }
   
   
-  public void copyFileInFileSystem(String givenPath, 
+  private void copyFileInFileSystem(String givenPath, 
       String targetPath, JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
-
     FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
+    FileSystemNode possibleNode = fSystem.getFileSystemNode(targetPath);
     
     if (targetNode != null) {
-      Echo echoCommand = new Echo();
-      File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
-          fSystem.getPathLastEntry(givenPath));
-      String[] echoTokens = {"\"" + file.getContent() + "\"", ">", 
-          targetPath};
-      echoCommand.run(echoTokens, shell);
+      if (possibleNode != null) {
+        Redirection redirectionCommand = new Redirection();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] redirectionTokens = {"redirect", "\"" + file.getContent() + 
+            "\"", ">", targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
+        redirectionCommand.run(redirectionTokens, shell);
+      } else {
+        Redirection redirectionCommand = new Redirection();
+        File file = fSystem.getSemiFileSystemNode(givenPath).getFile(
+            fSystem.getPathLastEntry(givenPath));
+        String[] redirectionTokens = {"redirect", "\"" + file.getContent() + "\"", 
+            ">", targetPath};
+        redirectionCommand.run(redirectionTokens, shell);
+      }
 
     } else 
       ErrorHandler.invalidPath(this, targetPath);
-
   }
   
 
