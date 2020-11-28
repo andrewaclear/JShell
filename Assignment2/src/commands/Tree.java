@@ -67,12 +67,8 @@ public class Tree extends Command {
 
     for (FileSystemNode child : fileSystemNode.getChildren()) {
 
-      if (child.getChildren().size() != 0) {
-        output += recursiveTreeDisplay("", child, nextLevel);
-      } else {
-        output += indentationUnit.repeat(nextLevel)
-            + child.getDirectory().getDirectoryName() + "\n";
-      }
+      output = recursiveTreeDisplay(output, child, nextLevel);
+
     }
 
     return output;
