@@ -109,8 +109,8 @@ public class Execution {
     commandHashMap.put("pushd", "commands.PushDirectory");
     commandHashMap.put("rm", "commands.Remove");
     commandHashMap.put("tree", "commands.Tree");
-    commandHashMap.put("saveJShell", "commands.saveJShell");
-    commandHashMap.put("loadJShell", "commands.loadJShell");
+    commandHashMap.put("saveJShell", "commands.SaveJShell");
+    commandHashMap.put("loadJShell", "commands.LoadJShell");
     commandHashMap.put("curl", "commands.ClientUrl");
     commandHashMap.put("mv", "commands.Move");
     commandHashMap.put("search", "commands.Search");
