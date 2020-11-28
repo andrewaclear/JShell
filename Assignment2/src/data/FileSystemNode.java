@@ -214,9 +214,6 @@ public class FileSystemNode implements java.io.Serializable {
   }
   
   
-
-  
-  
   public FileSystemNode cloneFileSystemNode(FileSystemNode clonedFileSystemNode) {
     clonedFileSystemNode.setDirectory(this.getDirectory());
     clonedFileSystemNode.setParent(this.getParent());
