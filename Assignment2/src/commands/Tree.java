@@ -66,9 +66,7 @@ public class Tree extends Command {
     }
 
     for (FileSystemNode child : fileSystemNode.getChildren()) {
-
       output = recursiveTreeDisplay(output, child, nextLevel);
-
     }
 
     return output;

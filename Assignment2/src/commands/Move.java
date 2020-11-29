@@ -28,7 +28,6 @@ import data.File;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
-import io.StandardOutput;
 import runtime.ErrorHandler;
 
 public class Move extends Command {
@@ -101,8 +100,8 @@ public class Move extends Command {
     FileSystemNode targetNode = fSystem.forcedGetFileSystemNode(targetPath);
     FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
     if (targetNode != null) {
-      if (!targetNode
-          .isChildInside(givenNode.getDirectory().getDirectoryName())) {
+      if (!targetNode.isChildInside(givenNode.getDirectory().
+          getDirectoryName())) {
         targetNode.addChild(givenNode);
         givenNode.setParent(targetNode);
         Remove remove = new Remove();

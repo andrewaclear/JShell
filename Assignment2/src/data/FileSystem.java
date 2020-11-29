@@ -47,7 +47,17 @@ public class FileSystem implements java.io.Serializable {
     this.root = new FileSystemNode(new Directory("/"));
     this.currentFileSystemNode = root;
   }
-
+  
+  
+  /**
+   * setRoot sets this root to node
+   * 
+   * @param node, a fileSystemNode
+   */
+  public void setRoot(FileSystemNode node) {
+    this.root = node;
+  }
+  
   /**
    * getRoot returns the root of this FileSystem
    * 
