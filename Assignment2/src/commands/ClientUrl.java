@@ -28,7 +28,7 @@ public class ClientUrl extends Command {
   }
 
 
-  public String getFileContent(String url) {
+  private String getFileContent(String url) {
     try {
       String output = "";
       String curLine = "";
