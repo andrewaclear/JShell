@@ -93,12 +93,7 @@ public class MakeDirectory extends Command {
       if (targetNode != null) {
         if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
           String name = fSystem.getPathLastEntry(token);
-          if (!fSystem.inappropriateName(name)) {
-            targetNode.addChild(new FileSystemNode(new Directory(name)));
-          } else {
-            this.setErrors(ErrorHandler.invalidName(this, name));
-            break;
-          }
+          targetNode.addChild(new FileSystemNode(new Directory(name)));
         } else {
           this.setErrors(ErrorHandler.childAlreadyExistant(
               fSystem.getPathLastEntry(token), targetNode));

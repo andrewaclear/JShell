@@ -24,17 +24,182 @@
 // *********************************************************
 package test;
 
+import static org.junit.Assert.assertEquals;
+import java.lang.reflect.Field;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import commands.ChangeDirectory;
+import commands.Command;
 import commands.MakeDirectory;
-import commands.PrintWorkingDirectory;
-import data.Cache;
+import commands.Tree;
 import data.FileSystem;
-import data.FileSystemNode;
+import driver.JShell;
 
 public class MakeDirectoryTest {
-  public static void main(String[] args) {
-
-
-
+  
+  private JShell shell;
+  private MakeDirectory mkdir = new MakeDirectory();
+  private Tree tree = new Tree();
+  private ChangeDirectory cd = new ChangeDirectory();
+  
+  @Before
+  public void setUp() throws Exception
+  {
+    shell = new JShell();
+    shell.setfSystem(FileSystem.createFileSystem()); 
   }
+  
+  
+  @After
+  public void tearDown() throws Exception
+  {
+    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    field.setAccessible(true);
+    field.set(null, null);
+  }
+  
+  
+  @Test
+  public void runTest1() {
+    String[] mkdirTokens = {"mkdir", "dir1", "dir2", "dir3"};
+    Command theResultingCommand = mkdir.run(mkdirTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals(null, actualErrors);
+
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  dir1\n  dir2\n  dir3", actualOutput);
+  }
+  
+  @Test
+  public void runTest2() {
+    String[] mkdirTokens1 = {"mkdir", "a", "b", "c"};
+    Command theResultingCommand1 = mkdir.run(mkdirTokens1, shell);
+    String actualErrors1 = theResultingCommand1.getErrors();
+    assertEquals(null, actualErrors1);
+    
+    String[] cdTokens = {"cd", "a"};
+    cd.run(cdTokens, shell);
+    
+    String[] mkdirTokens2 = {"mkdir", "a", "b", "c"};
+    Command theResultingCommand2 = mkdir.run(mkdirTokens2, shell);
+    String actualErrors2 = theResultingCommand2.getErrors();
+    assertEquals(null, actualErrors2);
+    
+    String[] treeTokens = {"tree"};
+    Command theResultingCommand = tree.run(treeTokens, shell);
+    String actualOutput = theResultingCommand.getOutput();
+    
+    assertEquals("/\n  a\n    a\n    b\n    c\n  b\n  c", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest3() {
+    String[] mkdirTokens = {"mkdir", "/a", "/b", "/c", "/a/banana", "/b/apple", 
+        "/a/banana/split", "/a/orange"};
+    Command theResultingCommand = mkdir.run(mkdirTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals(null, actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  a\n    banana\n      split\n    orange\n  b\n    "
+        + "apple\n  c", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest4() {
+    String[] mkdirTokens1 = {"mkdir", "a", "b", "c"};
+    Command theResultingCommand1 = mkdir.run(mkdirTokens1, shell);
+    String actualErrors1 = theResultingCommand1.getErrors();
+    assertEquals(null, actualErrors1);
+    
+    String[] cdTokens = {"cd", "a"};
+    cd.run(cdTokens, shell);
+    
+    String[] mkdirTokens2 = {"mkdir", "/a/banana", "/d", "hue", "banana/yolo", 
+        "/d/hai"};
+    Command theResultingCommand2 = mkdir.run(mkdirTokens2, shell);
+    String actualErrors2 = theResultingCommand2.getErrors();
+    assertEquals(null, actualErrors2);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  a\n    banana\n      yolo\n    hue\n  b\n  c\n  d\n    "
+        + "hai", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest5() {
+    String[] mkdirTokens1 = {"mkdir", "a", "b", "a"};
+    Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("The directory " + "a" + " already exists at "
+        + "/", actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  a\n  b", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest6() {
+    String[] mkdirTokens1 = {"mkdir", "kha", "kha/k", "jh" ,
+        "non/Existant/path", "bomp"};
+    Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("mkdir" + ": \"" + "non/Existant/path" 
+        + "\": No such file or directory", actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  kha\n    k\n  jh", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest7() {
+    String[] mkdirTokens1 = {"mkdir", "jue", "illegal%^&path", "noice"};
+    Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("mkdir" + ": " + "illegal%^&path" 
+        + " contains illicit characters", actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  jue", actualOutput);
+  }
+  
+  @Test
+  public void runTest8() {
+    String[] mkdirTokens1 = {"mkdir", "kul", "jue/bad%&Name", "didIT"};
+    Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("mkdir" + ": " + "jue/bad%&Name" 
+        + " contains illicit characters", actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  kul", actualOutput);
+  }
+  
 }
