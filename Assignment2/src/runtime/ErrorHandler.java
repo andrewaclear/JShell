@@ -157,7 +157,7 @@ public class ErrorHandler {
    */
   public static String childAlreadyExistant(String directoryName,
       FileSystemNode node) {
-    return "The directory " + directoryName + " already exists at "
+    return "The file/directory " + directoryName + " already exists at "
         + node.getPath();
   }
 
