@@ -69,7 +69,8 @@ public class Move extends Command {
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
     if (tokens[2].startsWith(tokens[1]))
-      this.setErrors(ErrorHandler.moveDirectoryError(tokens[2]));
+      this.setErrors(ErrorHandler.subFileSystemNodeError(this, tokens[1], 
+          tokens[2]));
     else if (givenNode != null) {
       if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
         moveFileSystemNode(tokens[1], tokens[2], shell);
@@ -108,7 +109,8 @@ public class Move extends Command {
         String[] removeTokens = {"rm", givenPath};
         remove.run(removeTokens, shell);
       } else
-        this.setErrors(ErrorHandler.invalidPath(this, targetPath));
+        this.setErrors(ErrorHandler.childAlreadyExistant(givenNode.getDirectory().
+            getDirectoryName(), targetNode));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else

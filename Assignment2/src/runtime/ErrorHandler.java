@@ -177,10 +177,18 @@ public class ErrorHandler {
         + "subpath to the current directory";
   }
 
-
-  public static String moveDirectoryError(String givenPath) {
-    return "The given path: " + givenPath
-        + " cannot be used to move because it is inside " + "the target path";
+  /**
+   *subFileSystemNodeError returns the error of targetPath being inside the
+   *givenPath
+   * 
+   * @param command, an instance of Command class or its subclasses
+   * @param givenPath, a FileSystemNode path
+   * @param targetPath, a FileSystemNode path
+   */
+  public static String subFileSystemNodeError(Command command, String givenPath, 
+      String targetPath) {
+    return  command.getIdentifier() + ": " + targetPath+ " is inside " 
+      + givenPath;
   }
 
   /**
@@ -192,4 +200,5 @@ public class ErrorHandler {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
   }
+  
 }

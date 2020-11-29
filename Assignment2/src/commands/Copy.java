@@ -71,7 +71,7 @@ public class Copy extends Command {
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
     if (tokens[2].startsWith(tokens[1]))
-      ErrorHandler.moveDirectoryError(tokens[2]);
+      ErrorHandler.subFileSystemNodeError(this, tokens[1], tokens[2]);
     else if (givenNode != null) {
       if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
         copyFileSystemNode(tokens[1], tokens[2], shell);
