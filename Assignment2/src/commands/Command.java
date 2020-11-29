@@ -24,6 +24,7 @@
 // *********************************************************
 package commands;
 
+import data.FileSystemNode;
 import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
@@ -220,9 +221,10 @@ public class Command {
 
       String name =
           shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
+      FileSystemNode targetNode = shell.getfSystem()
+          .getSemiFileSystemNode(tokens[tokens.length - 1]);
       boolean validName = !shell.getfSystem().inappropriateName(name);
-      boolean validPath = shell.getfSystem()
-          .getSemiFileSystemNode(tokens[tokens.length - 1]) != null;
+      boolean validPath = targetNode != null;
       if (arrow) {
         if (!validPath) {
           this.setErrors(
@@ -231,6 +233,10 @@ public class Command {
         }
         if (!validName) {
           this.setErrors(ErrorHandler.invalidName(this, name));
+          return this;
+        }
+        if (targetNode.isChildInside(name)) {
+          this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
           return this;
         }
       }
