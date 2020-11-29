@@ -52,7 +52,7 @@ public class ClientUrl extends Command {
 
       return output;
     } catch (IOException e) {
-      ErrorHandler.invalidUrl(this, url);
+      this.setErrors(ErrorHandler.invalidUrl(this, url));
       return null;
     }
   }
