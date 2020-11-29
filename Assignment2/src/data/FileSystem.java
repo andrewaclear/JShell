@@ -106,17 +106,10 @@ public class FileSystem implements java.io.Serializable {
     if (givenPath.equals(""))
       return getCurrentDirectory();
 
-    // // current directory
-    // if (givenPath.equals(".") || givenPath.equals(""))
-    //   return getCurrentDirectory();
-    // // parent directory
-    // if (givenPath.equals(".."))
-    //   return getCurrentDirectory().getParent();
-
       // bad path
     if (inappropriatePath(givenPath)) 
       return null;
-    // return path
+
     return traversePath(givenPath);
   }
 
