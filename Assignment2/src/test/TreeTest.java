@@ -54,7 +54,8 @@ public class TreeTest {
     setUp();
     
     MakeDirectory mkdir = new MakeDirectory();
-    String[] mkdirTokens = {"mkdir", "a", "b", "c", "b/banana", "/b/apple"};
+    String[] mkdirTokens = {"mkdir", "kha", "bruh", "c", "bruh/banana", 
+        "/bruh/apple"};
     mkdir.run(mkdirTokens, shell);
     
     Tree tree = new Tree();
@@ -63,13 +64,14 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  a\n  b\n    banana\n    apple\n  c", actualOutput);
+    assertEquals("/\n  kha\n  bruh\n    banana\n    apple\n  c", actualOutput);
     assertEquals(null, actualErrors);
     
     tearDown();
   }
   
   
+  @Test
   public void runTest3() throws Exception {
     setUp();
     
@@ -87,13 +89,14 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  ooga\n  a\n  b\n    banana\n  c\n    apple\n", 
+    assertEquals("/\n  ooga\n  a\n  b\n    banana\n  c\n    apple", 
         actualOutput);
     assertEquals(null, actualErrors);
     
     tearDown();
   }
   
+  @Test
   public void runTest4() throws Exception {
     setUp();
     
@@ -114,7 +117,7 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  ooga\n  a\n  b\n    hue\n    banana\n    apple\n  c", 
+    assertEquals("/\n  ooga\n  a\n  b\n    hue\n    banana\n  c\n    apple", 
         actualOutput);
     assertEquals(null, actualErrors);
     
