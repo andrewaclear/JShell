@@ -164,16 +164,13 @@ public class FileSystemNode implements java.io.Serializable {
    *         directoryName, otherwise, false
    */
   public boolean isChildInside(String directoryName) {
-
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
-//        ErrorHandler.childAlreadyExistant(directoryName, this);
         return true;
       }
     }
 
     return false;
-
   }
   
   
@@ -204,9 +201,8 @@ public class FileSystemNode implements java.io.Serializable {
   public FileSystemNode getChildByDirectoryName(String targetFileSystemNode) {
     
     for (FileSystemNode child : this.children) {
-      if (child.getDirectory().getDirectoryName().equals(targetFileSystemNode)) {
+      if (child.getDirectory().getDirectoryName().equals(targetFileSystemNode)) 
         return child;
-      }
     }
     
     return null;
@@ -214,7 +210,8 @@ public class FileSystemNode implements java.io.Serializable {
   }
   
   
-  public FileSystemNode cloneFileSystemNode(FileSystemNode clonedFileSystemNode) {
+  public FileSystemNode cloneFileSystemNode(
+      FileSystemNode clonedFileSystemNode) {
     clonedFileSystemNode.setDirectory(this.getDirectory());
     clonedFileSystemNode.setParent(this.getParent());
     

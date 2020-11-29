@@ -91,7 +91,9 @@ public class MakeDirectory extends Command {
     for (String token : pathTokens) {
       targetNode = fSystem.getSemiFileSystemNode(token);
       if (targetNode != null) {
-        if (!targetNode.isChildInside(fSystem.getPathLastEntry(token))) {
+        if (!targetNode.isChildInside(fSystem.getPathLastEntry(token)) && 
+            !targetNode.getDirectory().isFileInsideByFileName(
+                fSystem.getPathLastEntry(token))) {
           String name = fSystem.getPathLastEntry(token);
           targetNode.addChild(new FileSystemNode(new Directory(name)));
         } else {
