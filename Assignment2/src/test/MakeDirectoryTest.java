@@ -187,6 +187,7 @@ public class MakeDirectoryTest {
     assertEquals("/\n  jue", actualOutput);
   }
   
+  
   @Test
   public void runTest8() {
     String[] mkdirTokens1 = {"mkdir", "kul", "jue/bad%&Name", "didIT"};
