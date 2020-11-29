@@ -217,6 +217,23 @@ public class Command {
     if (this.getMaxNumOfArguments() == -1
         || !arrow && tokens.length == this.getMaxNumOfArguments() - 2
         || arrow && tokens.length == this.getMaxNumOfArguments()) {
+
+      String name =
+          shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
+      boolean validName = !shell.getfSystem().inappropriateName(name);
+      boolean validPath = shell.getfSystem()
+          .getSemiFileSystemNode(tokens[tokens.length - 1]) != null;
+      if (arrow) {
+        if (!validPath) {
+          this.setErrors(
+              ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
+          return this;
+        }
+        if (!validName) {
+          this.setErrors(ErrorHandler.invalidName(this, name));
+          return this;
+        }
+      }
       return this.run(tokens, shell);
 
     }
