@@ -43,14 +43,12 @@ public class EchoTest {
     String[] actual2 =
         {"echo", "dssaasdsd", "\"  Hello the world, test the world.  \""};
     assertEquals("echo did not correctly print string",
-        "echo: dssaasdsd \"  Hello the world, test the world.  \" : Invalid"
-        + " combination of arguments",
+        "echo: dssaasdsd: No string found, format string as \"string\"",
         echo.checkRun(actual2, shell).getErrors());
     String[] actual3 =
-      {"echo", "\"testering\"", "fd", "da"};
+      {"echo", "testering"};
   assertEquals("echo did not correctly print string",
-      "echo: \"testering\" fd da : Invalid"
-      + " combination of arguments",
+      "echo: testering: No string found, format string as \"string\"",
       echo.checkRun(actual3, shell).getErrors());
 
 
