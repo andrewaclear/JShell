@@ -127,6 +127,7 @@ public interface CommandInterface<T> {
    * Checks if tokens has a valid redirection
    * 
    * @param tokens, an array of string tokens containing command arguments
+   * @param shell an instance of JShell
    * @return returns true if tokens has a valid redirection, else false
    */
   public Command checkRun(String[] tokens, JShell shell);
@@ -137,11 +138,8 @@ public interface CommandInterface<T> {
    * subclass).
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell an instance of JShell
+   * @return returns an instance of command with output and errors
    */
   public Command run(String[] tokens, JShell shell);
 }

@@ -101,11 +101,8 @@ public class ClientUrl extends Command {
    * Retrieves file at given URL and inserts at current directory.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell an instance of JShell
+   * @return returns an instance of command with output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {

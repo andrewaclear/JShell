@@ -80,11 +80,9 @@ public class History extends Command {
    * history.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param tokens, array of string tokens holding command arguments
+   * @param shell an instance of JShell
+   * @return returns an instance of command with output and errors
    */
 
   @Override

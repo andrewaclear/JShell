@@ -66,11 +66,8 @@ public class Echo extends Command {
    * of a file if file already exists and/or appends STRING to a file.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell an instance of JShell
+   * @return returns an instance of command
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
