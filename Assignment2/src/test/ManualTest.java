@@ -98,11 +98,12 @@ public class ManualTest {
   public void runTest2() {
     Manual man = new Manual();
 
-    String[] actual = {"man", "cat", "dog"};
+    String[] actual = {"man", "cat"};
 
     assertEquals("Manual did not return correct error",
-        "man: cat dog : Invalid combination of arguments",
-        man.checkRun(actual, shell).getErrors());
+        "Documentation for: cat\nDisplay the contents of FILE1 and other "
+        + "files (i.e. File2 ....) concatenated in the shell.\n",
+        man.checkRun(actual, shell).getOutput());
     String[] actual2 = {"man", "dog"};
     assertEquals("Manual did not return correct error",
         "man: No manual entry for: dog", man.run(actual2, shell).getErrors());
