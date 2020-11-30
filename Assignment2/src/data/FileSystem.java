@@ -262,11 +262,8 @@ public class FileSystem implements java.io.Serializable {
    *         fileSystem
    */
   public static FileSystem createFileSystem() {
-
-    if (fileSystem == null) {
+    if (fileSystem == null) 
       fileSystem = new FileSystem();
-    }
-
     return fileSystem;
   }
   
