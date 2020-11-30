@@ -69,6 +69,8 @@ public class Manual extends Command {
     descriptions.put("mv", new Move().getDescription());
     descriptions.put("cp", new Copy().getDescription());
     descriptions.put("curl", new ClientUrl().getDescription());
+    descriptions.put("rm", new Remove().getDescription());
+    descriptions.put("redirect", new Redirection().getDescription());
 
 
     this.setIdentifier("man");
