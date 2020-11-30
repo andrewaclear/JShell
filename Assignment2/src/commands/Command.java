@@ -204,7 +204,8 @@ public class Command implements CommandInterface {
    * @return returns true if tokens contains arrow or double_arrow, else false
    */
   public static boolean containsArrow(String[] tokens) {
-    if (tokens.length < 2) return false;
+    if (tokens.length < 2)
+      return false;
     int indexArrow = tokens.length - 2;
     return tokens[indexArrow].equals(">") || tokens[indexArrow].equals(">>");
   }
@@ -213,6 +214,7 @@ public class Command implements CommandInterface {
    * Checks if tokens has a valid redirection
    * 
    * @param tokens, an array of string tokens containing command arguments
+   * @param shell an instance of JShell
    * @return returns true if tokens has a valid redirection, else false
    */
   public Command checkRun(String[] tokens, JShell shell) {
@@ -220,7 +222,8 @@ public class Command implements CommandInterface {
     // if (this.getMaxNumOfArguments() == -1
     // || !arrow && tokens.length <= this.getMaxNumOfArguments()
     // || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
-    if (tokens.length == 0) return this;
+    if (tokens.length == 0)
+      return this;
 
     String name =
         shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
@@ -261,11 +264,8 @@ public class Command implements CommandInterface {
    * subclass).
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell an instance of JShell
+   * @return returns an instance of command with output and errors
    */
   public Command run(String[] tokens, JShell shell) {
     return null;
