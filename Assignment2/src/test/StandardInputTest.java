@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import io.StandardInput;
 
 /**
  * @author a
@@ -33,16 +34,10 @@ public class StandardInputTest {
 	 * Test method for {@link io.StandardInput#nextLine()}.
 	 */
 	@Test
-	public final void testNextLine() {
-		fail("Not yet implemented"); // TODO
+	public final void testStandardInput() {
+	assertNotNull("Did not return correct scanner "
+	    + "instance",new StandardInput());
 	}
 
-	/**
-	 * Test method for {@link io.StandardInput#close()}.
-	 */
-	@Test
-	public final void testClose() {
-		fail("Not yet implemented"); // TODO
-	}
-
+	
 }
