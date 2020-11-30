@@ -62,7 +62,6 @@ public class JShell implements java.io.Serializable {
     this.parse = new Parser();
     this.execute = new Execution();
     this.input = new StandardInput();
-    // TODO: set normal constructor
     this.fSystem = FileSystem.createFileSystem();
     this.cache = new Cache();
   }

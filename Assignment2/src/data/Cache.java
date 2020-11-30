@@ -55,7 +55,9 @@ public class Cache implements java.io.Serializable {
    * @return returns string of the history line at index i
    */
   public String getHistory(int i) {
-    return history.get(i);
+    if (i >= 0 && i < history.size())
+      return history.get(i);
+    else return null;
   }
 
   /**
@@ -73,7 +75,9 @@ public class Cache implements java.io.Serializable {
    * @return returns the popped directory
    */
   public String popDirectoryStack() {
-    return dirStack.pop();
+    if (dirStack.size() > 0)
+      return dirStack.pop();
+    else return null;
   }
 
   /**
@@ -91,8 +95,12 @@ public class Cache implements java.io.Serializable {
    * @param path, path of directory to be removed
    */
   public void removeDirectory(String path) {
+    int end;
+    String stackPath;
     for (int i = 0; i < dirStack.size(); i++) {
-      if (path.equals(dirStack.get(i).substring(0, path.length()))) {
+      stackPath = dirStack.get(i);
+      end = path.length() > stackPath.length()? stackPath.length() : path.length();
+      if (path.equals(stackPath.substring(0, end))) {
         dirStack.remove(i);
       }
     }
