@@ -226,15 +226,15 @@ public class Command {
       boolean validName = !shell.getfSystem().inappropriateName(name);
       boolean validPath = targetNode != null;
       if (arrow) {
-        if (!validPath) {
-          this.setErrors(
-              ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
-          return this;
-        }
         if (!validName) {
           this.setErrors(ErrorHandler.invalidName(this, name));
           return this;
         }
+        if (!validPath) {
+          this.setErrors(
+              ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
+          return this;
+        }   
         if (targetNode.isChildInside(name)) {
           this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
           return this;
