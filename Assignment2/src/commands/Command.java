@@ -216,7 +216,7 @@ public class Command {
   public Command checkRun(String[] tokens, JShell shell) {
     boolean arrow = containsArrow(tokens);
     if (this.getMaxNumOfArguments() == -1
-        || !arrow && tokens.length == this.getMaxNumOfArguments() - 2
+        || !arrow && tokens.length <= this.getMaxNumOfArguments() - 2
         || arrow && tokens.length == this.getMaxNumOfArguments()) {
 
       String name =

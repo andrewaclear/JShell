@@ -30,13 +30,14 @@ public class SaveJShell extends Command {
   @Override
   public Command run(String[] tokens, JShell shell) {
 
-    FileSystem fSystem = shell.getfSystem();
-    Cache cache = shell.getCache();
+   // FileSystem fSystem = shell.getfSystem();
+   // Cache cache = shell.getCache();
     try {
-      FileOutputStream file = new FileOutputStream(tokens[1]);
+      FileOutputStream file = new FileOutputStream(tokens[1] + ".ser");
       ObjectOutputStream outStream = new ObjectOutputStream(file);
-      outStream.writeObject(fSystem);
-      outStream.writeObject(cache);
+      outStream.writeObject(shell);
+      //outStream.writeObject(fSystem);
+     
       outStream.close();
       file.close();
 
