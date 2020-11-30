@@ -67,9 +67,9 @@ public class LoadJShellTest {
     shell.getCache().addHistoryLine("history 1");
     shell.getCache().addHistoryLine("history 100");
 
-    // SaveJShell save = new SaveJShell();
-    // String[] tokens = {"saveJShell", "testerLoad"};
-    // save.run(tokens, shell);
+    SaveJShell save = new SaveJShell();
+    String[] tokens = {"saveJShell", "testerLoad"};
+    save.run(tokens, shell);
 
     loadShell = new LoadJShell();
     String[] actual = {"loadJShell", "testerLoad"};
