@@ -41,12 +41,13 @@ public class StandardOutput {
    * 
    * @param message, to be printed out to the shell
    */
-  public static void println(String message) {
+  public static String println(String message) {
     System.out.println(message);
+    return message;
   }
 
 
-  public static void println(String[] tokens, String output, JShell shell, Command command) {
+  public static String println(String[] tokens, String output, JShell shell, Command command) {
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
    
     boolean containsArrow = Command.containsArrow(tokens);
@@ -62,14 +63,15 @@ public class StandardOutput {
       Redirection redirect = new Redirection();
       redirect = (Redirection) redirect.run(tokens2, shell);
       if (redirect.getErrors() != null) {
-       StandardOutput.println(redirect.getErrors());
+       return StandardOutput.println(redirect.getErrors());
       }
     // } else if (tokens.length <= command.getMaxNumOfArguments()-2 
     //            || command.getMaxNumOfArguments() == -1) {
-    } else StandardOutput.println(output);
+    } return StandardOutput.println(output);
     // } else {
     //   ErrorHandler.invalidComboOfParams(command, tokens);
     // }
+   // return null;
   }
 
 
