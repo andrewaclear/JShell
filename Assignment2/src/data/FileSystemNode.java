@@ -215,6 +215,7 @@ public class FileSystemNode implements java.io.Serializable {
    * toBeClonedFileSystemNode, if toBeClonedFileSystemNode is null, return null.
    * 
    * @param toBeClonedFileSystemNode, a FileSystemNode
+   * @return tobeClonedFIleSystemNode the cloned version of this FileSystemNode
    */
   public FileSystemNode cloneFileSystemNodeInto(
       FileSystemNode toBeClonedFileSystemNode) {
