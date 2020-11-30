@@ -8,8 +8,6 @@ Responsibilities:
 -Prints out the documentation for the given command.
 
 Collaborators:
--Command
--StandardOutput
 -Exit
 -MakeDirectory
 -ChangeDirectory
@@ -21,5 +19,13 @@ Collaborators:
 -History
 -PopDirectory
 -PushDirectory
--Cache
+-Search
+-LoadJShell
+-SaveJShell
+-Tree
+-Move
+-Copy
+-ClientUrl
+-Remove
 -ErrorHandler
+-JShell

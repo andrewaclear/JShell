@@ -5,12 +5,10 @@ Parent class: Command
 Subclasses: None
 
 Responsibilities:
--Create a new File if given File doesn't currently exists
--Appends the string to the File's content
--Replace the File's content with the provided string
+-Prints the given String
+-Return an error when the String is not surrounded by double quotation marks " 
+	or there are more than one Strings
 
 Collaborators:
 -FileSystem
--EchoToFile
--StandardOutput
 -ErrorHandler

@@ -9,3 +9,5 @@ Responsibilities:
 
 Collaborators:
 -JShell
+-Redirection
+-Command

@@ -5,7 +5,9 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Displays an error message when the given command is nonexistent
+-Returns String containing the error message of any error in the program
 
 Collaborators: 
--StandardOutput
+-Command
+-Manual
+-FileSystemNode

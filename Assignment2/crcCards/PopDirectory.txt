@@ -9,6 +9,6 @@ Responsibilities:
 -Returns error message if the DirectoryStack is empty.
 
 Collaborators:
--ChangeDirectory
+-FileSystemNode
 -Cache
 -ErrorHandler

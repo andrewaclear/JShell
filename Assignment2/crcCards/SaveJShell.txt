@@ -8,4 +8,5 @@ Responsibilities:
 -Saves the state the of FileSystem in my computer.
 
 Collaborators:
--Cache
+-JShell
+-ErroHandler

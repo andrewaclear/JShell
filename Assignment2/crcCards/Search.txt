@@ -9,4 +9,5 @@ Responsibilities:
 
 Collaborators:
 -FileSystem
+-FileSystemNode
 -ErrorHandler
