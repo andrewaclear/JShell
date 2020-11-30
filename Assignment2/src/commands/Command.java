@@ -204,10 +204,8 @@ public class Command implements CommandInterface {
    * @return returns true if tokens contains arrow or double_arrow, else false
    */
   public static boolean containsArrow(String[] tokens) {
-    if (tokens.length == 0) {
-      return false;
-    }
-    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
+    if (tokens.length < 2) return false;
+    int indexArrow = tokens.length - 2;
     return tokens[indexArrow].equals(">") || tokens[indexArrow].equals(">>");
   }
 
@@ -222,6 +220,7 @@ public class Command implements CommandInterface {
     // if (this.getMaxNumOfArguments() == -1
     // || !arrow && tokens.length <= this.getMaxNumOfArguments()
     // || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
+    if (tokens.length == 0) return this;
 
     String name =
         shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
