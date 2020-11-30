@@ -81,7 +81,7 @@ public class Concatenate extends Command {
       File file = null;
       
       if (name != null && node != null ) {
-        file = node.getDirectory().getFile(name);
+        file = node.getDirectory().getFileByFileName(name);
       } 
      
       if (node != null && file != null) {

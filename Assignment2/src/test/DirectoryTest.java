@@ -33,7 +33,7 @@ public class DirectoryTest {
     directory.addFile(file3);
 
     
-    File actualOutput = directory.getFile("no");
+    File actualOutput = directory.getFileByFileName("no");
     
     assertEquals(file2, actualOutput);
   }
@@ -41,7 +41,7 @@ public class DirectoryTest {
   @Test
   public void getFileTest2() {
     
-    File actualOutput = directory.getFile("iDontExist");
+    File actualOutput = directory.getFileByFileName("iDontExist");
     
     assertEquals(null, actualOutput);
   }
@@ -61,9 +61,9 @@ public class DirectoryTest {
     directory.addFile(file2);
     directory.addFile(file3);
     
-    directory.removeFile(file3.getFileName());
+    directory.removeFileByFileName(file3.getFileName());
     
-    File actuaOutput = directory.getFile("okay");
+    File actuaOutput = directory.getFileByFileName("okay");
     
     assertEquals(null, actuaOutput);
   }
@@ -80,7 +80,7 @@ public class DirectoryTest {
     directory.addFile(file1);
     directory.addFile(file2);
     
-    directory.removeFile("nonExistantFileName");
+    directory.removeFileByFileName("nonExistantFileName");
     
     List<File> expectedFiles = new ArrayList<File>();
     expectedFiles.add(file1);
@@ -97,7 +97,7 @@ public class DirectoryTest {
     
     List<File> expectedFiles = directory.getFiles();
     
-    directory.removeFile("nonExistantFileName");
+    directory.removeFileByFileName("nonExistantFileName");
     
     List<File> actualFiles = directory.getFiles();
     

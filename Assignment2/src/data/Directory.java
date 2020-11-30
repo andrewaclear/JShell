@@ -92,22 +92,29 @@ public class Directory implements java.io.Serializable {
   }
 
   /**
-   * getFile returns the File in files that has targetFileName as its fileName
+   * getFileByFileName returns the File in files that has targetFileName as its fileName
    * 
-   * @param targetFileName, a String
-   * @return The File in files that has the targetFileName as its fileName
+   * @param targetFileName, a String that refers to a fileName
+   * @return currentFIle, the File in files that has the targetFileName 
+   *    as its fileName
    */
-  public File getFile(String targetFileName) {
+  public File getFileByFileName(String targetFileName) {
     for (File currentFile : this.files) {
-      if (currentFile.getFileName().equals(targetFileName)) {
+      if (currentFile.getFileName().equals(targetFileName)) 
         return currentFile;
-      }
     }
 
     return null;
   }
   
-  public void removeFile(String targetFileName) {
+  
+  /**
+   * removeFileByFileName removes the File in files that has as its fileName 
+   *    targetFileName
+   * 
+   * @param targetFileName, a String that refers to a fileName
+   */
+  public void removeFileByFileName(String targetFileName) {
     
     int index = 0;
     
@@ -120,12 +127,16 @@ public class Directory implements java.io.Serializable {
     }
   }
   
+  /**
+   * isFileInsideByFileName returns true if there is a File in files with 
+   * fileName targetFileName
+   * 
+   * @param targetFileName, a String that refers to a fileName
+   */
   public boolean isFileInsideByFileName(String givenFileName) {
-    
     for (File file : this.getFiles()) {
-      if (file.getFileName().equals(givenFileName)) {
+      if (file.getFileName().equals(givenFileName)) 
         return true;
-      }
     }
   
   return false;

@@ -172,7 +172,14 @@ public class FileSystemNode implements java.io.Serializable {
   }
   
   
-  public void removeChild(String directoryName) {
+  /**
+   * removeChildByDirectoryName removes the directories from the children 
+   * that have their  directoryName as directoryName, if there are none, 
+   * do nothing. 
+   * 
+   * @param directoryName, a String 
+   */
+  public void removeChildByDirectoryName(String directoryName) {
     int index = 0;
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
@@ -182,37 +189,42 @@ public class FileSystemNode implements java.io.Serializable {
     }
   }
   
-  public File getFile(String targetFileName) {
-    for (File file : this.getDirectory().getFiles()) {
-      if (file.getFileName().equals(targetFileName)) 
-        return file;
-    }
-  return null;
-  }
   
-  
-  public FileSystemNode getChildByDirectoryName(String targetFileSystemNode) {
+  /**
+   * getChildByDirectoryName gets a directory from the children 
+   * that has directoryName as its directoryName, if there are none, return
+   * null
+   * 
+   * @param directoryName, a String 
+   */
+  public FileSystemNode getChildByDirectoryName(String directoryName) {
     for (FileSystemNode child : this.children) {
-      if (child.getDirectory().getDirectoryName().equals(targetFileSystemNode)) 
+      if (child.getDirectory().getDirectoryName().equals(directoryName)) 
         return child;
     }
     return null; 
   }
   
-  
-  public FileSystemNode cloneFileSystemNode(
-      FileSystemNode clonedFileSystemNode) {
+  /**
+   * cloneFileSystemNodeInto clones this FileSystemNode and puts it in 
+   * toBeClonedFileSystemNode, if toBeClonedFileSystemNode is null,
+   * return null.
+   * 
+   * @param toBeClonedFileSystemNode, a FileSystemNode
+   */
+  public FileSystemNode cloneFileSystemNodeInto(
+      FileSystemNode toBeClonedFileSystemNode) {
     
-    if (clonedFileSystemNode != null) {
-      clonedFileSystemNode.setDirectory(this.getDirectory());
-      clonedFileSystemNode.setParent(this.getParent());
+    if (toBeClonedFileSystemNode != null) {
+      toBeClonedFileSystemNode.setDirectory(this.getDirectory());
+      toBeClonedFileSystemNode.setParent(this.getParent());
       
       for (FileSystemNode child : this.getChildren()) {
-        clonedFileSystemNode.addChild(child.cloneFileSystemNode(
+        toBeClonedFileSystemNode.addChild(child.cloneFileSystemNodeInto(
             new FileSystemNode(new Directory("Dummy"))));
       }
     }
-    return clonedFileSystemNode;
+    return toBeClonedFileSystemNode;
     
   }
   

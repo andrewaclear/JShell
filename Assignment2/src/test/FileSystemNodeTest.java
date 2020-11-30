@@ -81,7 +81,7 @@ public class FileSystemNodeTest {
   public void cloneFileSystemNodeTest1() {
     
     FileSystemNode actualOutput = new FileSystemNode(new Directory("Dummy"));
-    actualOutput = fSystem.getRoot().cloneFileSystemNode(actualOutput);
+    actualOutput = fSystem.getRoot().cloneFileSystemNodeInto(actualOutput);
     
     assertEquals("/", actualOutput.getDirectory().getDirectoryName());
     assertEquals(null, actualOutput.getParent());
@@ -96,7 +96,7 @@ public class FileSystemNodeTest {
     
     FileSystemNode actualOutput = new FileSystemNode(new Directory("Dummy"));
     actualOutput = fSystem.getRoot().getChildByDirectoryName("nani").
-        cloneFileSystemNode(actualOutput);
+        cloneFileSystemNodeInto(actualOutput);
     
     assertEquals("nani", actualOutput.getDirectory().getDirectoryName());
     assertEquals(true, actualOutput.isChildInside("tenia"));

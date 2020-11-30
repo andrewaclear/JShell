@@ -60,8 +60,8 @@ public class Move extends Command {
    * file path
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param JShell contains the FileSystem and cache
-   * @return returns a boolean true to mark successful execution
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have the output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
@@ -94,6 +94,7 @@ public class Move extends Command {
    * 
    * @param givenPath, a path to a FileSystemNode
    * @param targetPath, a path to a FileSystemNode
+   * @param shell contains the FileSystem and cache
    */
   private void moveFileSystemNode(String givenPath, String targetPath,
       JShell shell) {
@@ -125,6 +126,7 @@ public class Move extends Command {
    * 
    * @param givenPath, a path to a FileSystemNode
    * @param targetPath, a path to a FileSystemNode
+   * @param shell contains the FileSystem and cache
    */
   private void moveFile(String givenPath, String targetPath, JShell shell) {
 
@@ -136,7 +138,8 @@ public class Move extends Command {
       if (possibleNode != null) {
         Redirection redirectionCommand = new Redirection();
         File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getFile(fSystem.getPathLastEntry(givenPath));
+            .getDirectory().getFileByFileName(
+                fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">",
                 targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
@@ -144,7 +147,8 @@ public class Move extends Command {
       } else {
         Redirection redirectionCommand = new Redirection();
         File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getFile(fSystem.getPathLastEntry(givenPath));
+            .getDirectory().getFileByFileName(
+                fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">", targetPath};
         redirectionCommand.run(redirectionTokens, shell);

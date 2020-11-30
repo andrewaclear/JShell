@@ -78,7 +78,7 @@ public class ClientUrl extends Command {
       String fileName = fSystem.getPathLastEntry(tokens[1].replace(".", ""));
 
       if (fSystem.getCurrentDirectory().getDirectory()
-          .getFile(fileName) == null) {
+          .getFileByFileName(fileName) == null) {
         String[] tokens2 = {"default", ">", fileName};
         StandardOutput.println(tokens2, output, shell, this);
       } else {
