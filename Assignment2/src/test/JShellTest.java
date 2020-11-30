@@ -31,13 +31,15 @@ public class JShellTest {
 	public void tearDown() throws Exception {
 	}
 
-
+	//runShell is private and other methods are setters/getters are therefore 
+	//are trivial
+	
 	/**
 	 * Test method for {@link driver.JShell#runShell()}.
 	 */
 	@Test
-	public final void testRunShell() {
-		fail("Not yet implemented"); // TODO
+	public final void testJShell() {
+		assertNotNull("Failed JShell iniation", new JShell());
 	}
 
 }

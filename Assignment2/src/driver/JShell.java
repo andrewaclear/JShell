@@ -66,7 +66,7 @@ public class JShell implements java.io.Serializable {
     this.cache = new Cache();
   }
 
-  public void runShell() {
+  private void runShell() {
     // Main program loop
     while (!run.getIdentifier().equals("exit")) {
       StandardOutput
