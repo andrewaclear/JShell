@@ -28,8 +28,19 @@ import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
 
+/**
+ * 
+ * Searches through a list of given directories and their sub-directories and
+ * then outputs whether the list directories contain the desired file or not
+ *
+ */
 public class Search extends Command {
-
+  
+  /**
+   * Constructor for Search class. It initializes identifier,
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
+   * and description from its super class Commands.
+   */
   public Search() {
     this.setDescription("The syntax of the search command is as follows: "
         + "search path ... -type [f|d] -name expression. So here are some"
@@ -48,7 +59,14 @@ public class Search extends Command {
     this.setErrorTooManyArguments("");
     this.setMissingOperand("Missing required arguments");
   }
-
+  
+  /**
+   *  Searches for files in a given directory
+   * @param node the directory node
+   * @param item the item to be searched for
+   * @param path path given
+   * @return returns output with all matching files
+   */
   private String searchForFiles(FileSystemNode node, String item, String path) {
     if (node.getDirectory().getFiles() == null)
       return "";
@@ -66,7 +84,15 @@ public class Search extends Command {
 
     return partOutput;
   }
-
+  
+  /**
+   *  Searches a given node for specified item at path
+   * @param node the given directory node
+   * @param item the given item
+   * @param path the given path
+   * @param fParam a boolean check for f param
+   * @return returns a string containing matching files
+   */
   private String searchNode(FileSystemNode node, String item, String path,
       boolean fParam) {
     if (node.getChildren() == null)
@@ -96,7 +122,15 @@ public class Search extends Command {
 
     return partOutput + subOutput;
   }
-
+  
+  /**
+   *  Searches through a list of directories/paths and outputs whether the 
+   *  specified file is located in given directories/paths.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param shell, an instance of JShell
+   * @return returns an instance of the command
+   */
   @Override
   public Command run(String[] tokens, JShell shell) {
     int len = tokens.length;
