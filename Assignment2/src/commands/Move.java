@@ -30,6 +30,9 @@ import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
 
+/**
+ * Move moves a file or directory to the desired location
+ */
 public class Move extends Command {
 
   /**
@@ -90,34 +93,46 @@ public class Move extends Command {
 
 
   /**
-   * moveDirectory moves a FileSystemNode that the givenPath refers to to
-   * another FileSystemNode that targetPath refers
+   * moveFileSystemNode moves a FileSystemNode that the givenPath refers to to
+   * another FileSystemNode that targetPath refers if there is no file with 
+   * directory of the givenPath. It can also change the directoryName
+   * of the givenPath if the targetPath last entry doesn't exists but the rest 
+   * does, so it changes the directoryName to the last entry of targetPath
    * 
    * @param givenPath, a path to a FileSystemNode
-   * @param targetPath, a path to a FileSystemNode
+   * @param targetPath, a path to a FileSystemNode or File
    * @param shell contains the FileSystem and cache
    */
   private void moveFileSystemNode(String givenPath, String targetPath,
       JShell shell) {
     FileSystem fSystem = shell.getfSystem();
-    FileSystemNode targetNode = fSystem.forcedGetFileSystemNode(targetPath);
+    FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
     FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
+    String targetName = fSystem.getPathLastEntry(targetPath);
+    String givenName = fSystem.getPathLastEntry(targetPath);
     if (targetNode != null) {
-      if (!targetNode.isChildInsideByDirectoryName(givenNode.getDirectory().
-          getDirectoryName())) {
-          if (!targetNode.getDirectory().isFileInsideByFileName(
-              fSystem.getPathLastEntry(givenPath))) {
+      if (!targetNode.isChildInsideByDirectoryName(targetName)) {
+          if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
             targetNode.addChild(givenNode);
             givenNode.setParent(targetNode);
             Remove remove = new Remove();
             String[] removeTokens = {"rm", givenPath};
             remove.run(removeTokens, shell);
+            givenNode.getDirectory().setDirectoryName(targetName);
           } else 
             this.setErrors(ErrorHandler.moveDirectoryIntoFileError(
                 this, givenPath, targetPath));
-      } else
-        this.setErrors(ErrorHandler.childAlreadyExistant(givenNode.
-            getDirectory().getDirectoryName(), targetNode));
+      } else if (!targetNode.getChildByDirectoryName(targetName)
+          .getDirectory().isFileInsideByFileName(givenName)) {
+        targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
+        givenNode.setParent(targetNode.getChildByDirectoryName(
+            fSystem.getPathLastEntry(targetPath)));
+        Remove remove = new Remove();
+        String[] removeTokens = {"rm", givenPath};
+        remove.run(removeTokens, shell);
+      } else 
+        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(
+            this, givenPath, targetPath));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else
@@ -130,8 +145,8 @@ public class Move extends Command {
    * FileSystemNode targetPath refers to. If the File already exists, overwrite
    * it, if it doesn't, change name as corresponding
    * 
-   * @param givenPath, a path to a FileSystemNode
-   * @param targetPath, a path to a FileSystemNode
+   * @param givenPath, a path to a File
+   * @param targetPath, a path to a FileSystemNode or File
    * @param shell contains the FileSystem and cache
    */
   private void moveFile(String givenPath, String targetPath, JShell shell) {
