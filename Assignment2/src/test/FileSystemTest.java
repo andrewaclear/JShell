@@ -29,7 +29,8 @@ public class FileSystemTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass()).
+        getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }

@@ -105,11 +105,16 @@ public class Move extends Command {
     if (targetNode != null) {
       if (!targetNode.isChildInsideByDirectoryName(givenNode.getDirectory().
           getDirectoryName())) {
-        targetNode.addChild(givenNode);
-        givenNode.setParent(targetNode);
-        Remove remove = new Remove();
-        String[] removeTokens = {"rm", givenPath};
-        remove.run(removeTokens, shell);
+          if (!targetNode.getDirectory().isFileInsideByFileName(
+              fSystem.getPathLastEntry(givenPath))) {
+            targetNode.addChild(givenNode);
+            givenNode.setParent(targetNode);
+            Remove remove = new Remove();
+            String[] removeTokens = {"rm", givenPath};
+            remove.run(removeTokens, shell);
+          } else 
+            this.setErrors(ErrorHandler.moveDirectoryIntoFileError(
+                this, givenPath, targetPath));
       } else
         this.setErrors(ErrorHandler.childAlreadyExistant(givenNode.
             getDirectory().getDirectoryName(), targetNode));

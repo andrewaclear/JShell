@@ -170,4 +170,92 @@ public class MoveTest {
         + "dir2\n    orange\n  dir3", actualOutput);
     assertEquals("banana", theFileContent);
   }
+  
+  
+  @Test
+  public void runTest6() {
+    String[] mkdirTokens = {"mkdir", "dir1", "dir2", "dir3", "dir1/banana", 
+       "dir2/orange"};
+    mkdir.run(mkdirTokens, shell);
+    
+    String[] redirectionTokens1 = {"redirect", "\"banana\"", ">", "ooga"};
+    redirection.run(redirectionTokens1, shell);
+    
+    String[] redirectionTokens2 = {"redirect", "\"heyoah\"", ">", "dir1/ooga"};
+    redirection.run(redirectionTokens2, shell);
+    
+    String[] cdTokens = {"cd", "dir3"};
+    cd.run(cdTokens, shell);
+    
+    String[] mvTokens = {"mv", "/wtf/is/this", "/dir1"};
+    Command theResultingCommand = mv.run(mvTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("mv: \"/wtf/is/this\": No such file or directory", 
+        actualErrors);
+
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest7() {
+    String[] mkdirTokens = {"mkdir", "dir1", "dir2", "dir3", "dir1/banana", 
+       "dir2/orange"};
+    mkdir.run(mkdirTokens, shell);
+
+    String[] redirectionTokens2 = {"redirect", "\"heyoah\"", ">", "dir1/ooga"};
+    redirection.run(redirectionTokens2, shell);
+    
+    String[] cdTokens = {"cd", "dir3"};
+    cd.run(cdTokens, shell);
+    
+    String[] mvTokens = {"mv", "/dir1", "/wtf/yo"};
+    Command theResultingCommand = mv.run(mvTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals(null, 
+        actualErrors);
+
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  "
+        + "dir2\n    orange\n  dir3\n  wtf\n    yo\n      dir1\n        "
+        + "banana\n        ooga", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest8() {
+    String[] mkdirTokens = {"mkdir", "dir1", "dir2", "dir3", "dir1/banana", 
+       "dir2/orange"};
+    mkdir.run(mkdirTokens, shell);
+    
+    String[] redirectionTokens1 = {"redirect", "\"banana\"", ">", "ooga"};
+    redirection.run(redirectionTokens1, shell);
+    
+    String[] redirectionTokens2 = {"redirect", "\"heyoah\"", ">", "dir1/ooga"};
+    redirection.run(redirectionTokens2, shell);
+    
+    String[] cdTokens = {"cd", "dir3"};
+    cd.run(cdTokens, shell);
+    
+    String[] mvTokens = {"mv", "/dir1", "/ooga"};
+    Command theResultingCommand = mv.run(mvTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("mv: cannot move directory at /dir1 because /ooga "
+        + "refers to a file", actualErrors);
+
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
+  }
 }

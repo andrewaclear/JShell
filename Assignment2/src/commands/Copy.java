@@ -116,7 +116,7 @@ public class Copy extends Command {
     } else if (fSystem.getSemiFileSystemNode(targetPath) != null && 
         fSystem.getSemiFileSystemNode(targetPath).getDirectory().
         isFileInsideByFileName(fSystem.getPathLastEntry(targetPath))) {
-      this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath, 
+      this.setErrors(ErrorHandler.copyDirectoryIntoFileError(this, givenPath, 
           targetPath));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
