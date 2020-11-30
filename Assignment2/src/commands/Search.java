@@ -75,6 +75,7 @@ public class Search extends Command {
     boolean dParam = tokens[len - 3].equals("d");
     boolean nameParam = tokens[len - 2].equals("-name");
     boolean stringParam = (searchStr.charAt(0) == '\"' && searchStr.charAt(searchStr.length()-1) == '\"');
+    String fd = fParam? "file" : "directory";
 
     if (typeParam && (fParam || dParam) && nameParam && stringParam) {
       for (int iPath = 1; iPath < len - 4; iPath++) {
@@ -82,13 +83,9 @@ public class Search extends Command {
 
         if (node != null) {
           temp = searchNode(node, searchStr, tokens[iPath], fParam);
-          if (temp.equals("")) {
-            if (fParam) {
-              output += tokens[iPath] + ": does not contain file: " + searchStr + "\n";
-            } else {
-              output += tokens[iPath] + ": does not contain directory: " + searchStr + "\n";
-            }
-          } else output += temp + "\n";
+          if (temp.equals("")) 
+            output += tokens[iPath] + ": does not contain "+ fd +": " + searchStr + "\n";
+          else output += temp + "\n";
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[iPath]));
           break;

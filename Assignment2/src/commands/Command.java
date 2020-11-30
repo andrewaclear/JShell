@@ -202,8 +202,9 @@ public class Command {
    * @return returns true if tokens contains arrow or double_arrow, else false
    */
   public static boolean containsArrow(String[] tokens) {
-    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
+    if (tokens.length == 0) return false;
 
+    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
     return tokens[indexArrow].equals(">") || tokens[indexArrow].equals(">>");
   }
 
@@ -261,8 +262,6 @@ public class Command {
    * @return returns a boolean true signal the shell to continue running
    */
   public Command run(String[] tokens, JShell shell) {
-    // Returns an array of strings [Output(if any, else ""), Error (if any, else
-    // "")]
     return null;
   }
 

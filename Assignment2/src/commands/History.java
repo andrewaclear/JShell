@@ -117,7 +117,6 @@ public class History extends Command {
       }
     }
 
-
     for (int i = start; i < n; i++) {
       // for each line, print the history line from start to n-1 (the most
       // recent) numbering starting at 1 (i+1)
