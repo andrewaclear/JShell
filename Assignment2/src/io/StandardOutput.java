@@ -46,7 +46,14 @@ public class StandardOutput {
     return message;
   }
 
-
+  /**
+   *  Takes an output and redirects it appropriately
+   * @param tokens array of type string containing command arguments
+   * @param output output to be redirected
+   * @param shell an instance of JShell
+   * @param command a command instance
+   * @return returns the output given
+   */
   public static String println(String[] tokens, String output, JShell shell,
       Command command) {
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
