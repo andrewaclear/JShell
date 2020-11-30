@@ -223,7 +223,7 @@ public class Command {
     //     || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
 
     String name =
-       shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
+        shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
     FileSystemNode targetNode = shell.getfSystem()
         .getSemiFileSystemNode(tokens[tokens.length - 1]);
     boolean validName = !shell.getfSystem().inappropriateName(name);
