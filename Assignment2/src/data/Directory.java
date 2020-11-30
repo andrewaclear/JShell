@@ -133,10 +133,12 @@ public class Directory implements java.io.Serializable {
    * fileName targetFileName
    * 
    * @param targetFileName, a String that refers to a fileName
+   * @return true if there is a FIle in files with fileName targetFileName
+   * otherwise, false
    */
-  public boolean isFileInsideByFileName(String givenFileName) {
+  public boolean isFileInsideByFileName(String targetFileName) {
     for (File file : this.getFiles()) {
-      if (file.getFileName().equals(givenFileName))
+      if (file.getFileName().equals(targetFileName))
         return true;
     }
 
