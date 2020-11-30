@@ -117,7 +117,7 @@ public class ExecutionTest {
 
     String[] actual = {"man", "cd", "cat", "echo", "exit", "history", "ls",
         "mkdir", "popd", "pwd", "pushd", "rm", "tree", "saveJShell",
-        "loadJShell", "curl", "mv", "search", "cp", "redirect"};
+        "loadJShell", "curl", "mv", "search", "cp"};
 
 
     String[] command = {""};
