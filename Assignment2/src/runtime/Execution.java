@@ -116,7 +116,6 @@ public class Execution {
     commandHashMap.put("mv", "commands.Move");
     commandHashMap.put("search", "commands.Search");
     commandHashMap.put("cp", "commands.Copy");
-    commandHashMap.put("redirect", "commands.Redirection");
   }
 }
 
