@@ -77,13 +77,11 @@ public class Execution {
         } else if (tokens.length < command.getMinNumOfArguments()) {
           run.setErrors(ErrorHandler.missingOperand(command));
         }
-        // } else if (tokens[1].equals("Failed Parsing")) {
-        // ErrorHandler.commandNotFound(tokens);
       } else {
         run.setErrors(ErrorHandler.commandNotFound(tokens));
       }
     } catch (Exception e) {
-      // run.setErrors(e.getMessage());
+     // run.setErrors(e.getMessage());
     }
 
     return run;
