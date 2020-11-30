@@ -43,6 +43,20 @@ public class CopyTest {
   
   
   @Test
+  public void runTest1() {
+    String[] cpTokens = {"cp", "/", "/"};
+    Command theResultingCommand = cp.run(cpTokens, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("cp: / is inside /", actualErrors);
+
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/",actualOutput);
+  }
+  
+  @Test
   public void runTest2() {
     String[] mkdirTokens = {"mkdir", "dir1", "dir2", "dir3"};
     mkdir.run(mkdirTokens, shell);
@@ -62,7 +76,7 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  ka\n  dir1\n  dir2\n    dir1\n  dir3", 
+    assertEquals("/\n  dir1\n  dir2\n    dir1\n  dir3\n  ooga\n  ka", 
         actualOutput);
   }
   
@@ -88,8 +102,8 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    aaa\n    banana\n  dir2\n    orange\n"
-        + "    dir1\n      aaa\n      banana\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    aaa\n  dir2\n    orange\n"
+        + "    dir1\n      banana\n      aaa\n  dir3\n  ooga", actualOutput);
   }
   
   
@@ -121,8 +135,8 @@ public class CopyTest {
     Command theCheckFileCommand = cat.run(catTokens, shell);
     String theFileContent = theCheckFileCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    banana\n  dir2\n    "
-        + "orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  dir2\n    "
+        + "orange\n  dir3\n  ooga", actualOutput);
     assertEquals("banana", theFileContent);
   }
   
@@ -155,8 +169,8 @@ public class CopyTest {
     Command theCheckFileCommand = cat.run(catTokens, shell);
     String theFileContent = theCheckFileCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    risa\n    banana\n  "
-        + "dir2\n    orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n    risa\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
     assertEquals("banana", theFileContent);
   }
   
@@ -186,8 +200,8 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    banana\n  "
-        + "dir2\n    orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
   }
   
   @Test
@@ -215,8 +229,8 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    banana\n  "
-        + "dir2\n    orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
   }
   
   @Test
@@ -244,8 +258,8 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    banana\n  "
-        + "dir2\n    orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
   }
   
   
@@ -274,7 +288,7 @@ public class CopyTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    ooga\n    banana\n  "
-        + "dir2\n    orange\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n    banana\n    ooga\n  "
+        + "dir2\n    orange\n  dir3\n  ooga", actualOutput);
   }
 }

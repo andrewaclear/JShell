@@ -72,7 +72,8 @@ public class Remove extends Command {
     FileSystemNode beforeNode = fSystem.getSemiFileSystemNode(tokens[1]);
     if (beforeNode != null) {
       if (!fSystem.getCurrentDirectory().getPath().startsWith(tokens[1])) {
-        if (beforeNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+        if (beforeNode.isChildInsideByDirectoryName(
+            fSystem.getPathLastEntry(tokens[1]))) {
           cache.removeDirectory(fSystem.getFileSystemNode(tokens[1]).getPath());
           beforeNode.removeChildByDirectoryName(
               fSystem.getPathLastEntry(tokens[1]));

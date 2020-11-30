@@ -99,9 +99,9 @@ public class FileSystemNodeTest {
         cloneFileSystemNodeInto(actualOutput);
     
     assertEquals("nani", actualOutput.getDirectory().getDirectoryName());
-    assertEquals(true, actualOutput.isChildInside("tenia"));
-    assertEquals(true, actualOutput.isChildInside("banana"));
+    assertEquals(true, actualOutput.isChildInsideByDirectoryName("tenia"));
+    assertEquals(true, actualOutput.isChildInsideByDirectoryName("banana"));
     assertEquals(true, actualOutput.getChildByDirectoryName("tenia").
-        isChildInside("tango"));
+        isChildInsideByDirectoryName("tango"));
   }
 }

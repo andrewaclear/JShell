@@ -77,7 +77,7 @@ public class RemoveTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n  dir2\n  dir3", actualOutput);
+    assertEquals("/\n  dir1\n  dir2\n  dir3\n  ooga", actualOutput);
   }
   
   
@@ -107,8 +107,8 @@ public class RemoveTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    nihao\n    nani\n  dir2\n    lala\n  "
-        + "dir3",  actualOutput);
+    assertEquals("/\n  dir1\n    nani\n    nihao\n  dir2\n    lala\n  "
+        + "dir3\n  ooga",  actualOutput);
   }
   
   @Test
@@ -134,8 +134,8 @@ public class RemoveTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    heyo\n      bomb\n  dir2\n    lala\n"
-        + "  dir3",  actualOutput);
+    assertEquals("/\n  dir1\n    heyo\n      bomb\n  dir2\n    lala\n"
+        + "  dir3\n  ooga",  actualOutput);
   }
   
   
@@ -161,7 +161,7 @@ public class RemoveTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  ooga\n  dir1\n    heyo\n  dir2\n    lala\n  dir3",  
+    assertEquals("/\n  dir1\n    heyo\n  dir2\n    lala\n  dir3\n  ooga",  
         actualOutput);
   }
   

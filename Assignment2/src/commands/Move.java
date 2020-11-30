@@ -72,7 +72,8 @@ public class Move extends Command {
       this.setErrors(ErrorHandler.subFileSystemNodeError(this, tokens[1], 
           tokens[2]));
     else if (givenNode != null) {
-      if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+      if (givenNode.isChildInsideByDirectoryName(
+          fSystem.getPathLastEntry(tokens[1]))) {
         moveFileSystemNode(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory()
           .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
@@ -102,7 +103,7 @@ public class Move extends Command {
     FileSystemNode targetNode = fSystem.forcedGetFileSystemNode(targetPath);
     FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
     if (targetNode != null) {
-      if (!targetNode.isChildInside(givenNode.getDirectory().
+      if (!targetNode.isChildInsideByDirectoryName(givenNode.getDirectory().
           getDirectoryName())) {
         targetNode.addChild(givenNode);
         givenNode.setParent(targetNode);

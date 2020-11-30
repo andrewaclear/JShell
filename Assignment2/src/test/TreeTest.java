@@ -83,7 +83,7 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  ooga\n  a\n  b\n    banana\n  c\n    apple", 
+    assertEquals("/\n  a\n  b\n    banana\n  c\n    apple\n  ooga", 
         actualOutput);
     assertEquals(null, actualErrors);
   }
@@ -106,7 +106,7 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  ooga\n  a\n  b\n    hue\n    banana\n  c\n    apple", 
+    assertEquals("/\n  a\n  b\n    banana\n    hue\n  c\n    apple\n  ooga", 
         actualOutput);
     assertEquals(null, actualErrors);
   }

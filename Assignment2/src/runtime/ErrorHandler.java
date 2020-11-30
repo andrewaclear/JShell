@@ -25,6 +25,7 @@
 package runtime;
 
 import io.StandardOutput;
+import commands.ChangeDirectory;
 import commands.Command;
 import commands.Copy;
 import commands.Manual;
@@ -201,11 +202,34 @@ public class ErrorHandler {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
   }
-
+  
+  /**
+   *moveDirectoryIntoFileError returns the error of givenPath being a path to a 
+   *FileSystemNode and targetPath being a File path so you cannot move the
+   *directory
+   * 
+   * @param command, an instance of Command class or its subclasses
+   * @param givenPath, a FileSystemNode path
+   * @param targetPath, a File path
+   */
   public static String moveDirectoryIntoFileError(Command command, 
       String givenPath, String targetPath) {
     return command.getIdentifier() + ": cannot move directory at " 
       + givenPath + " because " + targetPath+ " refers to a file";
+  }
+  
+  
+  /**
+   *changeDirectoryIntoFileError returns the error of targetPath refering to a 
+   *File so you cannot change directory
+   * 
+   * @param command, an instance of Command class or its subclasses
+   * @param targetPath, a File path
+   */
+  public static String changeDirectoryIntoFileError(Command command,
+      String targetPath) {
+    return command.getIdentifier() + ": cannot change directory to file " 
+      + targetPath;
   }
   
 }
