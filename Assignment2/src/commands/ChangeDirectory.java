@@ -27,7 +27,6 @@ package commands;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
-import io.StandardOutput;
 import runtime.ErrorHandler;
 
 /**
@@ -64,16 +63,14 @@ public class ChangeDirectory extends Command {
 
   /**
    * The run method of ChangeDirectory changes the currentDirectory of the
-   * fileSystem to the given path tokens[1] if it is a valid/appropriate path in
-   * fileSystem, otherwise, give back an error message. In any case, return true
-   * after being done.
+   * fileSystem to the given path tokens[1] if it is a valid/appropriate 
+   * Directory path in fileSystem and not a File path, 
+   * otherwise, give back an error message. Return this Command 
+   * with its output and errors.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have its output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {

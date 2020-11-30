@@ -196,42 +196,5 @@ public class FileSystemTest {
     
     assertEquals(null, actualOutput);
   }
-  
-  
-  @Test
-  public void forcedGetFileSystemTest1() {
-    String[] mkdirTokens = {"mkdir", "a" , "b", "c", "c/i"};
-    mkdir.run(mkdirTokens, shell);
-    
-    FileSystemNode actualOutput = fSystem.forcedGetFileSystemNode(
-        "banana/forced/path");
-    
-    FileSystemNode expectedOutput = fSystem.getRoot().
-        getChildByDirectoryName("banana").getChildByDirectoryName("forced").
-        getChildByDirectoryName("path");
-    
-    assertEquals(expectedOutput, actualOutput);
-  }
-  
-  
-  @Test
-  public void forcedGetFileSystemTest2() {
-    FileSystemNode actualOutput = fSystem.forcedGetFileSystemNode(
-        "mega/forced/path");
-    
-    FileSystemNode expectedOutput = fSystem.getRoot().
-        getChildByDirectoryName("mega").getChildByDirectoryName("forced").
-        getChildByDirectoryName("path");
-    
-    assertEquals(expectedOutput, actualOutput);
-  }
-  
-  
-  @Test
-  public void forcedGetFileSystemTest3() {
-    FileSystemNode actualOutput = fSystem.forcedGetFileSystemNode(
-        "bad/for&ced/path");
 
-    assertEquals(null, actualOutput);
-  }
 }

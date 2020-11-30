@@ -9,4 +9,6 @@ Responsibilities:
 
 Collaborators:
 -FileSystem
--StandardOutput
+-FileSystemNode
+-File
+-JShell

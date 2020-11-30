@@ -24,11 +24,7 @@
 // *********************************************************
 package commands;
 
-import data.FileSystem;
 import driver.JShell;
-import data.Cache;
-import io.StandardOutput;
-import runtime.ErrorHandler;
 
 /**
  * Print the current working directory (including the whole path).
@@ -69,10 +65,9 @@ public class PrintWorkingDirectory extends Command {
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
-    FileSystem fSystem = shell.getfSystem();
 
     // Print the path of the current directory
-    this.setOutput(fSystem.getCurrentDirectory().getPath());
+    this.setOutput(shell.getfSystem().getCurrentDirectory().getPath());
 
     return this;
 

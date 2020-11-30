@@ -1,13 +1,22 @@
 Class name: Copy
 
-Parent class (if any): FileSystem
+Parent class: Command
 
-Subclasses (if any):
+Subclasses: None
 
 Responsibilities:
--Copy the contents of the first parameter path into the path given in the second parameter
--the paths may be relative to the current Directory
+-Copy the object the first parameter refers by path into the path given in the second parameter
+-Return an error when the first parameter refers to a Directory
+    	-if the the first path doesn't exists
+    	-if the second path doesn't exists or refers to a File
+-Return an error when the first parameter refers to a File
+	-if the the first path doesn't exists
+        -if the second path except the last entry doesnt exists 
 
 Collaborators:
+-Directory
+-File
 -FileSystem
--Move
+-FileSystemNode
+-JShell
+-ErrorHandler

@@ -5,8 +5,8 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Contains a content which is a string
--Has a name/identifier
+-Contains content which is a String
+-Has a name/identifier which is a String
 
 Collaborators: 
--ErrorHandler
+None
