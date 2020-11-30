@@ -75,8 +75,8 @@ public class MakeDirectory extends Command {
    * In any case, returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param JShell contains the FileSystem and cache
-   * @return returns a boolean true to mark successful execution
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have its output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
