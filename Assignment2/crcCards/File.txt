@@ -5,8 +5,8 @@ Parent class: None
 Subclasses: None
 
 Responsibilities:
--Contains content which is a String
--Has a name/identifier which is a String
+-Contains content
+-Has a name/identifier
 
 Collaborators: 
 None

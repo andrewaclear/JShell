@@ -6,11 +6,9 @@ Subclasses: None
 
 Responsibilities:
 -Receives string of tokens from Parser.
--Executes commands or display error message if the command is nonexistent.
+-Executes commands or display error message if the command is nonexistent, or there is an
+	erroneous amount of tokens for a command
 
 Collaborators:
--Parser
--Commands
--ErrorHandler
--FileSystem
--Cache
+-JShell
+-All the commands except for CommandInterface

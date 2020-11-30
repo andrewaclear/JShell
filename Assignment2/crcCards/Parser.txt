@@ -10,4 +10,4 @@ Responsibilities:
 -Ignores extra whitespace.
 
 Collaborators:
--None
+-ErrorHandler

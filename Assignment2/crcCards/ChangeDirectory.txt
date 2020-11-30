@@ -10,7 +10,7 @@ Responsibilities:
   -Goes back to parent Directory given the parameter ..
   -Goes to the root of the FileSystem given parameter /
   -Stays on the current directory given the parameter .
-  -Returns an error if trying to change directory into an non-existant Directory or a File
+-Returns an error if trying to change directory into an non-existant Directory or a File
 
 Collaborators:
 -FileSystem

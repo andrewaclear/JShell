@@ -13,5 +13,9 @@ Responsibilities:
 
 Collaborators:
 -Parser
+-ErrorHandler
+-StandardOutput
+-Command
 -Execution
--Exit
+-FileSystem
+-Cache

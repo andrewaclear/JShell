@@ -6,9 +6,11 @@ Subclasses: None
 
 Responsibilities:
 -Displays the contents of the given Files concatenated with each other.
+-Returns an error when the File path is invalid/innapropriate
 
 Collaborators:
+-File
 -FileSystem
--StandardOutput
+-FileSystemNode
 -ErrorHandler
--Cache
+-JShell
