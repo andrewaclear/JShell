@@ -52,10 +52,8 @@ public class Execution {
    * arguments are within designated max and min lengths.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, store the current directory stack
-   * @return returns a boolean true when exit is entered into terminal
+   * @param shell, an instance of JShell
+   * @return returns an instance of command
    */
   public Command executeCommand(String[] tokens, JShell shell) {
     Command run = new Command();
