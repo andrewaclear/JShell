@@ -32,8 +32,8 @@ import runtime.ErrorHandler;
 import java.io.*;
 
 /**
- *  Loads a .ser save such that the full state of the shell is loaded into an
- *  empty JShell.
+ * Loads a .ser save such that the full state of the shell is loaded into an
+ * empty JShell.
  *
  */
 public class LoadJShell extends Command {
@@ -49,8 +49,7 @@ public class LoadJShell extends Command {
         "The file FileName is some file that is stored on the actual filesystem"
             + " of your computer. The purpose of this\r\n"
             + "command is to load the saved session of the JShell before the"
-            + " user"
-            + " closed it down. ");
+            + " user" + " closed it down. ");
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments, please enter fileName");

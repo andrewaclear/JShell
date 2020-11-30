@@ -63,10 +63,9 @@ public class ChangeDirectory extends Command {
 
   /**
    * The run method of ChangeDirectory changes the currentDirectory of the
-   * fileSystem to the given path tokens[1] if it is a valid/appropriate 
-   * Directory path in fileSystem and not a File path, 
-   * otherwise, give back an error message. Return this Command 
-   * with its output and errors.
+   * fileSystem to the given path tokens[1] if it is a valid/appropriate
+   * Directory path in fileSystem and not a File path, otherwise, give back an
+   * error message. Return this Command with its output and errors.
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell contains the FileSystem and cache

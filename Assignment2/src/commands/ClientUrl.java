@@ -34,9 +34,11 @@ import data.FileSystem;
 import driver.JShell;
 import io.StandardOutput;
 import runtime.ErrorHandler;
+
 /**
- * Takes a url and then creates a file in the current directory
- *  containing the contents of the file at the given url
+ * Takes a url and then creates a file in the current directory containing the
+ * contents of the file at the given url
+ * 
  * @author chris
  *
  */
@@ -58,8 +60,9 @@ public class ClientUrl extends Command {
   }
 
   /**
-   *  Takes in a url, retrieves the file at url and then returns
-   *   the files contents
+   * Takes in a url, retrieves the file at url and then returns the files
+   * contents
+   * 
    * @param url the url of a file to be retrieved
    * @return returns the contents of file at url
    */

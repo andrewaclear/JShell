@@ -35,11 +35,11 @@ import runtime.ErrorHandler;
  *
  */
 public class Search extends Command {
-  
+
   /**
-   * Constructor for Search class. It initializes identifier,
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
-   * and description from its super class Commands.
+   * Constructor for Search class. It initializes identifier, maxNumOfArguments,
+   * minNumOfArguments errorTooManyArguments, missingOperand, and description
+   * from its super class Commands.
    */
   public Search() {
     this.setDescription("The syntax of the search command is as follows: "
@@ -59,9 +59,10 @@ public class Search extends Command {
     this.setErrorTooManyArguments("");
     this.setMissingOperand("Missing required arguments");
   }
-  
+
   /**
-   *  Searches for files in a given directory
+   * Searches for files in a given directory
+   * 
    * @param node the directory node
    * @param item the item to be searched for
    * @param path path given
@@ -84,9 +85,10 @@ public class Search extends Command {
 
     return partOutput;
   }
-  
+
   /**
-   *  Searches a given node for specified item at path
+   * Searches a given node for specified item at path
+   * 
    * @param node the given directory node
    * @param item the given item
    * @param path the given path
@@ -122,10 +124,10 @@ public class Search extends Command {
 
     return partOutput + subOutput;
   }
-  
+
   /**
-   *  Searches through a list of directories/paths and outputs whether the 
-   *  specified file is located in given directories/paths.
+   * Searches through a list of directories/paths and outputs whether the
+   * specified file is located in given directories/paths.
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell, an instance of JShell
