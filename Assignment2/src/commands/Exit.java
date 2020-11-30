@@ -38,7 +38,7 @@ public class Exit extends Command {
    */
   public Exit() {
     this.setIdentifier("exit");
-    this.setMaxNumOfArguments(1);
+    this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("Doesn't take any arguments");
     this.setMissingOperand("");
