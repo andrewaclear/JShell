@@ -44,7 +44,7 @@ public class History extends Command {
     this.setIdentifier("history");
     this.setDescription("This command will print out recent commands,"
         + " one command per line. ");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(1);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("");

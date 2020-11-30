@@ -43,7 +43,7 @@ public class Copy extends Command {
     this.setIdentifier("cp");
 
     // MakeDirectory must have three tokens
-    this.setMaxNumOfArguments(5);
+    this.setMaxNumOfArguments(3);
     this.setMinNumOfArguments(3);
 
     // Error Handling

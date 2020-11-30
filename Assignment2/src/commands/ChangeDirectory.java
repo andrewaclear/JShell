@@ -47,7 +47,7 @@ public class ChangeDirectory extends Command {
     this.setIdentifier("cd");
 
     // ChangeDirectory must have two tokens
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
 
     // Error Handling

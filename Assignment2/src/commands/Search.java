@@ -25,7 +25,7 @@ public class Search extends Command {
     this.setMissingOperand("Missing required arguments");
   }
 
-  private String searchForFiles (FileSystemNode node, String searchStr, String item, String path) {
+  private String searchForFiles (FileSystemNode node, String item, String path) {
     if (node.getDirectory().getFiles() == null) return "";
 
     int numFiles = node.getDirectory().getFiles().size();
@@ -33,7 +33,8 @@ public class Search extends Command {
 
     for (int i = 0; i < numFiles; i++) {
       if (node.getDirectory().getFiles().get(i).getFileName().equals(item)) {
-        partOutput += path + ": contains file: " + searchStr + "\n";
+        partOutput += path + item + "\n";
+        // partOutput += path + ": contains file: " + searchStr + "\n";
         break;
       }
     }
@@ -41,27 +42,33 @@ public class Search extends Command {
     return partOutput;
   }
 
-  private String searchNode(FileSystemNode node, String searchStr, String path, boolean fParam) {
+  private String searchNode(FileSystemNode node, String item, String path, boolean fParam) {
     if (node.getChildren() == null) return "";
 
     String partOutput = "";
     String subOutput = "";
     String dirName = "";
-    String item = searchStr.replace("\"", "");
     int numFolders = node.getChildren().size();
+
+    if (path.charAt(path.length()-1) != '/') path += "/";
 
     for (int i = 0; i < numFolders; i++) {
       dirName = node.getChildren().get(i).getDirectory().getDirectoryName();
       if (!fParam && dirName.equals(item)) {
-        partOutput += path + ": contains directory: " + searchStr + "\n";
+        partOutput += path + item + "\n";
+        // partOutput += path + ": contains directory: " + searchStr + "\n";
       }
-      if (path.charAt(path.length()-1) != '/') path += "/";
-      subOutput += searchNode(node.getChildren().get(i), searchStr, path+dirName, fParam);
+      // if (path.charAt(path.length()-1) != '/') path += "/";
+      subOutput += searchNode(node.getChildren().get(i), item, path+dirName, fParam);
     }
 
-    if (fParam) partOutput += searchForFiles(node, searchStr, item, path);
+    if (fParam) partOutput += searchForFiles(node, item, path);
 
     return partOutput + subOutput;
+  }
+
+  private boolean validInput(String[] tokens) {
+    
   }
   
   @Override
@@ -78,14 +85,15 @@ public class Search extends Command {
     String fd = fParam? "file" : "directory";
 
     if (typeParam && (fParam || dParam) && nameParam && stringParam) {
+      String item = searchStr.replace("\"", "");
       for (int iPath = 1; iPath < len - 4; iPath++) {
         node = shell.getfSystem().getFileSystemNode(tokens[iPath]);
 
         if (node != null) {
-          temp = searchNode(node, searchStr, tokens[iPath], fParam);
+          temp = searchNode(node, item, tokens[iPath], fParam);
           if (temp.equals("")) 
             output += tokens[iPath] + ": does not contain "+ fd +": " + searchStr + "\n";
-          else output += temp + "\n";
+          else output += temp;
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[iPath]));
           break;

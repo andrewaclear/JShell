@@ -74,7 +74,7 @@ public class Manual extends Command {
 
 
     this.setIdentifier("man");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("What manual page do you want?");
