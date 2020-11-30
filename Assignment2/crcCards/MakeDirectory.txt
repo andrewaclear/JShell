@@ -7,9 +7,11 @@ Subclasses: None
 Responsibilities:
 -Creates a new Directory named by its parameter in the FileSystem
 -Puts the new Directory in the current Directory or the path given in the FileSystem
+-Returns an error when new Directories are invalid/innapropriate
 
 Collaborators:
 -Directory
 -FileSystem
 -FileSystemNode
--Cache
+-ErrorHandler
+-JShell

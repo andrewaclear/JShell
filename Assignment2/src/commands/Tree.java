@@ -57,11 +57,12 @@ public class Tree extends Command {
 
   /**
    * The run method of Tree displays the fSystem as a tree structure of
-   * subdirectories and files
+   * subdirectories and files then return this Command with its output and
+   * errors
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell contains the FileSystem and cache
-   * @return this command which will have the output and errors
+   * @return this command which will have its output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {

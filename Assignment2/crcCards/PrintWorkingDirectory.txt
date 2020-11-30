@@ -8,6 +8,4 @@ Responsibilities:
 -Prints the whole path of the current Directory in the FileSystem
 
 Collaborators:
--FileSystem
--StandardOutput
--Cache
+-JShell
