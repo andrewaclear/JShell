@@ -30,6 +30,11 @@ import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
 
+/**
+ * 
+ * Removes a directory from the filesystem
+ *
+ */
 public class Remove extends Command {
 
   /**
