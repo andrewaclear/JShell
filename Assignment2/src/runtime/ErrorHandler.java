@@ -26,6 +26,7 @@ package runtime;
 
 import io.StandardOutput;
 import commands.Command;
+import commands.Copy;
 import commands.Manual;
 import data.FileSystemNode;
 
@@ -199,6 +200,12 @@ public class ErrorHandler {
   public static String invalidUrl(Command command, String url) {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
+  }
+
+  public static String moveDirectoryIntoFileError(Command command, 
+      String givenPath, String targetPath) {
+    return command.getIdentifier() + ": cannot move directory at " 
+      + givenPath + " because " + targetPath+ " refers to a file";
   }
   
 }

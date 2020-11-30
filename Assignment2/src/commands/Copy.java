@@ -71,7 +71,8 @@ public class Copy extends Command {
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
     if (tokens[2].startsWith(tokens[1]))
-      ErrorHandler.subFileSystemNodeError(this, tokens[1], tokens[2]);
+      this.setErrors(ErrorHandler.subFileSystemNodeError(
+          this, tokens[1], tokens[2]));
     else if (givenNode != null) {
       if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
         copyFileSystemNode(tokens[1], tokens[2], shell);
@@ -79,9 +80,9 @@ public class Copy extends Command {
           .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
         copyFile(tokens[1], tokens[2], shell);
       } else
-        ErrorHandler.invalidPath(this, tokens[1]);
+        this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     } else
-      ErrorHandler.invalidPath(this, tokens[1]);
+      this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
 
     return this;
   }
@@ -109,6 +110,11 @@ public class Copy extends Command {
     if (targetNode != null) {
       clonedFileSystemNode.setParent(targetNode);
       targetNode.addChild(clonedFileSystemNode);
+    } else if (fSystem.getSemiFileSystemNode(targetPath) != null && 
+        fSystem.getSemiFileSystemNode(targetPath).getDirectory().
+        isFileInsideByFileName(fSystem.getPathLastEntry(targetPath))) {
+      this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath, 
+          targetPath));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else

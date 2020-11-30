@@ -120,9 +120,9 @@ public class RemoveTest {
     String[] redirectionTokens1 = {"redirect", "\"banana\"", ">", "ooga"};
     redirection.run(redirectionTokens1, shell);
     
-    String[] redirectionTokens3 = {"redirect", "\"zyayafgafg\"", ">", 
+    String[] redirectionTokens2 = {"redirect", "\"zyayafgafg\"", ">", 
     "dir1/heyo/bomb"};
-    redirection.run(redirectionTokens3, shell);
+    redirection.run(redirectionTokens2, shell);
     
     String[] rmTokens = {"rm", "dir/heyo/wrong/path"};
     Command theResultingCommand = rm.run(rmTokens, shell);
