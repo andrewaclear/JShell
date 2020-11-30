@@ -281,8 +281,8 @@ public class CopyTest {
     String[] cpTokens = {"cp", "/dir1", "/ooga"};
     Command theResultingCommand = cp.run(cpTokens, shell);
     String actualErrors = theResultingCommand.getErrors();
-    assertEquals("cp: cannot move directory at /dir1 because /ooga "
-        + "refers to a file", actualErrors);
+    assertEquals("cp: cannot copy directory /dir1 to a file /ooga",
+        actualErrors);
 
     String[] treeTokens = {"tree"};
     Command theCheckCommand = tree.run(treeTokens, shell);

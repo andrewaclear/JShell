@@ -172,7 +172,16 @@ public class ErrorHandler {
     return command.getIdentifier() + ": " + givenPath 
         + " contains illicit characters";
   }
-
+  
+  
+  /**
+   * RemoveDirectoryError gives the String error of trying to 
+   * remove a Directory that is a subpath to the current directory
+   * 
+   * @param givenPath, the invalid path
+   * @return String error of trying to remove a Directory 
+   *    that is a subpath to the current directory
+   */
   public static String removeDirectoryError(String givenPath) {
     return "The given path: " + givenPath
         + " cannot be removed because it is a "
@@ -230,6 +239,13 @@ public class ErrorHandler {
       String targetPath) {
     return command.getIdentifier() + ": cannot change directory to file " 
       + targetPath;
+  }
+
+  
+  public static String copyDirectoryIntoFileError(Command command, 
+      String givenPath, String targetPath) {
+    return command.getIdentifier() + ": cannot copy directory " + givenPath 
+        + " to a file " + targetPath;
   }
   
 }

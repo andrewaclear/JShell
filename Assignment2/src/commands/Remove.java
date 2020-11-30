@@ -28,7 +28,6 @@ import data.Cache;
 import data.FileSystem;
 import data.FileSystemNode;
 import driver.JShell;
-import io.StandardOutput;
 import runtime.ErrorHandler;
 
 public class Remove extends Command {
@@ -78,8 +77,9 @@ public class Remove extends Command {
           beforeNode.removeChildByDirectoryName(
               fSystem.getPathLastEntry(tokens[1]));
         } else if (beforeNode.getDirectory()
-            .isFileInsideByFileName(tokens[1])) {
-          beforeNode.getDirectory().removeFileByFileName(tokens[1]);
+            .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
+          beforeNode.getDirectory().removeFileByFileName(
+              fSystem.getPathLastEntry(tokens[1]));
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
         }
