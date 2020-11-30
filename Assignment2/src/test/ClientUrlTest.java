@@ -236,9 +236,11 @@ public class ClientUrlTest {
     curl.run(actual, shell);
     assertNotNull(
         "curl not correctly creating/naming file in the current directory",
-        shell.getfSystem().getCurrentDirectory().getFile("073txt"));
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("073txt"));
     assertEquals("curl did not retrieve correct contents of file", expected,
-        shell.getfSystem().getCurrentDirectory().getFile("073txt").getContent()
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("073txt").getContent()
             .replaceAll("[ \r\n]+", ""));
     assertNotNull("curl must return error for invalid command arguments",
         curl.run(actual, shell).getErrors());
