@@ -46,13 +46,13 @@ import data.*;
  * @version 173
  * @since 2020/11/10
  */
-public class JShell {
+public class JShell implements java.io.Serializable {
 
   // private boolean exit;
-  private Command run;
-  private Parser parse;
-  private Execution execute;
-  private StandardInput input;
+  private transient Command run;
+  private transient Parser parse;
+  private transient Execution execute;
+  private transient StandardInput input;
   private FileSystem fSystem;
   private Cache cache;
 
