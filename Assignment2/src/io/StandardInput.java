@@ -33,7 +33,7 @@ public class StandardInput {
 
   // create new instance of Scanner to read user input in shell
   private Scanner scan = new Scanner(System.in);
-  public String currentLine = "";
+  private String currentLine = "";
 
   /**
    * Read next line of the current scan.
