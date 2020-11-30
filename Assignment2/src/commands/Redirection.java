@@ -31,11 +31,11 @@ import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
- * Takes in an array of tokens and redirects output to a
- * file. Creates a new file if OUTFILE does not exists and erases the old
- * contents if OUTFILE already exists. In either case, the only thing in OUTFILE
- * should be STRING. If double_arrow OUTFILE: Like the single_arrow, but appends
- * instead of overwrites.
+ * Takes in an array of tokens and redirects output to a file. Creates a new
+ * file if OUTFILE does not exists and erases the old contents if OUTFILE
+ * already exists. In either case, the only thing in OUTFILE should be STRING.
+ * If double_arrow OUTFILE: Like the single_arrow, but appends instead of
+ * overwrites.
  */
 public class Redirection extends Command {
 

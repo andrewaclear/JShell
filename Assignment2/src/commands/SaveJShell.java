@@ -32,8 +32,8 @@ import runtime.ErrorHandler;
 import java.io.*;
 
 /**
- *  Saves the full state of the shell in a .ser file that can be loaded in an
- *  empty JShell.
+ * Saves the full state of the shell in a .ser file that can be loaded in an
+ * empty JShell.
  *
  */
 public class SaveJShell extends Command {
@@ -55,9 +55,9 @@ public class SaveJShell extends Command {
     this.setErrorTooManyArguments("Too many arguments, please enter fileName");
     this.setMissingOperand("What file name, do wish to call the save?");
   }
-  
+
   /**
-   *  Creates a save .ser file and stores it in the actual computer filesystem
+   * Creates a save .ser file and stores it in the actual computer filesystem
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell, an instance of JShell

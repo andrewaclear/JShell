@@ -93,6 +93,7 @@ public class ErrorHandler {
 
   /**
    * Prints illegalString error message
+   * 
    * @return returns the error
    */
   public static String illegalString() {
@@ -259,7 +260,8 @@ public class ErrorHandler {
   }
 
   /**
-   *  copyDirectoryIntoFileError returns an error for invalid copy direcoty
+   * copyDirectoryIntoFileError returns an error for invalid copy direcoty
+   * 
    * @param command instance of command
    * @param givenPath the file path
    * @param targetPath the target path

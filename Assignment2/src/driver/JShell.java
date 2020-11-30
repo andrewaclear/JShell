@@ -69,11 +69,11 @@ public class JShell implements java.io.Serializable {
     this.fSystem = FileSystem.createFileSystem();
     this.cache = new Cache();
   }
-  
+
   /**
-   * Main while loop of program to get continuous input. Send input to 
-   * execution to be executed. After execution, prints out the returned output
-   * and or errors from execution.
+   * Main while loop of program to get continuous input. Send input to execution
+   * to be executed. After execution, prints out the returned output and or
+   * errors from execution.
    */
   private void runShell() {
     // Main program loop
@@ -99,33 +99,37 @@ public class JShell implements java.io.Serializable {
     }
     input.close();
   }
-  
+
   /**
    * Getter for the JShell file system
+   * 
    * @return the JShell FileSystem
    */
   public FileSystem getfSystem() {
     return fSystem;
   }
-  
+
   /**
    * Setter for the JShell file system
+   * 
    * @param fSystem file system to be set
    */
   public void setfSystem(FileSystem fSystem) {
     this.fSystem = fSystem;
   }
-  
+
   /**
    * Getter for cache
+   * 
    * @return returns JShell cache
    */
   public Cache getCache() {
     return cache;
   }
-  
+
   /**
    * Setter for cache
+   * 
    * @param cache cache to be set
    */
   public void setCache(Cache cache) {

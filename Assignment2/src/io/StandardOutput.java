@@ -47,7 +47,8 @@ public class StandardOutput {
   }
 
   /**
-   *  Takes an output and redirects it appropriately
+   * Takes an output and redirects it appropriately
+   * 
    * @param tokens array of type string containing command arguments
    * @param output output to be redirected
    * @param shell an instance of JShell
