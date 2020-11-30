@@ -18,7 +18,7 @@ public class TreeTest {
   private JShell shell;
   private MakeDirectory mkdir = new MakeDirectory();
   private Tree tree = new Tree();
-  private Redirection redirectionCommand = new Redirection();
+  private Redirection redirection = new Redirection();
   
   @Before
   public void setUp() throws Exception
@@ -96,10 +96,10 @@ public class TreeTest {
     
     
     String[] redirectionTokens1 = {"redirect", "\"banana\"", ">", "ooga"};
-    redirectionCommand.run(redirectionTokens1, shell);
+    redirection.run(redirectionTokens1, shell);
 
     String[] redirectionTokens2 = {"redirect", "\"apple\"", ">", "b/hue"};
-    redirectionCommand.run(redirectionTokens2, shell);
+    redirection.run(redirectionTokens2, shell);
     
     String[] treeTokens = {"tree"};
     Command theResultingCommand = tree.run(treeTokens, shell);
