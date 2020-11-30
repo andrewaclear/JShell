@@ -32,7 +32,7 @@ import org.junit.Test;
 import io.Parser;
 
 public class ParserTest {
-  Parser parse = new Parser();
+  private Parser parse;
 
   @Before
   public void setUp() throws Exception {}
@@ -42,6 +42,7 @@ public class ParserTest {
 
   @Test
   public void parseTest1() {
+    parse = new Parser();
     // Parser should treat any number of whitespaces as a single whitespace
     // except when considering a string.
     String[] expected = {"echo", "\"         f     s \""};
@@ -54,6 +55,7 @@ public class ParserTest {
  
   @Test
   public void parseTest2() {
+    parse = new Parser();
     /*
      * Parser should take strings as an individual parameter. If the string
      * entered is invalid then return String[] tokens = {"~FailedParsing~"}
@@ -74,6 +76,7 @@ public class ParserTest {
 
   @Test
   public void parseTest3() {
+    parse = new Parser();
     /*
      * Parser should correctly separate a command line into correct arguments
      */
