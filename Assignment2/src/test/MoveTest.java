@@ -238,7 +238,7 @@ public class MoveTest {
     String[] cdTokens = {"cd", "dir3"};
     cd.run(cdTokens, shell);
     
-    String[] mvTokens = {"mv", "/dir1", "/wtf/yo"};
+    String[] mvTokens = {"mv", "/dir1", "/wtf"};
     Command theResultingCommand = mv.run(mvTokens, shell);
     String actualErrors = theResultingCommand.getErrors();
     assertEquals(null, 
@@ -249,8 +249,7 @@ public class MoveTest {
     String actualOutput = theCheckCommand.getOutput();
     
     assertEquals("/\n  "
-        + "dir2\n    orange\n  dir3\n  wtf\n    yo\n      dir1\n        "
-        + "banana\n        ooga", actualOutput);
+        + "dir2\n    orange\n  dir3\n  wtf\n    banana\n    ooga", actualOutput);
   }
   
   
