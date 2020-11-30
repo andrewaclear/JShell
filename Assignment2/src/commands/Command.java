@@ -242,7 +242,7 @@ public class Command {
         this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
         return this;
       } 
-      if (!this.getIdentifier().equals("echo") && !this.getIdentifier().equals("redirect")) {
+      if (!this.getIdentifier().equals("redirect")) {
         return this.run(Arrays.copyOfRange(tokens, 0, tokens.length-2), shell);
       }
     }
