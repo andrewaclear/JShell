@@ -72,11 +72,11 @@ public class Move extends Command {
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
     if (tokens[2].startsWith(tokens[1]))
-      this.setErrors(ErrorHandler.subFileSystemNodeError(this, tokens[1], 
-          tokens[2]));
+      this.setErrors(
+          ErrorHandler.subFileSystemNodeError(this, tokens[1], tokens[2]));
     else if (givenNode != null) {
-      if (givenNode.isChildInsideByDirectoryName(
-          fSystem.getPathLastEntry(tokens[1]))) {
+      if (givenNode
+          .isChildInsideByDirectoryName(fSystem.getPathLastEntry(tokens[1]))) {
         moveFileSystemNode(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory()
           .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
@@ -94,10 +94,10 @@ public class Move extends Command {
 
   /**
    * moveFileSystemNode moves a FileSystemNode that the givenPath refers to to
-   * another FileSystemNode that targetPath refers if there is no file with 
-   * directory of the givenPath. It can also change the directoryName
-   * of the givenPath if the targetPath last entry doesn't exists but the rest 
-   * does, so it changes the directoryName to the last entry of targetPath
+   * another FileSystemNode that targetPath refers if there is no file with
+   * directory of the givenPath. It can also change the directoryName of the
+   * givenPath if the targetPath last entry doesn't exists but the rest does, so
+   * it changes the directoryName to the last entry of targetPath
    * 
    * @param givenPath, a path to a FileSystemNode
    * @param targetPath, a path to a FileSystemNode or File
@@ -112,27 +112,27 @@ public class Move extends Command {
     String givenName = fSystem.getPathLastEntry(targetPath);
     if (targetNode != null) {
       if (!targetNode.isChildInsideByDirectoryName(targetName)) {
-          if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
-            targetNode.addChild(givenNode);
-            givenNode.setParent(targetNode);
-            Remove remove = new Remove();
-            String[] removeTokens = {"rm", givenPath};
-            remove.run(removeTokens, shell);
-            givenNode.getDirectory().setDirectoryName(targetName);
-          } else 
-            this.setErrors(ErrorHandler.moveDirectoryIntoFileError(
-                this, givenPath, targetPath));
-      } else if (!targetNode.getChildByDirectoryName(targetName)
-          .getDirectory().isFileInsideByFileName(givenName)) {
+        if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
+          targetNode.addChild(givenNode);
+          givenNode.setParent(targetNode);
+          Remove remove = new Remove();
+          String[] removeTokens = {"rm", givenPath};
+          remove.run(removeTokens, shell);
+          givenNode.getDirectory().setDirectoryName(targetName);
+        } else
+          this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this,
+              givenPath, targetPath));
+      } else if (!targetNode.getChildByDirectoryName(targetName).getDirectory()
+          .isFileInsideByFileName(givenName)) {
         targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
-        givenNode.setParent(targetNode.getChildByDirectoryName(
-            fSystem.getPathLastEntry(targetPath)));
+        givenNode.setParent(targetNode
+            .getChildByDirectoryName(fSystem.getPathLastEntry(targetPath)));
         Remove remove = new Remove();
         String[] removeTokens = {"rm", givenPath};
         remove.run(removeTokens, shell);
-      } else 
-        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(
-            this, givenPath, targetPath));
+      } else
+        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath,
+            targetPath));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else
@@ -158,18 +158,16 @@ public class Move extends Command {
     if (beforeNode != null) {
       if (possibleNode != null) {
         Redirection redirectionCommand = new Redirection();
-        File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getDirectory().getFileByFileName(
-                fSystem.getPathLastEntry(givenPath));
+        File file = fSystem.getSemiFileSystemNode(givenPath).getDirectory()
+            .getFileByFileName(fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">",
                 targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
         redirectionCommand.run(redirectionTokens, shell);
       } else {
         Redirection redirectionCommand = new Redirection();
-        File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getDirectory().getFileByFileName(
-                fSystem.getPathLastEntry(givenPath));
+        File file = fSystem.getSemiFileSystemNode(givenPath).getDirectory()
+            .getFileByFileName(fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">", targetPath};
         redirectionCommand.run(redirectionTokens, shell);

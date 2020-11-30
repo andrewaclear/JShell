@@ -56,8 +56,8 @@ public class Remove extends Command {
 
 
   /**
-   * The run method of Remove removes the directory that the tokens[1] refers 
-   * toand deletes all the paths in the stack that depended on tokens[1] if
+   * The run method of Remove removes the directory that the tokens[1] refers to
+   * and deletes all the paths in the stack that depended on tokens[1] if
    * tokens[1] is a valid/proper path, otherwise, it displays an error message
    * and return true.
    * 
@@ -74,12 +74,12 @@ public class Remove extends Command {
         if (beforeNode.isChildInsideByDirectoryName(
             fSystem.getPathLastEntry(tokens[1]))) {
           cache.removeDirectory(fSystem.getFileSystemNode(tokens[1]).getPath());
-          beforeNode.removeChildByDirectoryName(
-              fSystem.getPathLastEntry(tokens[1]));
+          beforeNode
+              .removeChildByDirectoryName(fSystem.getPathLastEntry(tokens[1]));
         } else if (beforeNode.getDirectory()
             .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
-          beforeNode.getDirectory().removeFileByFileName(
-              fSystem.getPathLastEntry(tokens[1]));
+          beforeNode.getDirectory()
+              .removeFileByFileName(fSystem.getPathLastEntry(tokens[1]));
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
         }

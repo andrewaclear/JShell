@@ -69,14 +69,14 @@ public class Execution {
 
         boolean arrow = Command.containsArrow(tokens);
         if (((command.getMaxNumOfArguments() == -1
-              || !arrow && tokens.length <= command.getMaxNumOfArguments()
-              || arrow && tokens.length <= command.getMaxNumOfArguments() + 2))
-              && tokens.length >= command.getMinNumOfArguments()) {
-                return command.checkRun(tokens, shell);
+            || !arrow && tokens.length <= command.getMaxNumOfArguments()
+            || arrow && tokens.length <= command.getMaxNumOfArguments() + 2))
+            && tokens.length >= command.getMinNumOfArguments()) {
+          return command.checkRun(tokens, shell);
         } else if (tokens.length < command.getMinNumOfArguments()) {
           run.setErrors(ErrorHandler.missingOperand(command));
-        // } else if (arrow) {
-        //   run.setErrors(ErrorHandler.invalidComboOfParams(command, tokens));
+          // } else if (arrow) {
+          // run.setErrors(ErrorHandler.invalidComboOfParams(command, tokens));
         } else {
           run.setErrors(ErrorHandler.tooManyArguments(command));
         }
@@ -84,7 +84,7 @@ public class Execution {
         run.setErrors(ErrorHandler.commandNotFound(tokens));
       }
     } catch (Exception e) {
-     // run.setErrors(e.getMessage());
+      // run.setErrors(e.getMessage());
     }
 
     return run;

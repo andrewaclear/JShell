@@ -92,32 +92,33 @@ public class Directory implements java.io.Serializable {
   }
 
   /**
-   * getFileByFileName returns the File in files that has targetFileName as its fileName
+   * getFileByFileName returns the File in files that has targetFileName as its
+   * fileName
    * 
    * @param targetFileName, a String that refers to a fileName
-   * @return currentFIle, the File in files that has the targetFileName 
-   *    as its fileName
+   * @return currentFIle, the File in files that has the targetFileName as its
+   *         fileName
    */
   public File getFileByFileName(String targetFileName) {
     for (File currentFile : this.files) {
-      if (currentFile.getFileName().equals(targetFileName)) 
+      if (currentFile.getFileName().equals(targetFileName))
         return currentFile;
     }
 
     return null;
   }
-  
-  
+
+
   /**
-   * removeFileByFileName removes the File in files that has as its fileName 
-   *    targetFileName
+   * removeFileByFileName removes the File in files that has as its fileName
+   * targetFileName
    * 
    * @param targetFileName, a String that refers to a fileName
    */
   public void removeFileByFileName(String targetFileName) {
-    
+
     int index = 0;
-    
+
     for (File currentFile : this.files) {
       if (currentFile.getFileName().equals(targetFileName)) {
         this.files.remove(index);
@@ -126,20 +127,20 @@ public class Directory implements java.io.Serializable {
       index += 1;
     }
   }
-  
+
   /**
-   * isFileInsideByFileName returns true if there is a File in files with 
+   * isFileInsideByFileName returns true if there is a File in files with
    * fileName targetFileName
    * 
    * @param targetFileName, a String that refers to a fileName
    */
   public boolean isFileInsideByFileName(String givenFileName) {
     for (File file : this.getFiles()) {
-      if (file.getFileName().equals(givenFileName)) 
+      if (file.getFileName().equals(givenFileName))
         return true;
     }
-  
-  return false;
+
+    return false;
   }
 
 }

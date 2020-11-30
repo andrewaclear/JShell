@@ -34,7 +34,7 @@ public class Cache implements java.io.Serializable {
 
   // history
   private List<String> history = new LinkedList<String>();
- 
+
   // directory stack
   private LinkedList<String> dirStack = new LinkedList<String>();
 
@@ -57,7 +57,8 @@ public class Cache implements java.io.Serializable {
   public String getHistory(int i) {
     if (i >= 0 && i < history.size())
       return history.get(i);
-    else return null;
+    else
+      return null;
   }
 
   /**
@@ -77,7 +78,8 @@ public class Cache implements java.io.Serializable {
   public String popDirectoryStack() {
     if (dirStack.size() > 0)
       return dirStack.pop();
-    else return null;
+    else
+      return null;
   }
 
   /**
@@ -99,7 +101,8 @@ public class Cache implements java.io.Serializable {
     String stackPath;
     for (int i = 0; i < dirStack.size(); i++) {
       stackPath = dirStack.get(i);
-      end = path.length() > stackPath.length()? stackPath.length() : path.length();
+      end = path.length() > stackPath.length() ? stackPath.length()
+          : path.length();
       if (path.equals(stackPath.substring(0, end))) {
         dirStack.remove(i);
       }
