@@ -35,7 +35,7 @@ import runtime.ErrorHandler;
  * Command is the super class which defines the structure of all commands, their
  * constants and how to access them, and the method run to run them.
  */
-public class Command {
+public class Command implements CommandInterface {
   // the identifier is the shorthand for the command that
   // is entered in the terminal
   private String identifier;
