@@ -63,7 +63,7 @@ public class Redirection extends Command {
    * @param name, name of the file
    */
   private void toFile(String[] tokens, FileSystemNode node, String name) {
-    File curFile = node.getDirectory().getFile(name);
+    File curFile = node.getDirectory().getFileByFileName(name);
     String desc = tokens[1].replace("\"", "");
     // Check if file exists
     if (curFile != null) {

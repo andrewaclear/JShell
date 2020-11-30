@@ -36,8 +36,8 @@ public class Tree extends Command {
    * subdirectories and files
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param JShell contains the FileSystem and cache
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have the output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
@@ -51,7 +51,15 @@ public class Tree extends Command {
 
   }
 
-
+  /**
+   * The run method of Tree displays the fSystem as a tree structure of
+   * subdirectories and files
+   * 
+   * @param output, the String that will hold the whole fileSystem as a tree
+   * @param fileSystemNode, a FileSystemNode
+   * @param level, the level of the recursion
+   * @return output, the String that has the whole fileSystemas a tree 
+   */
   private String recursiveTreeDisplay(String output,
       FileSystemNode fileSystemNode, int level) {
 

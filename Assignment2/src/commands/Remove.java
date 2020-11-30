@@ -57,14 +57,14 @@ public class Remove extends Command {
 
 
   /**
-   * The run method of Remove removes the directory that the tokens[1] refers to
-   * and deletes all the paths in the stack that depended on tokens[1] if
+   * The run method of Remove removes the directory that the tokens[1] refers 
+   * toand deletes all the paths in the stack that depended on tokens[1] if
    * tokens[1] is a valid/proper path, otherwise, it displays an error message
    * and return true.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param JShell contains the FileSystem and cache
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have the output and errors
    */
   public Command run(String[] tokens, JShell shell) {
     FileSystem fSystem = shell.getfSystem();
@@ -74,10 +74,11 @@ public class Remove extends Command {
       if (!fSystem.getCurrentDirectory().getPath().startsWith(tokens[1])) {
         if (beforeNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
           cache.removeDirectory(fSystem.getFileSystemNode(tokens[1]).getPath());
-          beforeNode.removeChild(fSystem.getPathLastEntry(tokens[1]));
+          beforeNode.removeChildByDirectoryName(
+              fSystem.getPathLastEntry(tokens[1]));
         } else if (beforeNode.getDirectory()
             .isFileInsideByFileName(tokens[1])) {
-          beforeNode.getDirectory().removeFile(tokens[1]);
+          beforeNode.getDirectory().removeFileByFileName(tokens[1]);
         } else {
           this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
         }

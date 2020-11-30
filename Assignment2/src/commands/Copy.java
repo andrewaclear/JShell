@@ -62,8 +62,8 @@ public class Copy extends Command {
    * another File path
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param JShell contains the FileSystem and cache
-   * @return returns a boolean true to mark successful execution
+   * @param shell contains the FileSystem and cache
+   * @return this command which will have the output and errors
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
@@ -91,8 +91,10 @@ public class Copy extends Command {
    * copyFileSystemNode copies a FileSystemNode that the givenPath refers to to
    * another FileSystemNode that targetPath refers
    * 
-   * @param givenPath, a path to a FileSystemNode
-   * @param targetPath, a path to a FileSystemNode
+   * @param givenPath, a path to the FileSystemNode we have to copy
+   * @param targetPath, a path to a FileSystemNode or File 
+   *    we want to put the copy in
+   * @param shell contains the FileSystem and cache
    */
   private void copyFileSystemNode(String givenPath, String targetPath,
       JShell shell) {
@@ -103,7 +105,7 @@ public class Copy extends Command {
         new FileSystemNode(new Directory("Dummy"));
 
     clonedFileSystemNode = fSystem.getFileSystemNode(givenPath)
-        .cloneFileSystemNode(clonedFileSystemNode);
+        .cloneFileSystemNodeInto(clonedFileSystemNode);
 
     FileSystemNode targetNode = fSystem.getFileSystemNode(targetPath);
 
@@ -127,8 +129,10 @@ public class Copy extends Command {
    * FileSystemNode or File that targetPath refers, if the File already exists,
    * overwrite it's content instead.
    * 
-   * @param givenPath, a path to a FileSystemNode
-   * @param targetPath, a path to a FileSystemNode
+   * @param givenPath, a path to a File we have to copy
+   * @param targetPath, a path to a FileSystemNode or FIle
+   *    we want to put the copy in
+   * @param shell contains the FileSystem and cache
    */
   private void copyFile(String givenPath, String targetPath, JShell shell) {
 
@@ -140,7 +144,8 @@ public class Copy extends Command {
       if (possibleNode != null) {
         Redirection redirectionCommand = new Redirection();
         File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getFile(fSystem.getPathLastEntry(givenPath));
+            .getDirectory().getFileByFileName(
+                fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">",
                 targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
@@ -148,7 +153,8 @@ public class Copy extends Command {
       } else {
         Redirection redirectionCommand = new Redirection();
         File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getFile(fSystem.getPathLastEntry(givenPath));
+            .getDirectory().getFileByFileName(
+                fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">", targetPath};
         redirectionCommand.run(redirectionTokens, shell);

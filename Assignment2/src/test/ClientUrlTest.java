@@ -287,9 +287,9 @@ public class ClientUrlTest {
     curl.run(actual, shell);
     assertNotNull(
         "curl not correctly creating/naming file in the current directory",
-        shell.getfSystem().getCurrentDirectory().getFile("footballhtml"));
+        shell.getfSystem().getCurrentDirectory().getFileByFileName("footballhtml"));
     assertEquals("curl did not retrieve correct contents of file", expected,
-        shell.getfSystem().getCurrentDirectory().getFile("footballhtml")
+        shell.getfSystem().getCurrentDirectory().getFileByFileName("footballhtml")
             .getContent().replaceAll("[ \r\n]+", ""));
     tearDown();
   }
