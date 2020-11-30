@@ -109,8 +109,8 @@ public class Move extends Command {
         String[] removeTokens = {"rm", givenPath};
         remove.run(removeTokens, shell);
       } else
-        this.setErrors(ErrorHandler.childAlreadyExistant(givenNode.getDirectory().
-            getDirectoryName(), targetNode));
+        this.setErrors(ErrorHandler.childAlreadyExistant(givenNode.
+            getDirectory().getDirectoryName(), targetNode));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else

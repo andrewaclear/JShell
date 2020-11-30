@@ -32,6 +32,7 @@ import org.junit.Test;
 import commands.ChangeDirectory;
 import commands.Command;
 import commands.MakeDirectory;
+import commands.Redirection;
 import commands.Tree;
 import data.FileSystem;
 import driver.JShell;
@@ -42,6 +43,7 @@ public class MakeDirectoryTest {
   private MakeDirectory mkdir = new MakeDirectory();
   private Tree tree = new Tree();
   private ChangeDirectory cd = new ChangeDirectory();
+  private Redirection redirection = new Redirection();
   
   @Before
   public void setUp() throws Exception
@@ -144,7 +146,7 @@ public class MakeDirectoryTest {
     String[] mkdirTokens1 = {"mkdir", "a", "b", "a"};
     Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
     String actualErrors = theResultingCommand.getErrors();
-    assertEquals("The directory " + "a" + " already exists at "
+    assertEquals("The file/directory " + "a" + " already exists at "
         + "/", actualErrors);
     
     String[] treeTokens = {"tree"};
@@ -201,6 +203,26 @@ public class MakeDirectoryTest {
     String actualOutput = theCheckCommand.getOutput();
     
     assertEquals("/\n  kul", actualOutput);
+  }
+  
+  
+  @Test
+  public void runTest9() {
+    
+    String[] redirectionTokens1 = {"redirect", "\"damnnnnlet\"", ">", "sugoi"};
+    redirection.run(redirectionTokens1, shell);
+    
+    String[] mkdirTokens1 = {"mkdir", "clean", "clean/YO", "sugoi"};
+    Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
+    String actualErrors = theResultingCommand.getErrors();
+    assertEquals("The file/directory " + "sugoi" + " already exists at "
+        + "/", actualErrors);
+    
+    String[] treeTokens = {"tree"};
+    Command theCheckCommand = tree.run(treeTokens, shell);
+    String actualOutput = theCheckCommand.getOutput();
+    
+    assertEquals("/\n  sugoi\n  clean\n    YO", actualOutput);
   }
   
 }
