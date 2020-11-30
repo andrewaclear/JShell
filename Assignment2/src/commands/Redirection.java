@@ -31,7 +31,7 @@ import driver.JShell;
 import runtime.ErrorHandler;
 
 /**
- * Takes in an array of tokens from execution and executes redirects output to a
+ * Takes in an array of tokens and redirects output to a
  * file. Creates a new file if OUTFILE does not exists and erases the old
  * contents if OUTFILE already exists. In either case, the only thing in OUTFILE
  * should be STRING. If double_arrow OUTFILE: Like the single_arrow, but appends
@@ -81,15 +81,12 @@ public class Redirection extends Command {
   }
 
   /**
-   * Writes STRING to a new file, overrides contents of a file if file already
-   * exists and/or appends STRING to a file.
+   * Writes OUTPUT to a new file, overrides contents of a file if file already
+   * exists and/or appends OUTPUT to a file.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param fSystem, an instance of FileSystem class to read and write to the
-   *        file structure.
-   * @param cache, stores the history and directory stack of the running
-   *        terminal
-   * @return returns a boolean true signal the shell to continue running
+   * @param shell, an instance of JShell
+   * @return returns an instance of the command
    */
   @Override
   public Command run(String[] tokens, JShell shell) {
