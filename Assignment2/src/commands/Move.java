@@ -91,7 +91,6 @@ public class Move extends Command {
   }
 
 
-
   /**
    * moveFileSystemNode moves a FileSystemNode that the givenPath refers to to
    * another FileSystemNode that targetPath refers if there is no file with
@@ -107,37 +106,55 @@ public class Move extends Command {
       JShell shell) {
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
-    FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
-    String targetName = fSystem.getPathLastEntry(targetPath);
-    String givenName = fSystem.getPathLastEntry(targetPath);
     if (targetNode != null) {
-      if (!targetNode.isChildInsideByDirectoryName(targetName)) {
-        if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
-          targetNode.addChild(givenNode);
-          givenNode.setParent(targetNode);
-          Remove remove = new Remove();
-          String[] removeTokens = {"rm", givenPath};
-          remove.run(removeTokens, shell);
-          givenNode.getDirectory().setDirectoryName(targetName);
-        } else
-          this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this,
-              givenPath, targetPath));
-      } else if (!targetNode.getChildByDirectoryName(targetName).getDirectory()
-          .isFileInsideByFileName(givenName)) {
-        targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
-        givenNode.setParent(targetNode
-            .getChildByDirectoryName(fSystem.getPathLastEntry(targetPath)));
-        Remove remove = new Remove();
-        String[] removeTokens = {"rm", givenPath};
-        remove.run(removeTokens, shell);
-      } else
-        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath,
-            targetPath));
+        moveFileSystemNodeHelper(givenPath, targetPath, shell);
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else
       this.setErrors(ErrorHandler.inappropriatePath(this, targetPath));
 
+  }
+  
+  /**
+   * moveFileSystemNodeHelper moves a FileSystemNode that the givenPath 
+   * refers to to another FileSystemNode that targetPath refers 
+   * if there is no file with directory of the givenPath. 
+   * 
+   * @param givenPath, a path to a FileSystemNode
+   * @param targetPath, a path to a FileSystemNode or File
+   * @param shell contains the FileSystem and cache
+   */
+  private void moveFileSystemNodeHelper(String givenPath, String targetPath,
+      JShell shell) {
+    
+    FileSystem fSystem = shell.getfSystem();
+    FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
+    FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
+    String targetName = fSystem.getPathLastEntry(targetPath);
+    String givenName = fSystem.getPathLastEntry(targetPath);
+    
+    if (!targetNode.isChildInsideByDirectoryName(targetName)) {
+      if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
+        targetNode.addChild(givenNode);
+        givenNode.setParent(targetNode);
+        Remove remove = new Remove();
+        String[] removeTokens = {"rm", givenPath};
+        remove.run(removeTokens, shell);
+        givenNode.getDirectory().setDirectoryName(targetName);
+      } else
+        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this,
+            givenPath, targetPath));
+    } else if (!targetNode.getChildByDirectoryName(targetName).getDirectory()
+        .isFileInsideByFileName(givenName)) {
+      targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
+      givenNode.setParent(targetNode
+          .getChildByDirectoryName(fSystem.getPathLastEntry(targetPath)));
+      Remove remove = new Remove();
+      String[] removeTokens = {"rm", givenPath};
+      remove.run(removeTokens, shell);
+    } else
+      this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath,
+          targetPath));
   }
 
   /**
