@@ -33,48 +33,79 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import driver.JShell;
+import io.StandardOutput;
+import commands.*;
+
 /**
  * @author a
  *
  */
 public class StandardOutputTest {
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
+  private JShell shell = new JShell();
+  private Command command;
+  private String sysOut;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
+  /**
+   * @throws java.lang.Exception
+   */
+  @Before
+  public void setUp() throws Exception {
+  }
 
-	/**
-	 * Test method for {@link io.StandardOutput#println(java.lang.String)}.
-	 */
-	@Test
-	public final void testPrintlnString() {
-		fail("Not yet implemented"); // TODO
-	}
+  /**
+   * @throws java.lang.Exception
+   */
+  @After
+  public void tearDown() throws Exception {
+  }
 
-	/**
-	 * Test method for {@link io.StandardOutput#println(java.lang.String[], java.lang.String, driver.JShell, commands.Command)}.
-	 */
-	@Test
-	public final void testPrintlnStringArrayStringJShellCommand() {
-		fail("Not yet implemented"); // TODO
-	}
+  /**
+   * no arrow
+   * 
+   * Test method for {@link io.StandardOutput#println(java.lang.String[], java.lang.String, driver.JShell, commands.Command)}.
+   */
+  @Test
+  public final void testPrintlnStringArrayStringJShellCommand0() {
+    command = new Echo();
+    String[] tokens = {"hi", "myFriend"};
+    sysOut = StandardOutput.println(tokens, "we go out", shell, command);
+    assertEquals("we go out", sysOut);
 
-	/**
-	 * Test method for {@link io.StandardOutput#print(java.lang.String)}.
-	 */
-	@Test
-	public final void testPrint() {
-		fail("Not yet implemented"); // TODO
-	}
+    command = new PopDirectory();
+    String[] tokens2 = {"popd"};
+    sysOut = StandardOutput.println(tokens2, "hello kind TA", shell, command);
+    assertEquals("hello kind TA", sysOut);
+
+  }
+
+  /**
+   * arrow
+   * 
+   * Test method for {@link io.StandardOutput#println(java.lang.String[], java.lang.String, driver.JShell, commands.Command)}.
+   */
+  @Test
+  public final void testPrintlnStringArrayStringJShellCommand1() {
+    command = new Echo();
+    String[] tokens = {">", "myFriend"};
+    sysOut = StandardOutput.println(tokens, "we go out", shell, command);
+    assertEquals(null, sysOut);
+
+    command = new Concatenate();
+    String[] tokens2 = {"cat", "c", ">>", "myFriend"};
+    sysOut = StandardOutput.println(tokens2, "File stuff", shell, command);
+    assertEquals(null, sysOut);
+
+    command = new MakeDirectory();
+    String[] tokens3 = {">"};
+    sysOut = StandardOutput.println(tokens3, "you'll see me", shell, command);
+    assertEquals("you'll see me", sysOut);
+
+    command = new ChangeDirectory();
+    String[] tokens4 = {"cd", ">", "s#"};
+    sysOut = StandardOutput.println(tokens4, "what I want to see but never will", shell, command);
+    assertEquals("redirect: \"s#\": Invalid file and/or directory name", sysOut);
+  }
 
 }
