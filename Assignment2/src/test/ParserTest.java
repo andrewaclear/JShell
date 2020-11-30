@@ -17,7 +17,7 @@ public class ParserTest {
   public void tearDown() throws Exception {}
 
   @Test
-  public void whiteSpaceTest() {
+  public void parseTest1() {
     // Parser should treat any number of whitespaces as a single whitespace
     // except when considering a string.
     String[] expected = {"echo", "\"         f     s \""};
@@ -27,9 +27,9 @@ public class ParserTest {
     Assert.assertArrayEquals("Parse must keep extra whitespaces within strings",
         expected, parse.parse("echo \"         f     s \""));
   }
-
+ 
   @Test
-  public void stringTest() {
+  public void parseTest2() {
     /*
      * Parser should take strings as an individual parameter. If the string
      * entered is invalid then return String[] tokens = {"~FailedParsing~"}
@@ -49,7 +49,7 @@ public class ParserTest {
   }
 
   @Test
-  public void commandTest() {
+  public void parseTest3() {
     /*
      * Parser should correctly separate a command line into correct arguments
      */

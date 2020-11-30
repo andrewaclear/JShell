@@ -56,7 +56,7 @@ public class Parser {
    * @param temp, line of input to be parsed into tokens
    * @return return an ArrayList of tokens
    */
-  public ArrayList<String> getTokens(ArrayList<String> tokens, String temp) {
+  private ArrayList<String> getTokens(ArrayList<String> tokens, String temp) {
     String tempString = "";
     int i = 0, j = 0;
     mainLoop: while (i < temp.length()) {
@@ -108,7 +108,7 @@ public class Parser {
    * @param tokens, ArrayList of tokens
    * @return returns ArrayList of tokens
    */
-  public ArrayList<String> failedParsing(ArrayList<String> tokens) {
+  private ArrayList<String> failedParsing(ArrayList<String> tokens) {
     StandardOutput.println(ErrorHandler.illegalString());
     tokens.clear();
     tokens.add("~FailedParsing~");
