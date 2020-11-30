@@ -86,6 +86,12 @@ public class ListContents extends Command {
     return partOutput + subOutput;
   }
 
+  /**
+   * Given a directory, return a string containing the subFiles in the directory
+   * 
+   * @param node the directory to get sub files from
+   * @return returns return a string containing the subFiles
+   */
   private String listSubFiles(FileSystemNode node) {
     List<File> files = node.getDirectory().getFiles();
     String partOutput = "";
