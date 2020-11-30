@@ -165,19 +165,15 @@ public class FileSystemNode implements java.io.Serializable {
    */
   public boolean isChildInside(String directoryName) {
     for (FileSystemNode child : this.children) {
-      if (child.getDirectory().getDirectoryName().equals(directoryName)) {
+      if (child.getDirectory().getDirectoryName().equals(directoryName)) 
         return true;
-      }
     }
-
     return false;
   }
   
   
   public void removeChild(String directoryName) {
-    
     int index = 0;
-    
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
         this.children.remove(index);
@@ -187,39 +183,35 @@ public class FileSystemNode implements java.io.Serializable {
   }
   
   public File getFile(String targetFileName) {
-    
     for (File file : this.getDirectory().getFiles()) {
-      if (file.getFileName().equals(targetFileName)) {
+      if (file.getFileName().equals(targetFileName)) 
         return file;
-      }
     }
-  
   return null;
   }
   
   
   public FileSystemNode getChildByDirectoryName(String targetFileSystemNode) {
-    
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(targetFileSystemNode)) 
         return child;
     }
-    
-    return null;
-      
+    return null; 
   }
   
   
   public FileSystemNode cloneFileSystemNode(
       FileSystemNode clonedFileSystemNode) {
-    clonedFileSystemNode.setDirectory(this.getDirectory());
-    clonedFileSystemNode.setParent(this.getParent());
     
-    for (FileSystemNode child : this.getChildren()) {
-      clonedFileSystemNode.addChild(child.cloneFileSystemNode(
-          new FileSystemNode(new Directory("Dummy"))));
+    if (clonedFileSystemNode != null) {
+      clonedFileSystemNode.setDirectory(this.getDirectory());
+      clonedFileSystemNode.setParent(this.getParent());
+      
+      for (FileSystemNode child : this.getChildren()) {
+        clonedFileSystemNode.addChild(child.cloneFileSystemNode(
+            new FileSystemNode(new Directory("Dummy"))));
+      }
     }
-    
     return clonedFileSystemNode;
     
   }
