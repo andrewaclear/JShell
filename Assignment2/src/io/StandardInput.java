@@ -43,6 +43,13 @@ public class StandardInput {
   }
 
   /**
+   * Get current line
+   */
+  public String getCurrentLine() {
+    return currentLine;
+  }
+
+  /**
    * Close the scan.
    */
   public void close() {
