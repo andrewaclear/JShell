@@ -32,7 +32,7 @@ import runtime.ErrorHandler;
 import java.io.*;
 
 /**
- *  Saves the full state of the shell in a .ser file that can be loaded in an
+ *  Loads a .ser save such that the full state of the shell is loaded into an
  *  empty JShell.
  *
  */
@@ -59,12 +59,7 @@ public class LoadJShell extends Command {
 
 
   /**
-   * If no paths are given, print the contents (file or directory) of the
-   * current directory, with a new line following each of the content (file or
-   * directory). Otherwise, for each path p, the order listed: • If p
-   * specifies a file, print p • If p specifies a directory, print p, a colon,
-   * then the contents of that directory, then an extra new line. • If p does
-   * not exist, print a suitable message.
+   * Given a .ser file save, then load the save into an empty JShell
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell, an instance of JShell
