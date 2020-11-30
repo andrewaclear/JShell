@@ -82,7 +82,7 @@ public class JShell implements java.io.Serializable {
         run = execute.executeCommand(tokens, this);
         if (run.getOutput() != null && !run.getOutput().equals("")) {
           StandardOutput.println(tokens, run.getOutput(), this, run);
-        } 
+        }
         if (run.getErrors() != null && !run.getErrors().equals("")) {
           StandardOutput.println(run.getErrors());
         }

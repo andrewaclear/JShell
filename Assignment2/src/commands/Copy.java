@@ -69,12 +69,12 @@ public class Copy extends Command {
     FileSystem fSystem = shell.getfSystem();
     FileSystemNode givenNode = fSystem.getSemiFileSystemNode(tokens[1]);
 
-    if (tokens[2].startsWith(tokens[1]))
-      this.setErrors(ErrorHandler.subFileSystemNodeError(
-          this, tokens[1], tokens[2]));
-    else if (givenNode != null) {
-      if (givenNode.isChildInsideByDirectoryName(
-          fSystem.getPathLastEntry(tokens[1]))) {
+    if (tokens[2].startsWith(tokens[1])) {
+      this.setErrors(
+          ErrorHandler.subFileSystemNodeError(this, tokens[1], tokens[2]));
+    } else if (givenNode != null) {
+      if (givenNode
+          .isChildInsideByDirectoryName(fSystem.getPathLastEntry(tokens[1]))) {
         copyFileSystemNode(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory()
           .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
@@ -92,8 +92,8 @@ public class Copy extends Command {
    * another FileSystemNode that targetPath refers
    * 
    * @param givenPath, a path to the FileSystemNode we have to copy
-   * @param targetPath, a path to a FileSystemNode or File 
-   *    we want to put the copy in
+   * @param targetPath, a path to a FileSystemNode or File we want to put the
+   *        copy in
    * @param shell contains the FileSystem and cache
    */
   private void copyFileSystemNode(String givenPath, String targetPath,
@@ -112,16 +112,16 @@ public class Copy extends Command {
     if (targetNode != null) {
       clonedFileSystemNode.setParent(targetNode);
       targetNode.addChild(clonedFileSystemNode);
-    } else if (fSystem.getSemiFileSystemNode(targetPath) != null && 
-        fSystem.getSemiFileSystemNode(targetPath).getDirectory().
-        isFileInsideByFileName(fSystem.getPathLastEntry(targetPath))) {
-      this.setErrors(ErrorHandler.copyDirectoryIntoFileError(this, givenPath, 
-          targetPath));
+    } else if (fSystem.getSemiFileSystemNode(targetPath) != null
+        && fSystem.getSemiFileSystemNode(targetPath).getDirectory()
+            .isFileInsideByFileName(fSystem.getPathLastEntry(targetPath))) {
+      this.setErrors(
+          ErrorHandler.copyDirectoryIntoFileError(this, givenPath, targetPath));
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
-    } else
+    } else {
       this.setErrors(ErrorHandler.inappropriatePath(this, targetPath));
-
+    }
   }
 
   /**
@@ -130,8 +130,8 @@ public class Copy extends Command {
    * overwrite it's content instead.
    * 
    * @param givenPath, a path to a File we have to copy
-   * @param targetPath, a path to a FileSystemNode or FIle
-   *    we want to put the copy in
+   * @param targetPath, a path to a FileSystemNode or FIle we want to put the
+   *        copy in
    * @param shell contains the FileSystem and cache
    */
   private void copyFile(String givenPath, String targetPath, JShell shell) {
@@ -143,18 +143,16 @@ public class Copy extends Command {
     if (targetNode != null) {
       if (possibleNode != null) {
         Redirection redirectionCommand = new Redirection();
-        File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getDirectory().getFileByFileName(
-                fSystem.getPathLastEntry(givenPath));
+        File file = fSystem.getSemiFileSystemNode(givenPath).getDirectory()
+            .getFileByFileName(fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">",
                 targetPath + "/" + fSystem.getPathLastEntry(givenPath)};
         redirectionCommand.run(redirectionTokens, shell);
       } else {
         Redirection redirectionCommand = new Redirection();
-        File file = fSystem.getSemiFileSystemNode(givenPath)
-            .getDirectory().getFileByFileName(
-                fSystem.getPathLastEntry(givenPath));
+        File file = fSystem.getSemiFileSystemNode(givenPath).getDirectory()
+            .getFileByFileName(fSystem.getPathLastEntry(givenPath));
         String[] redirectionTokens =
             {"redirect", "\"" + file.getContent() + "\"", ">", targetPath};
         redirectionCommand.run(redirectionTokens, shell);
@@ -162,8 +160,9 @@ public class Copy extends Command {
 
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
-    } else
+    } else {
       this.setErrors(ErrorHandler.inappropriatePath(this, targetPath));
+    }
   }
 
 }

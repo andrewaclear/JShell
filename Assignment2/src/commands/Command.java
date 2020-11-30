@@ -204,8 +204,9 @@ public class Command implements CommandInterface {
    * @return returns true if tokens contains arrow or double_arrow, else false
    */
   public static boolean containsArrow(String[] tokens) {
-    if (tokens.length == 0) return false;
-
+    if (tokens.length == 0) {
+      return false;
+    }
     int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
     return tokens[indexArrow].equals(">") || tokens[indexArrow].equals(">>");
   }
@@ -219,13 +220,13 @@ public class Command implements CommandInterface {
   public Command checkRun(String[] tokens, JShell shell) {
     boolean arrow = containsArrow(tokens);
     // if (this.getMaxNumOfArguments() == -1
-    //     || !arrow && tokens.length <= this.getMaxNumOfArguments()
-    //     || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
+    // || !arrow && tokens.length <= this.getMaxNumOfArguments()
+    // || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
 
     String name =
         shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
-    FileSystemNode targetNode = shell.getfSystem()
-        .getSemiFileSystemNode(tokens[tokens.length - 1]);
+    FileSystemNode targetNode =
+        shell.getfSystem().getSemiFileSystemNode(tokens[tokens.length - 1]);
     boolean validName = !shell.getfSystem().inappropriateName(name);
     boolean validPath = targetNode != null;
     if (arrow) {
@@ -237,13 +238,14 @@ public class Command implements CommandInterface {
         this.setErrors(
             ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
         return this;
-      }   
+      }
       if (targetNode.isChildInsideByDirectoryName(name)) {
         this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
         return this;
-      } 
+      }
       if (!this.getIdentifier().equals("redirect")) {
-        return this.run(Arrays.copyOfRange(tokens, 0, tokens.length-2), shell);
+        return this.run(Arrays.copyOfRange(tokens, 0, tokens.length - 2),
+            shell);
       }
     }
     return this.run(tokens, shell);

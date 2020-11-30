@@ -79,18 +79,17 @@ public class Concatenate extends Command {
       name = fSystem.getPathLastEntry(tokens[i]);
       node = fSystem.getSemiFileSystemNode(tokens[i]);
       File file = null;
-      
-      if (name != null && node != null ) {
+
+      if (name != null && node != null) {
         file = node.getDirectory().getFileByFileName(name);
-      } 
-     
+      }
+
       if (node != null && file != null) {
         if (i > 1) {
           output += "\n\n\n";
         }
         output += file.getContent();
-        // small fix
-        
+
       } else {
         this.setOutput(this.getOutput() + "\n");
         this.setErrors(ErrorHandler.invalidPath(this, tokens[i]));

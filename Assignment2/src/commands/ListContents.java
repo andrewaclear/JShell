@@ -127,8 +127,8 @@ public class ListContents extends Command {
       // the file name would be the last part after the last / in the path
       String fileName = fSystem.getPathLastEntry(path);
       // if the subfolder and file exits
-      if (subNode != null && subNode.getDirectory().getFileByFileName(
-          fileName) != null) {
+      if (subNode != null
+          && subNode.getDirectory().getFileByFileName(fileName) != null) {
         // print the name of the the file
         output += path + "\n";
       } else {

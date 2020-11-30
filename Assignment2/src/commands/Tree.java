@@ -83,7 +83,7 @@ public class Tree extends Command {
    * @param output, the String that will hold the whole fileSystem as a tree
    * @param fileSystemNode, a FileSystemNode
    * @param level, the level of the recursion
-   * @return output, the String that has the whole fileSystemas a tree 
+   * @return output, the String that has the whole fileSystemas a tree
    */
   private String recursiveTreeDisplay(String output,
       FileSystemNode fileSystemNode, int level) {
@@ -98,11 +98,11 @@ public class Tree extends Command {
     for (FileSystemNode child : fileSystemNode.getChildren()) {
       output = recursiveTreeDisplay(output, child, nextLevel);
     }
-    
+
     for (File file : fileSystemNode.getDirectory().getFiles()) {
       output += indentationUnit.repeat(nextLevel) + file.getFileName() + "\n";
     }
-    
+
     return output;
   }
 }

@@ -47,14 +47,15 @@ public class StandardOutput {
   }
 
 
-  public static String println(String[] tokens, String output, JShell shell, Command command) {
-    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2: 0;
-   
+  public static String println(String[] tokens, String output, JShell shell,
+      Command command) {
+    int indexArrow = tokens.length - 2 >= 0 ? tokens.length - 2 : 0;
+
     boolean containsArrow = Command.containsArrow(tokens);
 
     if (containsArrow) {
       String[] tokens2 = new String[4];
-      
+
       tokens2[0] = "redirect";
       tokens2[1] = "\"" + output + "\"";
       tokens2[2] = tokens[indexArrow];
@@ -63,15 +64,16 @@ public class StandardOutput {
       Redirection redirect = new Redirection();
       redirect = (Redirection) redirect.run(tokens2, shell);
       if (redirect.getErrors() != null) {
-       return StandardOutput.println(redirect.getErrors());
+        return StandardOutput.println(redirect.getErrors());
       }
-    // } else if (tokens.length <= command.getMaxNumOfArguments()-2 
-    //            || command.getMaxNumOfArguments() == -1) {
-    } else return StandardOutput.println(output);
+      // } else if (tokens.length <= command.getMaxNumOfArguments()-2
+      // || command.getMaxNumOfArguments() == -1) {
+    } else
+      return StandardOutput.println(output);
     // } else {
-    //   ErrorHandler.invalidComboOfParams(command, tokens);
+    // ErrorHandler.invalidComboOfParams(command, tokens);
     // }
-   return null;
+    return null;
   }
 
 

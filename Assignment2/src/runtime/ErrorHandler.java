@@ -169,18 +169,18 @@ public class ErrorHandler {
    * @param givenPath, the invalid path
    */
   public static String inappropriatePath(Command command, String givenPath) {
-    return command.getIdentifier() + ": " + givenPath 
+    return command.getIdentifier() + ": " + givenPath
         + " contains illicit characters";
   }
-  
-  
+
+
   /**
-   * RemoveDirectoryError gives the String error of trying to 
-   * remove a Directory that is a subpath to the current directory
+   * RemoveDirectoryError gives the String error of trying to remove a Directory
+   * that is a subpath to the current directory
    * 
    * @param givenPath, the invalid path
-   * @return String error of trying to remove a Directory 
-   *    that is a subpath to the current directory
+   * @return String error of trying to remove a Directory that is a subpath to
+   *         the current directory
    */
   public static String removeDirectoryError(String givenPath) {
     return "The given path: " + givenPath
@@ -189,17 +189,17 @@ public class ErrorHandler {
   }
 
   /**
-   *subFileSystemNodeError returns the error of targetPath being inside the
-   *givenPath
+   * subFileSystemNodeError returns the error of targetPath being inside the
+   * givenPath
    * 
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, a FileSystemNode path
    * @param targetPath, a FileSystemNode path
    */
-  public static String subFileSystemNodeError(Command command, String givenPath, 
+  public static String subFileSystemNodeError(Command command, String givenPath,
       String targetPath) {
-    return  command.getIdentifier() + ": " + targetPath+ " is inside " 
-      + givenPath;
+    return command.getIdentifier() + ": " + targetPath + " is inside "
+        + givenPath;
   }
 
   /**
@@ -211,41 +211,41 @@ public class ErrorHandler {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
   }
-  
+
   /**
-   *moveDirectoryIntoFileError returns the error of givenPath being a path to a 
-   *FileSystemNode and targetPath being a File path so you cannot move the
-   *directory
+   * moveDirectoryIntoFileError returns the error of givenPath being a path to a
+   * FileSystemNode and targetPath being a File path so you cannot move the
+   * directory
    * 
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, a FileSystemNode path
    * @param targetPath, a File path
    */
-  public static String moveDirectoryIntoFileError(Command command, 
+  public static String moveDirectoryIntoFileError(Command command,
       String givenPath, String targetPath) {
-    return command.getIdentifier() + ": cannot move directory at " 
-      + givenPath + " because " + targetPath+ " refers to a file";
+    return command.getIdentifier() + ": cannot move directory at " + givenPath
+        + " because " + targetPath + " refers to a file";
   }
-  
-  
+
+
   /**
-   *changeDirectoryIntoFileError returns the error of targetPath refering to a 
-   *File so you cannot change directory
+   * changeDirectoryIntoFileError returns the error of targetPath refering to a
+   * File so you cannot change directory
    * 
    * @param command, an instance of Command class or its subclasses
    * @param targetPath, a File path
    */
   public static String changeDirectoryIntoFileError(Command command,
       String targetPath) {
-    return command.getIdentifier() + ": cannot change directory to file " 
-      + targetPath;
+    return command.getIdentifier() + ": cannot change directory to file "
+        + targetPath;
   }
 
-  
-  public static String copyDirectoryIntoFileError(Command command, 
+
+  public static String copyDirectoryIntoFileError(Command command,
       String givenPath, String targetPath) {
-    return command.getIdentifier() + ": cannot copy directory " + givenPath 
+    return command.getIdentifier() + ": cannot copy directory " + givenPath
         + " to a file " + targetPath;
   }
-  
+
 }

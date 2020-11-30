@@ -47,8 +47,8 @@ public class FileSystem implements java.io.Serializable {
     this.root = new FileSystemNode(new Directory("/"));
     this.currentFileSystemNode = root;
   }
-  
-  
+
+
   /**
    * setRoot sets this root to node
    * 
@@ -57,7 +57,7 @@ public class FileSystem implements java.io.Serializable {
   public void setRoot(FileSystemNode node) {
     this.root = node;
   }
-  
+
   /**
    * getRoot returns the root of this FileSystem
    * 
@@ -106,8 +106,8 @@ public class FileSystem implements java.io.Serializable {
     if (givenPath.equals(""))
       return getCurrentDirectory();
 
-      // bad path
-    if (inappropriatePath(givenPath)) 
+    // bad path
+    if (inappropriatePath(givenPath))
       return null;
 
     return traversePath(givenPath);
@@ -123,12 +123,12 @@ public class FileSystem implements java.io.Serializable {
   public boolean inappropriatePath(String givenPath) {
 
     if (givenPath.indexOf("//") != -1) {
-    //  ErrorHandler.inappropriatePath(givenPath);
+      // ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
-    
+
     if (givenPath.matches("(.+)?[ !@#$%^&*(){}~|<>?](.+)?")) {
-    //  ErrorHandler.inappropriatePath(givenPath);
+      // ErrorHandler.inappropriatePath(givenPath);
       return true;
     }
 
@@ -137,13 +137,13 @@ public class FileSystem implements java.io.Serializable {
 
   /**
    * Checks if the String name has valid format.
-   *  
+   * 
    * @param name string to check if is valid
    * @return true if name is a valid name
    */
   public boolean inappropriateName(String name) {
     return name.matches("(.+)?[ /.!@#$%^&*(){}~|<>?](.+)?");
-    
+
   }
 
   /**
@@ -231,28 +231,28 @@ public class FileSystem implements java.io.Serializable {
     }
 
     for (String singlePath : splitPath) {
-      
+
       if (singlePath.equals("..")) {
-        if (nodeTracker.getParent() != null) 
+        if (nodeTracker.getParent() != null)
           nodeTracker = nodeTracker.getParent();
-        else 
+        else
           return null;
-      } else if (!singlePath.equals(".")){
-        
+      } else if (!singlePath.equals(".")) {
+
         if (nodeTracker.getChildByDirectoryName(singlePath) != null) {
-            nodeTracker = nodeTracker.getChildByDirectoryName(singlePath);
-           
+          nodeTracker = nodeTracker.getChildByDirectoryName(singlePath);
+
         } else {
-  
-           return null;
-           
+
+          return null;
+
         }
       }
     }
     return nodeTracker;
   }
 
-  
+
   /**
    * createFileSystem ensures we only ever have a single FileSystem: if we
    * already have a fileSystem, returns it, if not, creates a new one and
@@ -262,10 +262,10 @@ public class FileSystem implements java.io.Serializable {
    *         fileSystem
    */
   public static FileSystem createFileSystem() {
-    if (fileSystem == null) 
+    if (fileSystem == null)
       fileSystem = new FileSystem();
     return fileSystem;
   }
-  
-  
+
+
 }
