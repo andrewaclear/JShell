@@ -31,6 +31,11 @@ import io.StandardOutput;
 import runtime.ErrorHandler;
 import java.io.*;
 
+/**
+ *  Saves the full state of the shell in a .ser file that can be loaded in an
+ *  empty JShell.
+ *
+ */
 public class LoadJShell extends Command {
 
   /**
@@ -43,7 +48,8 @@ public class LoadJShell extends Command {
     this.setDescription(
         "The file FileName is some file that is stored on the actual filesystem"
             + " of your computer. The purpose of this\r\n"
-            + "command is to load the saved session of the JShell before the user"
+            + "command is to load the saved session of the JShell before the"
+            + " user"
             + " closed it down. ");
     this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
@@ -51,6 +57,19 @@ public class LoadJShell extends Command {
     this.setMissingOperand("What file name, do wish to call the save?");
   }
 
+
+  /**
+   * If no paths are given, print the contents (file or directory) of the
+   * current directory, with a new line following each of the content (file or
+   * directory). Otherwise, for each path p, the order listed: • If p
+   * specifies a file, print p • If p specifies a directory, print p, a colon,
+   * then the contents of that directory, then an extra new line. • If p does
+   * not exist, print a suitable message.
+   * 
+   * @param tokens, array of string tokens holding command arguments
+   * @param shell, an instance of JShell
+   * @return returns an instance of the command
+   */
   @Override
   public Command run(String[] tokens, JShell shell) {
     if (shell.getCache().getHistorySize() <= 1) {

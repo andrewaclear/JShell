@@ -31,10 +31,15 @@ import data.FileSystemNode;
 import driver.JShell;
 import runtime.ErrorHandler;
 
+/**
+ * Makes a copy of a file or directory
+ * 
+ *
+ */
 public class Copy extends Command {
 
   /**
-   * Constructor for Move class. It initializes identifier, maxNumOfArguments,
+   * Constructor for Copy class. It initializes identifier, maxNumOfArguments,
    * minNumOfArguments errorTooManyArguments, missingOperand, and description
    * from its super class Commands.
    */
