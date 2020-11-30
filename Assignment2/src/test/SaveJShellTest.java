@@ -5,20 +5,19 @@ import java.lang.reflect.Field;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import commands.Command;
 import commands.Echo;
 import commands.History;
 import commands.LoadJShell;
 import commands.MakeDirectory;
-import commands.Redirection;
 import commands.SaveJShell;
 import commands.Tree;
 import data.Cache;
 import data.FileSystem;
 import driver.JShell;
 
-public class LoadJShellTest {
-  private LoadJShell loadShell;
+public class SaveJShellTest {
+
+  private SaveJShell saveShell;
   private JShell shell;
   private JShell testShell;
 
@@ -67,47 +66,75 @@ public class LoadJShellTest {
     shell.getCache().addHistoryLine("history 1");
     shell.getCache().addHistoryLine("history 100");
 
-    // SaveJShell save = new SaveJShell();
-    // String[] tokens = {"saveJShell", "testerLoad"};
-    // save.run(tokens, shell);
+    SaveJShell save = new SaveJShell();
+    String[] tokens = {"saveJShell", "testerSave"};
+    SaveJShell saveTest = (SaveJShell) save.run(tokens, shell);
 
-    loadShell = new LoadJShell();
-    String[] actual = {"loadJShell", "testerLoad"};
+    LoadJShell loader =  new LoadJShell();
+    String[] actual = {"loadJShell", "testerSave"};
     testShell.setCache(new Cache());
-    loadShell.run(actual, testShell);
+    loader.run(actual, testShell);
 
     History his = new History();
     History his2 = new History();
     String[] setHis = {"history"};
 
-    assertEquals("loadJShell did not correctly load history",
+    assertEquals("saveJShell did not correctly save history",
         his.run(setHis, shell).getOutput(),
         his2.run(setHis, testShell).getOutput());
-    assertEquals("loadJShell did not correctly load current directory",
+    assertEquals("saveJShell did not correctly save current directory",
         shell.getfSystem().getCurrentDirectory().getDirectory()
             .getDirectoryName(),
         testShell.getfSystem().getCurrentDirectory().getDirectory()
             .getDirectoryName());
     Tree tree = new Tree();
     String[] setTree = {"tree"};
-    assertEquals("loadJShell did not correctly load filesystem",
+    assertEquals("saveJShell did not correctly save filesystem",
         tree.checkRun(setTree, shell).getOutput(),
         tree.checkRun(setTree, testShell).getOutput());
-    
-    assertEquals("loadJShell did return expected error msg",
-        "loadJShell: Non-empty JShell",
-        loadShell.run(actual, testShell).getErrors());
   }
-
+  
+  //Test if correctly overrites file with same name
   @Test
   public void testRun2() throws Exception {
-    loadShell = new LoadJShell();
-    String[] actual = {"loadJShell", "fakename"};
+    MakeDirectory make = new MakeDirectory();
+    Echo echo = new Echo();
+    String[] createDir1 =
+        {"mkdir", "dir1", "dir1/a", "dir1/b"};
+    String[] echoOut = {"echo", "\"apples\"", ">", "dir1/a/file1"};
+    make.checkRun(createDir1, shell);
+    echo.checkRun(echoOut, shell);
+    shell.getCache()
+        .addHistoryLine("mkdir dir1 dir1/a dir1/b");
+    shell.getCache().addHistoryLine("echo \"apples\" > dir1/a/file1");
+    shell.getCache().addHistoryLine("ls");
+    
+    SaveJShell save = new SaveJShell();
+    String[] tokens = {"saveJShell", "testerSave"};
+    SaveJShell saveTest = (SaveJShell) save.run(tokens, shell);
+    
+    LoadJShell loader =  new LoadJShell();
+    String[] actual = {"loadJShell", "testerSave"};
+    testShell.setCache(new Cache());
+    loader.run(actual, testShell);
 
-    LoadJShell loader = (LoadJShell) loadShell.run(actual, testShell);
-
-    assertEquals("loadJShell did return expected error msg",
-        "loadJShell: \"fakename\": No such file or directory",
-        loader.getErrors());  
+    History his = new History();
+    History his2 = new History();
+    String[] setHis = {"history"};
+    
+    assertEquals("saveJShell did not correctly save history",
+        his.run(setHis, shell).getOutput(),
+        his2.run(setHis, testShell).getOutput());
+    assertEquals("saveJShell did not correctly save current directory",
+        shell.getfSystem().getCurrentDirectory().getDirectory()
+            .getDirectoryName(),
+        testShell.getfSystem().getCurrentDirectory().getDirectory()
+            .getDirectoryName());
+    Tree tree = new Tree();
+    String[] setTree = {"tree"};
+    assertEquals("saveJShell did not correctly save filesystem",
+        tree.checkRun(setTree, shell).getOutput(),
+        tree.checkRun(setTree, testShell).getOutput());
   }
+
 }

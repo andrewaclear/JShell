@@ -18,14 +18,14 @@ public class ClientUrlTest {
 
   private ClientUrl curl;
   private JShell shell;
-  
+
   @Before
   public void setUp() throws Exception {
     shell = new JShell();
     shell.setfSystem(FileSystem.createFileSystem());
 
   }
-  
+
   @After
   public void tearDown() throws Exception {
     Field field =
