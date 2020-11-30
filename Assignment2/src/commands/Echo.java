@@ -55,7 +55,7 @@ public class Echo extends Command {
         + " the old contents if OUTFILE already exists. \nIn either case,"
         + " the only thing in OUTFILE should be STRING.");
     this.setIdentifier("echo");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("Please specify a string to print");

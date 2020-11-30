@@ -44,7 +44,7 @@ public class PrintWorkingDirectory extends Command {
     this.setIdentifier("pwd");
 
     // PrintWorkingDirectory must not have any arguments
-    this.setMaxNumOfArguments(3);
+    this.setMaxNumOfArguments(1);
     this.setMinNumOfArguments(1);
 
     // Error Handling

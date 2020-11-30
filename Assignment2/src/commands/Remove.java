@@ -42,7 +42,7 @@ public class Remove extends Command {
     this.setIdentifier("rm");
 
     // Remove must only have two tokens
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
 
     // Error Handling

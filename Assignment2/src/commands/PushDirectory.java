@@ -49,7 +49,7 @@ public class PushDirectory extends Command {
         + " be returned to at any time (via the popd command). \nThe size"
         + " of the directory stack is dynamic and dependent on the \npushd"
         + " and the popd commands.");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("Must provide a directory to navigate to");

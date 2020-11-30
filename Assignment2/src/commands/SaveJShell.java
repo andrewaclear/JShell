@@ -21,7 +21,7 @@ public class SaveJShell extends Command {
             + " of your computer. The purpose of this\r\n"
             + "command is to save the session of the JShell before the user"
             + " closes it down. ");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments, please enter fileName");
     this.setMissingOperand("What file name, do wish to call the save?");

@@ -24,6 +24,8 @@
 // *********************************************************
 package commands;
 
+import java.util.Arrays;
+
 import data.FileSystemNode;
 import driver.JShell;
 import io.StandardOutput;
@@ -216,36 +218,39 @@ public class Command {
    */
   public Command checkRun(String[] tokens, JShell shell) {
     boolean arrow = containsArrow(tokens);
-    if (this.getMaxNumOfArguments() == -1
-        || !arrow && tokens.length <= this.getMaxNumOfArguments() - 2
-        || arrow && tokens.length == this.getMaxNumOfArguments()) {
+    // if (this.getMaxNumOfArguments() == -1
+    //     || !arrow && tokens.length <= this.getMaxNumOfArguments()
+    //     || arrow && tokens.length <= this.getMaxNumOfArguments() + 2) {
 
-      String name =
-          shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
-      FileSystemNode targetNode = shell.getfSystem()
-          .getSemiFileSystemNode(tokens[tokens.length - 1]);
-      boolean validName = !shell.getfSystem().inappropriateName(name);
-      boolean validPath = targetNode != null;
-      if (arrow) {
-        if (!validName) {
-          this.setErrors(ErrorHandler.invalidName(this, name));
-          return this;
-        }
-        if (!validPath) {
-          this.setErrors(
-              ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
-          return this;
-        }   
-        if (targetNode.isChildInside(name)) {
-          this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
-          return this;
-        }
+    String name =
+       shell.getfSystem().getPathLastEntry(tokens[tokens.length - 1]);
+    FileSystemNode targetNode = shell.getfSystem()
+        .getSemiFileSystemNode(tokens[tokens.length - 1]);
+    boolean validName = !shell.getfSystem().inappropriateName(name);
+    boolean validPath = targetNode != null;
+    if (arrow) {
+      if (!validName) {
+        this.setErrors(ErrorHandler.invalidName(this, name));
+        return this;
       }
-      return this.run(tokens, shell);
-
+      if (!validPath) {
+        this.setErrors(
+            ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
+        return this;
+      }   
+      if (targetNode.isChildInside(name)) {
+        this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
+        return this;
+      } 
+      if (!this.getIdentifier().equals("echo") && !this.getIdentifier().equals("redirect")) {
+        return this.run(Arrays.copyOfRange(tokens, 0, tokens.length-2), shell);
+      }
     }
-    this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
-    return this;
+    return this.run(tokens, shell);
+
+    // }
+    // this.setErrors(ErrorHandler.invalidComboOfParams(this, tokens));
+    // return this;
   }
 
 

@@ -21,7 +21,7 @@ public class ClientUrl extends Command {
     this.setIdentifier("curl");
     this.setDescription("Retrieve the file at that URL\r\n"
         + "and add it to the current working directory");
-    this.setMaxNumOfArguments(4);
+    this.setMaxNumOfArguments(2);
     this.setMinNumOfArguments(2);
     this.setErrorTooManyArguments("Too many arguments");
     this.setMissingOperand("Enter a URL");
