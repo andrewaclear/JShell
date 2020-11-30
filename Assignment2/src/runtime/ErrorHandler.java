@@ -42,6 +42,7 @@ public class ErrorHandler {
    * Prints tooManyArguments error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @return returns the error
    */
   public static String tooManyArguments(Command command) {
     return command.getIdentifier() + ": " + command.getErrorTooManyArguments();
@@ -51,6 +52,7 @@ public class ErrorHandler {
    * Prints commandNotFound error message
    * 
    * @param tokens, array of string tokens holding command arguments
+   * @return returns the error
    */
   public static String commandNotFound(String[] tokens) {
     return tokens[0] + ": Command not found";
@@ -59,7 +61,8 @@ public class ErrorHandler {
   /**
    * Prints commandNotFoundManual error message
    * 
-   * @param commandNotFound, name of command for which error occured
+   * @param commandNotFound, name of command for which error occurred
+   * @return returns the error
    */
   public static String commandNotFoundManual(Manual man,
       String commandNotFound) {
@@ -70,6 +73,7 @@ public class ErrorHandler {
    * Prints missingOperand error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @return returns the error
    */
   public static String missingOperand(Command command) {
     return command.getIdentifier() + ": " + command.getErrorMissingOperand();
@@ -80,6 +84,7 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
+   * @return returns the error
    */
   public static String missingString(Command command, String[] tokens) {
     return command.getIdentifier() + ": " + tokens[1]
@@ -88,6 +93,7 @@ public class ErrorHandler {
 
   /**
    * Prints illegalString error message
+   * @return returns the error
    */
   public static String illegalString() {
     return "parser: Illegal character in string";
@@ -98,6 +104,7 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param message, error message to be printed
+   * @return returns the error
    */
   public static String badInput(Command command, String message) {
     return command.getIdentifier() + ": " + message;
@@ -107,6 +114,7 @@ public class ErrorHandler {
    * Prints fileAlreadyExist error message
    * 
    * @param file, name of file not found
+   * @return returns the error
    */
   public static String fileAlreadyExist(Command command, String file) {
     return command.getIdentifier() + ": " + file
@@ -118,6 +126,7 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
+   * @return returns the error
    */
   public static String invalidComboOfParams(Command command, String[] tokens) {
     String output = "";
@@ -133,6 +142,7 @@ public class ErrorHandler {
    * Prints invalidPath error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @return returns the error
    */
   public static String invalidPath(Command command, String path) {
     return command.getIdentifier() + ": \"" + path
@@ -144,6 +154,7 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
+   * @return returns the error
    */
   public static String invalidName(Command command, String token) {
     return command.getIdentifier() + ": \"" + token
@@ -156,6 +167,7 @@ public class ErrorHandler {
    * @param directoryName, name of directory
    * @param node, an instance of FileSystemNode that holds the position of child
    *        node in FileSystem
+   * @return returns the error
    */
   public static String childAlreadyExistant(String directoryName,
       FileSystemNode node) {
@@ -167,6 +179,7 @@ public class ErrorHandler {
    * Prints inappropriatePath error message
    * 
    * @param givenPath, the invalid path
+   * @return returns the error
    */
   public static String inappropriatePath(Command command, String givenPath) {
     return command.getIdentifier() + ": " + givenPath
@@ -195,6 +208,7 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, a FileSystemNode path
    * @param targetPath, a FileSystemNode path
+   * @return returns the error
    */
   public static String subFileSystemNodeError(Command command, String givenPath,
       String targetPath) {
@@ -206,6 +220,7 @@ public class ErrorHandler {
    * Prints invalidUrl error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @return returns the error
    */
   public static String invalidUrl(Command command, String url) {
     return command.getIdentifier() + ": \"" + url
@@ -220,6 +235,7 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, a FileSystemNode path
    * @param targetPath, a File path
+   * @return returns the error
    */
   public static String moveDirectoryIntoFileError(Command command,
       String givenPath, String targetPath) {
@@ -234,6 +250,7 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param targetPath, a File path
+   * @return returns the error
    */
   public static String changeDirectoryIntoFileError(Command command,
       String targetPath) {
@@ -241,7 +258,13 @@ public class ErrorHandler {
         + targetPath;
   }
 
-
+  /**
+   *  copyDirectoryIntoFileError returns an error for invalid copy direcoty
+   * @param command instance of command
+   * @param givenPath the file path
+   * @param targetPath the target path
+   * @return returns the error
+   */
   public static String copyDirectoryIntoFileError(Command command,
       String givenPath, String targetPath) {
     return command.getIdentifier() + ": cannot copy directory " + givenPath
