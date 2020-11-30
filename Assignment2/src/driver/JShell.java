@@ -75,9 +75,9 @@ public class JShell implements java.io.Serializable {
       // StandardOutput.println("/#: "); //Shows beginning of a line
       input.nextLine();
       // add line to history
-      cache.addHistoryLine(input.currentLine);
+      cache.addHistoryLine(input.getCurrentLine());
       // Parses input into tokens and then executes the command
-      String[] tokens = parse.parse(input.currentLine);
+      String[] tokens = parse.parse(input.getCurrentLine());
       if (!(tokens.length == 1 && tokens[0].equals("~FailedParsing~"))) {
         run = execute.executeCommand(tokens, this);
         if (run.getOutput() != null && !run.getOutput().equals("")) {
