@@ -67,11 +67,11 @@ public class StandardOutput {
       }
     // } else if (tokens.length <= command.getMaxNumOfArguments()-2 
     //            || command.getMaxNumOfArguments() == -1) {
-    } return StandardOutput.println(output);
+    } else return StandardOutput.println(output);
     // } else {
     //   ErrorHandler.invalidComboOfParams(command, tokens);
     // }
-   // return null;
+   return null;
   }
 
 
