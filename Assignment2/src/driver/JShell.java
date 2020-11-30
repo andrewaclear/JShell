@@ -33,12 +33,12 @@ import data.*;
  * The JShell program is a Java implementation of a bash shell. The following
  * commands are included: exit, mkdir, cd, ls, pwd, pushd, popd, history, cat,
  * echo, man. The goal of this project is to make smart design choices about
- * when to use: inheritance, composition, polymorphism, reflection and/or
- * interfaces. Further, it was to practice developing in an Agile environment;
- * writing dailyScrum meeting logs and meeting with our team to write sprint
- * backlogs and a product backlog. Finally, we also created an auto tester using
- * JUnit and assert and then generated documentation using Javadocs. Logistics:
- * Collaborated and commited code using SVN
+ * when to use: inheritance, composition, polymorphism, generics, reflection
+ * and/or interfaces. Further, it was to practice developing in an Agile
+ * environment; writing dailyScrum meeting logs and meeting with our team to
+ * write sprint backlogs and a product backlog. Finally, we also created an auto
+ * tester using JUnit and assert and then generated documentation using
+ * Javadocs. Logistics: Collaborated and commited code using SVN
  * 
  * @author Christopher Suh
  * @author Christian Chen Liu
@@ -56,6 +56,10 @@ public class JShell implements java.io.Serializable {
   private FileSystem fSystem;
   private Cache cache;
 
+  /**
+   * Constructor for JShell class. It initializes run, identifier for run,
+   * parse, execute, input, fSystem, and cache.
+   */
   public JShell() {
     this.run = new Command();
     this.run.setIdentifier("command");
@@ -65,7 +69,12 @@ public class JShell implements java.io.Serializable {
     this.fSystem = FileSystem.createFileSystem();
     this.cache = new Cache();
   }
-
+  
+  /**
+   * Main while loop of program to get continuous input. Send input to 
+   * execution to be executed. After execution, prints out the returned output
+   * and or errors from execution.
+   */
   private void runShell() {
     // Main program loop
     while (!run.getIdentifier().equals("exit")) {
@@ -90,19 +99,35 @@ public class JShell implements java.io.Serializable {
     }
     input.close();
   }
-
+  
+  /**
+   * Getter for the JShell file system
+   * @return the JShell FileSystem
+   */
   public FileSystem getfSystem() {
     return fSystem;
   }
-
+  
+  /**
+   * Setter for the JShell file system
+   * @param fSystem file system to be set
+   */
   public void setfSystem(FileSystem fSystem) {
     this.fSystem = fSystem;
   }
-
+  
+  /**
+   * Getter for cache
+   * @return returns JShell cache
+   */
   public Cache getCache() {
     return cache;
   }
-
+  
+  /**
+   * Setter for cache
+   * @param cache cache to be set
+   */
   public void setCache(Cache cache) {
     this.cache = cache;
   }
