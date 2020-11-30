@@ -70,14 +70,14 @@ public class Tree extends Command {
 
     int nextLevel = level + 1;
 
-    for (File file : fileSystemNode.getDirectory().getFiles()) {
-      output += indentationUnit.repeat(nextLevel) + file.getFileName() + "\n";
-    }
-
     for (FileSystemNode child : fileSystemNode.getChildren()) {
       output = recursiveTreeDisplay(output, child, nextLevel);
     }
-
+    
+    for (File file : fileSystemNode.getDirectory().getFiles()) {
+      output += indentationUnit.repeat(nextLevel) + file.getFileName() + "\n";
+    }
+    
     return output;
   }
 }

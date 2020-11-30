@@ -238,7 +238,7 @@ public class Command {
             ErrorHandler.invalidPath(this, tokens[tokens.length - 1]));
         return this;
       }   
-      if (targetNode.isChildInside(name)) {
+      if (targetNode.isChildInsideByDirectoryName(name)) {
         this.setErrors(ErrorHandler.childAlreadyExistant(name, targetNode));
         return this;
       } 

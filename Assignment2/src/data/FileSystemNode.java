@@ -156,14 +156,16 @@ public class FileSystemNode implements java.io.Serializable {
   }
 
   /**
-   * isChildInside returns true if one of the children of this FileSystemNode
-   * has the given directoryName, otherwise, false
+   * isChildInsideByDirectoryName returns true if one of the children of 
+   * this FileSystemNodehas has as its directoryName the given directoryName, 
+   * otherwise, false
    * 
-   * @param directoryName, a String
+   * @param directoryName, a String that refers to a directoryName of a 
+   *    Directory
    * @return true if one of the children of this FileSystemNode has the given
    *         directoryName, otherwise, false
    */
-  public boolean isChildInside(String directoryName) {
+  public boolean isChildInsideByDirectoryName(String directoryName) {
     for (FileSystemNode child : this.children) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) 
         return true;
@@ -173,17 +175,19 @@ public class FileSystemNode implements java.io.Serializable {
   
   
   /**
-   * removeChildByDirectoryName removes the directories from the children 
-   * that have their  directoryName as directoryName, if there are none, 
+   * removeChildByDirectoryName removes the directory from the children 
+   * that has its directoryName as directoryName, if there is none, 
    * do nothing. 
    * 
-   * @param directoryName, a String 
+   * @param directoryName, a String that refers to a directoryName of a 
+   *    Directory
    */
   public void removeChildByDirectoryName(String directoryName) {
     int index = 0;
-    for (FileSystemNode child : this.children) {
+    for (FileSystemNode child : this.getChildren()) {
       if (child.getDirectory().getDirectoryName().equals(directoryName)) {
-        this.children.remove(index);
+        this.getChildren().remove(index);
+        break;
       }
       index += 1;
     }
@@ -195,7 +199,10 @@ public class FileSystemNode implements java.io.Serializable {
    * that has directoryName as its directoryName, if there are none, return
    * null
    * 
-   * @param directoryName, a String 
+   * @param directoryName, a String that refers to a directoryName of a 
+   *    Directory
+   * @return the FIleSystemNode in children that has as its directoryName
+   *    the given directoryName
    */
   public FileSystemNode getChildByDirectoryName(String directoryName) {
     for (FileSystemNode child : this.children) {

@@ -212,7 +212,7 @@ public class MakeDirectoryTest {
     String[] redirectionTokens1 = {"redirect", "\"damnnnnlet\"", ">", "sugoi"};
     redirection.run(redirectionTokens1, shell);
     
-    String[] mkdirTokens1 = {"mkdir", "clean", "clean/YO", "sugoi"};
+    String[] mkdirTokens1 = {"mkdir", "clean", "clean/sugoi", "sugoi"};
     Command theResultingCommand = mkdir.run(mkdirTokens1, shell);
     String actualErrors = theResultingCommand.getErrors();
     assertEquals("The file/directory " + "sugoi" + " already exists at "
@@ -222,7 +222,7 @@ public class MakeDirectoryTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  sugoi\n  clean\n    YO", actualOutput);
+    assertEquals("/\n  clean\n    sugoi\n  sugoi", actualOutput);
   }
   
 }

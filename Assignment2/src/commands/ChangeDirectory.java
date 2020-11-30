@@ -87,6 +87,11 @@ public class ChangeDirectory extends Command {
     if (targetNode != null) {
       // Set the current Directory to the targetNode
       shell.getfSystem().setCurrentDirectory(targetNode);
+    } else if (fSystem.getSemiFileSystemNode(tokens[1]) != null && 
+        fSystem.getSemiFileSystemNode(tokens[1]).getDirectory().
+        isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
+      this.setErrors(ErrorHandler.changeDirectoryIntoFileError(
+          this, tokens[1])); 
     } else if (!fSystem.inappropriatePath(tokens[1])) {
       this.setErrors(ErrorHandler.invalidPath(this, tokens[1]));
     } else {

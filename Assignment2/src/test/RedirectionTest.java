@@ -37,9 +37,11 @@ public class RedirectionTest {
 
     redirect.checkRun(testRedirect, shell);
     assertNotNull("Redirection did correctly make file",
-        shell.getfSystem().getCurrentDirectory().getFile("file"));
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file"));
     assertEquals("Redirection has correct file contents", "Hello the world",
-        shell.getfSystem().getCurrentDirectory().getFile("file").getContent());
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file").getContent());
 
     // Correct overrides file with same name
     String[] testRedirect2 =
@@ -47,10 +49,12 @@ public class RedirectionTest {
 
     redirect.checkRun(testRedirect2, shell);
     assertNotNull("Redirection did correctly make file",
-        shell.getfSystem().getCurrentDirectory().getFile("file"));
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file"));
     assertEquals("Redirection has correct file contents",
         "Apples, peaches and oranges",
-        shell.getfSystem().getCurrentDirectory().getFile("file").getContent());
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file").getContent());
 
   }
 
@@ -62,9 +66,11 @@ public class RedirectionTest {
 
     redirect.checkRun(testRedirect, shell);
     assertNotNull("Redirection did correctly make file",
-        shell.getfSystem().getCurrentDirectory().getFile("file"));
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file"));
     assertEquals("Redirection has correct file contents", "Hello the world",
-        shell.getfSystem().getCurrentDirectory().getFile("file").getContent());
+        shell.getfSystem().getCurrentDirectory().getDirectory().
+        getFileByFileName("file").getContent());
 
     // Correct appends file contents with files that have same name
     String[] testRedirect2 =
@@ -72,10 +78,12 @@ public class RedirectionTest {
 
     redirect.checkRun(testRedirect2, shell);
     assertNotNull("Redirection did correctly make file",
-        shell.getfSystem().getCurrentDirectory().getFile("file"));
+        shell.getfSystem().getCurrentDirectory().getDirectory()
+        .getFileByFileName("file"));
     assertEquals("Redirection has correct file contents",
         "Hello the worldApples, peaches and oranges",
-        shell.getfSystem().getCurrentDirectory().getFile("file").getContent());
+        shell.getfSystem().getCurrentDirectory().getDirectory()
+        .getFileByFileName("file").getContent());
   }
 
   // Test if redirect commands with an invalid file name

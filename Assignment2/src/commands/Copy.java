@@ -74,7 +74,8 @@ public class Copy extends Command {
       this.setErrors(ErrorHandler.subFileSystemNodeError(
           this, tokens[1], tokens[2]));
     else if (givenNode != null) {
-      if (givenNode.isChildInside(fSystem.getPathLastEntry(tokens[1]))) {
+      if (givenNode.isChildInsideByDirectoryName(
+          fSystem.getPathLastEntry(tokens[1]))) {
         copyFileSystemNode(tokens[1], tokens[2], shell);
       } else if (givenNode.getDirectory()
           .isFileInsideByFileName(fSystem.getPathLastEntry(tokens[1]))) {
