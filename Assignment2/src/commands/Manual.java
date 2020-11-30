@@ -67,7 +67,7 @@ public class Manual extends Command {
     descriptions.put("saveJShell", new SaveJShell().getDescription());
     descriptions.put("tree", new Tree().getDescription());
     descriptions.put("mv", new Move().getDescription());
-    // descriptions.put("cp", new Copy().getDescription());
+    descriptions.put("cp", new Copy().getDescription());
     descriptions.put("curl", new ClientUrl().getDescription());
 
 
