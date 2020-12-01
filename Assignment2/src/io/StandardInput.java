@@ -44,6 +44,7 @@ public class StandardInput {
 
   /**
    * Get current line
+   * @return the currentline from scanner
    */
   public String getCurrentLine() {
     return currentLine;
