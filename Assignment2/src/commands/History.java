@@ -80,7 +80,6 @@ public class History extends Command {
    * history.
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @param tokens, array of string tokens holding command arguments
    * @param shell an instance of JShell
    * @return returns an instance of command with output and errors
    */
