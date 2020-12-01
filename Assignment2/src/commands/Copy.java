@@ -51,8 +51,8 @@ public class Copy extends Command {
     this.setMinNumOfArguments(3);
 
     // Error Handling
-    this.setErrorTooManyArguments("at most four parameters are accepted");
-    this.setMissingOperand("there must be at least two parameters");
+    this.setErrorTooManyArguments("there must be exactly two parameter");
+    this.setMissingOperand("there must be exactly two parameter");
 
     // Description
     this.setDescription("This command copies a directory or file into the"
