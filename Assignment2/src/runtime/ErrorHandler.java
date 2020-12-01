@@ -59,6 +59,7 @@ public class ErrorHandler {
    * Prints commandNotFoundManual error message
    * 
    * @param commandNotFound, name of command for which error occurred
+   * @param man an instance of man class
    * @return returns the error
    */
   public static String commandNotFoundManual(Manual man,
