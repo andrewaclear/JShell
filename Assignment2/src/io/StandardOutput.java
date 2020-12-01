@@ -40,6 +40,7 @@ public class StandardOutput {
    * Prints message out to the shell on it's own line.
    * 
    * @param message, to be printed out to the shell
+   * @return returns message
    */
   public static String println(String message) {
     System.out.println(message);
