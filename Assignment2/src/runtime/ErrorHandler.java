@@ -36,31 +36,34 @@ import data.FileSystemNode;
 public class ErrorHandler {
 
   /**
-   * Prints tooManyArguments error message
+   * tooManyArguments the error message of command having too many 
+   * arguments
    * 
    * @param command, an instance of Command class or its subclasses
-   * @return returns the error
+   * @return the error message of command having too many arguments
    */
   public static String tooManyArguments(Command command) {
     return command.getIdentifier() + ": " + command.getErrorTooManyArguments();
   }
 
   /**
-   * Prints commandNotFound error message
+   * commandNotFound returns the error message of tokens[0] not being a 
+   * valid command
    * 
    * @param tokens, array of string tokens holding command arguments
-   * @return returns the error
+   * @return the error message of tokens[0] not being a valid command
    */
   public static String commandNotFound(String[] tokens) {
     return tokens[0] + ": Command not found";
   }
 
   /**
-   * Prints commandNotFoundManual error message
+   * commandNotFoundManual returns the error message of commandNotFound not 
+   * being found in Manual
    * 
    * @param commandNotFound, name of command for which error occurred
    * @param man an instance of man class
-   * @return returns the error
+   * @return  the error of commandNotFound not being found in Manual
    */
   public static String commandNotFoundManual(Manual man,
       String commandNotFound) {
@@ -68,10 +71,10 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints missingOperand error message
+   * missingOperand return the error message of missing the operant
    * 
    * @param command, an instance of Command class or its subclasses
-   * @return returns the error
+   * @return the error of missing the operant
    */
   public static String missingOperand(Command command) {
     return command.getIdentifier() + ": " + command.getErrorMissingOperand();
