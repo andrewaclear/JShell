@@ -60,7 +60,8 @@ public class CopyTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass())
+        .getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }
@@ -71,7 +72,8 @@ public class CopyTest {
     String[] cpTokens = {"cp", "/", "/"};
     Command theResultingCommand = cp.run(cpTokens, shell);
     String actualErrors = theResultingCommand.getErrors();
-    assertEquals("cp: / is inside /", actualErrors);
+    assertEquals("cp: could not perform action, / is inside /", 
+        actualErrors);
 
     String[] treeTokens = {"tree"};
     Command theCheckCommand = tree.run(treeTokens, shell);

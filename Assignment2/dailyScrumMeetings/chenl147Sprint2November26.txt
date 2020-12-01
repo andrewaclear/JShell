@@ -10,4 +10,4 @@ What do I plan to work in the next three days?
     - Update the crc cards of my assigned tasks
 
 Am I blocked on anything?
-    - I cannot fully complete my test cases of Remove and Tree without having the new implementation of MakeDirectory
+    - No

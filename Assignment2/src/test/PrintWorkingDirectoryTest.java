@@ -53,7 +53,8 @@ public class PrintWorkingDirectoryTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass())
+        .getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }
@@ -91,8 +92,8 @@ public class PrintWorkingDirectoryTest {
   @Test
   public void runTest3() {
     
-    String[] mkdirTokens = {"mkdir", "okay", "no", "yes", "yes/maybe", "yes/ok", 
-        "idk", "idk/wtf", "yes/maybe/ha"};
+    String[] mkdirTokens = {"mkdir", "okay", "no", "yes", 
+        "yes/maybe", "yes/ok", "idk", "idk/wtf", "yes/maybe/ha"};
     mkdir.run(mkdirTokens, shell);
     
     String[] cdTokens = {"cd", "yes/maybe/ha"};

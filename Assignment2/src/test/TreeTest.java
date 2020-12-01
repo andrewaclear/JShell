@@ -55,7 +55,8 @@ public class TreeTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass())
+        .getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }
@@ -87,7 +88,8 @@ public class TreeTest {
     String actualOutput = theResultingCommand.getOutput();
     String actualErrors = theResultingCommand.getErrors();
     
-    assertEquals("/\n  kha\n  bruh\n    banana\n    apple\n  c", actualOutput);
+    assertEquals("/\n  kha\n  bruh\n    banana\n    apple\n  c", 
+        actualOutput);
     assertEquals(null, actualErrors);
   }
   

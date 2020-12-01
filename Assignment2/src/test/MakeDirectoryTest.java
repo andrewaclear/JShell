@@ -56,7 +56,8 @@ public class MakeDirectoryTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass())
+        .getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }
@@ -101,8 +102,8 @@ public class MakeDirectoryTest {
   
   @Test
   public void runTest3() {
-    String[] mkdirTokens = {"mkdir", "/a", "/b", "/c", "/a/banana", "/b/apple", 
-        "/a/banana/split", "/a/orange"};
+    String[] mkdirTokens = {"mkdir", "/a", "/b", "/c", "/a/banana", 
+        "/b/apple", "/a/banana/split", "/a/orange"};
     Command theResultingCommand = mkdir.run(mkdirTokens, shell);
     String actualErrors = theResultingCommand.getErrors();
     assertEquals(null, actualErrors);
@@ -136,8 +137,8 @@ public class MakeDirectoryTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  a\n    banana\n      yolo\n    hue\n  b\n  c\n  d\n    "
-        + "hai", actualOutput);
+    assertEquals("/\n  a\n    banana\n      yolo\n    hue\n  b\n  c\n  "
+        + "d\n    hai", actualOutput);
   }
   
   
