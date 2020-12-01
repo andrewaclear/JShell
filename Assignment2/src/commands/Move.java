@@ -146,6 +146,7 @@ public class Move extends Command {
             givenPath, targetPath));
     } else if (!targetNode.getChildByDirectoryName(targetName).getDirectory()
         .isFileInsideByFileName(givenName)) {
+      
       targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
       givenNode.setParent(targetNode
           .getChildByDirectoryName(fSystem.getPathLastEntry(targetPath)));

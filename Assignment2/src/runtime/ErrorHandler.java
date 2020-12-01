@@ -24,10 +24,7 @@
 // *********************************************************
 package runtime;
 
-import io.StandardOutput;
-import commands.ChangeDirectory;
 import commands.Command;
-import commands.Copy;
 import commands.Manual;
 import data.FileSystemNode;
 
@@ -114,6 +111,7 @@ public class ErrorHandler {
   /**
    * Prints fileAlreadyExist error message
    * 
+   * @param command, an instance of Command class or its subclasses
    * @param file, name of file not found
    * @return returns the error
    */
@@ -143,10 +141,11 @@ public class ErrorHandler {
    * Prints invalidPath error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @param invalidPath, a bad path
    * @return returns the error
    */
-  public static String invalidPath(Command command, String path) {
-    return command.getIdentifier() + ": \"" + path
+  public static String invalidPath(Command command, String invalidPath) {
+    return command.getIdentifier() + ": \"" + invalidPath
         + "\": No such file or directory";
   }
 
@@ -154,7 +153,7 @@ public class ErrorHandler {
    * Prints invalidName error message
    * 
    * @param command, an instance of Command class or its subclasses
-   * @param tokens, array of string tokens holding command arguments
+   * @param token, a file or directory name
    * @return returns the error
    */
   public static String invalidName(Command command, String token) {
@@ -179,6 +178,7 @@ public class ErrorHandler {
   /**
    * Prints inappropriatePath error message
    * 
+   * @param command, an instance of Command class or its subclasses
    * @param givenPath, the invalid path
    * @return returns the error
    */
@@ -221,6 +221,7 @@ public class ErrorHandler {
    * Prints invalidUrl error message
    * 
    * @param command, an instance of Command class or its subclasses
+   * @param url, an invalid URL or file
    * @return returns the error
    */
   public static String invalidUrl(Command command, String url) {
