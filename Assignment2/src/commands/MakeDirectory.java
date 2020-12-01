@@ -42,8 +42,8 @@ public class MakeDirectory extends Command {
 
   /**
    * Constructor for MakeDirectory class. It initializes identifier,
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
-   * and description from its super class Commands.
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
    */
   public MakeDirectory() {
     this.setIdentifier("mkdir");
@@ -62,17 +62,17 @@ public class MakeDirectory extends Command {
         + " to the current directory or may \nbe a full path."
         + " If creating DIR1 results in any kind of error,"
         + " \ndo not proceed with creating DIR 2. However, if DIR1"
-        + " was created \nsuccessfully, and DIR2 creation results in an error,"
-        + " then give \nback an error specific to DIR2. ");
+        + " was created \nsuccessfully, and DIR2 creation results "
+        + "in an error, then give \nback an error specific to DIR2. ");
   }
 
   /**
    * The run method of MakeDirectory makes two directories in the given path
-   * tokens[1] and tokens[2] if both paths are valid/appropriate in fileSystem,
-   * or makes a directory in the path tokens[1] if tokens[1] is a
+   * tokens[1] and tokens[2] if both paths are valid/appropriate in 
+   * fileSystem, or makes a directory in the path tokens[1] if tokens[1] is a
    * valid/appropriate path in fileSystem but tokens[2] is not, or makes no
-   * directories at all if tokens[1] is not a valid/appropriate path in fSystem.
-   * In any case, returns true after being done.
+   * directories at all if tokens[1] is not a valid/appropriate path in 
+   * fSystem. In any case, returns true after being done.
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell contains the FileSystem and cache

@@ -39,8 +39,8 @@ public class ChangeDirectory extends Command {
 
   /**
    * Constructor for ChangeDirectory class. It initializes identifier,
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
-   * and description from its super class Commands.
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
    */
   public ChangeDirectory() {
     this.setIdentifier("cd");
