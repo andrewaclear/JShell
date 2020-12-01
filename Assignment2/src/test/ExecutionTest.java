@@ -63,7 +63,7 @@ public class ExecutionTest {
     String[] tooMany = {"rm", "\"blah\"", "blah", "blah", "blah"};
     exeTest = execute.executeCommand(tooMany, shell);
     assertEquals("Execution wrong msg/error",
-        "rm: at most three parameters are accepted",
+        "rm: there must be exactly one parameter",
         exeTest.getOutput() != null ? exeTest.getOutput()
             : "" + exeTest.getErrors() != null ? exeTest.getErrors() : "");
   }
