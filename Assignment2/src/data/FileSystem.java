@@ -201,7 +201,11 @@ public class FileSystem implements java.io.Serializable {
   public String getPathLastEntry(String givenPath) {
 
     String[] splitPath;
-
+    
+    if (givenPath.equals("/")) {
+      return "/";
+    }
+    
     if (givenPath.charAt(0) == '/') {
       splitPath = givenPath.substring(1).split("/");
     } else {
