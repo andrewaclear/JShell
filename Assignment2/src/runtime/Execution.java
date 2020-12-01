@@ -58,6 +58,8 @@ public class Execution {
   public Command executeCommand(String[] tokens, JShell shell) {
     Command run = new Command();
     run.setIdentifier("command");
+    boolean upperMax, lowerMin;
+    int max, min, len;
 
     try {
       if (commandHashMap.containsKey(tokens[0])) {
@@ -66,10 +68,15 @@ public class Execution {
             .getDeclaredConstructor().newInstance();
 
         boolean arrow = Command.containsArrow(tokens);
-        if (((command.getMaxNumOfArguments() == -1
-            || !arrow && tokens.length <= command.getMaxNumOfArguments()
-            || arrow && tokens.length <= command.getMaxNumOfArguments() + 2))
-            && tokens.length >= command.getMinNumOfArguments()) {
+        max = command.getMaxNumOfArguments();
+        min = command.getMinNumOfArguments();
+        len = tokens.length;
+        if (arrow) {
+          if (max != -1) max+=2; 
+          min+=2;
+        }
+        
+        if (len >= min && (max == -1 || len <= max)) {
           return command.checkRun(tokens, shell);
         } else if (tokens.length < command.getMinNumOfArguments()) {
           run.setErrors(ErrorHandler.missingOperand(command));
