@@ -58,9 +58,9 @@ public class Move extends Command {
 
   /**
    * The run method of Move moves a FileSystemNode into another directory or
-   * moves a File into another FileSystemNode or overwrites a file into another
-   * file path that already exists or copies the content of a file into another
-   * file path
+   * moves a File into another FileSystemNode or overwrites a file 
+   * into anotherfile path that already exists or copies the content of a 
+   * file into another file path
    * 
    * @param tokens, array of string tokens holding command arguments
    * @param shell contains the FileSystem and cache
@@ -95,8 +95,8 @@ public class Move extends Command {
    * moveFileSystemNode moves a FileSystemNode that the givenPath refers to to
    * another FileSystemNode that targetPath refers if there is no file with
    * directory of the givenPath. It can also change the directoryName of the
-   * givenPath if the targetPath last entry doesn't exists but the rest does, so
-   * it changes the directoryName to the last entry of targetPath
+   * givenPath if the targetPath last entry doesn't exists but the rest does, 
+   * so it changes the directoryName to the last entry of targetPath
    * 
    * @param givenPath, a path to a FileSystemNode
    * @param targetPath, a path to a FileSystemNode or File
