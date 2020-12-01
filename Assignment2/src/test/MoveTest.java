@@ -60,7 +60,8 @@ public class MoveTest {
   @After
   public void tearDown() throws Exception
   {
-    Field field = (shell.getfSystem().getClass()).getDeclaredField("fileSystem");
+    Field field = (shell.getfSystem().getClass())
+        .getDeclaredField("fileSystem");
     field.setAccessible(true);
     field.set(null, null);
   }
@@ -71,7 +72,7 @@ public class MoveTest {
     String[] cpTokens = {"mv", "/", "/"};
     Command theResultingCommand = mv.run(cpTokens, shell);
     String actualErrors = theResultingCommand.getErrors();
-    assertEquals("mv: / is inside /", actualErrors);
+    assertEquals("mv: could not perform action, / is inside /", actualErrors);
 
     String[] treeTokens = {"tree"};
     Command theCheckCommand = tree.run(treeTokens, shell);
@@ -248,8 +249,8 @@ public class MoveTest {
     Command theCheckCommand = tree.run(treeTokens, shell);
     String actualOutput = theCheckCommand.getOutput();
     
-    assertEquals("/\n  "
-        + "dir2\n    orange\n  dir3\n  wtf\n    banana\n    ooga", actualOutput);
+    assertEquals("/\n  dir2\n    orange\n  dir3\n  wtf\n    banana\n    ooga", 
+        actualOutput);
   }
   
   

@@ -103,20 +103,21 @@ public class Copy extends Command {
    */
   private void copyFileSystemNode(String givenPath, String targetPath,
       JShell shell) {
-
     FileSystem fSystem = shell.getfSystem();
-
     FileSystemNode clonedFileSystemNode =
         new FileSystemNode(new Directory("Dummy"));
-
     clonedFileSystemNode = fSystem.getFileSystemNode(givenPath)
         .cloneFileSystemNodeInto(clonedFileSystemNode);
-
     FileSystemNode targetNode = fSystem.getFileSystemNode(targetPath);
-
+    String givenName = fSystem.getPathLastEntry(fSystem.getFileSystemNode(
+        givenPath).getPath());
+    
     if (targetNode != null) {
-      clonedFileSystemNode.setParent(targetNode);
-      targetNode.addChild(clonedFileSystemNode);
+      if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
+        clonedFileSystemNode.setParent(targetNode);
+        targetNode.addChild(clonedFileSystemNode);
+      } else 
+        ErrorHandler.fileAlreadyExistantAtPath(this, givenPath);
     } else if (fSystem.getSemiFileSystemNode(targetPath) != null
         && fSystem.getSemiFileSystemNode(targetPath).getDirectory()
             .isFileInsideByFileName(fSystem.getPathLastEntry(targetPath))) {

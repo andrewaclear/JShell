@@ -135,13 +135,17 @@ public class Move extends Command {
     String givenName = fSystem.getPathLastEntry(targetPath);
     
     if (possibleNode != null) {
-      if (!possibleNode.getDirectory().isFileInsideByFileName(givenName)) {
-        possibleNode.addChild(givenNode);
-        givenNode.setParent(targetNode);
-        removeTheObject(givenPath, shell);
-      } else {
-          this.setErrors(ErrorHandler.fileAlreadyExist(this, givenName));
-      }
+      if (!possibleNode.getPath().startsWith(givenNode.getPath())) {
+        if (!possibleNode.getDirectory().isFileInsideByFileName(givenName)) {
+          possibleNode.addChild(givenNode);
+          givenNode.setParent(targetNode);
+          removeTheObject(givenPath, shell);
+        } else 
+            this.setErrors(ErrorHandler.fileAlreadyExistantAtPath(this, 
+               targetPath));
+      } else 
+        this.setErrors(ErrorHandler.subFileSystemNodeError(this, 
+            givenPath, targetPath));
     } else if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
         targetNode.addChild(givenNode);
         givenNode.setParent(targetNode);

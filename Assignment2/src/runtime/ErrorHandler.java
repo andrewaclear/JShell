@@ -78,11 +78,11 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints missingString error message
+   * missingString returns the error message of missing the string format
    * 
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
-   * @return returns the error
+   * @return the error of missing the string format
    */
   public static String missingString(Command command, String[] tokens) {
     return command.getIdentifier() + ": " + tokens[1]
@@ -90,31 +90,49 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints illegalString error message
+   * illegalString returns the error message of parsing an illegal character
    * 
-   * @return returns the error
+   * @return returns the error of parsing an illegal character
    */
   public static String illegalString() {
     return "parser: Illegal character in string";
   }
 
   /**
-   * Prints badInput error message
+   * badInput returns the error message of having bad input
    * 
    * @param command, an instance of Command class or its subclasses
    * @param message, error message to be printed
-   * @return returns the error
+   * @return the error of having bad input
    */
   public static String badInput(Command command, String message) {
     return command.getIdentifier() + ": " + message;
   }
+  
+  
+  /**
+   * moveDirectoryIntoFileError returns the error of givenPath being a 
+   * path to a Directory and targetPath being a File path 
+   * so you cannot move the directory
+   * 
+   * @param command, an instance of Command class or its subclasses
+   * @param givenPath, a Directory path
+   * @param targetPath, a File path
+   * @return the error of trying to move a directory into a file
+   */
+  public static String moveDirectoryIntoFileError(Command command,
+      String givenPath, String targetPath) {
+    return command.getIdentifier() + ": cannot move directory at " + givenPath
+        + " because " + targetPath + " refers to a file";
+  }
+  
 
   /**
-   * Prints fileAlreadyExist error message
+   * fileAlreadyExist returns the error message of file already existing
    * 
    * @param command, an instance of Command class or its subclasses
    * @param file, name of file not found
-   * @return returns the error
+   * @return the error of file already existing
    */
   public static String fileAlreadyExist(Command command, String file) {
     return command.getIdentifier() + ": " + file
@@ -122,11 +140,13 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints invalidComboOfParams error message
+   * invalidComboOfParams returns the error message of tokens being an
+   * invalid combination of parameters
    * 
    * @param command, an instance of Command class or its subclasses
    * @param tokens, array of string tokens holding command arguments
-   * @return returns the error
+   * @return output, the error message of tokens being an invalid 
+   *    combination of parameters
    */
   public static String invalidComboOfParams(Command command, String[] tokens) {
     String output = "";
@@ -139,11 +159,12 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints invalidPath error message
+   * invalidPath returns the error message of invalidPath being an invalid
+   * path
    * 
    * @param command, an instance of Command class or its subclasses
    * @param invalidPath, a bad path
-   * @return returns the error
+   * @return returns the error message of invalidPath being an invalidPath
    */
   public static String invalidPath(Command command, String invalidPath) {
     return command.getIdentifier() + ": \"" + invalidPath
@@ -151,11 +172,13 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints invalidName error message
+   * invalidName returns the error message of token being a invalid
+   * file and/or directory name
    * 
    * @param command, an instance of Command class or its subclasses
    * @param token, a file or directory name
-   * @return returns the error
+   * @return the error message of token being an invalid file and/or
+   *    directory name
    */
   public static String invalidName(Command command, String token) {
     return command.getIdentifier() + ": \"" + token
@@ -163,12 +186,14 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints childAlreadyExistant error message
+   * childAlreadyExistant returns the error message of a file or directory
+   * already existing at node.getPath()
    * 
    * @param directoryName, name of directory
-   * @param node, an instance of FileSystemNode that holds the position of child
-   *        node in FileSystem
-   * @return returns the error
+   * @param node, an instance of FileSystemNode that holds the position 
+   *    of child node in FileSystem
+   * @return  the error of a file or directory already existing at 
+   *    node.getPath()
    */
   public static String childAlreadyExistant(String directoryName,
       FileSystemNode node) {
@@ -177,21 +202,37 @@ public class ErrorHandler {
   }
 
   /**
-   * Prints inappropriatePath error message
+   * inappropriatePath returns the error message of givenPath 
+   * being inappropriate
    * 
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, the invalid path
-   * @return returns the error
+   * @return the error of givenPath being inappropriate
    */
   public static String inappropriatePath(Command command, String givenPath) {
     return command.getIdentifier() + ": " + givenPath
         + " contains illicit characters";
   }
 
-
+  
   /**
-   * RemoveDirectoryError gives the String error of trying to remove a Directory
-   * that is a subpath to the current directory
+   * changeDirectoryIntoFileError returns the error of targetPath refering 
+   * to a File so you cannot change directory
+   * 
+   * @param command, an instance of Command class or its subclasses
+   * @param targetPath, a File path
+   * @return returns the error
+   */
+  public static String changeDirectoryIntoFileError(Command command,
+      String targetPath) {
+    return command.getIdentifier() + ": cannot change directory to file "
+        + targetPath;
+  }
+  
+  
+  /**
+   * RemoveDirectoryError gives the String error of trying to 
+   * remove a Directorythat is a subpath to the current directory
    * 
    * @param givenPath, the invalid path
    * @return String error of trying to remove a Directory that is a subpath to
@@ -210,12 +251,12 @@ public class ErrorHandler {
    * @param command, an instance of Command class or its subclasses
    * @param givenPath, a FileSystemNode path
    * @param targetPath, a FileSystemNode path
-   * @return returns the error
+   * @return the error of targetPath being inside givenPath
    */
-  public static String subFileSystemNodeError(Command command, String givenPath,
-      String targetPath) {
-    return command.getIdentifier() + ": " + targetPath + " is inside "
-        + givenPath;
+  public static String subFileSystemNodeError(Command command, 
+      String givenPath,String targetPath) {
+    return command.getIdentifier() + ": could not perform action, " 
+      + targetPath + " is inside " + givenPath;
   }
 
   /**
@@ -223,43 +264,13 @@ public class ErrorHandler {
    * 
    * @param command, an instance of Command class or its subclasses
    * @param url, an invalid URL or file
-   * @return returns the error
+   * @return the error
    */
   public static String invalidUrl(Command command, String url) {
     return command.getIdentifier() + ": \"" + url
         + "\": Invalid valid URL or file found";
   }
 
-  /**
-   * moveDirectoryIntoFileError returns the error of givenPath being a path to a
-   * FileSystemNode and targetPath being a File path so you cannot move the
-   * directory
-   * 
-   * @param command, an instance of Command class or its subclasses
-   * @param givenPath, a FileSystemNode path
-   * @param targetPath, a File path
-   * @return returns the error
-   */
-  public static String moveDirectoryIntoFileError(Command command,
-      String givenPath, String targetPath) {
-    return command.getIdentifier() + ": cannot move directory at " + givenPath
-        + " because " + targetPath + " refers to a file";
-  }
-
-
-  /**
-   * changeDirectoryIntoFileError returns the error of targetPath refering to a
-   * File so you cannot change directory
-   * 
-   * @param command, an instance of Command class or its subclasses
-   * @param targetPath, a File path
-   * @return returns the error
-   */
-  public static String changeDirectoryIntoFileError(Command command,
-      String targetPath) {
-    return command.getIdentifier() + ": cannot change directory to file "
-        + targetPath;
-  }
 
   /**
    * copyDirectoryIntoFileError returns an error for invalid copy direcoty
@@ -267,12 +278,25 @@ public class ErrorHandler {
    * @param command instance of command
    * @param givenPath the file path
    * @param targetPath the target path
-   * @return returns the error
+   * @return the error of trying to copy a directory into a file path
    */
   public static String copyDirectoryIntoFileError(Command command,
       String givenPath, String targetPath) {
     return command.getIdentifier() + ": cannot copy directory " + givenPath
         + " to a file " + targetPath;
+  }
+  
+  /**
+   * copyDirectoryIntoFileError returns an error for a File already existing
+   * at givenPath
+   * 
+   * @param command instance of command
+   * @param givenPath the file path
+   * @return the error for a File already existing at givenPath
+   */
+  public static String fileAlreadyExistantAtPath(Command command, 
+      String givenPath) {
+    return command.getIdentifier() + ": File already exists at " + givenPath;
   }
 
 }
