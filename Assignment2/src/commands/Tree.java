@@ -47,12 +47,12 @@ public class Tree extends Command {
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("at most two parameters are accepted");
+    this.setErrorTooManyArguments("there must be no arguments");
     this.setMissingOperand("identifier tree is missing");
 
     // Description
     this.setDescription(
-        "Displays the whole fileSystem in a tree structure" + " drawing");
+        "Displays the whole fileSystem in a tree structure drawing");
   }
 
   /**

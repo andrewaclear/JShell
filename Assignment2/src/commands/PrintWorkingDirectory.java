@@ -44,7 +44,7 @@ public class PrintWorkingDirectory extends Command {
     this.setMinNumOfArguments(1);
 
     // Error Handling
-    this.setErrorTooManyArguments("at most two parameters are accepted");
+    this.setErrorTooManyArguments("there must be no arguments");
     this.setMissingOperand("identifier pwd is missing");
 
     // Description
