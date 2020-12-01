@@ -89,9 +89,9 @@ public class FileSystem implements java.io.Serializable {
 
 
   /**
-   * getFileSystemNode returns the FileSystemNode the givenPath refers to if its
-   * a valid/appropriate path, otherwise, return null and display an error
-   * message
+   * getFileSystemNode returns the FileSystemNode the givenPath refers to 
+   * if its a valid/appropriate path, otherwise, return null and display 
+   * an error message
    * 
    * @param givenPath A relative or full path
    * @return The FileSystemNode that givenPath points to
@@ -152,8 +152,8 @@ public class FileSystem implements java.io.Serializable {
    * return null and display an error message
    * 
    * @param givenPath A relative or full path
-   * @return The FileSystemNode the givenPath refers to excluding the last entry
-   *         which is null if the givenPath is an invalid/inappropriate path
+   * @return The FileSystemNode the givenPath refers to excluding the last 
+   *    entry which is null if the givenPath is an invalid/inappropriate path
    */
   public FileSystemNode getSemiFileSystemNode(String givenPath) {
 

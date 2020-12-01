@@ -33,8 +33,8 @@ public class PrintWorkingDirectory extends Command {
 
   /**
    * Constructor for PrintWorkingDirectory class. It initializes identifier,
-   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, missingOperand,
-   * and description from its super class Commands.
+   * maxNumOfArguments, minNumOfArguments errorTooManyArguments, 
+   * missingOperand, and description from its super class Commands.
    */
   public PrintWorkingDirectory() {
     this.setIdentifier("pwd");

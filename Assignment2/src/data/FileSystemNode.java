@@ -33,8 +33,8 @@ import java.util.ArrayList;
 public class FileSystemNode implements java.io.Serializable {
 
   /**
-   * A FileSystemNode has a Directory directory, an ArrayList of FileSystemNodes
-   * called children and a FileSystemNode parent
+   * A FileSystemNode has a Directory directory, an ArrayList of 
+   * FileSystemNodes called children and a FileSystemNode parent
    */
   private Directory directory;
   private List<FileSystemNode> children = new ArrayList<FileSystemNode>();
@@ -51,7 +51,8 @@ public class FileSystemNode implements java.io.Serializable {
   }
 
   /**
-   * addChild adds a FileSystemnode child to the children of this FileSystemNode
+   * addChild adds a FileSystemnode child to the children of this 
+   * FileSystemNode
    * 
    * @param child, an instance of a FileSystemNode
    */
@@ -75,7 +76,8 @@ public class FileSystemNode implements java.io.Serializable {
   }
 
   /**
-   * setParent sets the parent of this FileSystemNode to the paramaeter parent
+   * setParent sets the parent of this FileSystemNode to the 
+   * paramaeter parent
    * 
    * @param parent, an instance of a FileSystemNode
    */
@@ -175,8 +177,8 @@ public class FileSystemNode implements java.io.Serializable {
 
 
   /**
-   * removeChildByDirectoryName removes the directory from the children that has
-   * its directoryName as directoryName, if there is none, do nothing.
+   * removeChildByDirectoryName removes the directory from the children 
+   * that has its directoryName as directoryName, if there is none, do nothing.
    * 
    * @param directoryName, a String that refers to a directoryName of a
    *        Directory
@@ -212,10 +214,12 @@ public class FileSystemNode implements java.io.Serializable {
 
   /**
    * cloneFileSystemNodeInto clones this FileSystemNode and puts it in
-   * toBeClonedFileSystemNode, if toBeClonedFileSystemNode is null, return null.
+   * toBeClonedFileSystemNode, if toBeClonedFileSystemNode is null, 
+   * return null.
    * 
    * @param toBeClonedFileSystemNode, a FileSystemNode
-   * @return tobeClonedFIleSystemNode the cloned version of this FileSystemNode
+   * @return tobeClonedFIleSystemNode the cloned version of this 
+   *    FileSystemNode
    */
   public FileSystemNode cloneFileSystemNodeInto(
       FileSystemNode toBeClonedFileSystemNode) {
