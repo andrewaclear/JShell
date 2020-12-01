@@ -128,34 +128,42 @@ public class Move extends Command {
       JShell shell) {
     
     FileSystem fSystem = shell.getfSystem();
+    FileSystemNode possibleNode = fSystem.getFileSystemNode(targetPath);
     FileSystemNode targetNode = fSystem.getSemiFileSystemNode(targetPath);
     FileSystemNode givenNode = fSystem.getFileSystemNode(givenPath);
     String targetName = fSystem.getPathLastEntry(targetPath);
     String givenName = fSystem.getPathLastEntry(targetPath);
     
-    if (!targetNode.isChildInsideByDirectoryName(targetName)) {
-      if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
+    if (possibleNode != null) {
+      if (!possibleNode.getDirectory().isFileInsideByFileName(givenName)) {
+        possibleNode.addChild(givenNode);
+        givenNode.setParent(targetNode);
+        removeTheObject(givenPath, shell);
+      } else {
+          this.setErrors(ErrorHandler.fileAlreadyExist(this, givenName));
+      }
+    } else if (!targetNode.getDirectory().isFileInsideByFileName(givenName)) {
         targetNode.addChild(givenNode);
         givenNode.setParent(targetNode);
-        Remove remove = new Remove();
-        String[] removeTokens = {"rm", givenPath};
-        remove.run(removeTokens, shell);
+        removeTheObject(givenPath, shell);
         givenNode.getDirectory().setDirectoryName(targetName);
-      } else
-        this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this,
-            givenPath, targetPath));
-    } else if (!targetNode.getChildByDirectoryName(targetName).getDirectory()
-        .isFileInsideByFileName(givenName)) {
-      
-      targetNode.getChildByDirectoryName(targetName).addChild(givenNode);
-      givenNode.setParent(targetNode
-          .getChildByDirectoryName(fSystem.getPathLastEntry(targetPath)));
-      Remove remove = new Remove();
-      String[] removeTokens = {"rm", givenPath};
-      remove.run(removeTokens, shell);
     } else
       this.setErrors(ErrorHandler.moveDirectoryIntoFileError(this, givenPath,
           targetPath));
+  }
+  
+  
+  /**
+   * removeTheObject removes the FileSystemNode or FIle tha the givenPath
+   * refers to
+   * 
+   * @param givenPath, a path to a FileSystemNode
+   * @param shell contains the FileSystem and cache
+   */
+  private void removeTheObject(String givenPath, JShell shell) {
+    Remove remove = new Remove();
+    String[] removeTokens = {"rm", givenPath};
+    remove.run(removeTokens, shell);
   }
 
   /**
@@ -190,9 +198,7 @@ public class Move extends Command {
             {"redirect", "\"" + file.getContent() + "\"", ">", targetPath};
         redirectionCommand.run(redirectionTokens, shell);
       }
-      Remove remove = new Remove();
-      String[] removeTokens = {"rm", givenPath};
-      remove.run(removeTokens, shell);
+      removeTheObject(givenPath, shell);
     } else if (!fSystem.inappropriatePath(targetPath)) {
       this.setErrors(ErrorHandler.invalidPath(this, targetPath));
     } else
