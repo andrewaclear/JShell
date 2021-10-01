@@ -26,4 +26,5 @@ Java shell that implements the standard Unix Terminal Commands and File-Director
 #### Additional Commands
 - `saveJShell FILENAME`
 - `loadJShell FILENAME`
-- `search`
+- `search PATH ... -type [f|d] -name EXPRESSION`
+- `tree`
