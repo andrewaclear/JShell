@@ -1,6 +1,6 @@
 # jShell
 
-> by Andrew D’Amario, Christopher Suh, and Christian Chen Liu © Fall 2020
+> by Andrew D’Amario, Christopher Suh, and Christian Chen Liu © CSCB07 Project ~ Fall 2020
 
 Java shell that implements the standard Unix Terminal Commands and File-Directory Database. 
 
