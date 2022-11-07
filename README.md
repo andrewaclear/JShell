@@ -1,4 +1,4 @@
-# JShell
+# j-shell
 
 > by Andrew D’Amario, Christopher Suh, and Christian Chen Liu © Fall 2020
 
